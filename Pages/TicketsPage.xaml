@@ -1,0 +1,70 @@
+<UserControl x:Class="SsqAnalyzer.Pages.TicketsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="{StaticResource BgContent}">
+    <Grid Margin="10,6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- 标题 -->
+        <TextBlock FontSize="18" FontWeight="SemiBold" Margin="0,4,0,6" VerticalAlignment="Center">
+            <Run Text="🔥  复式票统计"/>
+            <Run Text="（基于复式票数据）" FontSize="12" FontWeight="Normal"
+                 Foreground="{StaticResource TextTertiary}"/>
+        </TextBlock>
+
+        <!-- 工具栏：期数 + 类型切换 + 导入数据 -->
+        <Grid Grid.Row="1" Margin="0,2,0,4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="PeriodLabel" Text="期数：--"
+                       FontSize="11" Foreground="{StaticResource TextTertiary}"
+                       VerticalAlignment="Center" />
+            <Button x:Name="OpenCompoundDataButton" Grid.Column="2" Content="📥 复式票数据"
+                    Style="{StaticResource ActionButton}" Click="OpenCompoundData_Click"
+                    Padding="12,3" Margin="0,0,8,0" />
+            <Border Grid.Column="3" Background="{StaticResource BgElevated}" CornerRadius="3" Padding="2"
+                    VerticalAlignment="Center" Margin="0,0,8,0">
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="双色球" x:Name="BtnSSQ" Style="{StaticResource FilterTabActive}" Margin="0,0,2,0"
+                            Click="LotteryType_Click" Tag="SSQ" />
+                    <Button Content="大乐透" x:Name="BtnDLT" Style="{StaticResource FilterTab}" Margin="2,0,0,0"
+                            Click="LotteryType_Click" Tag="DLT" />
+                </StackPanel>
+            </Border>
+            <Button Grid.Column="4" Content="📁 导入数据" Style="{StaticResource PrimaryButton}"
+                    Click="ImportData_Click" Padding="12,3" />
+        </Grid>
+
+        <!-- 表格 -->
+        <Border Grid.Row="2" Style="{StaticResource PanelBorder}" Padding="0">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="TablePanel" />
+            </ScrollViewer>
+        </Border>
+
+        <!-- 底部：导出 -->
+        <Grid Grid.Row="3" Margin="0,4,0,0">
+            <StackPanel HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="📄 导出HTML" Style="{StaticResource PrimaryButton}"
+                            Click="ExportHtml_Click" Padding="14,4" Width="120" Margin="0,0,8,0" />
+                    <Button Content="📷 导出图片" Style="{StaticResource ActionButton}"
+                            Click="ExportImage_Click" Padding="14,4" Width="120" />
+                </StackPanel>
+                <TextBlock x:Name="ExportStatus" Text="" FontSize="11"
+                           Foreground="{StaticResource TextTertiary}"
+                           HorizontalAlignment="Center" Margin="0,4,0,0" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

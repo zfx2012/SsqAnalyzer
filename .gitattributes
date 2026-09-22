@@ -1,0 +1,10 @@
+# Keep text normalized in Git while allowing platform-appropriate working files.
+* text=auto
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.pdf binary
+*.xlsx binary
+*.zip binary

@@ -1,0 +1,49 @@
+# .NET / WPF build and verification output (at any depth)
+[Bb]in/
+[Oo]bj/
+artifacts/
+TestResults/
+*.wpftmp.csproj
+*_wpftmp.csproj
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.coverage
+*.coveragexml
+
+# Local scratch files, exports, and downloaded media
+/tmp/
+/output/
+/publish/
+/data/
+/video/
+*.tmp
+*.bak
+*.log
+yt-dlp.exe
+ffmpeg.exe
+ffprobe.exe
+
+# Runtime data and private configuration stored beside the portable executable
+api_key
+bili_cookie
+kill-settings.json
+ssq_data.txt
+position_forward_validation.json
+/position_export_cache.*.json
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.pem
+*.key
+
+# Editor / OS caches; shared VS Code task and launch definitions remain versioned
+.vs/
+.idea/
+.vscode/*.local.json
+.DS_Store
+Thumbs.db
+Desktop.ini

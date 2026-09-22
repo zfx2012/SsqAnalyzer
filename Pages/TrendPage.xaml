@@ -1,0 +1,133 @@
+<UserControl x:Class="SsqAnalyzer.Pages.TrendPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:SsqAnalyzer.Controls"
+             Background="{StaticResource BgContent}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- ===== 顶部 ===== -->
+        <StackPanel Grid.Row="0" Margin="16,8,16,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="基本走势图" FontSize="20" FontWeight="SemiBold"
+                           Foreground="{StaticResource TextPrimary}"
+                           VerticalAlignment="Center" />
+                <StackPanel Grid.Column="2" Orientation="Horizontal" x:Name="PeriodFilterPanel"
+                            VerticalAlignment="Center">
+                    <Button x:Name="OpenHistoryButton" Content="📅 历史同期图"
+                            Style="{StaticResource ActionButton}" Click="OpenHistory_Click"
+                            Padding="12,3" Margin="0,0,8,0" />
+                    <Border Background="{StaticResource BgElevated}" CornerRadius="3" Padding="2">
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="近30期" Style="{StaticResource FilterTabActive}" Tag="30"
+                                    Click="PeriodFilter_Click" />
+                            <Button Content="近50期" Style="{StaticResource FilterTab}" Tag="50"
+                                    Click="PeriodFilter_Click" />
+                            <Button Content="近100期" Style="{StaticResource FilterTab}" Tag="100"
+                                    Click="PeriodFilter_Click" />
+                            <Button Content="近150期" Style="{StaticResource FilterTab}" Tag="150"
+                                    Click="PeriodFilter_Click" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+        </StackPanel>
+
+        <!-- ===== 滚动内容区 ===== -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                      HorizontalContentAlignment="Stretch">
+            <StackPanel Margin="16,8">
+
+                <!-- ===== 基本走势图 ===== -->
+                <StackPanel x:Name="BasicPanel">
+                    <!-- 走势矩阵（含斜连覆盖层） -->
+                    <Border Style="{StaticResource PanelBorder}" Padding="0">
+                        <Grid>
+                            <controls:MatrixGrid x:Name="MatrixView" />
+                            <!-- 斜连覆盖层 Canvas，叠加在矩阵上方 -->
+                            <Grid x:Name="DiagOverlayContainer"
+                                  IsHitTestVisible="False"
+                                  Visibility="Collapsed" />
+                        </Grid>
+                    </Border>
+
+                    <!-- 控制栏 -->
+                    <Border Margin="0,12,0,0" Background="{StaticResource BgElevated}" CornerRadius="5" Padding="12,10"
+                            BorderBrush="{StaticResource BorderSubtle}" BorderThickness="1">
+                        <StackPanel>
+                            <WrapPanel HorizontalAlignment="Center">
+                                <CheckBox x:Name="ChkMiss" Content="遗漏数据" Foreground="{StaticResource TextSecondary}" IsChecked="True"
+                                          Checked="OptionChanged" Unchecked="OptionChanged" Margin="0,0,16,4" />
+                                <CheckBox x:Name="ChkCold" Content="预测冷号" Foreground="{StaticResource TextSecondary}" IsChecked="True"
+                                          Checked="OptionChanged" Unchecked="OptionChanged" Margin="0,0,16,4" />
+                                <CheckBox x:Name="ChkLian" Content="预测斜连" Foreground="{StaticResource TextSecondary}" IsChecked="False"
+                                          Checked="OptionChanged" Unchecked="OptionChanged" Margin="0,0,8,4" />
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,4"
+                                            IsEnabled="{Binding ElementName=ChkLian, Path=IsChecked}">
+                                    <ComboBox x:Name="SelLevel" Width="80" Margin="4,0" FontSize="11" SelectedIndex="0" SelectionChanged="OptionChanged">
+                                        <ComboBoxItem Content="0级(临期)" /><ComboBoxItem Content="1级(隔一)" />
+                                        <ComboBoxItem Content="2级(隔二)" /><ComboBoxItem Content="3级(隔三)" />
+                                        <ComboBoxItem Content="4级(隔四)" /><ComboBoxItem Content="5级(隔五)" /><ComboBoxItem Content="6级(隔六)" />
+                                    </ComboBox>
+                                    <CheckBox x:Name="ChkStack" Content="叠加" Foreground="{StaticResource TextSecondary}"
+                                              FontSize="11" VerticalAlignment="Center" Margin="4,0"
+                                              Checked="OptionChanged" Unchecked="OptionChanged" />
+                                </StackPanel>
+                                <CheckBox x:Name="Chk012" Content="012路" Foreground="{StaticResource TextSecondary}" IsChecked="False"
+                                          Checked="Chk012_Changed" Unchecked="Chk012_Changed" Margin="0,0,16,4" />
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,16,4">
+                                    <TextBlock Text="周期:" FontSize="12" Foreground="{StaticResource TextSecondary}"
+                                               VerticalAlignment="Center" Margin="0,0,4,0" />
+                                    <ComboBox x:Name="SelWeekDay" Width="64" FontSize="11" SelectedIndex="0"
+                                              SelectionChanged="SelWeekDay_Changed">
+                                        <ComboBoxItem Content="全部" />
+                                        <ComboBoxItem Content="周二" />
+                                        <ComboBoxItem Content="周四" />
+                                        <ComboBoxItem Content="周日" />
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,16,4">
+                                    <TextBlock Text="奇偶:" FontSize="12" Foreground="{StaticResource TextSecondary}"
+                                               VerticalAlignment="Center" Margin="0,0,4,0" />
+                                    <ComboBox x:Name="SelParity" Width="64" FontSize="11" SelectedIndex="0"
+                                              SelectionChanged="SelParity_Changed">
+                                        <ComboBoxItem Content="全部" />
+                                        <ComboBoxItem Content="奇数期" />
+                                        <ComboBoxItem Content="偶数期" />
+                                    </ComboBox>
+                                </StackPanel>
+                            </WrapPanel>
+                            <WrapPanel HorizontalAlignment="Center" Margin="0,6,0,0">
+                                <StackPanel Orientation="Horizontal" Margin="0,0,16,0">
+                                    <Ellipse Width="9" Height="9" Fill="#9122D0" VerticalAlignment="Center" />
+                                    <TextBlock Text="三重号及以上" FontSize="10" Foreground="{StaticResource TextTertiary}" Margin="5,0,0,0" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,16,0">
+                                    <Ellipse Width="9" Height="9" Fill="#FF7800" VerticalAlignment="Center" />
+                                    <TextBlock Text="三斜连及以上" FontSize="10" Foreground="{StaticResource TextTertiary}" Margin="5,0,0,0" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Ellipse Width="9" Height="9" Fill="#5F736F" VerticalAlignment="Center" />
+                                    <TextBlock Text="三连号及以上" FontSize="10" Foreground="{StaticResource TextTertiary}" Margin="5,0,0,0" />
+                                </StackPanel>
+                            </WrapPanel>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+
+                <!-- 底部间距 -->
+                <Rectangle Height="16" Opacity="0" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

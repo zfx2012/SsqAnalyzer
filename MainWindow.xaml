@@ -1,0 +1,165 @@
+<Window x:Class="SsqAnalyzer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:pages="clr-namespace:SsqAnalyzer.Pages"
+        Title="双色球走势分析"
+        Height="720"
+        Width="1100"
+        MinHeight="500"
+        MinWidth="800"
+        WindowStyle="None"
+        ResizeMode="CanResize"
+        Background="{StaticResource BgApp}"
+        WindowStartupLocation="CenterScreen">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" GlassFrameThickness="0"
+                      CornerRadius="0" ResizeBorderThickness="6" />
+    </WindowChrome.WindowChrome>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <!-- 标题栏 -->
+            <RowDefinition Height="32" />
+            <!-- 主体 -->
+            <RowDefinition Height="*" />
+            <!-- 状态栏 -->
+            <RowDefinition Height="24" />
+        </Grid.RowDefinitions>
+
+        <!-- ==================== 标题栏 ==================== -->
+        <Border Grid.Row="0" Background="{StaticResource BgTitlebar}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- 拖动区域 -->
+                <StackPanel Orientation="Horizontal" Margin="8,0"
+                            VerticalAlignment="Center">
+                    <Border Width="16" Height="16" CornerRadius="3"
+                            Background="#E04848"
+                            Margin="0,0,6,0">
+                        <TextBlock Text="SS" FontSize="8" FontWeight="Bold"
+                                   Foreground="White" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Border>
+                    <TextBlock Text="双色球走势分析" FontSize="11"
+                               Foreground="{StaticResource TextSecondary}"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+
+                <!-- 窗口控制按钮 -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button x:Name="MinimizeBtn" Content="─" Width="46" Height="32"
+                            Background="Transparent" Foreground="{StaticResource TextSecondary}"
+                            BorderThickness="0" Cursor="Hand"
+                            Click="Minimize_Click"
+                            FontSize="10" />
+                    <Button x:Name="MaximizeBtn" Content="□" Width="46" Height="32"
+                            Background="Transparent" Foreground="{StaticResource TextSecondary}"
+                            BorderThickness="0" Cursor="Hand"
+                            Click="Maximize_Click"
+                            FontSize="10" />
+                    <Button x:Name="CloseBtn" Content="✕" Width="46" Height="32"
+                            Background="Transparent" Foreground="{StaticResource TextSecondary}"
+                            BorderThickness="0" Cursor="Hand"
+                            Click="Close_Click"
+                            FontSize="10" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- ==================== 主体 ==================== -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <!-- 侧栏 -->
+                <ColumnDefinition Width="200" />
+                <!-- 内容 -->
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- —— 侧栏 —— -->
+            <Border Grid.Column="0" Background="{StaticResource BgSidebar}"
+                    BorderThickness="0,0,1,0" BorderBrush="{StaticResource BorderDefault}">
+                <StackPanel Margin="4,8">
+                    <TextBlock Text="导航" FontSize="11" Foreground="{StaticResource TextTertiary}"
+                               FontWeight="SemiBold" Margin="12,6,12,8" />
+
+                    <Button x:Name="NavChart" Content="📊  走势图"
+                            Style="{StaticResource NavButtonActive}" Tag="chart"
+                            Click="Nav_Click" />
+                    <Button x:Name="NavTickets" Content="🔥  复式票统计"
+                            Style="{StaticResource NavButton}" Tag="tickets"
+                            Click="Nav_Click" />
+                    <Button x:Name="NavPosition" Content="📍  点位推荐"
+                            Style="{StaticResource NavButton}" Tag="position"
+                            Click="Nav_Click" />
+                    <Button x:Name="NavKill" Content="❌  杀号推荐"
+                            Style="{StaticResource NavButton}" Tag="kill"
+                            Click="Nav_Click" />
+                    <Button x:Name="NavGroup" Content="🎯  组号推荐"
+                            Style="{StaticResource NavButton}" Tag="group"
+                            Click="Nav_Click" />
+                    <Button x:Name="NavRecords"
+                            Style="{StaticResource NavButton}" Tag="records"
+                            Click="Nav_Click">
+                        <Grid>
+                            <TextBlock Text="📋  开奖记录" />
+                        </Grid>
+                    </Button>
+
+                    <Border Height="1" Background="{StaticResource BorderSubtle}" Margin="12,8" />
+
+                    <Button x:Name="NavSettings" Content="⚙️  设置"
+                            Style="{StaticResource NavButton}" Tag="settings"
+                            Click="Nav_Click" />
+                </StackPanel>
+            </Border>
+
+            <!-- —— 内容区 —— -->
+            <Grid Grid.Column="1" Background="{StaticResource BgContent}">
+                <!-- 走势图 -->
+                <pages:TrendPage x:Name="PageChart" Visibility="Visible" />
+                <!-- 复式票统计 -->
+                <pages:CompoundStatsPage x:Name="PageCompound" Visibility="Collapsed" />
+                <!-- 票行列表 -->
+                <pages:TicketsPage x:Name="PageTickets" Visibility="Collapsed" />
+                <!-- 杀号推荐 -->
+                <pages:KillPage x:Name="PageKill" Visibility="Collapsed" />
+                <!-- 点位推荐 -->
+                <pages:PositionPage x:Name="PagePosition" Visibility="Collapsed" />
+                <!-- 组号推荐 -->
+                <pages:GroupPage x:Name="PageGroup" Visibility="Collapsed" />
+                <!-- 开奖记录 -->
+                <pages:RecordsPage x:Name="PageRecords" Visibility="Collapsed" />
+                <!-- 历史同期图 -->
+                <pages:HistoryPage x:Name="PageHistory" Visibility="Collapsed" />
+                <!-- 设置 -->
+                <pages:SettingsPage x:Name="PageSettings" Visibility="Collapsed" />
+            </Grid>
+        </Grid>
+
+        <!-- ==================== 状态栏 ==================== -->
+        <Border Grid.Row="2" Background="{StaticResource BgTitlebar}"
+                BorderThickness="0,1,0,0" BorderBrush="{StaticResource BorderDefault}">
+            <StackPanel Orientation="Horizontal" Margin="12,0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Ellipse x:Name="SyncDot" Width="5" Height="5" Fill="#22C55E" Margin="0,0,4,0"
+                         VerticalAlignment="Center" />
+                    <TextBlock x:Name="StatusSync" Text="数据已同步" FontSize="11"
+                               Foreground="#22C55E" />
+                </StackPanel>
+                <Rectangle Width="1" Height="12" Fill="{StaticResource BorderDefault}"
+                           Margin="12,0" VerticalAlignment="Center" />
+                <TextBlock x:Name="StatusUpdate" Text="加载中..." FontSize="11"
+                           Foreground="{StaticResource TextTertiary}" VerticalAlignment="Center" />
+                <Rectangle Width="1" Height="12" Fill="{StaticResource BorderDefault}"
+                           Margin="12,0" VerticalAlignment="Center" />
+                <TextBlock x:Name="StatusPeriod" Text="加载中..." FontSize="11"
+                           Foreground="{StaticResource TextTertiary}" VerticalAlignment="Center" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

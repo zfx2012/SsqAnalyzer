@@ -1,0 +1,112 @@
+<UserControl x:Class="SsqAnalyzer.Pages.PositionPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="{StaticResource BgContent}"
+             Focusable="True"
+             PreviewKeyDown="Page_PreviewKeyDown">
+    <Grid Margin="16,12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Text="点位推荐" FontSize="22" FontWeight="SemiBold" Foreground="#000000" />
+                <TextBlock Text="版本化策略评分 · 严格使用目标期之前的数据"
+                           FontSize="13" Foreground="#000000" Margin="0,2,0,0" />
+            </StackPanel>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                <TextBlock x:Name="RuleVersionText" FontSize="12" FontFamily="Consolas"
+                           Foreground="#000000" HorizontalAlignment="Right" />
+                <TextBlock x:Name="SnapshotText" FontSize="11" FontFamily="Consolas"
+                           Foreground="#000000" HorizontalAlignment="Right" />
+            </StackPanel>
+        </Grid>
+
+        <Border Grid.Row="1" Style="{StaticResource PanelBorder}" Margin="0,10,0,8" Padding="8,6">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="GenerateButton" Content="生成点位" Style="{StaticResource PrimaryButton}"
+                        Click="Generate_Click" Padding="14,5" Margin="0,0,12,0" FontSize="14" />
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="选择期号" FontSize="14" Foreground="#000000"
+                               VerticalAlignment="Center" Margin="0,0,6,0" />
+                    <ComboBox x:Name="IssueBox" Width="132" Height="30" FontFamily="Consolas" FontSize="14"
+                              SelectionChanged="IssueBox_SelectionChanged" />
+                </StackPanel>
+                <TextBlock Grid.Column="2" x:Name="CutoffText" VerticalAlignment="Center" Margin="14,0,0,0"
+                           FontSize="13" Foreground="#000000" />
+                <StackPanel Grid.Column="3" Orientation="Horizontal">
+                    <Button x:Name="DetailsButton" Content="评分明细" Style="{StaticResource ActionButton}"
+                            Click="Details_Click" Margin="0,0,8,0" FontSize="14" />
+                    <Button Content="导出图片" Style="{StaticResource ActionButton}"
+                            Click="ExportImage_Click" Margin="0,0,8,0" FontSize="14" />
+                    <Button x:Name="ExportExcelButton" Content="导出表格" Style="{StaticResource ActionButton}"
+                            Click="ExportExcel_Click" FontSize="14" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2" x:Name="ExportSurface" Style="{StaticResource PanelBorder}"
+                Background="{StaticResource BgSurface}" Padding="0">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Grid x:Name="PredictionGrid" MinWidth="620" />
+            </ScrollViewer>
+        </Border>
+
+        <Border Grid.Row="3" x:Name="ScorePanel" Style="{StaticResource PanelBorder}"
+                Visibility="Collapsed" Margin="0,8,0,0" MaxHeight="230">
+            <DataGrid x:Name="ScoreGrid" AutoGenerateColumns="False" IsReadOnly="True"
+                      CanUserAddRows="False" HeadersVisibility="Column" RowHeaderWidth="0"
+                      GridLinesVisibility="Horizontal" BorderThickness="0"
+                      Background="{StaticResource BgSurface}" Foreground="#000000" FontSize="13"
+                      AlternatingRowBackground="#F5F5F5">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="类型" Binding="{Binding Type}" Width="55" />
+                    <DataGridTextColumn Header="号码" Binding="{Binding Ball}" Width="55" />
+                    <DataGridTextColumn Header="遗漏" Binding="{Binding Omission}" Width="60" />
+                    <DataGridTextColumn Header="全历史" Binding="{Binding HistoryFrequency}" Width="65" />
+                    <DataGridTextColumn Header="近30" Binding="{Binding Frequency30}" Width="55" />
+                    <DataGridTextColumn Header="近15/16" Binding="{Binding Frequency15}" Width="65" />
+                    <DataGridTextColumn Header="近5" Binding="{Binding Frequency5}" Width="55" />
+                    <DataGridTextColumn Header="长期分" Binding="{Binding LongTermScore}" Width="65" />
+                    <DataGridTextColumn Header="30/15分" Binding="{Binding RecentScore}" Width="95" />
+                    <DataGridTextColumn Header="结构分" Binding="{Binding StructureScore}" Width="65" />
+                    <DataGridTextColumn Header="公式分" Binding="{Binding FormulaScore}" Width="65" />
+                    <DataGridTextColumn Header="排除分" Binding="{Binding ExclusionScore}" Width="65" />
+                    <DataGridTextColumn Header="综合分" Binding="{Binding TotalScore}" Width="65" />
+                    <DataGridTextColumn Header="方向/依据" Binding="{Binding Notes}" Width="180" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <Grid Grid.Row="4" Margin="2,6,2,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="StatusText" FontSize="13" Foreground="#000000" />
+            <TextBlock Grid.Column="1" x:Name="ForwardStatusText" FontSize="13"
+                       Foreground="#000000" VerticalAlignment="Center" Margin="8,0" />
+            <Button Grid.Column="2" x:Name="BacktestButton" Content="滚动回测"
+                    Style="{StaticResource ActionButton}" Click="Backtest_Click" Margin="8,0" Padding="8,2" FontSize="14" />
+            <TextBlock Grid.Column="3" Text="策略评分不代表真实概率" FontSize="12"
+                       Foreground="#000000" />
+        </Grid>
+    </Grid>
+</UserControl>

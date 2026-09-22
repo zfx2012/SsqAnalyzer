@@ -1,0 +1,263 @@
+<Window x:Class="SsqAnalyzer.Pages.AddRuleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="添加杀号规则"
+        Width="920" Height="780"
+        MinWidth="720" MinHeight="600"
+        ResizeMode="CanResize"
+        WindowStartupLocation="CenterOwner"
+        Background="{StaticResource BgContent}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                  Background="Transparent">
+        <StackPanel Margin="16,12">
+
+            <!-- ======== A. LLM API 配置（状态条 + 去设置） ======== -->
+            <Border Style="{StaticResource PanelBorder}" Margin="0,0,0,12">
+                <StackPanel>
+                    <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource BorderSubtle}" Padding="12,10">
+                        <TextBlock>
+                            <Run Text="🤖 " />
+                            <Run Text="LLM API 配置" FontSize="14" FontWeight="SemiBold" />
+                        </TextBlock>
+                    </Border>
+                    <Grid Margin="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock x:Name="LlmStatusText" FontSize="12" Text="未配置" />
+                            <TextBlock x:Name="LlmDetailText" FontSize="10" Margin="0,2,0,0"
+                                       Foreground="{StaticResource TextTertiary}" Text="生成代码需要先配置 API Key 与模型" />
+                        </StackPanel>
+                        <Button Grid.Column="1" Content="⚙ 去设置"
+                                Style="{StaticResource PrimaryButton}" Padding="12,4"
+                                VerticalAlignment="Center" Click="GoSettings_Click" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- ======== B. 已有自定义规则 ======== -->
+            <Border Style="{StaticResource PanelBorder}" Margin="0,0,0,12">
+                <StackPanel>
+                    <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource BorderSubtle}" Padding="12,10">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="📋 已有自定义规则" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" />
+                            <TextBlock x:Name="CustomRuleCount" FontSize="11" Margin="8,0,0,0"
+                                       Foreground="{StaticResource TextTertiary}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+                    <DataGrid x:Name="CustomRulesGrid" Margin="12"
+                              AutoGenerateColumns="False" CanUserSortColumns="False"
+                              CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeColumns="True"
+                              IsReadOnly="True" HeadersVisibility="Column"
+                              BorderThickness="0" Height="160"
+                              Background="{StaticResource BgSurface}"
+                              Foreground="{StaticResource TextPrimary}"
+                              AlternationCount="2"
+                              GridLinesVisibility="All"
+                              HorizontalGridLinesBrush="{StaticResource BorderSubtle}"
+                              VerticalGridLinesBrush="{StaticResource BorderSubtle}"
+                              RowHeaderWidth="0"
+                              HorizontalScrollBarVisibility="Auto"
+                              VerticalScrollBarVisibility="Auto"
+                              SelectionMode="Single" SelectionUnit="FullRow">
+                        <DataGrid.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#2D4373"/>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#2D4373"/>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#FFFFFF"/>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="#FFFFFF"/>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="{StaticResource BgElevated}" />
+                                <Setter Property="Foreground" Value="{StaticResource TextSecondary}" />
+                                <Setter Property="FontSize" Value="11" />
+                                <Setter Property="FontWeight" Value="SemiBold" />
+                                <Setter Property="BorderThickness" Value="0,0,1,1" />
+                                <Setter Property="BorderBrush" Value="{StaticResource BorderSubtle}" />
+                                <Setter Property="Padding" Value="6,4" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                            </Style>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+                                <Setter Property="BorderThickness" Value="0" />
+                                <Setter Property="FontSize" Value="11" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="Padding" Value="6,0" />
+                                <Setter Property="Height" Value="32" />
+                                <Setter Property="Focusable" Value="False" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Foreground" Value="#FFFFFF" />
+                                        <Setter Property="BorderThickness" Value="0" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="MinHeight" Value="32" />
+                                <Setter Property="Height" Value="32" />
+                                <Style.Triggers>
+                                    <Trigger Property="AlternationIndex" Value="1">
+                                        <Setter Property="Background" Value="#F5F5F5" />
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource BgHover}" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#2D4373" />
+                                        <Setter Property="Foreground" Value="#FFFFFF" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <!-- 显示列：勾选后规则在杀号页列表显示，取消勾选则隐藏（独立于 IsEnabled） -->
+                            <DataGridTemplateColumn Header="显示" Width="46">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding IsVisible, Mode=OneWay}"
+                                                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                  Cursor="Hand" Click="VisibleToggle_Click" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="ID" Width="90" Binding="{Binding RuleId}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontFamily" Value="Consolas" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="名称" Width="160" Binding="{Binding Name}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="类别" Width="60" Binding="{Binding CategoryLabel}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="球" Width="46" Binding="{Binding BallLabel}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="描述" Width="*" Binding="{Binding Description}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn Header="操作" Width="64">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="删除" Style="{StaticResource ActionButton}"
+                                                FontSize="11" Padding="8,2" Margin="2,0"
+                                                Cursor="Hand" Click="DeleteRule_Click" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Border>
+
+            <!-- ======== C. 新增自定义规则 ======== -->
+            <Border Style="{StaticResource PanelBorder}">
+                <StackPanel>
+                    <Border BorderThickness="0,0,0,1" BorderBrush="{StaticResource BorderSubtle}" Padding="12,10">
+                        <TextBlock Text="✚ 新增自定义规则" FontSize="14" FontWeight="SemiBold" />
+                    </Border>
+
+                    <StackPanel Margin="12">
+                        <!-- 名称 / 类别 / 球 -->
+                        <Grid Margin="0,0,0,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                                <TextBlock Text="名称" FontSize="11" Foreground="{StaticResource TextTertiary}" Margin="0,0,0,3" />
+                                <TextBox x:Name="NameBox" FontSize="12" Padding="6,4" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Margin="0,0,8,0">
+                                <TextBlock Text="类别" FontSize="11" Foreground="{StaticResource TextTertiary}" Margin="0,0,0,3" />
+                                <ComboBox x:Name="CategoryBox" FontSize="12" SelectedIndex="1">
+                                    <ComboBoxItem Content="图形" />
+                                    <ComboBoxItem Content="公式" />
+                                    <ComboBoxItem Content="其他" />
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="球" FontSize="11" Foreground="{StaticResource TextTertiary}" Margin="0,0,0,3" />
+                                <ComboBox x:Name="BallBox" FontSize="12" SelectedIndex="0">
+                                    <ComboBoxItem Content="红球" />
+                                    <ComboBoxItem Content="蓝球" />
+                                </ComboBox>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- 自然语言描述 -->
+                        <TextBlock Text="自然语言描述" FontSize="11" Foreground="{StaticResource TextTertiary}" Margin="0,4,0,3" />
+                        <TextBox x:Name="NlDescBox" FontSize="12" Padding="6,4" Height="56"
+                                 TextWrapping="Wrap" AcceptsReturn="True"
+                                 VerticalScrollBarVisibility="Auto" />
+                        <Button x:Name="BtnGenerate" Content="✨ 生成代码（调 LLM）"
+                                Style="{StaticResource PrimaryButton}" Padding="12,6"
+                                HorizontalAlignment="Stretch" Margin="0,8,0,0"
+                                Click="Generate_Click" />
+
+                        <!-- 生成的代码（可编辑） -->
+                        <TextBlock Text="生成的代码（可编辑）" FontSize="11"
+                                   Foreground="{StaticResource TextTertiary}" Margin="0,12,0,3" />
+                        <TextBox x:Name="CodeBox" FontFamily="Consolas" FontSize="11"
+                                 Padding="8,6" Height="180"
+                                 Background="{StaticResource BgElevated}"
+                                 Foreground="{StaticResource TextSecondary}"
+                                 TextWrapping="Wrap" AcceptsReturn="True"
+                                 VerticalScrollBarVisibility="Auto"
+                                 HorizontalScrollBarVisibility="Auto" />
+
+                        <!-- 操作按钮 -->
+                        <Grid Margin="0,12,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" x:Name="BtnValidate" Content="🧪 沙箱验证"
+                                    Style="{StaticResource ActionButton}" Padding="12,6" Margin="0,0,6,0"
+                                    Click="Validate_Click" />
+                            <Button Grid.Column="1" x:Name="BtnBacktest" Content="📊 小样本回测"
+                                    Style="{StaticResource ActionButton}" Padding="12,6" Margin="0,0,6,0"
+                                    Click="Backtest_Click" />
+                            <Button Grid.Column="2" x:Name="BtnCommit" Content="💾 入库"
+                                    Style="{StaticResource PrimaryButton}" Padding="12,6"
+                                    Click="Commit_Click" />
+                        </Grid>
+
+                        <!-- 状态信息 -->
+                        <TextBlock x:Name="StatusText" FontSize="11" Margin="0,10,0,0"
+                                   Foreground="{StaticResource TextTertiary}" TextWrapping="Wrap" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SsqAnalyzer.csproj" />
+  <Project Path="Verification/SsqAnalyzer.PositionVerification.csproj" />
+</Solution>

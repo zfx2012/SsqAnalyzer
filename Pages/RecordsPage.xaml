@@ -1,0 +1,423 @@
+<UserControl x:Class="SsqAnalyzer.Pages.RecordsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             Background="{StaticResource BgContent}">
+    <Grid Margin="16,12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- 标题行 -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="开奖记录" FontSize="20" FontWeight="SemiBold" />
+            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                <TextBlock x:Name="InfoText" VerticalAlignment="Center"
+                           Foreground="{StaticResource TextTertiary}" FontSize="12" Margin="0,0,12,0" />
+                <Button x:Name="BtnExport" Content="📥 导出表格" Style="{StaticResource ActionButton}"
+                        Click="BtnExport_Click" />
+            </StackPanel>
+        </Grid>
+
+        <!-- 期数选择栏 -->
+        <Border Grid.Row="1" Style="{StaticResource PanelBorder}" Margin="0,8,0,8">
+            <StackPanel Orientation="Horizontal" Margin="8,4">
+                <TextBlock Text="显示期数：" VerticalAlignment="Center" FontSize="12"
+                           Foreground="{StaticResource TextTertiary}" Margin="4,0,4,0" />
+                <Button x:Name="Btn30" Content="30" Style="{StaticResource FilterTabActive}"
+                        Click="PeriodBtn_Click" Tag="30" Margin="1,0" />
+                <Button x:Name="Btn50" Content="50" Style="{StaticResource FilterTab}"
+                        Click="PeriodBtn_Click" Tag="50" Margin="1,0" />
+                <Button x:Name="Btn100" Content="100" Style="{StaticResource FilterTab}"
+                        Click="PeriodBtn_Click" Tag="100" Margin="1,0" />
+                <Button x:Name="Btn200" Content="200" Style="{StaticResource FilterTab}"
+                        Click="PeriodBtn_Click" Tag="200" Margin="1,0" />
+                <Separator Width="1" Background="{StaticResource BorderSubtle}" Margin="12,2,8,2" />
+                <TextBlock x:Name="SummaryText" VerticalAlignment="Center" FontSize="12"
+                           Foreground="{StaticResource TextTertiary}" />
+            </StackPanel>
+        </Border>
+
+        <!-- DataGrid -->
+        <Border Grid.Row="2" Style="{StaticResource PanelBorder}">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <DataGrid x:Name="RecordsGrid" AutoGenerateColumns="False" CanUserSortColumns="False"
+                          CanUserAddRows="False" IsReadOnly="True" HeadersVisibility="Column"
+                          BorderThickness="0"
+                          Background="{StaticResource BgSurface}"
+                          Foreground="{StaticResource TextPrimary}"
+                          RowBackground="{StaticResource BgSurface}"
+                          GridLinesVisibility="Horizontal"
+                          AlternatingRowBackground="#F5F5F5"
+                          RowHeaderWidth="0"
+                          HorizontalScrollBarVisibility="Disabled"
+                          VerticalScrollBarVisibility="Disabled">
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="{StaticResource BgElevated}" />
+                            <Setter Property="Foreground" Value="{StaticResource TextTertiary}" />
+                            <Setter Property="FontSize" Value="11" />
+                            <Setter Property="FontWeight" Value="SemiBold" />
+                            <Setter Property="BorderThickness" Value="0,0,0,1" />
+                            <Setter Property="BorderBrush" Value="{StaticResource BorderDefault}" />
+                            <Setter Property="Padding" Value="4,3" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Foreground" Value="{StaticResource TextPrimary}" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="FontSize" Value="11" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="Padding" Value="4,0" />
+                            <Setter Property="MinHeight" Value="0" />
+                            <Setter Property="Height" Value="26" />
+                        </Style>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="MinHeight" Value="26" />
+                            <Setter Property="Height" Value="26" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsLatest}" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource PeriodBgLatest}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <!-- 期号 -->
+                        <DataGridTextColumn Header="期号" Width="80"
+                            Binding="{Binding Period}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontFamily" Value="Consolas" />
+                                    <Setter Property="Foreground" Value="{StaticResource TextTertiary}" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="FontSize" Value="10" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 日期 -->
+                        <DataGridTextColumn Header="日期" Width="80"
+                            Binding="{Binding DateLabel}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="FontSize" Value="10" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 星期 -->
+                        <DataGridTextColumn Header="周" Width="32"
+                            Binding="{Binding WeekDayName}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="Foreground" Value="{StaticResource TextTertiary}" />
+                                    <Setter Property="FontSize" Value="10" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 开奖号码 -->
+                        <DataGridTemplateColumn Header="开奖号码" Width="230">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <ItemsControl ItemsSource="{Binding RedBalls}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border Width="17" Height="17" CornerRadius="8"
+                                                            Background="{StaticResource RedBall}" Margin="1,0">
+                                                        <TextBlock Text="{Binding StringFormat={}{0:D2}}"
+                                                                   FontSize="9" FontWeight="SemiBold"
+                                                                   Foreground="White"
+                                                                   HorizontalAlignment="Center"
+                                                                   VerticalAlignment="Center" />
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                        <TextBlock Text="+" Foreground="{StaticResource TextTertiary}"
+                                                   VerticalAlignment="Center" Margin="1,0" FontSize="10" />
+                                        <Border Width="17" Height="17" CornerRadius="8"
+                                                Background="{StaticResource BlueBall}" Margin="1,0">
+                                            <TextBlock Text="{Binding BlueBall, StringFormat={}{0:D2}}"
+                                                       FontSize="9" FontWeight="SemiBold"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center" />
+                                        </Border>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- 重号 -->
+                        <DataGridTextColumn Header="重" Width="34"
+                            Binding="{Binding RepeatCount}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{StaticResource HotColor}" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="FontSize" Value="11" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 连号 -->
+                        <DataGridTextColumn Header="连" Width="34"
+                            Binding="{Binding LinkCount}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{StaticResource WarmColor}" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="FontSize" Value="11" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 和值 -->
+                        <DataGridTextColumn Header="和值" Width="40"
+                            Binding="{Binding RedSum}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="FontFamily" Value="Consolas" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 跨度 -->
+                        <DataGridTextColumn Header="跨度" Width="40"
+                            Binding="{Binding RedSpan}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="FontFamily" Value="Consolas" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 奇偶比 -->
+                        <DataGridTextColumn Header="奇偶" Width="44"
+                            Binding="{Binding OddEvenLabel}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="FontFamily" Value="Consolas" />
+                                    <Setter Property="FontSize" Value="10" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 大小比 -->
+                        <DataGridTextColumn Header="大小" Width="44"
+                            Binding="{Binding BigSmallLabel}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="FontFamily" Value="Consolas" />
+                                    <Setter Property="FontSize" Value="10" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 质合比 -->
+                        <DataGridTextColumn Header="质合" Width="44"
+                            Binding="{Binding PrimeLabel}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="FontFamily" Value="Consolas" />
+                                    <Setter Property="FontSize" Value="10" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 三区比 -->
+                        <DataGridTextColumn Header="三区" Width="48"
+                            Binding="{Binding ZoneLabel}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="FontFamily" Value="Consolas" />
+                                    <Setter Property="FontSize" Value="10" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 012路 -->
+                        <DataGridTextColumn Header="012路" Width="48"
+                            Binding="{Binding ZO2Label}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="FontFamily" Value="Consolas" />
+                                    <Setter Property="FontSize" Value="10" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 销售额 -->
+                        <DataGridTextColumn Header="销售额(亿)" Width="72"
+                            Binding="{Binding SalesYi, StringFormat={}{0:F2}}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{StaticResource TextTertiary}" />
+                                    <Setter Property="FontFamily" Value="Consolas" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="FontSize" Value="10" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 奖池 -->
+                        <DataGridTextColumn Header="奖池(亿)" Width="72"
+                            Binding="{Binding PoolYi, StringFormat={}{0:F2}}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{StaticResource Gold}" />
+                                    <Setter Property="FontFamily" Value="Consolas" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="FontSize" Value="10" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 一等奖 -->
+                        <DataGridTextColumn Header="一等注数" Width="54"
+                            Binding="{Binding FirstPrizeCount}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{StaticResource HotColor}" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 一等奖金 -->
+                        <DataGridTextColumn Header="一等奖金" Width="80"
+                            Binding="{Binding FirstPrizeYuan}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{StaticResource HotColor}" />
+                                    <Setter Property="FontFamily" Value="Consolas" />
+                                    <Setter Property="FontSize" Value="10" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 二等奖 -->
+                        <DataGridTextColumn Header="二等注数" Width="54"
+                            Binding="{Binding SecondPrizeCount}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{StaticResource WarmColor}" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 二等奖金 -->
+                        <DataGridTextColumn Header="二等奖金" Width="80"
+                            Binding="{Binding SecondPrizeYuan}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{StaticResource WarmColor}" />
+                                    <Setter Property="FontFamily" Value="Consolas" />
+                                    <Setter Property="FontSize" Value="10" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 三等奖 -->
+                        <DataGridTextColumn Header="三等奖" Width="60"
+                            Binding="{Binding ThirdPrizeCount}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 四等奖 -->
+                        <DataGridTextColumn Header="四等奖" Width="60"
+                            Binding="{Binding FourthPrizeCount}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 五等奖 -->
+                        <DataGridTextColumn Header="五等奖" Width="60"
+                            Binding="{Binding FifthPrizeCount}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <!-- 六等奖 -->
+                        <DataGridTextColumn Header="六等奖" Width="60"
+                            Binding="{Binding SixthPrizeCount}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </Border>
+
+        <!-- 底栏 -->
+        <Border Grid.Row="3" Margin="0,4,0,0">
+            <TextBlock x:Name="FooterText" FontSize="11" Foreground="{StaticResource TextTertiary}" />
+        </Border>
+    </Grid>
+</UserControl>

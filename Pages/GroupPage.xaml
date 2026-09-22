@@ -1,0 +1,326 @@
+<UserControl x:Class="SsqAnalyzer.Pages.GroupPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:SsqAnalyzer.Controls"
+             Background="{StaticResource BgContent}"
+             SizeChanged="GroupPage_SizeChanged">
+    <UserControl.Resources>
+        <Style x:Key="RailButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="8,5" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="RailBorder" Background="{TemplateBinding Background}"
+                                CornerRadius="4" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="RailBorder" Property="Background" Value="{StaticResource BgHover}" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="RailBorder" Property="BorderBrush" Value="{StaticResource Accent}" />
+                                <Setter TargetName="RailBorder" Property="BorderThickness" Value="2" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SourceCardButton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource BgElevated}" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="CardBorder" Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="CardBorder" Property="Background" Value="{StaticResource BgHover}" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="CardBorder" Property="BorderBrush" Value="{StaticResource Accent}" />
+                                <Setter TargetName="CardBorder" Property="BorderThickness" Value="2" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel x:Name="PageContent" Margin="16,12">
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Text="组号推荐" FontSize="22" FontWeight="SemiBold" />
+                    <TextBlock Text="按期号汇总已有证据；数据不完整也可以组号"
+                               FontSize="11" Foreground="{StaticResource TextTertiary}" Margin="0,4,0,0" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="目标期" FontSize="11" Foreground="{StaticResource TextTertiary}"
+                               VerticalAlignment="Center" Margin="0,0,6,0" />
+                    <TextBox x:Name="TargetIssueInput" Width="92" Height="30" Padding="6,4"
+                             FontFamily="Consolas" VerticalContentAlignment="Center"
+                             KeyDown="TargetIssueInput_KeyDown" />
+                    <Button Content="载入" Style="{StaticResource ActionButton}" Margin="6,0,0,0"
+                            Click="LoadIssue_Click" />
+                    <Button Content="刷新" Style="{StaticResource PrimaryButton}" Margin="6,0,0,0"
+                            Click="Refresh_Click" />
+                </StackPanel>
+            </Grid>
+
+            <Border Style="{StaticResource PanelBorder}" Margin="0,0,0,10" Padding="12,8">
+                <StackPanel>
+                    <Grid Margin="0,0,0,4">
+                        <TextBlock x:Name="RailTitle" FontSize="12" FontWeight="SemiBold" />
+                        <TextBlock x:Name="RailSummary" HorizontalAlignment="Right" FontSize="10"
+                                   Foreground="{StaticResource TextTertiary}" />
+                    </Grid>
+                    <Grid Margin="8,2,8,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" /><ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" /><ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Row="0" Grid.ColumnSpan="4" Height="2" Margin="50,10,50,0"
+                                VerticalAlignment="Top" Background="{StaticResource BorderDefault}" />
+
+                        <Button Grid.Column="0" Style="{StaticResource RailButton}" Tag="chart" Click="Rail_Click">
+                            <StackPanel>
+                                <Ellipse x:Name="TrendRailDot" Width="12" Height="12" Fill="{StaticResource BorderDefault}"
+                                         Stroke="White" StrokeThickness="2" HorizontalAlignment="Center" />
+                                <TextBlock Text="走势图" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,4,0,0" />
+                                <TextBlock x:Name="TrendRailState" FontSize="9" Foreground="{StaticResource TextTertiary}" HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button Grid.Column="1" Style="{StaticResource RailButton}" Tag="tickets" Click="Rail_Click">
+                            <StackPanel>
+                                <Ellipse x:Name="TicketRailDot" Width="12" Height="12" Fill="{StaticResource BorderDefault}"
+                                         Stroke="White" StrokeThickness="2" HorizontalAlignment="Center" />
+                                <TextBlock Text="复式票统计" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,4,0,0" />
+                                <TextBlock x:Name="TicketRailState" FontSize="9" Foreground="{StaticResource TextTertiary}" HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button Grid.Column="2" Style="{StaticResource RailButton}" Tag="position" Click="Rail_Click">
+                            <StackPanel>
+                                <Ellipse x:Name="PositionRailDot" Width="12" Height="12" Fill="{StaticResource BorderDefault}"
+                                         Stroke="White" StrokeThickness="2" HorizontalAlignment="Center" />
+                                <TextBlock Text="6 个点位" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,4,0,0" />
+                                <TextBlock x:Name="PositionRailState" FontSize="9" Foreground="{StaticResource TextTertiary}" HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button Grid.Column="3" Style="{StaticResource RailButton}" Tag="kill" Click="Rail_Click">
+                            <StackPanel>
+                                <Ellipse x:Name="KillRailDot" Width="12" Height="12" Fill="{StaticResource BorderDefault}"
+                                         Stroke="White" StrokeThickness="2" HorizontalAlignment="Center" />
+                                <TextBlock Text="杀号大底" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,4,0,0" />
+                                <TextBlock x:Name="KillRailState" FontSize="9" Foreground="{StaticResource TextTertiary}" HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <Grid x:Name="WorkbenchGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="240" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="360" />
+                </Grid.ColumnDefinitions>
+
+                <Border x:Name="SourcesPanel" Grid.Row="0" Grid.Column="0" Style="{StaticResource PanelBorder}" Padding="10">
+                    <StackPanel>
+                        <Grid Margin="2,0,2,8">
+                            <TextBlock Text="本期数据源" FontSize="13" FontWeight="SemiBold" />
+                            <TextBlock x:Name="ReadyCountText" HorizontalAlignment="Right" FontFamily="Consolas"
+                                       FontSize="11" Foreground="{StaticResource Accent}" />
+                        </Grid>
+                        <Button x:Name="TrendSourceCard" Style="{StaticResource SourceCardButton}" Tag="Trend"
+                                Click="SelectSource_Click" Margin="0,0,0,7">
+                            <StackPanel>
+                                <Grid><TextBlock Text="走势图" FontWeight="SemiBold" /><TextBlock x:Name="TrendCardState" HorizontalAlignment="Right" FontSize="10" /></Grid>
+                                <TextBlock x:Name="TrendCardSummary" FontSize="9" Foreground="{StaticResource TextTertiary}" Margin="0,6,0,0" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="TicketSourceCard" Style="{StaticResource SourceCardButton}" Tag="TicketStats"
+                                Click="SelectSource_Click" Margin="0,0,0,7">
+                            <StackPanel>
+                                <Grid><TextBlock Text="复式票统计" FontWeight="SemiBold" /><TextBlock x:Name="TicketCardState" HorizontalAlignment="Right" FontSize="10" /></Grid>
+                                <TextBlock x:Name="TicketCardSummary" FontSize="9" Foreground="{StaticResource TextTertiary}" Margin="0,6,0,0" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="PositionSourceCard" Style="{StaticResource SourceCardButton}" Tag="Position"
+                                Click="SelectSource_Click" Margin="0,0,0,7">
+                            <StackPanel>
+                                <Grid><TextBlock Text="6 个点位" FontWeight="SemiBold" /><TextBlock x:Name="PositionCardState" HorizontalAlignment="Right" FontSize="10" /></Grid>
+                                <TextBlock x:Name="PositionCardSummary" FontSize="9" Foreground="{StaticResource TextTertiary}" Margin="0,6,0,0" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="KillSourceCard" Style="{StaticResource SourceCardButton}" Tag="KillPool"
+                                Click="SelectSource_Click" Margin="0,0,0,10">
+                            <StackPanel>
+                                <Grid><TextBlock Text="杀号大底" FontWeight="SemiBold" /><TextBlock x:Name="KillCardState" HorizontalAlignment="Right" FontSize="10" /></Grid>
+                                <TextBlock x:Name="KillCardSummary" FontSize="9" Foreground="{StaticResource TextTertiary}" Margin="0,6,0,0" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </Button>
+                        <TextBlock Text="状态只表示本期是否有可用数据。缺失项不会阻止组号。"
+                                   FontSize="9" Foreground="{StaticResource TextTertiary}" TextWrapping="Wrap" Margin="2,4" />
+                    </StackPanel>
+                </Border>
+
+                <Border x:Name="EvidencePanel" Grid.Row="0" Grid.Column="1" Style="{StaticResource PanelBorder}"
+                        Padding="12" Margin="10,0,10,0">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,8">
+                            <StackPanel>
+                                <TextBlock x:Name="EvidenceTitle" FontSize="13" FontWeight="SemiBold" />
+                                <TextBlock x:Name="EvidenceSubtitle" FontSize="9" Foreground="{StaticResource TextTertiary}" Margin="0,3,0,0" TextWrapping="Wrap" />
+                            </StackPanel>
+                            <Button x:Name="OpenSourceButton" HorizontalAlignment="Right" VerticalAlignment="Top"
+                                    Content="打开对应页面 →" Style="{StaticResource FilterTab}" Click="OpenSource_Click" />
+                        </Grid>
+                        <Border Height="1" Background="{StaticResource BorderSubtle}" Margin="0,0,0,10" />
+
+                        <StackPanel x:Name="TrendDetailPanel">
+                            <UniformGrid x:Name="TrendViewSelector" Columns="5" Margin="0,0,0,10" />
+                            <Grid Margin="0,0,0,7">
+                                <StackPanel>
+                                    <TextBlock x:Name="TrendPreviewTitle" FontSize="11" FontWeight="SemiBold" />
+                                    <TextBlock x:Name="TrendPreviewCaption" FontSize="9" Foreground="{StaticResource TextTertiary}"
+                                               Margin="0,2,0,0" />
+                                </StackPanel>
+                                <Button x:Name="OpenTrendPreviewButton" Content="放大查看  ⛶"
+                                        HorizontalAlignment="Right" VerticalAlignment="Center"
+                                        Style="{StaticResource FilterTab}" Click="OpenTrendPreview_Click" />
+                            </Grid>
+                            <Border x:Name="TrendPreviewBorder" BorderBrush="{StaticResource BorderSubtle}"
+                                    BorderThickness="1" CornerRadius="4" Background="White" Cursor="Hand"
+                                    MouseLeftButtonUp="TrendPreview_Click">
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                                    <Grid MinWidth="1000">
+                                        <controls:MatrixGrid x:Name="TrendPreviewMatrix" />
+                                        <Grid x:Name="TrendPreviewOverlay" IsHitTestVisible="False" />
+                                    </Grid>
+                                </ScrollViewer>
+                            </Border>
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Border Background="{StaticResource BgElevated}" CornerRadius="4" Padding="10" Margin="0,0,5,0">
+                                    <StackPanel>
+                                        <TextBlock Text="预测冷号" FontSize="11" FontWeight="SemiBold" />
+                                        <TextBlock x:Name="TrendColdRedText" FontSize="9" Foreground="{StaticResource RedBall}"
+                                                   Margin="0,6,0,2" TextWrapping="Wrap" />
+                                        <TextBlock x:Name="TrendColdBlueText" FontSize="9" Foreground="{StaticResource BlueBall}"
+                                                   TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </Border>
+                                <Border Grid.Column="1" Background="{StaticResource BgElevated}" CornerRadius="4" Padding="10" Margin="5,0,0,0">
+                                    <StackPanel>
+                                        <TextBlock Text="三斜连（1级）预测号" FontSize="11" FontWeight="SemiBold" />
+                                        <TextBlock x:Name="TrendDiagonalRedText" FontSize="9" Foreground="{StaticResource RedBall}"
+                                                   Margin="0,6,0,2" TextWrapping="Wrap" />
+                                        <TextBlock x:Name="TrendDiagonalBlueText" FontSize="9" Foreground="{StaticResource BlueBall}"
+                                                   TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </StackPanel>
+
+                        <StackPanel x:Name="TicketDetailPanel" Visibility="Collapsed">
+                            <TextBlock x:Name="TicketDetailSummary" FontSize="10" Foreground="{StaticResource TextSecondary}" Margin="0,0,0,8" />
+                            <TextBlock Text="红球统计（低统计数优先）" FontSize="11" FontWeight="SemiBold" />
+                            <WrapPanel x:Name="RedStatsPanel" Margin="0,5,0,10" />
+                            <TextBlock Text="蓝球统计（低统计数优先）" FontSize="11" FontWeight="SemiBold" />
+                            <WrapPanel x:Name="BlueStatsPanel" Margin="0,5,0,0" />
+                        </StackPanel>
+
+                        <StackPanel x:Name="PositionDetailPanel" Visibility="Collapsed">
+                            <TextBlock Text="本期参与组号的 6 个红球点位" FontSize="11" FontWeight="SemiBold" />
+                            <WrapPanel x:Name="PositionBallsPanel" Margin="0,12,0,8" />
+                            <TextBlock x:Name="PositionDetailText" FontSize="9" Foreground="{StaticResource TextTertiary}" TextWrapping="Wrap" />
+                        </StackPanel>
+
+                        <StackPanel x:Name="KillDetailPanel" Visibility="Collapsed">
+                            <TextBlock Text="剩余红球大底" FontSize="11" FontWeight="SemiBold" />
+                            <WrapPanel x:Name="KillRedPanel" Margin="0,8,0,12" />
+                            <TextBlock Text="剩余蓝球大底" FontSize="11" FontWeight="SemiBold" />
+                            <WrapPanel x:Name="KillBluePanel" Margin="0,8,0,0" />
+                        </StackPanel>
+
+                        <TextBlock x:Name="EvidenceEmptyText" Visibility="Collapsed" FontSize="11"
+                                   Foreground="{StaticResource TextTertiary}" TextWrapping="Wrap" Margin="0,12" />
+                        <Border Height="1" Background="{StaticResource BorderSubtle}" Margin="0,12,0,8" />
+                        <TextBlock x:Name="SnapshotText" FontSize="9" Foreground="{StaticResource TextTertiary}" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Border>
+
+                <Border x:Name="ComposerPanel" Grid.Row="0" Grid.Column="2" Style="{StaticResource PanelBorder}" Padding="12">
+                    <StackPanel>
+                        <TextBlock Text="本期组号" FontSize="14" FontWeight="SemiBold" />
+                        <TextBlock Text="冻结当前可用数据后生成基础单式方案" FontSize="9"
+                                   Foreground="{StaticResource TextTertiary}" Margin="0,3,0,8" />
+                        <WrapPanel x:Name="UsedSourcesPanel" Margin="0,0,0,10" />
+                        <Grid Margin="0,0,0,8">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                            <StackPanel Margin="0,0,5,0">
+                                <TextBlock Text="票型" FontSize="9" Foreground="{StaticResource TextTertiary}" />
+                                <Border BorderBrush="{StaticResource BorderDefault}" BorderThickness="1" CornerRadius="3" Padding="7" Margin="0,3,0,0">
+                                    <TextBlock Text="单式" FontSize="11" />
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Margin="5,0,0,0">
+                                <TextBlock Text="注数（1～20）" FontSize="9" Foreground="{StaticResource TextTertiary}" />
+                                <TextBox x:Name="TicketCountInput" Text="5" Height="30" Padding="7,4" Margin="0,3,0,0"
+                                         FontFamily="Consolas" TextChanged="TicketCountInput_TextChanged" />
+                            </StackPanel>
+                        </Grid>
+                        <Grid Margin="0,0,0,8">
+                            <TextBlock Text="预算" FontSize="9" Foreground="{StaticResource TextTertiary}" />
+                            <TextBlock x:Name="BudgetText" HorizontalAlignment="Right" FontFamily="Consolas" FontSize="11" />
+                        </Grid>
+                        <Grid Margin="0,0,0,10">
+                            <TextBlock Text="规则版本" FontSize="9" Foreground="{StaticResource TextTertiary}" />
+                            <TextBlock Text="draft-v1 · 基础合法性规则" HorizontalAlignment="Right" FontSize="9" />
+                        </Grid>
+                        <Button x:Name="GenerateButton" Height="38" Style="{StaticResource PrimaryButton}"
+                                Click="Generate_Click" />
+                        <TextBlock x:Name="GenerateStatusText" FontSize="9" Foreground="{StaticResource TextTertiary}"
+                                   TextWrapping="Wrap" Margin="0,7,0,10" />
+                        <Border Height="1" Background="{StaticResource BorderSubtle}" Margin="0,0,0,8" />
+                        <TextBlock Text="方案预览" FontSize="11" FontWeight="SemiBold" Margin="0,0,0,6" />
+                        <StackPanel x:Name="ResultsPanel" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

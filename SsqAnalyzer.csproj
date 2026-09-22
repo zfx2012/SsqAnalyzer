@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <NoWarn>CS0618</NoWarn>
+    <UseWindowsForms>false</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>SsqAnalyzer</AssemblyName>
+    <RootNamespace>SsqAnalyzer</RootNamespace>
+    <!-- Keep verification sources, scratch work and exported artifacts out of SDK item discovery. -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);Verification\**;tmp\**;output\**</DefaultItemExcludes>
+    <ApplicationIcon />
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="SsqAnalyzer.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.105.0" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Jint" Version="4.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0-preview.1.25080.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\builtin-rules.json">
+      <LogicalName>SsqAnalyzer.Resources.builtin-rules.json</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\position_export_cache.seed.json">
+      <LogicalName>SsqAnalyzer.Resources.position_export_cache.seed.json</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
