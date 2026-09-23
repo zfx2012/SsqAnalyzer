@@ -1,37 +1,194 @@
 {
   "evaluatedThrough": 2026109,
   "dataHash": "DC49E9762FA1C39E05CCF4528A97544AE55520BE941867D5B420A32631A424BD",
-  "retired": [
-    "B-G-R-001",
-    "B-G-R-002",
-    "B-G-R-004",
-    "B-G-R-005",
-    "B-G-R-006",
-    "B-G-R-007",
-    "B-G-R-008",
-    "B-G-R-011",
-    "B-G-R-001-HS",
-    "B-G-R-001-CY",
-    "B-G-R-002-HS",
-    "B-G-R-002-OE",
-    "B-G-R-002-CY",
-    "B-G-R-003-OE",
-    "B-G-R-003-CY",
-    "B-G-R-004-HS",
-    "B-G-R-004-OE",
-    "B-G-R-004-CY",
-    "B-G-R-005-HS",
-    "B-G-R-005-OE",
-    "B-G-R-005-CY",
-    "B-G-R-006-OE",
-    "B-G-R-006-CY",
-    "B-G-R-007-CY",
-    "B-G-R-009-HS",
-    "B-G-R-009-OE",
-    "B-G-R-009-CY",
-    "B-G-R-010-OE",
-    "B-G-R-010-CY",
-    "B-G-R-012-HS",
-    "B-G-R-012-CY"
-  ]
+  "retired": [],
+  "conditions": {
+    "B-G-R-001": {
+      "Feature": "frequency",
+      "Window": 50,
+      "Minimum": 0,
+      "Maximum": 10
+    },
+    "B-G-R-002": {
+      "Feature": "frequency",
+      "Window": 20,
+      "Minimum": 3,
+      "Maximum": 20
+    },
+    "B-G-R-004": {
+      "Feature": "frequency",
+      "Window": 50,
+      "Minimum": 8,
+      "Maximum": 50
+    },
+    "B-G-R-007": {
+      "Feature": "frequency",
+      "Window": 20,
+      "Minimum": 4,
+      "Maximum": 5
+    },
+    "B-G-R-008": {
+      "Feature": "frequency",
+      "Window": 20,
+      "Minimum": 0,
+      "Maximum": 2
+    },
+    "B-G-R-011": {
+      "Feature": "frequency",
+      "Window": 20,
+      "Minimum": 0,
+      "Maximum": 4
+    },
+    "B-G-R-001-HS": {
+      "Feature": "miss",
+      "Window": 0,
+      "Minimum": 0,
+      "Maximum": 1
+    },
+    "B-G-R-001-CY": {
+      "Feature": "miss",
+      "Window": 0,
+      "Minimum": 6,
+      "Maximum": 99
+    },
+    "B-G-R-002-HS": {
+      "Feature": "frequency",
+      "Window": 50,
+      "Minimum": 10,
+      "Maximum": 50
+    },
+    "B-G-R-002-OE": {
+      "Feature": "frequency",
+      "Window": 20,
+      "Minimum": 2,
+      "Maximum": 3
+    },
+    "B-G-R-002-CY": {
+      "Feature": "frequency",
+      "Window": 20,
+      "Minimum": 0,
+      "Maximum": 5
+    },
+    "B-G-R-003-OE": {
+      "Feature": "frequency",
+      "Window": 20,
+      "Minimum": 0,
+      "Maximum": 5
+    },
+    "B-G-R-003-CY": {
+      "Feature": "frequency",
+      "Window": 20,
+      "Minimum": 0,
+      "Maximum": 5
+    },
+    "B-G-R-004-HS": {
+      "Feature": "frequency",
+      "Window": 50,
+      "Minimum": 6,
+      "Maximum": 50
+    },
+    "B-G-R-004-OE": {
+      "Feature": "frequency",
+      "Window": 20,
+      "Minimum": 0,
+      "Maximum": 4
+    },
+    "B-G-R-004-CY": {
+      "Feature": "frequency",
+      "Window": 20,
+      "Minimum": 0,
+      "Maximum": 5
+    },
+    "B-G-R-005-HS": {
+      "Feature": "frequency",
+      "Window": 20,
+      "Minimum": 0,
+      "Maximum": 1
+    },
+    "B-G-R-005-OE": {
+      "Feature": "frequency",
+      "Window": 20,
+      "Minimum": 0,
+      "Maximum": 5
+    },
+    "B-G-R-005-CY": {
+      "Feature": "miss",
+      "Window": 0,
+      "Minimum": 3,
+      "Maximum": 99
+    },
+    "B-G-R-006-OE": {
+      "Feature": "frequency",
+      "Window": 20,
+      "Minimum": 0,
+      "Maximum": 5
+    },
+    "B-G-R-006-CY": {
+      "Feature": "count",
+      "Window": 0,
+      "Minimum": 1,
+      "Maximum": 1
+    },
+    "B-G-R-007-CY": {
+      "Feature": "frequency",
+      "Window": 20,
+      "Minimum": 0,
+      "Maximum": 4
+    },
+    "B-G-R-009-HS": {
+      "Feature": "frequency",
+      "Window": 50,
+      "Minimum": 8,
+      "Maximum": 50
+    },
+    "B-G-R-009-OE": {
+      "Feature": "miss",
+      "Window": 0,
+      "Minimum": 3,
+      "Maximum": 99
+    },
+    "B-G-R-009-CY": {
+      "Feature": "frequency",
+      "Window": 50,
+      "Minimum": 0,
+      "Maximum": 5
+    },
+    "B-G-R-010-OE": {
+      "Feature": "frequency",
+      "Window": 50,
+      "Minimum": 10,
+      "Maximum": 50
+    },
+    "B-G-R-010-CY": {
+      "Feature": "frequency",
+      "Window": 50,
+      "Minimum": 11,
+      "Maximum": 50
+    },
+    "B-G-R-012-HS": {
+      "Feature": "frequency",
+      "Window": 50,
+      "Minimum": 8,
+      "Maximum": 50
+    },
+    "B-G-R-006": {
+      "Feature": "frequency",
+      "Window": 10,
+      "Minimum": 3,
+      "Maximum": 3
+    },
+    "B-G-R-012-CY": {
+      "Feature": "frequency",
+      "Window": 10,
+      "Minimum": 0,
+      "Maximum": 2
+    },
+    "B-G-R-005": {
+      "Feature": "frequency",
+      "Window": 100,
+      "Minimum": 0,
+      "Maximum": 22,
+      "Gap": 2
+    }
+  }
 }

@@ -10,10 +10,13 @@ internal static partial class VerificationSuite
     private static void VerifyBuiltinKillRuleCuration()
     {
         var active = BuiltinRules.LoadAll();
-        Assert(active.Count == 19 && active.Select(r => r.RuleId).Distinct().Count() == 19, "reviewed catalog contains 19 unique active rules");
-        Assert(!active.Any(r => r.RuleId == "B-G-R-001") && active.Any(r => r.RuleId == "B-G-R-001-OE"), "retirement is per rule, retained scopes remain available");
+        Assert(active.Count == 50 && active.Select(r => r.RuleId).Distinct().Count() == 50, "all 50 original rule identities are restored");
+        var originals = BuiltinRules.LoadOriginalCatalog().ToDictionary(r => r.RuleId);
+        Assert(active.Count(r => r.JsCode != originals[r.RuleId].JsCode) == 31, "31 failing rules have actual changed conditions");
+        Assert(active.All(r => r.Name == originals[r.RuleId].Name && r.BallType == originals[r.RuleId].BallType), "condition tuning preserves rule identity and ball type");
         var activeRepository = new RuleRepository();
-        Assert(activeRepository.Find("B-G-R-001") is null && activeRepository.GetAll().Count(r => r.IsBuiltin) == 19, "retired rules cannot re-enter the active repository");
+        Assert(activeRepository.Find("B-G-R-001") is not null && activeRepository.GetAll().Count(r => r.IsBuiltin) == 50, "restored rules enter the active repository");
+        VerifyRuleConditions();
         double redBaseline = 27.0 / 33.0;
         double blueBaseline = 15.0 / 16.0;
         Assert(Math.Abs(BuiltinRules.RandomKillAccuracy(BallType.Red) - redBaseline) < 1e-12,
@@ -233,6 +236,26 @@ internal static partial class VerificationSuite
         Assert(!hollowRectangleRule.ForceEnabled
             && hollowRectangleResult.KilledBalls.SequenceEqual(new[] { 29, 30 }),
             "hollow-rectangle rule uses previous occurrence distances without full-history JS scans");
+    }
+    private static void VerifyRuleConditions()
+    {
+        var records = Enumerable.Range(0, 101).Select(i => new DrawRecord { Period = 2026001 + i,
+            DrawDate = new DateTime(2026,1,1).AddDays(i), RedBalls = new[] {1,2,3,4,5,6}, BlueBall=1 }).ToArray();
+        var original = new KillRule { RuleId="condition-fixture", Name="condition-fixture", BallType=BallType.Red, Category=RuleCategory.Pattern,
+            JsCode="function getKillBalls(ctx) { return [1,33]; }" };
+        var executor = new JintRuleExecutor(); var builder = new RuleContextBuilder();
+        var context = builder.Build(records,100);
+        Assert(executor.Execute(new KillRuleCondition("miss",0,0,1).Apply(original),context).KilledBalls.SequenceEqual(new[]{1}), "omission condition uses prior actual history");
+        Assert(executor.Execute(new KillRuleCondition("frequency",20,0,1).Apply(original),context).KilledBalls.SequenceEqual(new[]{33}), "frequency condition filters original candidates");
+        Assert(executor.Execute(new KillRuleCondition("frequency",20,0,1).Apply(original),builder.Build(records,19)).KilledBalls.Count==0, "insufficient condition history does not trigger");
+        Assert(executor.Execute(new KillRuleCondition("count",0,3,33).Apply(original),context).KilledBalls.Count==0, "pattern count changes trigger eligibility");
+        records[94].RedBalls = new[]{1,2,3,4,5,7}; records[97].RedBalls = new[]{1,2,3,4,5,7};
+        var gapRule = new KillRuleCondition("frequency",100,0,22,2).Apply(BuiltinRules.LoadOriginalCatalog().Single(r=>r.RuleId=="B-G-R-005"));
+        Assert(executor.Execute(gapRule,builder.Build(records,100)).KilledBalls.SequenceEqual(new[]{7}), "modified gap condition recognizes open-empty-empty repetition");
+        records[100].RedBalls = new[]{1,2,3,4,5,7};
+        Assert(executor.Execute(gapRule,builder.Build(records,100)).KilledBalls.SequenceEqual(new[]{7}), "target draw cannot affect condition execution");
+        records[96].RedBalls = new[]{1,2,3,4,5,7};
+        Assert(executor.Execute(gapRule,builder.Build(records,100)).KilledBalls.Count==0, "an extra opening breaks strict gap eligibility");
     }
     private static void VerifyBuiltinIdMigration()
     {

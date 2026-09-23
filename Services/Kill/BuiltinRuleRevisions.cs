@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace SsqAnalyzer.Services.Kill;
 
-/// <summary>Reviewed retirement manifest; retired definitions remain for audit, outside the repository.</summary>
+/// <summary>Explicit condition revisions and optional retirement manifest; never tunes conditions at runtime.</summary>
 internal static class BuiltinRuleRevisions
 {
     internal static IReadOnlyList<KillRule> Apply(IReadOnlyList<KillRule> original)
@@ -16,6 +16,11 @@ internal static class BuiltinRuleRevisions
         if (retired.Distinct(StringComparer.Ordinal).Count() != retired.Length || retired.Any(id => !ids.Contains(id)))
             throw new InvalidDataException("内置规则修订清单存在重复或无效条目。");
         var excluded = retired.ToHashSet(StringComparer.Ordinal);
-        return original.Where(r => !excluded.Contains(r.RuleId)).ToArray();
+        var conditions = document.RootElement.TryGetProperty("conditions", out var entries)
+            ? entries.EnumerateObject().ToDictionary(p => p.Name, p => JsonSerializer.Deserialize<KillRuleCondition>(p.Value.GetRawText())!)
+            : new Dictionary<string, KillRuleCondition>();
+        if (conditions.Any(p => !ids.Contains(p.Key) || excluded.Contains(p.Key) || p.Value is null))
+            throw new InvalidDataException("规则条件清单存在无效条目。");
+        return original.Where(r => !excluded.Contains(r.RuleId)).Select(r => conditions.TryGetValue(r.RuleId, out var condition) ? condition.Apply(r) : r).ToArray();
     }
 }
