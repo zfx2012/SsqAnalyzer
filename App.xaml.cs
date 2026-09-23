@@ -41,8 +41,6 @@ namespace SsqAnalyzer
             services.AddSingleton<INlToCodeService, NlToCodeService>();   // NL→Code 生成
             services.AddTransient<IKillEngine, KillEngine>();
             services.AddTransient<IBacktestEngine, BacktestEngine>();
-            services.AddSingleton<KillForwardStore>();
-            services.AddSingleton<KillForwardCoordinator>();
             Services = services.BuildServiceProvider();
 
             // 全局异常处理
@@ -72,7 +70,6 @@ namespace SsqAnalyzer
 
             // ⚡ StartupUri 已移除，手动创建 MainWindow 并注入 DI 服务
             Services.GetRequiredService<PositionExperimentCoordinator>().EnsureCurrentPredictions();
-            Services.GetRequiredService<KillForwardCoordinator>().Start();
             var mainWindow = new MainWindow(Services.GetRequiredService<IDataService>());
             mainWindow.Show();
         }

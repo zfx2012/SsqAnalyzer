@@ -81,26 +81,4 @@ internal static partial class VerificationSuite
         try { action(); } catch (T) { return; }
         throw new InvalidOperationException("Expected " + typeof(T).Name);
     }
-
-    private static void VerifyKillEvaluationWindow()
-    {
-        var data = new FakeDataService();
-        data.SetRecords(Enumerable.Range(0, 121).Select(i => new DrawRecord { Period = 2026001 + i, DrawDate = new DateTime(2026, 1, 1).AddDays(i), RedBalls = new[] { 1, 2, 3, 4, 5, 6 }, BlueBall = 1 }).ToArray());
-        var rule = new KillRule { RuleId = "ui-evaluation", Name = "界面验证", Category = RuleCategory.Formula, BallType = BallType.Red, JsCode = "function getKillBalls(ctx) { return [33]; }", IsEnabled = true };
-        var window = new SsqAnalyzer.Pages.KillEvaluationWindow(data, new ListRuleRepository(rule), new JintRuleExecutor(),
-            new KillForwardStore(Path.Combine(AppContext.BaseDirectory, "ui-evaluation", "ledger.json")));
-        window.Show(); PumpDispatcher();
-        var flags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
-        var task = (Task<string>)typeof(SsqAnalyzer.Pages.KillEvaluationWindow).GetMethod("Analyze", flags)!.Invoke(window, new object[] { CancellationToken.None })!;
-        PumpUntil(() => task.IsCompleted);
-        Assert(task.GetAwaiter().GetResult().Contains("【合并】"), "evaluation window completes background research");
-        var output = (System.Windows.Controls.TextBox)typeof(SsqAnalyzer.Pages.KillEvaluationWindow).GetField("_output", flags)!.GetValue(window)!;
-        output.Text = task.Result;
-        window.UpdateLayout();
-        var bitmap = new System.Windows.Media.Imaging.RenderTargetBitmap(1040, 780, 96, 96, System.Windows.Media.PixelFormats.Pbgra32);
-        bitmap.Render(window);
-        var encoder = new System.Windows.Media.Imaging.PngBitmapEncoder(); encoder.Frames.Add(System.Windows.Media.Imaging.BitmapFrame.Create(bitmap));
-        using (var file = File.Create(Path.Combine(AppContext.BaseDirectory, "kill-evaluation.png"))) encoder.Save(file);
-        window.Close(); PumpDispatcher();
-    }
 }

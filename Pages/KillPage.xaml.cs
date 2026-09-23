@@ -67,9 +67,6 @@ namespace SsqAnalyzer.Pages
         }
 
         private bool _subscribed;
-        private void Evaluation_Click(object sender, RoutedEventArgs e) =>
-            new KillEvaluationWindow(_ds, _ruleRepo, App.Services.GetRequiredService<IRuleExecutor>(),
-                App.Services.GetRequiredService<KillForwardStore>()) { Owner = Window.GetWindow(this) }.Show();
         private int _loadVersion;
         private bool _rulesRefreshPending;
         private int _renderVersion;

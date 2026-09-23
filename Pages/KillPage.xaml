@@ -39,7 +39,6 @@
                 </StackPanel>
             </Border>
             <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
-                <Button Content="回测评估" Style="{StaticResource ActionButton}" Click="Evaluation_Click" Margin="0,0,8,0" />
                 <Button x:Name="BtnAddRule" Content="➕ 添加规则" Style="{StaticResource ActionButton}"
                         Click="AddRule_Click" Margin="0,0,8,0" />
                 <Button x:Name="BtnBatchBacktest" Content="📊 批量回测" Style="{StaticResource ActionButton}"
