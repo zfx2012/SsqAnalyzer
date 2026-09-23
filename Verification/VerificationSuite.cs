@@ -11,6 +11,7 @@ internal static partial class VerificationSuite
             ("data text parsing compatibility", DataParsingVerification.Run),
             ("cancellation before result commit", VerifyCancellationBeforeCommit),
             ("kill backtest correctness and persistence", VerifyBacktestCorrectness),
+            ("kill research and forward validation", VerifyKillEvaluation),
             ("point range boundaries", VerifyPointRanges),
             ("builtin kill rule curation", VerifyBuiltinKillRuleCuration),
             ("ticket data period parsing", VerifyTicketDataPeriodParsing),

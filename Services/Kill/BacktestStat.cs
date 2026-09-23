@@ -24,6 +24,9 @@ public sealed class BacktestStat
     public DateTime RunAt { get; init; } = DateTime.UtcNow;
     /// <summary>本次回测耗时（毫秒），由 BacktestEngine 用 Stopwatch 测量。</summary>
     public long ElapsedMs { get; init; }
+    public KillEvaluationMetrics? Metrics { get; init; }
+    public string? RuleFingerprint { get; init; }
+    public string? DataFingerprint { get; init; }
     public int EvaluatedCount { get; init; }
     public int FailureCount { get; init; }
     public string? LastExecutionError { get; init; }

@@ -1,4 +1,6 @@
-if (args.FirstOrDefault() == "--backtest-check")
+if (args.FirstOrDefault() == "--evaluation-check")
+    VerificationSuite.VerifyKillEvaluation();
+else if (args.FirstOrDefault() == "--backtest-check")
     VerificationSuite.VerifyBacktestCorrectness();
 else if (args.FirstOrDefault() == "--page-check")
     VerificationSuite.VerifyPageLifecycle();

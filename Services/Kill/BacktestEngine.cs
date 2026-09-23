@@ -52,8 +52,12 @@ public sealed class BacktestEngine : IBacktestEngine
         if (rule is null) throw new ArgumentNullException(nameof(rule));
         ct.ThrowIfCancellationRequested();
 
-        var allRecords = _dataService.GetAllRecords();
-        var stat = RunInternal(rule, allRecords, window, ct);
+        var allRecords = _dataService.GetAllRecords().Select(r => new DrawRecord
+        { Period = r.Period, DrawDate = r.DrawDate, RedBalls = r.RedBalls.ToArray(), BlueBall = r.BlueBall }).ToList();
+        var definition = KillRuleDefinition.Capture(rule);
+        var stat = RunInternal(definition.ToRule(), allRecords, window, ct);
+        if (KillRuleDefinition.Capture(rule).Fingerprint != definition.Fingerprint)
+            throw new InvalidOperationException("回测期间规则发生变化，未保存过期结果，请重新回测。");
 
         // 把单窗口结果合并到 BacktestStatsSnapshot（保留其他窗口的既有值）
         var newWindowStat = new BacktestWindowStat(
@@ -70,7 +74,10 @@ public sealed class BacktestEngine : IBacktestEngine
             FailureCount = stat.FailureCount,
             LastExecutionError = stat.LastExecutionError,
             FirstPeriod = stat.FirstPeriod,
-            LastPeriod = stat.LastPeriod
+            LastPeriod = stat.LastPeriod,
+            Metrics = stat.Metrics,
+            RuleFingerprint = stat.RuleFingerprint,
+            DataFingerprint = stat.DataFingerprint
         };
 
         var existing = rule.BacktestStats;
@@ -171,6 +178,7 @@ public sealed class BacktestEngine : IBacktestEngine
         int killSum = 0;
         int correctSum = 0;
         var errorSamples = new List<BacktestErrorSample>();
+        var observations = new List<KillEvaluationPeriod>();
         int evaluated = 0, failures = 0;
         int? firstPeriod = null, lastPeriod = null;
         string? lastError = null;
@@ -207,11 +215,16 @@ public sealed class BacktestEngine : IBacktestEngine
             {
                 failures++;
                 lastError = ex.Message;
+                observations.Add(new(allRecords[i].Period, 0, 0, true));
                 continue;
             }
 
             ct.ThrowIfCancellationRequested();
-            if (!result.Triggered) continue;
+            if (!result.Triggered)
+            {
+                observations.Add(new(allRecords[i].Period, 0, 0));
+                continue;
+            }
 
             triggered++;
             var predicted = allRecords[i];
@@ -233,6 +246,7 @@ public sealed class BacktestEngine : IBacktestEngine
                 }
             }
 
+            observations.Add(new(predicted.Period, result.KilledBalls.Count, hitBalls.Count));
             if (hitBalls.Count > 0 && errorSamples.Count < MaxErrorSamples)
             {
                 errorSamples.Add(new BacktestErrorSample(
@@ -244,6 +258,7 @@ public sealed class BacktestEngine : IBacktestEngine
         }
 
         ct.ThrowIfCancellationRequested();
+        var metrics = KillEvaluationMetrics.Compute(observations, rule.BallType, Math.Max(1, _repo.GetAll().Count) * 4, ct);
         return new BacktestStat
         {
             RuleId = rule.RuleId,
@@ -257,7 +272,10 @@ public sealed class BacktestEngine : IBacktestEngine
             FailureCount = failures,
             LastExecutionError = lastError,
             FirstPeriod = firstPeriod,
-            LastPeriod = lastPeriod
+            LastPeriod = lastPeriod,
+            Metrics = metrics,
+            RuleFingerprint = KillRuleDefinition.Capture(rule).Fingerprint,
+            DataFingerprint = KillRuleDefinition.DataHash(allRecords)
         };
     }
 

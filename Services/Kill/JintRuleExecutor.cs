@@ -1,4 +1,4 @@
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Diagnostics;
 using Jint;
 using Jint.Native;
@@ -72,6 +72,7 @@ public sealed class JintRuleExecutor : IRuleExecutor
 
                 // 更新 .NET ctx（每次 Execute 都变）+ 重建 ctx proxy 对象（引用新的 __ctx_dotnet）
                 engine.SetValue("__ctx_dotnet", ctx);
+                engine.SetValue("__rule_params_json", System.Text.Json.JsonSerializer.Serialize(rule.Params));
                 engine.Execute(ProxyCtxJs);
 
                 // 调用 getKillBalls(ctx)
@@ -144,6 +145,7 @@ public sealed class JintRuleExecutor : IRuleExecutor
             "Math.random = function() { throw new Error('Math.random is disabled: rules must be deterministic'); };");
 
         // 注入 proxy 函数定义（只编译一次，不依赖 __ctx_dotnet）
+        engine.Execute("Date = function() { throw new Error('Date is disabled: rules must use historical data'); }; Date.now = Date;");
         engine.Execute(ProxyFunctionsJs);
 
         // 执行规则 JS（必须定义 function getKillBalls(ctx)）
@@ -206,7 +208,7 @@ function __toRecordArray(dotnetArr) {
     private const string ProxyCtxJs = @"
 var __ctx = __ctx_dotnet;
 var ctx = {
-    params: __ctx.Params,
+    params: JSON.parse(__rule_params_json),
     currentCycle: __ctx.CurrentCycle,
     currentParity: __ctx.CurrentParity,
     currentShortPeriodSuffix: __ctx.CurrentShortPeriodSuffix,

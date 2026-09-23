@@ -31,6 +31,8 @@ bili_cookie
 kill-settings.json
 ssq_data.txt
 position_forward_validation.json
+kill_forward_validation.json
+kill_forward_validation.json.lock
 /position_export_cache.*.json
 .env
 .env.*

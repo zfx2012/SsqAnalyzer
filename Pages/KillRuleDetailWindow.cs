@@ -72,6 +72,11 @@ public class KillRuleDetailWindow : Window
             Margin = new Thickness(0, 0, 0, 8)
         });
         root.Children.Add(BuildBacktestTable(rule.BacktestStats));
+        var selected = rule.BacktestStats?.ForWindow(periodCount switch { 30 => BacktestWindow.Last30Triggers, 50 => BacktestWindow.Last50Triggers, 100 => BacktestWindow.Last100Triggers, _ => BacktestWindow.All });
+        root.Children.Add(BuildSectionTitle("当前窗口的风险与随机对照"));
+        root.Children.Add(new TextBlock { Text = KillMetricText.Format(selected?.Metrics) + "\n\n" + KillMetricText.MethodNotes
+            + (selected?.RuleFingerprint is { } hash && hash != KillRuleDefinition.Capture(rule).Fingerprint ? "\n规则已变更，旧结果不代表当前版本，请重新回测。" : ""),
+            TextWrapping = TextWrapping.Wrap, Foreground = (Brush)Application.Current.FindResource("TextSecondary") });
         foreach (var (name, stat) in WindowRows(rule.BacktestStats))
         {
             root.Children.Add(new TextBlock

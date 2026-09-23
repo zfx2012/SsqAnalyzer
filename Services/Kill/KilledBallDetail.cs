@@ -1,4 +1,4 @@
-namespace SsqAnalyzer.Services.Kill;
+﻿namespace SsqAnalyzer.Services.Kill;
 
 /// <summary>
 /// 单个被杀号码的完整溯源：触发它的规则链 + 置信度。
@@ -8,6 +8,7 @@ public sealed class KilledBallDetail
 {
     public int Ball { get; init; }
     public BallType BallType { get; init; }
+    public int PassingRuleCount { get; init; }
     public ConfidenceLevel Confidence { get; init; }
     public IReadOnlyList<BallRuleTrace> Traces { get; init; } = Array.Empty<BallRuleTrace>();
     public string Summary => $"{Traces.Count} 条规则杀";

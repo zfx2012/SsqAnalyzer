@@ -67,6 +67,9 @@ namespace SsqAnalyzer.Pages
         }
 
         private bool _subscribed;
+        private void Evaluation_Click(object sender, RoutedEventArgs e) =>
+            new KillEvaluationWindow(_ds, _ruleRepo, App.Services.GetRequiredService<IRuleExecutor>(),
+                App.Services.GetRequiredService<KillForwardStore>()) { Owner = Window.GetWindow(this) }.Show();
         private int _loadVersion;
         private bool _rulesRefreshPending;
         private int _renderVersion;
@@ -289,7 +292,8 @@ namespace SsqAnalyzer.Pages
                 StatsHint = windowStat is null ? "尚未回测" : $"触发 {windowStat.TriggeredCount} 次 · 执行失败 {windowStat.FailureCount} 次\n"
                     + (windowStat.RunAt is { } run ? $"回测时间 {run.ToLocalTime():yyyy-MM-dd HH:mm:ss}" : "旧统计：回测时间未知")
                     + (windowStat.FirstPeriod is { } first ? $"\n覆盖 {first}—{windowStat.LastPeriod}" : "")
-                    + (windowStat.LastExecutionError is { } error ? $"\n{error}" : ""),
+                    + (windowStat.LastExecutionError is { } error ? $"\n{error}" : "")
+                    + "\n" + KillMetricText.Format(windowStat.Metrics),
                 MinAccuracyLabel = $"{_killSettings.GetMinAccuracy(rule.BallType):P0}",
                 GateLabel = gateLabel,
                 GateSortValue = gateSortValue,
@@ -398,6 +402,8 @@ namespace SsqAnalyzer.Pages
                 return ("未回测", (Brush)Application.Current.FindResource("TextTertiary"), false);
 
             var w = SelectWindow(stats);
+            if (w.RuleFingerprint is { } fingerprint && fingerprint != KillRuleDefinition.Capture(rule).Fingerprint)
+                return ("规则已变更", (Brush)FindResource("TextTertiary"), true);
             if ((_periodCount == 0 || _periodCount == 100) && stats.LegacyCombinedWindow is not null
                 && w.RunAt is null && w.KillBallCount == 0)
                 return ("需重新回测", (Brush)FindResource("TextTertiary"), true);
@@ -419,7 +425,7 @@ namespace SsqAnalyzer.Pages
             var stats = rule.BacktestStats;
             if (stats is null) return true;  // 未回测，不强制禁用
             var w = SelectWindow(stats);
-            if (!w.IsUsable) return true;  // 样本不足/未回测，不自动禁用
+            if (!w.IsUsable || (w.RuleFingerprint is { } fingerprint && fingerprint != KillRuleDefinition.Capture(rule).Fingerprint)) return true;
             return w.Accuracy >= _killSettings.GetMinAccuracy(rule.BallType);
         }
 

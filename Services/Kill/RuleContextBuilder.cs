@@ -127,6 +127,15 @@ public sealed class RuleContextBuilder : IRuleContextBuilder
         return Build(records, records.Count);
     }
 
+    public RuleContext BuildForTarget(IReadOnlyList<DrawRecord> history, int period, DateTime date)
+    {
+        if (history.Count == 0 || period <= history[^1].Period || date.Date <= history[^1].DrawDate.Date)
+            throw new ArgumentException("目标期必须在历史之后。");
+        return new RuleContext(history.Count, LatestRecordView.From(history[^1]), history.ToList(),
+            ToCycleType(date.DayOfWeek), period % 2 == 1 ? ParityType.Odd : ParityType.Even,
+            period % 1000, new Dictionary<string, object>(), MissMatrixCalculator.Compute(history, history));
+    }
+
     /// <summary>
     /// 解析当前期归属：被预测期 = allRecords[currentIndex]（如果存在）。
     /// 如果 currentIndex == allRecords.Count（最新一期杀号，被预测期是未来期），

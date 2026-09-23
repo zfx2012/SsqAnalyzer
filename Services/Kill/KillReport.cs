@@ -43,11 +43,16 @@ public sealed class KillReport
             foreach (var d in KilledRedBalls)
             {
                 var traces = string.Join("、", d.Traces.Select(t => $"{t.RuleName}({t.BacktestAccuracy:P0})"));
-                sb.AppendLine($"- **{d.Ball:D2}** [{d.Confidence}]：{d.Summary} → {traces}");
+                sb.AppendLine($"- **{d.Ball:D2}** [达标规则支持 {d.PassingRuleCount} 条]：{d.Summary} → {traces}");
             }
         }
         sb.AppendLine();
 
+        sb.AppendLine("## 蓝球杀号明细");
+        foreach (var d in KilledBlueBalls)
+            sb.AppendLine($"- {d.Ball:D2}：共 {d.Traces.Count} 条规则支持，其中达标 {d.PassingRuleCount} 条");
+        sb.AppendLine("支持数不代表独立证据或下一期命中概率。");
+        sb.AppendLine();
         sb.AppendLine("## 推荐红球");
         sb.AppendLine(string.Join(" ", RecommendedRedBalls.Select(n => n.ToString("D2"))));
         sb.AppendLine();

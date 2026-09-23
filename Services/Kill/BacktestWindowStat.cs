@@ -21,6 +21,9 @@ public sealed record BacktestWindowStat(
     /// <summary>本次回测耗时（毫秒）；旧持久化数据无此字段时默认 0（详情页显示「—」）。</summary>
     public long ElapsedMs { get; init; } = 0;
     public DateTime? RunAt { get; init; }
+    public KillEvaluationMetrics? Metrics { get; init; }
+    public string? RuleFingerprint { get; init; }
+    public string? DataFingerprint { get; init; }
     public int EvaluatedCount { get; init; }
     public int FailureCount { get; init; }
     public string? LastExecutionError { get; init; }

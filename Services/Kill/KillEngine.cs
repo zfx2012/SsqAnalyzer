@@ -137,7 +137,7 @@ public sealed class KillEngine : IKillEngine
         var stats = rule.BacktestStats;
         if (stats is null) return 0;
         var stat = window is { } selected ? stats.ForWindow(selected) : stats.Effective;
-        return stat.IsUsable ? stat.Accuracy : 0;
+        return stat.IsUsable && (stat.RuleFingerprint is null || stat.RuleFingerprint == KillRuleDefinition.Capture(rule).Fingerprint) ? stat.Accuracy : 0;
     }
 
     /// <summary>
@@ -192,6 +192,7 @@ public sealed class KillEngine : IKillEngine
                 Ball = ball,
                 BallType = ballType,
                 Confidence = confidence,
+                PassingRuleCount = passingCount,
                 Traces = traces
             });
         }

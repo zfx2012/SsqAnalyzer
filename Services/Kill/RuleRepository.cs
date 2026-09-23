@@ -224,7 +224,7 @@ public sealed class RuleRepository : IRuleRepository
         if (stats is null) return;  // 无回测数据，不判定
 
         var stat = stats.Effective;
-        if (!stat.IsUsable) return;
+        if (!stat.IsUsable || (stat.RuleFingerprint is { } fingerprint && fingerprint != KillRuleDefinition.Capture(rule).Fingerprint)) return;
 
         if (stat.Accuracy < KillSettings.For(rule.BallType) && !rule.ForceEnabled)
         {
@@ -388,6 +388,9 @@ public sealed class RuleRepository : IRuleRepository
             SampleInsufficient: el.GetProperty("killBallCount").GetInt32() == 0 || (el.TryGetProperty("sampleInsufficient", out var si) && si.GetBoolean())
         )
         {
+            Metrics = el.TryGetProperty("metrics", out var metrics) ? JsonSerializer.Deserialize<KillEvaluationMetrics>(metrics.GetRawText()) : null,
+            RuleFingerprint = el.TryGetProperty("ruleFingerprint", out var fingerprint) ? fingerprint.GetString() : null,
+            DataFingerprint = el.TryGetProperty("dataFingerprint", out var dataFingerprint) ? dataFingerprint.GetString() : null,
             ElapsedMs = el.TryGetProperty("elapsedMs", out var elapsed) ? elapsed.GetInt64() : 0,
             RunAt = el.TryGetProperty("runAt", out var run) && run.ValueKind == JsonValueKind.String ? run.GetDateTime() : null,
             EvaluatedCount = el.TryGetProperty("evaluatedCount", out var evaluated) ? evaluated.GetInt32() : 0,
@@ -554,6 +557,9 @@ public sealed class RuleRepository : IRuleRepository
         writer.WriteNumber("accuracy", w.Accuracy);
         writer.WriteBoolean("sampleInsufficient", w.SampleInsufficient);
         writer.WriteNumber("elapsedMs", w.ElapsedMs);
+        if (w.Metrics is { } metrics) { writer.WritePropertyName("metrics"); JsonSerializer.Serialize(writer, metrics); }
+        if (w.RuleFingerprint is { } fingerprint) writer.WriteString("ruleFingerprint", fingerprint);
+        if (w.DataFingerprint is { } dataFingerprint) writer.WriteString("dataFingerprint", dataFingerprint);
         if (w.RunAt is { } run) writer.WriteString("runAt", run);
         writer.WriteNumber("evaluatedCount", w.EvaluatedCount);
         writer.WriteNumber("failureCount", w.FailureCount);
