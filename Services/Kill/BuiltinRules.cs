@@ -17,9 +17,12 @@ public static class BuiltinRules
     private const string ResourceSuffix = "builtin-rules.json";
 
     private static readonly IReadOnlyList<KillRule> _cache = LoadInternal();
+    private static readonly IReadOnlyList<KillRule> _active = BuiltinRuleRevisions.Apply(_cache);
 
     /// <summary>加载全部内置规则（单例缓存，进程内不变）。</summary>
-    public static IReadOnlyList<KillRule> LoadAll() => _cache;
+    public static IReadOnlyList<KillRule> LoadAll() => _active;
+    // Keep original definitions available to reproduce the revision audit and verify archived algorithms.
+    internal static IReadOnlyList<KillRule> LoadOriginalCatalog() => _cache;
 
     /// <summary>随机选择一个号码进行杀号时，该号码不开出的理论概率。</summary>
     public static double RandomKillAccuracy(BallType ballType) => ballType switch

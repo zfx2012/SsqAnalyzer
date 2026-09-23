@@ -9,6 +9,11 @@ internal static partial class VerificationSuite
 {
     private static void VerifyBuiltinKillRuleCuration()
     {
+        var active = BuiltinRules.LoadAll();
+        Assert(active.Count == 19 && active.Select(r => r.RuleId).Distinct().Count() == 19, "reviewed catalog contains 19 unique active rules");
+        Assert(!active.Any(r => r.RuleId == "B-G-R-001") && active.Any(r => r.RuleId == "B-G-R-001-OE"), "retirement is per rule, retained scopes remain available");
+        var activeRepository = new RuleRepository();
+        Assert(activeRepository.Find("B-G-R-001") is null && activeRepository.GetAll().Count(r => r.IsBuiltin) == 19, "retired rules cannot re-enter the active repository");
         double redBaseline = 27.0 / 33.0;
         double blueBaseline = 15.0 / 16.0;
         Assert(Math.Abs(BuiltinRules.RandomKillAccuracy(BallType.Red) - redBaseline) < 1e-12,
@@ -29,7 +34,7 @@ internal static partial class VerificationSuite
             "user threshold remains effective");
     
         string[] expectedIds = { "B-G-B-001", "B-G-B-002", "B-G-R-001", "B-G-R-002", "B-G-R-003", "B-G-R-004", "B-G-R-005", "B-G-R-006", "B-G-R-007", "B-G-R-008", "B-G-R-009", "B-G-R-010", "B-G-R-011", "B-G-R-012" };
-        var loadedBuiltins = BuiltinRules.LoadAll();
+        var loadedBuiltins = BuiltinRules.LoadOriginalCatalog();
         Assert(expectedIds.Distinct(StringComparer.Ordinal).Count() == expectedIds.Length
             && loadedBuiltins.Where(rule => rule.RuleId.Count(c => c == '-') == 3)
                 .Select(rule => rule.RuleId)
@@ -44,7 +49,7 @@ internal static partial class VerificationSuite
             && loadedBuiltins.Any(rule => rule.RuleId == "B-G-R-003-CY"),
             "basic red rules expand to same-period parity and cycle variants");
     
-        var coldRedRule = BuiltinRules.LoadAll().Single(rule => rule.RuleId == "B-G-R-001");
+        var coldRedRule = BuiltinRules.LoadOriginalCatalog().Single(rule => rule.RuleId == "B-G-R-001");
         var records = Enumerable.Range(1, 12).Select(index => new DrawRecord
         {
             Period = 2026000 + index,
@@ -56,7 +61,7 @@ internal static partial class VerificationSuite
         Assert(result.KilledBalls.SequenceEqual(new[] { 1 }),
             "cold red rule kills one maximum-omission ball with stable tie break");
     
-        var tripleRepeatRule = BuiltinRules.LoadAll().Single(rule => rule.RuleId == "B-G-R-002");
+        var tripleRepeatRule = BuiltinRules.LoadOriginalCatalog().Single(rule => rule.RuleId == "B-G-R-002");
         var repeatRecords = new[]
         {
             new DrawRecord { Period = 2026001, DrawDate = new DateTime(2026, 1, 1), RedBalls = new[] { 1, 5, 9, 13, 17, 21 }, BlueBall = 1 },
@@ -68,7 +73,7 @@ internal static partial class VerificationSuite
             && repeatResult.KilledBalls.SequenceEqual(new[] { 5, 13 }),
             "triple repeat rule kills every red shared by the previous two draws");
     
-        var lShapeRule = BuiltinRules.LoadAll().Single(rule => rule.RuleId == "B-G-R-003");
+        var lShapeRule = BuiltinRules.LoadOriginalCatalog().Single(rule => rule.RuleId == "B-G-R-003");
         var lShapeRecords = new[]
         {
             new DrawRecord { Period = 2026087, DrawDate = new DateTime(2026, 8, 1), RedBalls = new[] { 4, 6, 10, 18, 23, 31 }, BlueBall = 1 },
@@ -91,7 +96,7 @@ internal static partial class VerificationSuite
         Assert(samePeriodLResult.KilledBalls.SequenceEqual(new[] { 6, 7 }),
             "same-period variant uses the predicted next issue suffix");
     
-        var inverseLShapeRule = BuiltinRules.LoadAll().Single(rule => rule.RuleId == "B-G-R-004");
+        var inverseLShapeRule = BuiltinRules.LoadOriginalCatalog().Single(rule => rule.RuleId == "B-G-R-004");
         var inverseLShapeRecords = new[]
         {
             new DrawRecord { Period = 2026001, DrawDate = new DateTime(2026, 1, 1), RedBalls = new[] { 3, 8, 13, 14, 22, 30 }, BlueBall = 1 },
@@ -103,7 +108,7 @@ internal static partial class VerificationSuite
             && inverseLShapeResult.KilledBalls.SequenceEqual(new[] { 13, 14 }),
             "inverse L-shape rule kills the repeated red and its earlier adjacent red");
     
-        var alternatingRule = BuiltinRules.LoadAll().Single(rule => rule.RuleId == "B-G-R-005");
+        var alternatingRule = BuiltinRules.LoadOriginalCatalog().Single(rule => rule.RuleId == "B-G-R-005");
         var alternatingRecords = new[]
         {
             new DrawRecord { Period = 2026001, DrawDate = new DateTime(2026, 1, 1), RedBalls = new[] { 3, 8, 13, 21, 28, 32 }, BlueBall = 1 },
@@ -116,7 +121,7 @@ internal static partial class VerificationSuite
         Assert(!alternatingRule.ForceEnabled && alternatingResult.KilledBalls.SequenceEqual(new[] { 28 }),
             "alternating-period rule kills a red following open-miss-open-miss history");
     
-        var repeatSymmetryRule = BuiltinRules.LoadAll().Single(rule => rule.RuleId == "B-G-R-006");
+        var repeatSymmetryRule = BuiltinRules.LoadOriginalCatalog().Single(rule => rule.RuleId == "B-G-R-006");
         var repeatSymmetryRecords = new[]
         {
             new DrawRecord { Period = 2026084, DrawDate = new DateTime(2026, 7, 23), RedBalls = new[] { 1, 5, 6, 10, 12, 16 }, BlueBall = 5 },
@@ -129,7 +134,7 @@ internal static partial class VerificationSuite
         Assert(!repeatSymmetryRule.ForceEnabled && repeatSymmetryResult.KilledBalls.SequenceEqual(new[] { 6 }),
             "repeat-symmetry rule kills a red following open-open-miss-open history");
     
-        var triangleCenterRule = BuiltinRules.LoadAll().Single(rule => rule.RuleId == "B-G-R-007");
+        var triangleCenterRule = BuiltinRules.LoadOriginalCatalog().Single(rule => rule.RuleId == "B-G-R-007");
         var triangleCenterRecords = new[]
         {
             new DrawRecord { Period = 2026001, DrawDate = new DateTime(2026, 1, 1), RedBalls = new[] { 5, 10, 15, 20, 25, 30 }, BlueBall = 1 },
@@ -140,7 +145,7 @@ internal static partial class VerificationSuite
         Assert(!triangleCenterRule.ForceEnabled && triangleCenterResult.KilledBalls.SequenceEqual(new[] { 5 }),
             "triangle-center rule kills the absent center between two latest neighbors");
     
-        var missingCornerRule = BuiltinRules.LoadAll().Single(rule => rule.RuleId == "B-G-R-008");
+        var missingCornerRule = BuiltinRules.LoadOriginalCatalog().Single(rule => rule.RuleId == "B-G-R-008");
         var missingCornerRecords = new[]
         {
             new DrawRecord { Period = 2026001, DrawDate = new DateTime(2026, 1, 1), RedBalls = new[] { 3, 10, 15, 20, 25, 30 }, BlueBall = 1 },
@@ -154,7 +159,7 @@ internal static partial class VerificationSuite
         Assert(!missingCornerRule.ForceEnabled && missingCornerResult.KilledBalls.SequenceEqual(new[] { 9 }),
             "missing-corner rule scans an unrestricted empty gap and kills adjacent B");
     
-        var samePeriodBlueRule = BuiltinRules.LoadAll().Single(rule => rule.RuleId == "B-G-B-001");
+        var samePeriodBlueRule = BuiltinRules.LoadOriginalCatalog().Single(rule => rule.RuleId == "B-G-B-001");
         var samePeriodRecords = Enumerable.Range(0, 18).Select(index => new DrawRecord
         {
             Period = (2008 + index) * 1000 + 1,
@@ -171,7 +176,7 @@ internal static partial class VerificationSuite
             && blueResult.KilledBalls.All(ball => ball is >= 1 and <= 16),
             "same-period blue rule kills all blue balls with omission at least 16");
     
-        var repeatedBlueRule = BuiltinRules.LoadAll().Single(rule => rule.RuleId == "B-G-B-002");
+        var repeatedBlueRule = BuiltinRules.LoadOriginalCatalog().Single(rule => rule.RuleId == "B-G-B-002");
         var repeatedBlueRecords = new[]
         {
             new DrawRecord { Period = 2026088, DrawDate = new DateTime(2026, 8, 2), RedBalls = new[] { 6, 7, 11, 18, 22, 33 }, BlueBall = 5 }
@@ -183,7 +188,7 @@ internal static partial class VerificationSuite
             && repeatedBlueResult.KilledBalls.SequenceEqual(new[] { 5 }),
             "repeated-blue rule kills the previous issue blue ball");
     
-        var previousBlueKillsRedRule = BuiltinRules.LoadAll().Single(rule => rule.RuleId == "B-G-R-009");
+        var previousBlueKillsRedRule = BuiltinRules.LoadOriginalCatalog().Single(rule => rule.RuleId == "B-G-R-009");
         var previousBlueKillsRedResult = new JintRuleExecutor().Execute(previousBlueKillsRedRule,
             new RuleContextBuilder().Build(repeatedBlueRecords, repeatedBlueRecords.Length));
         Assert(previousBlueKillsRedRule.BallType == BallType.Red
@@ -191,7 +196,7 @@ internal static partial class VerificationSuite
             && previousBlueKillsRedResult.KilledBalls.SequenceEqual(new[] { 5 }),
             "previous-blue-kills-red rule maps the previous blue number to a red kill");
     
-        var consecutiveTripleRule = BuiltinRules.LoadAll().Single(rule => rule.RuleId == "B-G-R-010");
+        var consecutiveTripleRule = BuiltinRules.LoadOriginalCatalog().Single(rule => rule.RuleId == "B-G-R-010");
         var consecutiveTripleRecords = new[]
         {
             new DrawRecord { Period = 2026088, DrawDate = new DateTime(2026, 8, 2), RedBalls = new[] { 4, 16, 17, 18, 19, 31 }, BlueBall = 5 }
@@ -202,7 +207,7 @@ internal static partial class VerificationSuite
             && consecutiveTripleResult.KilledBalls.SequenceEqual(new[] { 16, 17, 18, 19 }),
             "consecutive-triple rule merges overlapping triples in a longer run");
     
-        var fourDiagonalRule = BuiltinRules.LoadAll().Single(rule => rule.RuleId == "B-G-R-011");
+        var fourDiagonalRule = BuiltinRules.LoadOriginalCatalog().Single(rule => rule.RuleId == "B-G-R-011");
         var fourDiagonalRecords = new[]
         {
             new DrawRecord { Period = 2026001, DrawDate = new DateTime(2026, 1, 1), RedBalls = new[] { 2, 7, 12, 17, 25, 31 }, BlueBall = 1 },
@@ -215,7 +220,7 @@ internal static partial class VerificationSuite
             && fourDiagonalResult.KilledBalls.SequenceEqual(new[] { 15, 22 }),
             "four-diagonal rule handles increasing and decreasing chains");
     
-        var hollowRectangleRule = BuiltinRules.LoadAll().Single(rule => rule.RuleId == "B-G-R-012");
+        var hollowRectangleRule = BuiltinRules.LoadOriginalCatalog().Single(rule => rule.RuleId == "B-G-R-012");
         var hollowRectangleRecords = new[]
         {
             new DrawRecord { Period = 2026001, DrawDate = new DateTime(2026, 1, 1), RedBalls = new[] { 3, 10, 18, 24, 29, 30 }, BlueBall = 1 },
