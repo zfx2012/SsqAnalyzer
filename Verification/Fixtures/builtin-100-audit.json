@@ -1,0 +1,8230 @@
+{
+  "DataHash": "DC49E9762FA1C39E05CCF4528A97544AE55520BE941867D5B420A32631A424BD",
+  "Count": 3506,
+  "Last": 2026109,
+  "ReferenceEnd": 2019095,
+  "Trials": [
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 10,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 46,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.92
+      },
+      "Older": {
+        "Triggered": 2444,
+        "Correct": 1997,
+        "First": 2003011,
+        "Last": 2019095,
+        "Accuracy": 0.8171031096563012
+      },
+      "All": {
+        "Triggered": 3496,
+        "Correct": 2858,
+        "First": 2003011,
+        "Last": 2026109,
+        "Accuracy": 0.8175057208237986
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 12,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2442,
+        "Correct": 2014,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.8247338247338247
+      },
+      "All": {
+        "Triggered": 3494,
+        "Correct": 2887,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.8262736119061248
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 15,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2439,
+        "Correct": 2028,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.8314883148831488
+      },
+      "All": {
+        "Triggered": 3491,
+        "Correct": 2897,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.8298481810369521
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 20,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 2434,
+        "Correct": 1992,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.8184059161873459
+      },
+      "All": {
+        "Triggered": 3486,
+        "Correct": 2855,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.8189902467010901
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 25,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2429,
+        "Correct": 1970,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.8110333470564018
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 2830,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.8129847744900891
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 30,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2424,
+        "Correct": 1994,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.8226072607260726
+      },
+      "All": {
+        "Triggered": 3476,
+        "Correct": 2854,
+        "First": 2003031,
+        "Last": 2026109,
+        "Accuracy": 0.8210586881472958
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 40,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 2414,
+        "Correct": 1957,
+        "First": 2003041,
+        "Last": 2019095,
+        "Accuracy": 0.8106876553438277
+      },
+      "All": {
+        "Triggered": 3466,
+        "Correct": 2818,
+        "First": 2003041,
+        "Last": 2026109,
+        "Accuracy": 0.8130409694171956
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 50,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 36,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.72
+      },
+      "Older": {
+        "Triggered": 2404,
+        "Correct": 1944,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.8086522462562395
+      },
+      "All": {
+        "Triggered": 3456,
+        "Correct": 2802,
+        "First": 2003051,
+        "Last": 2026109,
+        "Accuracy": 0.8107638888888888
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 60,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 36,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.72
+      },
+      "Older": {
+        "Triggered": 2394,
+        "Correct": 1952,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.8153717627401837
+      },
+      "All": {
+        "Triggered": 3446,
+        "Correct": 2789,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.8093441671503192
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 80,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 38,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.76
+      },
+      "Older": {
+        "Triggered": 2374,
+        "Correct": 1923,
+        "First": 2003081,
+        "Last": 2019095,
+        "Accuracy": 0.8100252737994945
+      },
+      "All": {
+        "Triggered": 3426,
+        "Correct": 2777,
+        "First": 2003081,
+        "Last": 2026109,
+        "Accuracy": 0.8105662580268534
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 100,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2354,
+        "Correct": 1925,
+        "First": 2004012,
+        "Last": 2019095,
+        "Accuracy": 0.8177570093457944
+      },
+      "All": {
+        "Triggered": 3406,
+        "Correct": 2804,
+        "First": 2004012,
+        "Last": 2026109,
+        "Accuracy": 0.8232530827950675
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 120,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2334,
+        "Correct": 1907,
+        "First": 2004032,
+        "Last": 2019095,
+        "Accuracy": 0.8170522707797772
+      },
+      "All": {
+        "Triggered": 3386,
+        "Correct": 2770,
+        "First": 2004032,
+        "Last": 2026109,
+        "Accuracy": 0.8180744240992321
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 10,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2444,
+        "Correct": 1989,
+        "First": 2003011,
+        "Last": 2019095,
+        "Accuracy": 0.8138297872340425
+      },
+      "All": {
+        "Triggered": 3496,
+        "Correct": 2843,
+        "First": 2003011,
+        "Last": 2026109,
+        "Accuracy": 0.8132151029748284
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 12,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 2442,
+        "Correct": 1998,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.8181818181818182
+      },
+      "All": {
+        "Triggered": 3494,
+        "Correct": 2848,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.8151116199198626
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 15,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 2439,
+        "Correct": 1992,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.8167281672816729
+      },
+      "All": {
+        "Triggered": 3491,
+        "Correct": 2855,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.8178172443425953
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 20,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2434,
+        "Correct": 1986,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.8159408381265407
+      },
+      "All": {
+        "Triggered": 3486,
+        "Correct": 2843,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.8155479059093517
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 25,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 37,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.74
+      },
+      "Older": {
+        "Triggered": 2429,
+        "Correct": 1994,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.8209139563606422
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 2859,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.8213157138753232
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 30,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 37,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.74
+      },
+      "Older": {
+        "Triggered": 2424,
+        "Correct": 1966,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.8110561056105611
+      },
+      "All": {
+        "Triggered": 3476,
+        "Correct": 2838,
+        "First": 2003031,
+        "Last": 2026109,
+        "Accuracy": 0.8164556962025317
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 40,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 39,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.78
+      },
+      "Older": {
+        "Triggered": 2414,
+        "Correct": 1979,
+        "First": 2003041,
+        "Last": 2019095,
+        "Accuracy": 0.81980115990058
+      },
+      "All": {
+        "Triggered": 3466,
+        "Correct": 2841,
+        "First": 2003041,
+        "Last": 2026109,
+        "Accuracy": 0.8196768609347952
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 50,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 39,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.78
+      },
+      "Older": {
+        "Triggered": 2404,
+        "Correct": 1967,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.8182196339434277
+      },
+      "All": {
+        "Triggered": 3456,
+        "Correct": 2835,
+        "First": 2003051,
+        "Last": 2026109,
+        "Accuracy": 0.8203125
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 60,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 37,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.74
+      },
+      "Older": {
+        "Triggered": 2394,
+        "Correct": 1923,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.8032581453634086
+      },
+      "All": {
+        "Triggered": 3446,
+        "Correct": 2769,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.8035403366221706
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 80,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2374,
+        "Correct": 1932,
+        "First": 2003081,
+        "Last": 2019095,
+        "Accuracy": 0.8138163437236732
+      },
+      "All": {
+        "Triggered": 3426,
+        "Correct": 2790,
+        "First": 2003081,
+        "Last": 2026109,
+        "Accuracy": 0.8143607705779334
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 100,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 39,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.78
+      },
+      "Older": {
+        "Triggered": 2354,
+        "Correct": 1917,
+        "First": 2004012,
+        "Last": 2019095,
+        "Accuracy": 0.8143585386576041
+      },
+      "All": {
+        "Triggered": 3406,
+        "Correct": 2796,
+        "First": 2004012,
+        "Last": 2026109,
+        "Accuracy": 0.8209042865531415
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 120,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 36,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.72
+      },
+      "Older": {
+        "Triggered": 2334,
+        "Correct": 1889,
+        "First": 2004032,
+        "Last": 2019095,
+        "Accuracy": 0.8093401885175664
+      },
+      "All": {
+        "Triggered": 3386,
+        "Correct": 2757,
+        "First": 2004032,
+        "Last": 2026109,
+        "Accuracy": 0.8142350856467808
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 10,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2444,
+        "Correct": 2012,
+        "First": 2003011,
+        "Last": 2019095,
+        "Accuracy": 0.823240589198036
+      },
+      "All": {
+        "Triggered": 3496,
+        "Correct": 2886,
+        "First": 2003011,
+        "Last": 2026109,
+        "Accuracy": 0.8255148741418764
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 12,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 44,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.88
+      },
+      "Older": {
+        "Triggered": 2442,
+        "Correct": 1983,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.812039312039312
+      },
+      "All": {
+        "Triggered": 3494,
+        "Correct": 2843,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.8136805953062393
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 15,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2439,
+        "Correct": 1994,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.8175481754817548
+      },
+      "All": {
+        "Triggered": 3491,
+        "Correct": 2857,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.8183901460899455
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 20,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2434,
+        "Correct": 2006,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.8241577649958916
+      },
+      "All": {
+        "Triggered": 3486,
+        "Correct": 2860,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.8204245553643144
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 25,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 44,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.88
+      },
+      "Older": {
+        "Triggered": 2429,
+        "Correct": 1983,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.8163853437628654
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 2850,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.8187302499281816
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 30,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 2424,
+        "Correct": 1967,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.8114686468646864
+      },
+      "All": {
+        "Triggered": 3476,
+        "Correct": 2814,
+        "First": 2003031,
+        "Last": 2026109,
+        "Accuracy": 0.8095512082853855
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 40,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2414,
+        "Correct": 1967,
+        "First": 2003041,
+        "Last": 2019095,
+        "Accuracy": 0.8148301574150787
+      },
+      "All": {
+        "Triggered": 3466,
+        "Correct": 2814,
+        "First": 2003041,
+        "Last": 2026109,
+        "Accuracy": 0.8118869013271783
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 50,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 2404,
+        "Correct": 1937,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.8057404326123128
+      },
+      "All": {
+        "Triggered": 3456,
+        "Correct": 2801,
+        "First": 2003051,
+        "Last": 2026109,
+        "Accuracy": 0.8104745370370371
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 60,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2394,
+        "Correct": 1966,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.8212197159565581
+      },
+      "All": {
+        "Triggered": 3446,
+        "Correct": 2843,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.8250145095763204
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 80,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2374,
+        "Correct": 1949,
+        "First": 2003081,
+        "Last": 2019095,
+        "Accuracy": 0.8209772535804549
+      },
+      "All": {
+        "Triggered": 3426,
+        "Correct": 2810,
+        "First": 2003081,
+        "Last": 2026109,
+        "Accuracy": 0.8201984821949796
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 100,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 39,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.78
+      },
+      "Older": {
+        "Triggered": 2354,
+        "Correct": 1918,
+        "First": 2004012,
+        "Last": 2019095,
+        "Accuracy": 0.8147833474936279
+      },
+      "All": {
+        "Triggered": 3406,
+        "Correct": 2771,
+        "First": 2004012,
+        "Last": 2026109,
+        "Accuracy": 0.8135642982971227
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 120,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 38,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.76
+      },
+      "Older": {
+        "Triggered": 2334,
+        "Correct": 1900,
+        "First": 2004032,
+        "Last": 2019095,
+        "Accuracy": 0.8140531276778064
+      },
+      "All": {
+        "Triggered": 3386,
+        "Correct": 2748,
+        "First": 2004032,
+        "Last": 2026109,
+        "Accuracy": 0.8115770821027761
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 10,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 38,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.76
+      },
+      "Older": {
+        "Triggered": 2444,
+        "Correct": 1987,
+        "First": 2003011,
+        "Last": 2019095,
+        "Accuracy": 0.813011456628478
+      },
+      "All": {
+        "Triggered": 3496,
+        "Correct": 2855,
+        "First": 2003011,
+        "Last": 2026109,
+        "Accuracy": 0.8166475972540046
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 12,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 2442,
+        "Correct": 1977,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.8095823095823096
+      },
+      "All": {
+        "Triggered": 3494,
+        "Correct": 2836,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.8116771608471666
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 15,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2439,
+        "Correct": 2014,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.8257482574825749
+      },
+      "All": {
+        "Triggered": 3491,
+        "Correct": 2848,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.8158120882268691
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 20,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 44,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.88
+      },
+      "Older": {
+        "Triggered": 2434,
+        "Correct": 1991,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.8179950698438784
+      },
+      "All": {
+        "Triggered": 3486,
+        "Correct": 2855,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.8189902467010901
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 25,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2429,
+        "Correct": 1993,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.8205022643062989
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 2852,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.8193047974719908
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 30,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2424,
+        "Correct": 1994,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.8226072607260726
+      },
+      "All": {
+        "Triggered": 3476,
+        "Correct": 2860,
+        "First": 2003031,
+        "Last": 2026109,
+        "Accuracy": 0.8227848101265823
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 40,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 39,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.78
+      },
+      "Older": {
+        "Triggered": 2414,
+        "Correct": 1960,
+        "First": 2003041,
+        "Last": 2019095,
+        "Accuracy": 0.8119304059652029
+      },
+      "All": {
+        "Triggered": 3466,
+        "Correct": 2819,
+        "First": 2003041,
+        "Last": 2026109,
+        "Accuracy": 0.8133294864396999
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 50,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 38,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.76
+      },
+      "Older": {
+        "Triggered": 2404,
+        "Correct": 1961,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.8157237936772047
+      },
+      "All": {
+        "Triggered": 3456,
+        "Correct": 2826,
+        "First": 2003051,
+        "Last": 2026109,
+        "Accuracy": 0.8177083333333334
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 60,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 2394,
+        "Correct": 1937,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.8091060985797828
+      },
+      "All": {
+        "Triggered": 3446,
+        "Correct": 2815,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.8168891468369124
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 80,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 2374,
+        "Correct": 1929,
+        "First": 2003081,
+        "Last": 2019095,
+        "Accuracy": 0.8125526537489469
+      },
+      "All": {
+        "Triggered": 3426,
+        "Correct": 2786,
+        "First": 2003081,
+        "Last": 2026109,
+        "Accuracy": 0.8131932282545242
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 100,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 39,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.78
+      },
+      "Older": {
+        "Triggered": 2354,
+        "Correct": 1918,
+        "First": 2004012,
+        "Last": 2019095,
+        "Accuracy": 0.8147833474936279
+      },
+      "All": {
+        "Triggered": 3406,
+        "Correct": 2787,
+        "First": 2004012,
+        "Last": 2026109,
+        "Accuracy": 0.8182618907809748
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 120,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 2334,
+        "Correct": 1924,
+        "First": 2004032,
+        "Last": 2019095,
+        "Accuracy": 0.8243359040274207
+      },
+      "All": {
+        "Triggered": 3386,
+        "Correct": 2776,
+        "First": 2004032,
+        "Last": 2026109,
+        "Accuracy": 0.819846426461902
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 10,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 2417,
+        "Correct": 1977,
+        "First": 2003011,
+        "Last": 2019095,
+        "Accuracy": 0.8179561439801407
+      },
+      "All": {
+        "Triggered": 3457,
+        "Correct": 2804,
+        "First": 2003011,
+        "Last": 2026109,
+        "Accuracy": 0.8111078970205381
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 12,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2415,
+        "Correct": 1979,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.8194616977225673
+      },
+      "All": {
+        "Triggered": 3455,
+        "Correct": 2803,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.811287988422576
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 15,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 2412,
+        "Correct": 1990,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.8250414593698175
+      },
+      "All": {
+        "Triggered": 3452,
+        "Correct": 2821,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.81720741599073
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 20,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2407,
+        "Correct": 1986,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.8250934773577067
+      },
+      "All": {
+        "Triggered": 3447,
+        "Correct": 2825,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.8195532346968378
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 25,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2402,
+        "Correct": 1986,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.8268109908409659
+      },
+      "All": {
+        "Triggered": 3442,
+        "Correct": 2823,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.8201626961069146
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 30,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 38,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.76
+      },
+      "Older": {
+        "Triggered": 2397,
+        "Correct": 1966,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.820191906549854
+      },
+      "All": {
+        "Triggered": 3437,
+        "Correct": 2805,
+        "First": 2003031,
+        "Last": 2026109,
+        "Accuracy": 0.8161187081757346
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 40,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 38,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.76
+      },
+      "Older": {
+        "Triggered": 2388,
+        "Correct": 1946,
+        "First": 2003041,
+        "Last": 2019095,
+        "Accuracy": 0.8149078726968174
+      },
+      "All": {
+        "Triggered": 3428,
+        "Correct": 2797,
+        "First": 2003041,
+        "Last": 2026109,
+        "Accuracy": 0.8159276546091015
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 50,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 39,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.78
+      },
+      "Older": {
+        "Triggered": 2378,
+        "Correct": 1937,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.8145500420521447
+      },
+      "All": {
+        "Triggered": 3418,
+        "Correct": 2781,
+        "First": 2003051,
+        "Last": 2026109,
+        "Accuracy": 0.8136337039204213
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 60,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 37,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.74
+      },
+      "Older": {
+        "Triggered": 2368,
+        "Correct": 1939,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.8188344594594594
+      },
+      "All": {
+        "Triggered": 3408,
+        "Correct": 2778,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.8151408450704225
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 80,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 36,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.72
+      },
+      "Older": {
+        "Triggered": 2349,
+        "Correct": 1917,
+        "First": 2003081,
+        "Last": 2019095,
+        "Accuracy": 0.8160919540229885
+      },
+      "All": {
+        "Triggered": 3389,
+        "Correct": 2747,
+        "First": 2003081,
+        "Last": 2026109,
+        "Accuracy": 0.8105635880790794
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 100,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 36,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.72
+      },
+      "Older": {
+        "Triggered": 2329,
+        "Correct": 1908,
+        "First": 2004012,
+        "Last": 2019095,
+        "Accuracy": 0.8192357234864749
+      },
+      "All": {
+        "Triggered": 3369,
+        "Correct": 2736,
+        "First": 2004012,
+        "Last": 2026109,
+        "Accuracy": 0.8121104185218165
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 120,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 39,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.78
+      },
+      "Older": {
+        "Triggered": 2309,
+        "Correct": 1887,
+        "First": 2004032,
+        "Last": 2019095,
+        "Accuracy": 0.8172368990905153
+      },
+      "All": {
+        "Triggered": 3349,
+        "Correct": 2719,
+        "First": 2004032,
+        "Last": 2026109,
+        "Accuracy": 0.8118841445207524
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 10,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 38,
+        "First": 2026059,
+        "Last": 2026109,
+        "Accuracy": 0.76
+      },
+      "Older": {
+        "Triggered": 2325,
+        "Correct": 1894,
+        "First": 2003011,
+        "Last": 2019095,
+        "Accuracy": 0.8146236559139785
+      },
+      "All": {
+        "Triggered": 3319,
+        "Correct": 2737,
+        "First": 2003011,
+        "Last": 2026109,
+        "Accuracy": 0.8246459777041277
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 12,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026058,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2263,
+        "Correct": 1839,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.8126380910296067
+      },
+      "All": {
+        "Triggered": 3241,
+        "Correct": 2669,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.8235112619561864
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 15,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 39,
+        "First": 2026055,
+        "Last": 2026108,
+        "Accuracy": 0.78
+      },
+      "Older": {
+        "Triggered": 2201,
+        "Correct": 1811,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.8228078146297138
+      },
+      "All": {
+        "Triggered": 3160,
+        "Correct": 2606,
+        "First": 2003016,
+        "Last": 2026108,
+        "Accuracy": 0.8246835443037974
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 20,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 39,
+        "First": 2026053,
+        "Last": 2026108,
+        "Accuracy": 0.78
+      },
+      "Older": {
+        "Triggered": 2122,
+        "Correct": 1745,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.8223374175306315
+      },
+      "All": {
+        "Triggered": 3058,
+        "Correct": 2526,
+        "First": 2003021,
+        "Last": 2026108,
+        "Accuracy": 0.8260300850228908
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 25,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026037,
+        "Last": 2026108,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 1811,
+        "Correct": 1503,
+        "First": 2003028,
+        "Last": 2019095,
+        "Accuracy": 0.8299282164549973
+      },
+      "All": {
+        "Triggered": 2577,
+        "Correct": 2146,
+        "First": 2003028,
+        "Last": 2026108,
+        "Accuracy": 0.8327512611563834
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 30,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026023,
+        "Last": 2026108,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 1427,
+        "Correct": 1198,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.8395234758234057
+      },
+      "All": {
+        "Triggered": 2025,
+        "Correct": 1691,
+        "First": 2003031,
+        "Last": 2026108,
+        "Accuracy": 0.8350617283950618
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 40,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2025131,
+        "Last": 2026106,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 912,
+        "Correct": 764,
+        "First": 2003041,
+        "Last": 2019095,
+        "Accuracy": 0.8377192982456141
+      },
+      "All": {
+        "Triggered": 1309,
+        "Correct": 1088,
+        "First": 2003041,
+        "Last": 2026106,
+        "Accuracy": 0.8311688311688312
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 50,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2025070,
+        "Last": 2026105,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 538,
+        "Correct": 447,
+        "First": 2003053,
+        "Last": 2019095,
+        "Accuracy": 0.8308550185873605
+      },
+      "All": {
+        "Triggered": 772,
+        "Correct": 644,
+        "First": 2003053,
+        "Last": 2026105,
+        "Accuracy": 0.8341968911917098
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 60,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2024028,
+        "Last": 2026105,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 243,
+        "Correct": 200,
+        "First": 2003074,
+        "Last": 2019092,
+        "Accuracy": 0.823045267489712
+      },
+      "All": {
+        "Triggered": 359,
+        "Correct": 298,
+        "First": 2003074,
+        "Last": 2026105,
+        "Accuracy": 0.83008356545961
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 80,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2014051,
+        "Last": 2026070,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 64,
+        "Correct": 51,
+        "First": 2003085,
+        "Last": 2019092,
+        "Accuracy": 0.796875
+      },
+      "All": {
+        "Triggered": 94,
+        "Correct": 77,
+        "First": 2003085,
+        "Last": 2026070,
+        "Accuracy": 0.8191489361702128
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 100,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 26,
+        "Correct": 23,
+        "First": 2004062,
+        "Last": 2026062,
+        "Accuracy": 0.8846153846153846
+      },
+      "Older": {
+        "Triggered": 17,
+        "Correct": 14,
+        "First": 2004062,
+        "Last": 2019092,
+        "Accuracy": 0.8235294117647058
+      },
+      "All": {
+        "Triggered": 26,
+        "Correct": 23,
+        "First": 2004062,
+        "Last": 2026062,
+        "Accuracy": 0.8846153846153846
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 120,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 7,
+        "Correct": 7,
+        "First": 2006038,
+        "Last": 2026062,
+        "Accuracy": 1
+      },
+      "Older": {
+        "Triggered": 4,
+        "Correct": 4,
+        "First": 2006038,
+        "Last": 2014136,
+        "Accuracy": 1
+      },
+      "All": {
+        "Triggered": 7,
+        "Correct": 7,
+        "First": 2006038,
+        "Last": 2026062,
+        "Accuracy": 1
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 10,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 38,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.76
+      },
+      "Older": {
+        "Triggered": 2444,
+        "Correct": 1988,
+        "First": 2003011,
+        "Last": 2019095,
+        "Accuracy": 0.8134206219312602
+      },
+      "All": {
+        "Triggered": 3496,
+        "Correct": 2855,
+        "First": 2003011,
+        "Last": 2026109,
+        "Accuracy": 0.8166475972540046
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 12,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 39,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.78
+      },
+      "Older": {
+        "Triggered": 2442,
+        "Correct": 2015,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.8251433251433251
+      },
+      "All": {
+        "Triggered": 3494,
+        "Correct": 2885,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.8257012020606754
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 15,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2439,
+        "Correct": 1993,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.8171381713817139
+      },
+      "All": {
+        "Triggered": 3491,
+        "Correct": 2839,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.8132340303637926
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 20,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2434,
+        "Correct": 1991,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.8179950698438784
+      },
+      "All": {
+        "Triggered": 3486,
+        "Correct": 2838,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.8141135972461274
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 25,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 39,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.78
+      },
+      "Older": {
+        "Triggered": 2429,
+        "Correct": 2002,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.8242074927953891
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 2859,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.8213157138753232
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 30,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 2424,
+        "Correct": 2009,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.8287953795379538
+      },
+      "All": {
+        "Triggered": 3476,
+        "Correct": 2855,
+        "First": 2003031,
+        "Last": 2026109,
+        "Accuracy": 0.8213463751438435
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 40,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 2414,
+        "Correct": 1984,
+        "First": 2003041,
+        "Last": 2019095,
+        "Accuracy": 0.8218724109362054
+      },
+      "All": {
+        "Triggered": 3466,
+        "Correct": 2823,
+        "First": 2003041,
+        "Last": 2026109,
+        "Accuracy": 0.8144835545297172
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 50,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 2404,
+        "Correct": 1979,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.8232113144758736
+      },
+      "All": {
+        "Triggered": 3456,
+        "Correct": 2830,
+        "First": 2003051,
+        "Last": 2026109,
+        "Accuracy": 0.8188657407407407
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 60,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 39,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.78
+      },
+      "Older": {
+        "Triggered": 2394,
+        "Correct": 1962,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.8195488721804511
+      },
+      "All": {
+        "Triggered": 3446,
+        "Correct": 2814,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.816598955310505
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 80,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 39,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.78
+      },
+      "Older": {
+        "Triggered": 2374,
+        "Correct": 1953,
+        "First": 2003081,
+        "Last": 2019095,
+        "Accuracy": 0.8226621735467565
+      },
+      "All": {
+        "Triggered": 3426,
+        "Correct": 2806,
+        "First": 2003081,
+        "Last": 2026109,
+        "Accuracy": 0.8190309398715704
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 100,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2354,
+        "Correct": 1930,
+        "First": 2004012,
+        "Last": 2019095,
+        "Accuracy": 0.8198810535259133
+      },
+      "All": {
+        "Triggered": 3406,
+        "Correct": 2791,
+        "First": 2004012,
+        "Last": 2026109,
+        "Accuracy": 0.8194362889019378
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 120,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2334,
+        "Correct": 1923,
+        "First": 2004032,
+        "Last": 2019095,
+        "Accuracy": 0.8239074550128535
+      },
+      "All": {
+        "Triggered": 3386,
+        "Correct": 2778,
+        "First": 2004032,
+        "Last": 2026109,
+        "Accuracy": 0.8204370939161252
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 10,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 38,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.76
+      },
+      "Older": {
+        "Triggered": 2444,
+        "Correct": 1968,
+        "First": 2003011,
+        "Last": 2019095,
+        "Accuracy": 0.8052373158756138
+      },
+      "All": {
+        "Triggered": 3496,
+        "Correct": 2841,
+        "First": 2003011,
+        "Last": 2026109,
+        "Accuracy": 0.8126430205949656
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 12,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2442,
+        "Correct": 2044,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.8370188370188371
+      },
+      "All": {
+        "Triggered": 3494,
+        "Correct": 2921,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.8360045792787636
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 15,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2439,
+        "Correct": 2021,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.8286182861828618
+      },
+      "All": {
+        "Triggered": 3491,
+        "Correct": 2883,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.8258378688054998
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 20,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2434,
+        "Correct": 1991,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.8179950698438784
+      },
+      "All": {
+        "Triggered": 3486,
+        "Correct": 2850,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.8175559380378657
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 25,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2429,
+        "Correct": 1987,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.8180321119802387
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 2834,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.8141338695777075
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 30,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 39,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.78
+      },
+      "Older": {
+        "Triggered": 2424,
+        "Correct": 1982,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.8176567656765676
+      },
+      "All": {
+        "Triggered": 3476,
+        "Correct": 2835,
+        "First": 2003031,
+        "Last": 2026109,
+        "Accuracy": 0.8155926352128884
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 40,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026059,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2401,
+        "Correct": 1928,
+        "First": 2003041,
+        "Last": 2019095,
+        "Accuracy": 0.8029987505206164
+      },
+      "All": {
+        "Triggered": 3443,
+        "Correct": 2785,
+        "First": 2003041,
+        "Last": 2026109,
+        "Accuracy": 0.8088875980249782
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 50,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 44,
+        "First": 2026056,
+        "Last": 2026109,
+        "Accuracy": 0.88
+      },
+      "Older": {
+        "Triggered": 2326,
+        "Correct": 1903,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.8181427343078246
+      },
+      "All": {
+        "Triggered": 3332,
+        "Correct": 2732,
+        "First": 2003051,
+        "Last": 2026109,
+        "Accuracy": 0.8199279711884754
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 60,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026048,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 1947,
+        "Correct": 1562,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.8022598870056498
+      },
+      "All": {
+        "Triggered": 2805,
+        "Correct": 2251,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.8024955436720143
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 80,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026007,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 985,
+        "Correct": 787,
+        "First": 2003081,
+        "Last": 2019095,
+        "Accuracy": 0.798984771573604
+      },
+      "All": {
+        "Triggered": 1480,
+        "Correct": 1184,
+        "First": 2003081,
+        "Last": 2026109,
+        "Accuracy": 0.8
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 100,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2025086,
+        "Last": 2026069,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 382,
+        "Correct": 306,
+        "First": 2004016,
+        "Last": 2019095,
+        "Accuracy": 0.8010471204188482
+      },
+      "All": {
+        "Triggered": 603,
+        "Correct": 494,
+        "First": 2004016,
+        "Last": 2026069,
+        "Accuracy": 0.8192371475953566
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 120,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2024007,
+        "Last": 2026061,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 142,
+        "Correct": 115,
+        "First": 2004056,
+        "Last": 2019091,
+        "Accuracy": 0.8098591549295775
+      },
+      "All": {
+        "Triggered": 236,
+        "Correct": 190,
+        "First": 2004056,
+        "Last": 2026061,
+        "Accuracy": 0.8050847457627118
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 10,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 38,
+        "First": 2026059,
+        "Last": 2026109,
+        "Accuracy": 0.76
+      },
+      "Older": {
+        "Triggered": 2375,
+        "Correct": 1957,
+        "First": 2003011,
+        "Last": 2019095,
+        "Accuracy": 0.824
+      },
+      "All": {
+        "Triggered": 3401,
+        "Correct": 2797,
+        "First": 2003011,
+        "Last": 2026109,
+        "Accuracy": 0.8224051749485446
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 12,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 2418,
+        "Correct": 1974,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.8163771712158809
+      },
+      "All": {
+        "Triggered": 3460,
+        "Correct": 2830,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.8179190751445087
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 15,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 2439,
+        "Correct": 2001,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.8204182041820418
+      },
+      "All": {
+        "Triggered": 3489,
+        "Correct": 2841,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.8142734307824592
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 20,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2434,
+        "Correct": 2004,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.8233360723089564
+      },
+      "All": {
+        "Triggered": 3486,
+        "Correct": 2852,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.8181296615031555
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 25,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2429,
+        "Correct": 1993,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.8205022643062989
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 2859,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.8213157138753232
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 30,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 44,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.88
+      },
+      "Older": {
+        "Triggered": 2424,
+        "Correct": 1960,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.8085808580858086
+      },
+      "All": {
+        "Triggered": 3476,
+        "Correct": 2798,
+        "First": 2003031,
+        "Last": 2026109,
+        "Accuracy": 0.8049482163406214
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 40,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2414,
+        "Correct": 1948,
+        "First": 2003041,
+        "Last": 2019095,
+        "Accuracy": 0.8069594034797017
+      },
+      "All": {
+        "Triggered": 3466,
+        "Correct": 2789,
+        "First": 2003041,
+        "Last": 2026109,
+        "Accuracy": 0.8046739757645701
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 50,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 40,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.8
+      },
+      "Older": {
+        "Triggered": 2404,
+        "Correct": 1937,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.8057404326123128
+      },
+      "All": {
+        "Triggered": 3456,
+        "Correct": 2790,
+        "First": 2003051,
+        "Last": 2026109,
+        "Accuracy": 0.8072916666666666
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 60,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 39,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.78
+      },
+      "Older": {
+        "Triggered": 2394,
+        "Correct": 1906,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.7961570593149541
+      },
+      "All": {
+        "Triggered": 3446,
+        "Correct": 2749,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.797736506094022
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 80,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 39,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.78
+      },
+      "Older": {
+        "Triggered": 2374,
+        "Correct": 1897,
+        "First": 2003081,
+        "Last": 2019095,
+        "Accuracy": 0.7990732940185341
+      },
+      "All": {
+        "Triggered": 3426,
+        "Correct": 2729,
+        "First": 2003081,
+        "Last": 2026109,
+        "Accuracy": 0.7965557501459428
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 100,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2354,
+        "Correct": 1868,
+        "First": 2004012,
+        "Last": 2019095,
+        "Accuracy": 0.7935429056924383
+      },
+      "All": {
+        "Triggered": 3406,
+        "Correct": 2711,
+        "First": 2004012,
+        "Last": 2026109,
+        "Accuracy": 0.7959483264826777
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 120,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2334,
+        "Correct": 1856,
+        "First": 2004032,
+        "Last": 2019095,
+        "Accuracy": 0.7952013710368466
+      },
+      "All": {
+        "Triggered": 3386,
+        "Correct": 2699,
+        "First": 2004032,
+        "Last": 2026109,
+        "Accuracy": 0.7971057294743059
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 10,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026058,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2275,
+        "Correct": 1854,
+        "First": 2003011,
+        "Last": 2019095,
+        "Accuracy": 0.814945054945055
+      },
+      "All": {
+        "Triggered": 3250,
+        "Correct": 2649,
+        "First": 2003011,
+        "Last": 2026109,
+        "Accuracy": 0.815076923076923
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 12,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026058,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2394,
+        "Correct": 1953,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.8157894736842105
+      },
+      "All": {
+        "Triggered": 3421,
+        "Correct": 2787,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.8146740719087986
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 15,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026058,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2391,
+        "Correct": 1950,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.8155583437892095
+      },
+      "All": {
+        "Triggered": 3418,
+        "Correct": 2784,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.8145114101813926
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 20,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026059,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2432,
+        "Correct": 1986,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.8166118421052632
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 2837,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.8149956908934214
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 25,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2429,
+        "Correct": 1983,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.8163853437628654
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 2836,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.8147084171215168
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 30,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2424,
+        "Correct": 1978,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.816006600660066
+      },
+      "All": {
+        "Triggered": 3476,
+        "Correct": 2831,
+        "First": 2003031,
+        "Last": 2026109,
+        "Accuracy": 0.8144418872266973
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 40,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2414,
+        "Correct": 1969,
+        "First": 2003041,
+        "Last": 2019095,
+        "Accuracy": 0.8156586578293289
+      },
+      "All": {
+        "Triggered": 3466,
+        "Correct": 2822,
+        "First": 2003041,
+        "Last": 2026109,
+        "Accuracy": 0.8141950375072129
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 50,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2404,
+        "Correct": 1960,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.8153078202995009
+      },
+      "All": {
+        "Triggered": 3456,
+        "Correct": 2813,
+        "First": 2003051,
+        "Last": 2026109,
+        "Accuracy": 0.8139467592592593
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 60,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2394,
+        "Correct": 1953,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.8157894736842105
+      },
+      "All": {
+        "Triggered": 3446,
+        "Correct": 2806,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.8142774230992456
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 80,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2374,
+        "Correct": 1938,
+        "First": 2003081,
+        "Last": 2019095,
+        "Accuracy": 0.8163437236731256
+      },
+      "All": {
+        "Triggered": 3426,
+        "Correct": 2791,
+        "First": 2003081,
+        "Last": 2026109,
+        "Accuracy": 0.8146526561587858
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 100,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2354,
+        "Correct": 1920,
+        "First": 2004012,
+        "Last": 2019095,
+        "Accuracy": 0.8156329651656754
+      },
+      "All": {
+        "Triggered": 3406,
+        "Correct": 2773,
+        "First": 2004012,
+        "Last": 2026109,
+        "Accuracy": 0.8141514973576043
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 120,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2334,
+        "Correct": 1904,
+        "First": 2004032,
+        "Last": 2019095,
+        "Accuracy": 0.8157669237360754
+      },
+      "All": {
+        "Triggered": 3386,
+        "Correct": 2757,
+        "First": 2004032,
+        "Last": 2026109,
+        "Accuracy": 0.8142350856467808
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 10,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 2444,
+        "Correct": 2290,
+        "First": 2003011,
+        "Last": 2019095,
+        "Accuracy": 0.936988543371522
+      },
+      "All": {
+        "Triggered": 3496,
+        "Correct": 3267,
+        "First": 2003011,
+        "Last": 2026109,
+        "Accuracy": 0.9344965675057209
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 12,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2442,
+        "Correct": 2284,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.9352989352989353
+      },
+      "All": {
+        "Triggered": 3494,
+        "Correct": 3260,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.933028048082427
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 15,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 46,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.92
+      },
+      "Older": {
+        "Triggered": 2439,
+        "Correct": 2285,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.9368593685936859
+      },
+      "All": {
+        "Triggered": 3491,
+        "Correct": 3256,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.9326840446863363
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 20,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2434,
+        "Correct": 2274,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.934264585045193
+      },
+      "All": {
+        "Triggered": 3486,
+        "Correct": 3261,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.9354561101549054
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 25,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2429,
+        "Correct": 2256,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.9287772745986003
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 3236,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.9296179258833669
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 30,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 2424,
+        "Correct": 2255,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.9302805280528053
+      },
+      "All": {
+        "Triggered": 3476,
+        "Correct": 3232,
+        "First": 2003031,
+        "Last": 2026109,
+        "Accuracy": 0.9298043728423475
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 40,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 2414,
+        "Correct": 2245,
+        "First": 2003041,
+        "Last": 2019095,
+        "Accuracy": 0.9299917149958575
+      },
+      "All": {
+        "Triggered": 3466,
+        "Correct": 3218,
+        "First": 2003041,
+        "Last": 2026109,
+        "Accuracy": 0.9284477784189267
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 50,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 46,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.92
+      },
+      "Older": {
+        "Triggered": 2404,
+        "Correct": 2230,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.9276206322795341
+      },
+      "All": {
+        "Triggered": 3456,
+        "Correct": 3210,
+        "First": 2003051,
+        "Last": 2026109,
+        "Accuracy": 0.9288194444444444
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 60,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 50,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 1
+      },
+      "Older": {
+        "Triggered": 2394,
+        "Correct": 2225,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.929406850459482
+      },
+      "All": {
+        "Triggered": 3446,
+        "Correct": 3201,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.92890307603018
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 80,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2374,
+        "Correct": 2204,
+        "First": 2003081,
+        "Last": 2019095,
+        "Accuracy": 0.928390901432182
+      },
+      "All": {
+        "Triggered": 3426,
+        "Correct": 3183,
+        "First": 2003081,
+        "Last": 2026109,
+        "Accuracy": 0.9290718038528897
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 100,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2354,
+        "Correct": 2193,
+        "First": 2004012,
+        "Last": 2019095,
+        "Accuracy": 0.9316057774001699
+      },
+      "All": {
+        "Triggered": 3406,
+        "Correct": 3172,
+        "First": 2004012,
+        "Last": 2026109,
+        "Accuracy": 0.9312977099236641
+      }
+    },
+    {
+      "Spec": {
+        "Family": 0,
+        "Window": 120,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2334,
+        "Correct": 2200,
+        "First": 2004032,
+        "Last": 2019095,
+        "Accuracy": 0.9425878320479862
+      },
+      "All": {
+        "Triggered": 3386,
+        "Correct": 3187,
+        "First": 2004032,
+        "Last": 2026109,
+        "Accuracy": 0.9412285883047844
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 10,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 2444,
+        "Correct": 2291,
+        "First": 2003011,
+        "Last": 2019095,
+        "Accuracy": 0.9373977086743044
+      },
+      "All": {
+        "Triggered": 3496,
+        "Correct": 3263,
+        "First": 2003011,
+        "Last": 2026109,
+        "Accuracy": 0.9333524027459954
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 12,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 2442,
+        "Correct": 2291,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.9381654381654382
+      },
+      "All": {
+        "Triggered": 3494,
+        "Correct": 3262,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.9336004579278764
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 15,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 46,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.92
+      },
+      "Older": {
+        "Triggered": 2439,
+        "Correct": 2291,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.939319393193932
+      },
+      "All": {
+        "Triggered": 3491,
+        "Correct": 3264,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.9349756516757376
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 20,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 46,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.92
+      },
+      "Older": {
+        "Triggered": 2434,
+        "Correct": 2291,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.9412489728841413
+      },
+      "All": {
+        "Triggered": 3486,
+        "Correct": 3265,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.9366035570854848
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 25,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 2429,
+        "Correct": 2291,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.9431864965006176
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 3266,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.9382361390405056
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 30,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2424,
+        "Correct": 2293,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.945957095709571
+      },
+      "All": {
+        "Triggered": 3476,
+        "Correct": 3266,
+        "First": 2003031,
+        "Last": 2026109,
+        "Accuracy": 0.9395857307249712
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 40,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2414,
+        "Correct": 2270,
+        "First": 2003041,
+        "Last": 2019095,
+        "Accuracy": 0.9403479701739851
+      },
+      "All": {
+        "Triggered": 3466,
+        "Correct": 3237,
+        "First": 2003041,
+        "Last": 2026109,
+        "Accuracy": 0.933929601846509
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 50,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2404,
+        "Correct": 2245,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.9338602329450915
+      },
+      "All": {
+        "Triggered": 3456,
+        "Correct": 3224,
+        "First": 2003051,
+        "Last": 2026109,
+        "Accuracy": 0.9328703703703703
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 60,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2394,
+        "Correct": 2255,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.9419381787802841
+      },
+      "All": {
+        "Triggered": 3446,
+        "Correct": 3238,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.9396401625072548
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 80,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 2374,
+        "Correct": 2233,
+        "First": 2003081,
+        "Last": 2019095,
+        "Accuracy": 0.9406065711878686
+      },
+      "All": {
+        "Triggered": 3426,
+        "Correct": 3234,
+        "First": 2003081,
+        "Last": 2026109,
+        "Accuracy": 0.9439579684763573
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 100,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2354,
+        "Correct": 2204,
+        "First": 2004012,
+        "Last": 2019095,
+        "Accuracy": 0.9362786745964317
+      },
+      "All": {
+        "Triggered": 3406,
+        "Correct": 3199,
+        "First": 2004012,
+        "Last": 2026109,
+        "Accuracy": 0.9392248972401644
+      }
+    },
+    {
+      "Spec": {
+        "Family": 1,
+        "Window": 120,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 46,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.92
+      },
+      "Older": {
+        "Triggered": 2334,
+        "Correct": 2190,
+        "First": 2004032,
+        "Last": 2019095,
+        "Accuracy": 0.9383033419023136
+      },
+      "All": {
+        "Triggered": 3386,
+        "Correct": 3179,
+        "First": 2004032,
+        "Last": 2026109,
+        "Accuracy": 0.9388659184878914
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 10,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 2443,
+        "Correct": 2287,
+        "First": 2003011,
+        "Last": 2019095,
+        "Accuracy": 0.9361440851412198
+      },
+      "All": {
+        "Triggered": 3494,
+        "Correct": 3277,
+        "First": 2003011,
+        "Last": 2026109,
+        "Accuracy": 0.9378935317687465
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 12,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 2442,
+        "Correct": 2323,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.9512694512694513
+      },
+      "All": {
+        "Triggered": 3494,
+        "Correct": 3321,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.9504865483686319
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 15,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 46,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.92
+      },
+      "Older": {
+        "Triggered": 2439,
+        "Correct": 2297,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.941779417794178
+      },
+      "All": {
+        "Triggered": 3491,
+        "Correct": 3285,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.9409911200229161
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 20,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2434,
+        "Correct": 2289,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.9404272801972062
+      },
+      "All": {
+        "Triggered": 3486,
+        "Correct": 3283,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.9417670682730924
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 25,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 44,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.88
+      },
+      "Older": {
+        "Triggered": 2429,
+        "Correct": 2273,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.9357760395224373
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 3257,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.935650675093364
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 30,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 46,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.92
+      },
+      "Older": {
+        "Triggered": 2424,
+        "Correct": 2274,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.9381188118811881
+      },
+      "All": {
+        "Triggered": 3476,
+        "Correct": 3257,
+        "First": 2003031,
+        "Last": 2026109,
+        "Accuracy": 0.9369965477560415
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 40,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2414,
+        "Correct": 2247,
+        "First": 2003041,
+        "Last": 2019095,
+        "Accuracy": 0.9308202154101077
+      },
+      "All": {
+        "Triggered": 3466,
+        "Correct": 3232,
+        "First": 2003041,
+        "Last": 2026109,
+        "Accuracy": 0.9324870167339873
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 50,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 2404,
+        "Correct": 2251,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.9363560732113144
+      },
+      "All": {
+        "Triggered": 3456,
+        "Correct": 3227,
+        "First": 2003051,
+        "Last": 2026109,
+        "Accuracy": 0.9337384259259259
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 60,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2394,
+        "Correct": 2238,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.9348370927318296
+      },
+      "All": {
+        "Triggered": 3446,
+        "Correct": 3214,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.9326755658734764
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 80,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2374,
+        "Correct": 2236,
+        "First": 2003081,
+        "Last": 2019095,
+        "Accuracy": 0.9418702611625948
+      },
+      "All": {
+        "Triggered": 3426,
+        "Correct": 3227,
+        "First": 2003081,
+        "Last": 2026109,
+        "Accuracy": 0.9419147694103911
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 100,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 50,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 1
+      },
+      "Older": {
+        "Triggered": 2354,
+        "Correct": 2210,
+        "First": 2004012,
+        "Last": 2019095,
+        "Accuracy": 0.9388275276125744
+      },
+      "All": {
+        "Triggered": 3406,
+        "Correct": 3209,
+        "First": 2004012,
+        "Last": 2026109,
+        "Accuracy": 0.942160892542572
+      }
+    },
+    {
+      "Spec": {
+        "Family": 2,
+        "Window": 120,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 2334,
+        "Correct": 2181,
+        "First": 2004032,
+        "Last": 2019095,
+        "Accuracy": 0.9344473007712082
+      },
+      "All": {
+        "Triggered": 3386,
+        "Correct": 3162,
+        "First": 2004032,
+        "Last": 2026109,
+        "Accuracy": 0.9338452451269935
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 10,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 44,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.88
+      },
+      "Older": {
+        "Triggered": 2443,
+        "Correct": 2276,
+        "First": 2003011,
+        "Last": 2019095,
+        "Accuracy": 0.9316414244781007
+      },
+      "All": {
+        "Triggered": 3494,
+        "Correct": 3258,
+        "First": 2003011,
+        "Last": 2026109,
+        "Accuracy": 0.9324556382369776
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 12,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 46,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.92
+      },
+      "Older": {
+        "Triggered": 2442,
+        "Correct": 2258,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.9246519246519247
+      },
+      "All": {
+        "Triggered": 3494,
+        "Correct": 3241,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.9275901545506583
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 15,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 46,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.92
+      },
+      "Older": {
+        "Triggered": 2439,
+        "Correct": 2274,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.932349323493235
+      },
+      "All": {
+        "Triggered": 3491,
+        "Correct": 3267,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.9358350042967631
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 20,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 2434,
+        "Correct": 2276,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.9350862777321282
+      },
+      "All": {
+        "Triggered": 3486,
+        "Correct": 3253,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.9331612162937464
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 25,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2429,
+        "Correct": 2274,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.9361877315767806
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 3257,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.935650675093364
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 30,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 2424,
+        "Correct": 2267,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.9352310231023102
+      },
+      "All": {
+        "Triggered": 3476,
+        "Correct": 3241,
+        "First": 2003031,
+        "Last": 2026109,
+        "Accuracy": 0.9323935558112774
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 40,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2414,
+        "Correct": 2264,
+        "First": 2003041,
+        "Last": 2019095,
+        "Accuracy": 0.9378624689312345
+      },
+      "All": {
+        "Triggered": 3466,
+        "Correct": 3251,
+        "First": 2003041,
+        "Last": 2026109,
+        "Accuracy": 0.9379688401615696
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 50,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2404,
+        "Correct": 2251,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.9363560732113144
+      },
+      "All": {
+        "Triggered": 3456,
+        "Correct": 3233,
+        "First": 2003051,
+        "Last": 2026109,
+        "Accuracy": 0.9354745370370371
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 60,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2394,
+        "Correct": 2240,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.935672514619883
+      },
+      "All": {
+        "Triggered": 3446,
+        "Correct": 3225,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.9358676726639582
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 80,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 2374,
+        "Correct": 2212,
+        "First": 2003081,
+        "Last": 2019095,
+        "Accuracy": 0.9317607413647851
+      },
+      "All": {
+        "Triggered": 3426,
+        "Correct": 3194,
+        "First": 2003081,
+        "Last": 2026109,
+        "Accuracy": 0.9322825452422651
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 100,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2354,
+        "Correct": 2201,
+        "First": 2004012,
+        "Last": 2019095,
+        "Accuracy": 0.9350042480883602
+      },
+      "All": {
+        "Triggered": 3406,
+        "Correct": 3176,
+        "First": 2004012,
+        "Last": 2026109,
+        "Accuracy": 0.9324721080446271
+      }
+    },
+    {
+      "Spec": {
+        "Family": 3,
+        "Window": 120,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2334,
+        "Correct": 2183,
+        "First": 2004032,
+        "Last": 2019095,
+        "Accuracy": 0.9353041988003428
+      },
+      "All": {
+        "Triggered": 3386,
+        "Correct": 3161,
+        "First": 2004032,
+        "Last": 2026109,
+        "Accuracy": 0.9335499113998819
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 10,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2024121,
+        "Last": 2026100,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 476,
+        "Correct": 433,
+        "First": 2003014,
+        "Last": 2019092,
+        "Accuracy": 0.9096638655462185
+      },
+      "All": {
+        "Triggered": 689,
+        "Correct": 638,
+        "First": 2003014,
+        "Last": 2026100,
+        "Accuracy": 0.9259796806966618
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 12,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2024121,
+        "Last": 2026100,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 476,
+        "Correct": 433,
+        "First": 2003014,
+        "Last": 2019092,
+        "Accuracy": 0.9096638655462185
+      },
+      "All": {
+        "Triggered": 689,
+        "Correct": 638,
+        "First": 2003014,
+        "Last": 2026100,
+        "Accuracy": 0.9259796806966618
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 15,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2024121,
+        "Last": 2026100,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 474,
+        "Correct": 431,
+        "First": 2003018,
+        "Last": 2019092,
+        "Accuracy": 0.9092827004219409
+      },
+      "All": {
+        "Triggered": 687,
+        "Correct": 636,
+        "First": 2003018,
+        "Last": 2026100,
+        "Accuracy": 0.925764192139738
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 20,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2024121,
+        "Last": 2026100,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 472,
+        "Correct": 429,
+        "First": 2003031,
+        "Last": 2019092,
+        "Accuracy": 0.9088983050847458
+      },
+      "All": {
+        "Triggered": 685,
+        "Correct": 634,
+        "First": 2003031,
+        "Last": 2026100,
+        "Accuracy": 0.9255474452554745
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 25,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2024121,
+        "Last": 2026100,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 472,
+        "Correct": 429,
+        "First": 2003031,
+        "Last": 2019092,
+        "Accuracy": 0.9088983050847458
+      },
+      "All": {
+        "Triggered": 685,
+        "Correct": 634,
+        "First": 2003031,
+        "Last": 2026100,
+        "Accuracy": 0.9255474452554745
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 30,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2024121,
+        "Last": 2026100,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 472,
+        "Correct": 429,
+        "First": 2003031,
+        "Last": 2019092,
+        "Accuracy": 0.9088983050847458
+      },
+      "All": {
+        "Triggered": 685,
+        "Correct": 634,
+        "First": 2003031,
+        "Last": 2026100,
+        "Accuracy": 0.9255474452554745
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 40,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2024121,
+        "Last": 2026100,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 471,
+        "Correct": 428,
+        "First": 2003041,
+        "Last": 2019092,
+        "Accuracy": 0.9087048832271762
+      },
+      "All": {
+        "Triggered": 684,
+        "Correct": 633,
+        "First": 2003041,
+        "Last": 2026100,
+        "Accuracy": 0.9254385964912281
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 50,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2024121,
+        "Last": 2026100,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 470,
+        "Correct": 427,
+        "First": 2003058,
+        "Last": 2019092,
+        "Accuracy": 0.9085106382978724
+      },
+      "All": {
+        "Triggered": 683,
+        "Correct": 632,
+        "First": 2003058,
+        "Last": 2026100,
+        "Accuracy": 0.9253294289897511
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 60,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2024121,
+        "Last": 2026100,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 469,
+        "Correct": 426,
+        "First": 2003066,
+        "Last": 2019092,
+        "Accuracy": 0.908315565031983
+      },
+      "All": {
+        "Triggered": 682,
+        "Correct": 631,
+        "First": 2003066,
+        "Last": 2026100,
+        "Accuracy": 0.9252199413489736
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 80,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2024121,
+        "Last": 2026100,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 463,
+        "Correct": 422,
+        "First": 2003088,
+        "Last": 2019092,
+        "Accuracy": 0.9114470842332614
+      },
+      "All": {
+        "Triggered": 676,
+        "Correct": 627,
+        "First": 2003088,
+        "Last": 2026100,
+        "Accuracy": 0.9275147928994083
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 100,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2024121,
+        "Last": 2026100,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 461,
+        "Correct": 420,
+        "First": 2004016,
+        "Last": 2019092,
+        "Accuracy": 0.911062906724512
+      },
+      "All": {
+        "Triggered": 674,
+        "Correct": 625,
+        "First": 2004016,
+        "Last": 2026100,
+        "Accuracy": 0.9272997032640949
+      }
+    },
+    {
+      "Spec": {
+        "Family": 4,
+        "Window": 120,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2024121,
+        "Last": 2026100,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 456,
+        "Correct": 415,
+        "First": 2004032,
+        "Last": 2019092,
+        "Accuracy": 0.9100877192982456
+      },
+      "All": {
+        "Triggered": 669,
+        "Correct": 620,
+        "First": 2004032,
+        "Last": 2026100,
+        "Accuracy": 0.9267563527653214
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 10,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2025056,
+        "Last": 2026108,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 608,
+        "Correct": 574,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.944078947368421
+      },
+      "All": {
+        "Triggered": 883,
+        "Correct": 825,
+        "First": 2003016,
+        "Last": 2026108,
+        "Accuracy": 0.9343148357870895
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 12,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2025080,
+        "Last": 2026108,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 644,
+        "Correct": 611,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.9487577639751553
+      },
+      "All": {
+        "Triggered": 929,
+        "Correct": 870,
+        "First": 2003013,
+        "Last": 2026108,
+        "Accuracy": 0.9364908503767492
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 15,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 46,
+        "First": 2025113,
+        "Last": 2026109,
+        "Accuracy": 0.92
+      },
+      "Older": {
+        "Triggered": 774,
+        "Correct": 725,
+        "First": 2003017,
+        "Last": 2019095,
+        "Accuracy": 0.9366925064599483
+      },
+      "All": {
+        "Triggered": 1095,
+        "Correct": 1020,
+        "First": 2003017,
+        "Last": 2026109,
+        "Accuracy": 0.9315068493150684
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 20,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2025121,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 890,
+        "Correct": 830,
+        "First": 2003023,
+        "Last": 2019095,
+        "Accuracy": 0.9325842696629213
+      },
+      "All": {
+        "Triggered": 1270,
+        "Correct": 1188,
+        "First": 2003023,
+        "Last": 2026109,
+        "Accuracy": 0.9354330708661417
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 25,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2025135,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 910,
+        "Correct": 846,
+        "First": 2003026,
+        "Last": 2019094,
+        "Accuracy": 0.9296703296703297
+      },
+      "All": {
+        "Triggered": 1300,
+        "Correct": 1216,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.9353846153846154
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 30,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 50,
+        "First": 2025122,
+        "Last": 2026109,
+        "Accuracy": 1
+      },
+      "Older": {
+        "Triggered": 908,
+        "Correct": 839,
+        "First": 2003033,
+        "Last": 2019094,
+        "Accuracy": 0.9240088105726872
+      },
+      "All": {
+        "Triggered": 1289,
+        "Correct": 1204,
+        "First": 2003033,
+        "Last": 2026109,
+        "Accuracy": 0.9340574088440652
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 40,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2025135,
+        "Last": 2026106,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 836,
+        "Correct": 778,
+        "First": 2003049,
+        "Last": 2019093,
+        "Accuracy": 0.930622009569378
+      },
+      "All": {
+        "Triggered": 1205,
+        "Correct": 1124,
+        "First": 2003049,
+        "Last": 2026106,
+        "Accuracy": 0.9327800829875519
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 50,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2025106,
+        "Last": 2026106,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 762,
+        "Correct": 713,
+        "First": 2003052,
+        "Last": 2019093,
+        "Accuracy": 0.9356955380577427
+      },
+      "All": {
+        "Triggered": 1090,
+        "Correct": 1016,
+        "First": 2003052,
+        "Last": 2026106,
+        "Accuracy": 0.9321100917431193
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 60,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2025068,
+        "Last": 2026106,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 619,
+        "Correct": 577,
+        "First": 2003063,
+        "Last": 2019090,
+        "Accuracy": 0.9321486268174475
+      },
+      "All": {
+        "Triggered": 877,
+        "Correct": 812,
+        "First": 2003063,
+        "Last": 2026106,
+        "Accuracy": 0.9258836944127709
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 80,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2025015,
+        "Last": 2026106,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 437,
+        "Correct": 407,
+        "First": 2003085,
+        "Last": 2019089,
+        "Accuracy": 0.931350114416476
+      },
+      "All": {
+        "Triggered": 628,
+        "Correct": 581,
+        "First": 2003085,
+        "Last": 2026106,
+        "Accuracy": 0.9251592356687898
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 100,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2023137,
+        "Last": 2026107,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 271,
+        "Correct": 256,
+        "First": 2004034,
+        "Last": 2019089,
+        "Accuracy": 0.9446494464944649
+      },
+      "All": {
+        "Triggered": 392,
+        "Correct": 366,
+        "First": 2004034,
+        "Last": 2026107,
+        "Accuracy": 0.9336734693877551
+      }
+    },
+    {
+      "Spec": {
+        "Family": 5,
+        "Window": 120,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2022041,
+        "Last": 2026107,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 180,
+        "Correct": 171,
+        "First": 2004043,
+        "Last": 2019089,
+        "Accuracy": 0.95
+      },
+      "All": {
+        "Triggered": 256,
+        "Correct": 240,
+        "First": 2004043,
+        "Last": 2026107,
+        "Accuracy": 0.9375
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 10,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026007,
+        "Last": 2026102,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 1228,
+        "Correct": 1137,
+        "First": 2003014,
+        "Last": 2019094,
+        "Accuracy": 0.9258957654723127
+      },
+      "All": {
+        "Triggered": 1791,
+        "Correct": 1661,
+        "First": 2003014,
+        "Last": 2026102,
+        "Accuracy": 0.9274148520379676
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 12,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026012,
+        "Last": 2026102,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 1263,
+        "Correct": 1169,
+        "First": 2003014,
+        "Last": 2019094,
+        "Accuracy": 0.9255740300870943
+      },
+      "All": {
+        "Triggered": 1835,
+        "Correct": 1702,
+        "First": 2003014,
+        "Last": 2026102,
+        "Accuracy": 0.9275204359673025
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 15,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026012,
+        "Last": 2026102,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 1268,
+        "Correct": 1170,
+        "First": 2003016,
+        "Last": 2019094,
+        "Accuracy": 0.9227129337539433
+      },
+      "All": {
+        "Triggered": 1841,
+        "Correct": 1704,
+        "First": 2003016,
+        "Last": 2026102,
+        "Accuracy": 0.9255839217816404
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 20,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026012,
+        "Last": 2026102,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 1270,
+        "Correct": 1170,
+        "First": 2003021,
+        "Last": 2019094,
+        "Accuracy": 0.9212598425196851
+      },
+      "All": {
+        "Triggered": 1847,
+        "Correct": 1708,
+        "First": 2003021,
+        "Last": 2026102,
+        "Accuracy": 0.9247428262046562
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 25,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026012,
+        "Last": 2026102,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 1272,
+        "Correct": 1173,
+        "First": 2003031,
+        "Last": 2019094,
+        "Accuracy": 0.9221698113207547
+      },
+      "All": {
+        "Triggered": 1849,
+        "Correct": 1711,
+        "First": 2003031,
+        "Last": 2026102,
+        "Accuracy": 0.9253650621957815
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 30,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026012,
+        "Last": 2026102,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 1273,
+        "Correct": 1174,
+        "First": 2003031,
+        "Last": 2019094,
+        "Accuracy": 0.9222309505106049
+      },
+      "All": {
+        "Triggered": 1850,
+        "Correct": 1712,
+        "First": 2003031,
+        "Last": 2026102,
+        "Accuracy": 0.9254054054054054
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 40,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026012,
+        "Last": 2026102,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 1269,
+        "Correct": 1169,
+        "First": 2003041,
+        "Last": 2019094,
+        "Accuracy": 0.9211977935382191
+      },
+      "All": {
+        "Triggered": 1846,
+        "Correct": 1707,
+        "First": 2003041,
+        "Last": 2026102,
+        "Accuracy": 0.9247020585048754
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 50,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026012,
+        "Last": 2026102,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 1266,
+        "Correct": 1167,
+        "First": 2003054,
+        "Last": 2019094,
+        "Accuracy": 0.9218009478672986
+      },
+      "All": {
+        "Triggered": 1843,
+        "Correct": 1705,
+        "First": 2003054,
+        "Last": 2026102,
+        "Accuracy": 0.9251220835594139
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 60,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026012,
+        "Last": 2026102,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 1261,
+        "Correct": 1162,
+        "First": 2003062,
+        "Last": 2019094,
+        "Accuracy": 0.9214908802537668
+      },
+      "All": {
+        "Triggered": 1838,
+        "Correct": 1700,
+        "First": 2003062,
+        "Last": 2026102,
+        "Accuracy": 0.9249183895538629
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 80,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026012,
+        "Last": 2026102,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 1243,
+        "Correct": 1150,
+        "First": 2003086,
+        "Last": 2019094,
+        "Accuracy": 0.9251810136765889
+      },
+      "All": {
+        "Triggered": 1820,
+        "Correct": 1688,
+        "First": 2003086,
+        "Last": 2026102,
+        "Accuracy": 0.9274725274725275
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 100,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026012,
+        "Last": 2026102,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 1234,
+        "Correct": 1140,
+        "First": 2004016,
+        "Last": 2019094,
+        "Accuracy": 0.9238249594813615
+      },
+      "All": {
+        "Triggered": 1811,
+        "Correct": 1678,
+        "First": 2004016,
+        "Last": 2026102,
+        "Accuracy": 0.9265599116510216
+      }
+    },
+    {
+      "Spec": {
+        "Family": 6,
+        "Window": 120,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026012,
+        "Last": 2026102,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 1223,
+        "Correct": 1130,
+        "First": 2004032,
+        "Last": 2019094,
+        "Accuracy": 0.9239574816026165
+      },
+      "All": {
+        "Triggered": 1800,
+        "Correct": 1668,
+        "First": 2004032,
+        "Last": 2026102,
+        "Accuracy": 0.9266666666666666
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 10,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2443,
+        "Correct": 2291,
+        "First": 2003011,
+        "Last": 2019095,
+        "Accuracy": 0.937781416291445
+      },
+      "All": {
+        "Triggered": 3495,
+        "Correct": 3271,
+        "First": 2003011,
+        "Last": 2026109,
+        "Accuracy": 0.9359084406294707
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 12,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026059,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2437,
+        "Correct": 2285,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.9376282314320886
+      },
+      "All": {
+        "Triggered": 3488,
+        "Correct": 3269,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.9372133027522935
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 15,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2436,
+        "Correct": 2301,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.9445812807881774
+      },
+      "All": {
+        "Triggered": 3488,
+        "Correct": 3291,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.9435206422018348
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 20,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 2430,
+        "Correct": 2262,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.9308641975308642
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 3253,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.9345015800057455
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 25,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2427,
+        "Correct": 2272,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.9361351462711166
+      },
+      "All": {
+        "Triggered": 3478,
+        "Correct": 3261,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.937607820586544
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 30,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2424,
+        "Correct": 2270,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.9364686468646864
+      },
+      "All": {
+        "Triggered": 3476,
+        "Correct": 3261,
+        "First": 2003031,
+        "Last": 2026109,
+        "Accuracy": 0.9381472957422324
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 40,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 2414,
+        "Correct": 2260,
+        "First": 2003041,
+        "Last": 2019095,
+        "Accuracy": 0.9362054681027341
+      },
+      "All": {
+        "Triggered": 3465,
+        "Correct": 3254,
+        "First": 2003041,
+        "Last": 2026109,
+        "Accuracy": 0.9391053391053391
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 50,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 44,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.88
+      },
+      "Older": {
+        "Triggered": 2404,
+        "Correct": 2265,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.9421797004991681
+      },
+      "All": {
+        "Triggered": 3456,
+        "Correct": 3259,
+        "First": 2003051,
+        "Last": 2026109,
+        "Accuracy": 0.9429976851851852
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 60,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2392,
+        "Correct": 2254,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.9423076923076923
+      },
+      "All": {
+        "Triggered": 3444,
+        "Correct": 3239,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.9404761904761905
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 80,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 44,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.88
+      },
+      "Older": {
+        "Triggered": 2355,
+        "Correct": 2207,
+        "First": 2003081,
+        "Last": 2019095,
+        "Accuracy": 0.9371549893842888
+      },
+      "All": {
+        "Triggered": 3407,
+        "Correct": 3183,
+        "First": 2003081,
+        "Last": 2026109,
+        "Accuracy": 0.9342530085118873
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 100,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 46,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.92
+      },
+      "Older": {
+        "Triggered": 2268,
+        "Correct": 2127,
+        "First": 2004013,
+        "Last": 2019095,
+        "Accuracy": 0.9378306878306878
+      },
+      "All": {
+        "Triggered": 3291,
+        "Correct": 3088,
+        "First": 2004013,
+        "Last": 2026109,
+        "Accuracy": 0.9383166210878152
+      }
+    },
+    {
+      "Spec": {
+        "Family": 7,
+        "Window": 120,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2152,
+        "Correct": 2037,
+        "First": 2004032,
+        "Last": 2019095,
+        "Accuracy": 0.9465613382899628
+      },
+      "All": {
+        "Triggered": 3116,
+        "Correct": 2948,
+        "First": 2004032,
+        "Last": 2026109,
+        "Accuracy": 0.9460847240051348
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 10,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2025096,
+        "Last": 2026107,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 700,
+        "Correct": 658,
+        "First": 2003012,
+        "Last": 2019095,
+        "Accuracy": 0.94
+      },
+      "All": {
+        "Triggered": 1042,
+        "Correct": 983,
+        "First": 2003012,
+        "Last": 2026107,
+        "Accuracy": 0.9433781190019194
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 12,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2025146,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 986,
+        "Correct": 941,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.9543610547667343
+      },
+      "All": {
+        "Triggered": 1461,
+        "Correct": 1392,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.9527720739219713
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 15,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026045,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 1582,
+        "Correct": 1496,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.9456384323640961
+      },
+      "All": {
+        "Triggered": 2305,
+        "Correct": 2178,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.9449023861171366
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 20,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026049,
+        "Last": 2026108,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 1968,
+        "Correct": 1859,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.9446138211382114
+      },
+      "All": {
+        "Triggered": 2848,
+        "Correct": 2694,
+        "First": 2003021,
+        "Last": 2026108,
+        "Accuracy": 0.9459269662921348
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 25,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026054,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2233,
+        "Correct": 2089,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.93551276309897
+      },
+      "All": {
+        "Triggered": 3223,
+        "Correct": 3018,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.9363946633571207
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 30,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026059,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2300,
+        "Correct": 2154,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.9365217391304348
+      },
+      "All": {
+        "Triggered": 3326,
+        "Correct": 3108,
+        "First": 2003031,
+        "Last": 2026109,
+        "Accuracy": 0.9344558027660854
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 40,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026059,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2381,
+        "Correct": 2222,
+        "First": 2003041,
+        "Last": 2019095,
+        "Accuracy": 0.9332213355732886
+      },
+      "All": {
+        "Triggered": 3422,
+        "Correct": 3205,
+        "First": 2003041,
+        "Last": 2026109,
+        "Accuracy": 0.9365867913500877
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 50,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2397,
+        "Correct": 2266,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.9453483521068001
+      },
+      "All": {
+        "Triggered": 3441,
+        "Correct": 3241,
+        "First": 2003051,
+        "Last": 2026109,
+        "Accuracy": 0.9418773612321999
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 60,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 2392,
+        "Correct": 2242,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.9372909698996655
+      },
+      "All": {
+        "Triggered": 3435,
+        "Correct": 3216,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.9362445414847161
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 80,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2374,
+        "Correct": 2234,
+        "First": 2003081,
+        "Last": 2019095,
+        "Accuracy": 0.941027801179444
+      },
+      "All": {
+        "Triggered": 3422,
+        "Correct": 3224,
+        "First": 2003081,
+        "Last": 2026109,
+        "Accuracy": 0.9421390999415546
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 100,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2353,
+        "Correct": 2206,
+        "First": 2004012,
+        "Last": 2019095,
+        "Accuracy": 0.9375265618359541
+      },
+      "All": {
+        "Triggered": 3405,
+        "Correct": 3202,
+        "First": 2004012,
+        "Last": 2026109,
+        "Accuracy": 0.9403817914831131
+      }
+    },
+    {
+      "Spec": {
+        "Family": 8,
+        "Window": 120,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 2333,
+        "Correct": 2185,
+        "First": 2004032,
+        "Last": 2019095,
+        "Accuracy": 0.9365623660522931
+      },
+      "All": {
+        "Triggered": 3383,
+        "Correct": 3179,
+        "First": 2004032,
+        "Last": 2026109,
+        "Accuracy": 0.9396984924623115
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 10,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2024021,
+        "Last": 2026100,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 319,
+        "Correct": 290,
+        "First": 2003014,
+        "Last": 2019092,
+        "Accuracy": 0.9090909090909091
+      },
+      "All": {
+        "Triggered": 462,
+        "Correct": 427,
+        "First": 2003014,
+        "Last": 2026100,
+        "Accuracy": 0.9242424242424242
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 12,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2025013,
+        "Last": 2026100,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 461,
+        "Correct": 421,
+        "First": 2003014,
+        "Last": 2019092,
+        "Accuracy": 0.913232104121475
+      },
+      "All": {
+        "Triggered": 663,
+        "Correct": 610,
+        "First": 2003014,
+        "Last": 2026100,
+        "Accuracy": 0.9200603318250377
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 15,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2025013,
+        "Last": 2026100,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 460,
+        "Correct": 420,
+        "First": 2003018,
+        "Last": 2019092,
+        "Accuracy": 0.9130434782608695
+      },
+      "All": {
+        "Triggered": 662,
+        "Correct": 609,
+        "First": 2003018,
+        "Last": 2026100,
+        "Accuracy": 0.9199395770392749
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 20,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 46,
+        "First": 2025078,
+        "Last": 2026101,
+        "Accuracy": 0.92
+      },
+      "Older": {
+        "Triggered": 685,
+        "Correct": 630,
+        "First": 2003031,
+        "Last": 2019092,
+        "Accuracy": 0.9197080291970803
+      },
+      "All": {
+        "Triggered": 999,
+        "Correct": 926,
+        "First": 2003031,
+        "Last": 2026101,
+        "Accuracy": 0.9269269269269269
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 25,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2025116,
+        "Last": 2026101,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 811,
+        "Correct": 750,
+        "First": 2003031,
+        "Last": 2019092,
+        "Accuracy": 0.9247842170160296
+      },
+      "All": {
+        "Triggered": 1179,
+        "Correct": 1093,
+        "First": 2003031,
+        "Last": 2026101,
+        "Accuracy": 0.9270568278201866
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 30,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2025124,
+        "Last": 2026108,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 896,
+        "Correct": 833,
+        "First": 2003031,
+        "Last": 2019092,
+        "Accuracy": 0.9296875
+      },
+      "All": {
+        "Triggered": 1299,
+        "Correct": 1206,
+        "First": 2003031,
+        "Last": 2026108,
+        "Accuracy": 0.9284064665127021
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 40,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 44,
+        "First": 2026003,
+        "Last": 2026108,
+        "Accuracy": 0.88
+      },
+      "Older": {
+        "Triggered": 1134,
+        "Correct": 1057,
+        "First": 2003041,
+        "Last": 2019095,
+        "Accuracy": 0.9320987654320988
+      },
+      "All": {
+        "Triggered": 1638,
+        "Correct": 1520,
+        "First": 2003041,
+        "Last": 2026108,
+        "Accuracy": 0.927960927960928
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 50,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 45,
+        "First": 2026007,
+        "Last": 2026108,
+        "Accuracy": 0.9
+      },
+      "Older": {
+        "Triggered": 1288,
+        "Correct": 1195,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.9277950310559007
+      },
+      "All": {
+        "Triggered": 1857,
+        "Correct": 1722,
+        "First": 2003051,
+        "Last": 2026108,
+        "Accuracy": 0.9273021001615509
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 60,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026034,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 1483,
+        "Correct": 1374,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.9265003371544167
+      },
+      "All": {
+        "Triggered": 2140,
+        "Correct": 1986,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.9280373831775701
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 80,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026042,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 1698,
+        "Correct": 1579,
+        "First": 2003081,
+        "Last": 2019095,
+        "Accuracy": 0.9299175500588928
+      },
+      "All": {
+        "Triggered": 2464,
+        "Correct": 2297,
+        "First": 2003081,
+        "Last": 2026109,
+        "Accuracy": 0.932224025974026
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 100,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026047,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 1877,
+        "Correct": 1748,
+        "First": 2004012,
+        "Last": 2019095,
+        "Accuracy": 0.9312733084709643
+      },
+      "All": {
+        "Triggered": 2712,
+        "Correct": 2529,
+        "First": 2004012,
+        "Last": 2026109,
+        "Accuracy": 0.9325221238938053
+      }
+    },
+    {
+      "Spec": {
+        "Family": 9,
+        "Window": 120,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026051,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2000,
+        "Correct": 1857,
+        "First": 2004032,
+        "Last": 2019095,
+        "Accuracy": 0.9285
+      },
+      "All": {
+        "Triggered": 2899,
+        "Correct": 2697,
+        "First": 2004032,
+        "Last": 2026109,
+        "Accuracy": 0.9303208002759572
+      }
+    }
+  ],
+  "Selected": [
+    {
+      "RuleId": "B-S-R-001",
+      "Name": "30\u671F\u957F\u7F3A\u56DE\u8865\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 5,
+        "Window": 30,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026023,
+        "Last": 2026108,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 1427,
+        "Correct": 1198,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.8395234758234057
+      },
+      "All": {
+        "Triggered": 2025,
+        "Correct": 1691,
+        "First": 2003031,
+        "Last": 2026108,
+        "Accuracy": 0.8350617283950618
+      }
+    },
+    {
+      "RuleId": "B-S-R-002",
+      "Name": "12\u671F\u4E2D\u6BB5\u9057\u6F0F\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 7,
+        "Window": 12,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2442,
+        "Correct": 2044,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.8370188370188371
+      },
+      "All": {
+        "Triggered": 3494,
+        "Correct": 2921,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.8360045792787636
+      }
+    },
+    {
+      "RuleId": "B-S-R-003",
+      "Name": "15\u671F\u9AD8\u9891\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 0,
+        "Window": 15,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2439,
+        "Correct": 2028,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.8314883148831488
+      },
+      "All": {
+        "Triggered": 3491,
+        "Correct": 2897,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.8298481810369521
+      }
+    },
+    {
+      "RuleId": "B-S-R-004",
+      "Name": "25\u671F\u957F\u7F3A\u56DE\u8865\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 5,
+        "Window": 25,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026037,
+        "Last": 2026108,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 1811,
+        "Correct": 1503,
+        "First": 2003028,
+        "Last": 2019095,
+        "Accuracy": 0.8299282164549973
+      },
+      "All": {
+        "Triggered": 2577,
+        "Correct": 2146,
+        "First": 2003028,
+        "Last": 2026108,
+        "Accuracy": 0.8327512611563834
+      }
+    },
+    {
+      "RuleId": "B-S-R-005",
+      "Name": "15\u671F\u4E2D\u6BB5\u9057\u6F0F\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 7,
+        "Window": 15,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2439,
+        "Correct": 2021,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.8286182861828618
+      },
+      "All": {
+        "Triggered": 3491,
+        "Correct": 2883,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.8258378688054998
+      }
+    },
+    {
+      "RuleId": "B-S-R-006",
+      "Name": "25\u671F\u77ED\u671F\u91CD\u590D\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 4,
+        "Window": 25,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2402,
+        "Correct": 1986,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.8268109908409659
+      },
+      "All": {
+        "Triggered": 3442,
+        "Correct": 2823,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.8201626961069146
+      }
+    },
+    {
+      "RuleId": "B-S-R-007",
+      "Name": "15\u671F\u5347\u6E29\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 3,
+        "Window": 15,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2439,
+        "Correct": 2014,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.8257482574825749
+      },
+      "All": {
+        "Triggered": 3491,
+        "Correct": 2848,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.8158120882268691
+      }
+    },
+    {
+      "RuleId": "B-S-R-008",
+      "Name": "20\u671F\u77ED\u671F\u91CD\u590D\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 4,
+        "Window": 20,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2407,
+        "Correct": 1986,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.8250934773577067
+      },
+      "All": {
+        "Triggered": 3447,
+        "Correct": 2825,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.8195532346968378
+      }
+    },
+    {
+      "RuleId": "B-S-R-009",
+      "Name": "12\u671F\u9AD8\u9891\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 0,
+        "Window": 12,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2442,
+        "Correct": 2014,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.8247338247338247
+      },
+      "All": {
+        "Triggered": 3494,
+        "Correct": 2887,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.8262736119061248
+      }
+    },
+    {
+      "RuleId": "B-S-R-010",
+      "Name": "20\u671F\u964D\u6E29\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 2,
+        "Window": 20,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2434,
+        "Correct": 2006,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.8241577649958916
+      },
+      "All": {
+        "Triggered": 3486,
+        "Correct": 2860,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.8204245553643144
+      }
+    },
+    {
+      "RuleId": "B-S-R-011",
+      "Name": "120\u671F\u77ED\u671F\u5BC6\u96C6\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 6,
+        "Window": 120,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2334,
+        "Correct": 1923,
+        "First": 2004032,
+        "Last": 2019095,
+        "Accuracy": 0.8239074550128535
+      },
+      "All": {
+        "Triggered": 3386,
+        "Correct": 2778,
+        "First": 2004032,
+        "Last": 2026109,
+        "Accuracy": 0.8204370939161252
+      }
+    },
+    {
+      "RuleId": "B-S-R-012",
+      "Name": "20\u671F\u8D85\u5747\u503C\u9057\u6F0F\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 8,
+        "Window": 20,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2434,
+        "Correct": 2004,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.8233360723089564
+      },
+      "All": {
+        "Triggered": 3486,
+        "Correct": 2852,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.8181296615031555
+      }
+    },
+    {
+      "RuleId": "B-S-R-013",
+      "Name": "10\u671F\u964D\u6E29\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 2,
+        "Window": 10,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2444,
+        "Correct": 2012,
+        "First": 2003011,
+        "Last": 2019095,
+        "Accuracy": 0.823240589198036
+      },
+      "All": {
+        "Triggered": 3496,
+        "Correct": 2886,
+        "First": 2003011,
+        "Last": 2026109,
+        "Accuracy": 0.8255148741418764
+      }
+    },
+    {
+      "RuleId": "B-S-R-014",
+      "Name": "60\u671F\u957F\u7F3A\u56DE\u8865\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 5,
+        "Window": 60,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2024028,
+        "Last": 2026105,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 243,
+        "Correct": 200,
+        "First": 2003074,
+        "Last": 2019092,
+        "Accuracy": 0.823045267489712
+      },
+      "All": {
+        "Triggered": 359,
+        "Correct": 298,
+        "First": 2003074,
+        "Last": 2026105,
+        "Accuracy": 0.83008356545961
+      }
+    },
+    {
+      "RuleId": "B-S-R-015",
+      "Name": "30\u671F\u9AD8\u9891\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 0,
+        "Window": 30,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2424,
+        "Correct": 1994,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.8226072607260726
+      },
+      "All": {
+        "Triggered": 3476,
+        "Correct": 2854,
+        "First": 2003031,
+        "Last": 2026109,
+        "Accuracy": 0.8210586881472958
+      }
+    },
+    {
+      "RuleId": "B-S-R-016",
+      "Name": "30\u671F\u5347\u6E29\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 3,
+        "Window": 30,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2424,
+        "Correct": 1994,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.8226072607260726
+      },
+      "All": {
+        "Triggered": 3476,
+        "Correct": 2860,
+        "First": 2003031,
+        "Last": 2026109,
+        "Accuracy": 0.8227848101265823
+      }
+    },
+    {
+      "RuleId": "B-S-R-017",
+      "Name": "60\u671F\u964D\u6E29\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 2,
+        "Window": 60,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2394,
+        "Correct": 1966,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.8212197159565581
+      },
+      "All": {
+        "Triggered": 3446,
+        "Correct": 2843,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.8250145095763204
+      }
+    },
+    {
+      "RuleId": "B-S-R-018",
+      "Name": "25\u671F\u5347\u6E29\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 3,
+        "Window": 25,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2429,
+        "Correct": 1993,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.8205022643062989
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 2852,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.8193047974719908
+      }
+    },
+    {
+      "RuleId": "B-S-R-019",
+      "Name": "25\u671F\u8D85\u5747\u503C\u9057\u6F0F\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 8,
+        "Window": 25,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2429,
+        "Correct": 1993,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.8205022643062989
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 2859,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.8213157138753232
+      }
+    },
+    {
+      "RuleId": "B-S-R-020",
+      "Name": "12\u671F\u77ED\u671F\u91CD\u590D\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 4,
+        "Window": 12,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2415,
+        "Correct": 1979,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.8194616977225673
+      },
+      "All": {
+        "Triggered": 3455,
+        "Correct": 2803,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.811287988422576
+      }
+    },
+    {
+      "RuleId": "B-S-R-021",
+      "Name": "50\u671F\u4E2D\u6BB5\u9057\u6F0F\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 7,
+        "Window": 50,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 44,
+        "First": 2026056,
+        "Last": 2026109,
+        "Accuracy": 0.88
+      },
+      "Older": {
+        "Triggered": 2326,
+        "Correct": 1903,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.8181427343078246
+      },
+      "All": {
+        "Triggered": 3332,
+        "Correct": 2732,
+        "First": 2003051,
+        "Last": 2026109,
+        "Accuracy": 0.8199279711884754
+      }
+    },
+    {
+      "RuleId": "B-S-R-022",
+      "Name": "20\u671F\u77ED\u671F\u5BC6\u96C6\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 6,
+        "Window": 20,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 41,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.82
+      },
+      "Older": {
+        "Triggered": 2434,
+        "Correct": 1991,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.8179950698438784
+      },
+      "All": {
+        "Triggered": 3486,
+        "Correct": 2838,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.8141135972461274
+      }
+    },
+    {
+      "RuleId": "B-S-R-023",
+      "Name": "15\u671F\u77ED\u671F\u5BC6\u96C6\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 6,
+        "Window": 15,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 42,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.84
+      },
+      "Older": {
+        "Triggered": 2439,
+        "Correct": 1993,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.8171381713817139
+      },
+      "All": {
+        "Triggered": 3491,
+        "Correct": 2839,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.8132340303637926
+      }
+    },
+    {
+      "RuleId": "B-S-R-024",
+      "Name": "20\u671F\u7D27\u90BB\u91CD\u5F00\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 9,
+        "Window": 20,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026059,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2432,
+        "Correct": 1986,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.8166118421052632
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 2837,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.8149956908934214
+      }
+    },
+    {
+      "RuleId": "B-S-R-025",
+      "Name": "20\u671F\u4F4E\u9891\u5DF2\u51FA\u73B0\u5355\u53F7\u6740\u7EA2",
+      "Spec": {
+        "Family": 1,
+        "Window": 20,
+        "Ball": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 43,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.86
+      },
+      "Older": {
+        "Triggered": 2434,
+        "Correct": 1986,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.8159408381265407
+      },
+      "All": {
+        "Triggered": 3486,
+        "Correct": 2843,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.8155479059093517
+      }
+    },
+    {
+      "RuleId": "B-S-B-001",
+      "Name": "12\u671F\u8D85\u5747\u503C\u9057\u6F0F\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 8,
+        "Window": 12,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2025146,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 986,
+        "Correct": 941,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.9543610547667343
+      },
+      "All": {
+        "Triggered": 1461,
+        "Correct": 1392,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.9527720739219713
+      }
+    },
+    {
+      "RuleId": "B-S-B-002",
+      "Name": "12\u671F\u964D\u6E29\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 2,
+        "Window": 12,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 2442,
+        "Correct": 2323,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.9512694512694513
+      },
+      "All": {
+        "Triggered": 3494,
+        "Correct": 3321,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.9504865483686319
+      }
+    },
+    {
+      "RuleId": "B-S-B-003",
+      "Name": "120\u671F\u4E2D\u6BB5\u9057\u6F0F\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 7,
+        "Window": 120,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2152,
+        "Correct": 2037,
+        "First": 2004032,
+        "Last": 2019095,
+        "Accuracy": 0.9465613382899628
+      },
+      "All": {
+        "Triggered": 3116,
+        "Correct": 2948,
+        "First": 2004032,
+        "Last": 2026109,
+        "Accuracy": 0.9460847240051348
+      }
+    },
+    {
+      "RuleId": "B-S-B-004",
+      "Name": "30\u671F\u4F4E\u9891\u5DF2\u51FA\u73B0\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 1,
+        "Window": 30,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2424,
+        "Correct": 2293,
+        "First": 2003031,
+        "Last": 2019095,
+        "Accuracy": 0.945957095709571
+      },
+      "All": {
+        "Triggered": 3476,
+        "Correct": 3266,
+        "First": 2003031,
+        "Last": 2026109,
+        "Accuracy": 0.9395857307249712
+      }
+    },
+    {
+      "RuleId": "B-S-B-005",
+      "Name": "15\u671F\u8D85\u5747\u503C\u9057\u6F0F\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 8,
+        "Window": 15,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026045,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 1582,
+        "Correct": 1496,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.9456384323640961
+      },
+      "All": {
+        "Triggered": 2305,
+        "Correct": 2178,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.9449023861171366
+      }
+    },
+    {
+      "RuleId": "B-S-B-006",
+      "Name": "50\u671F\u8D85\u5747\u503C\u9057\u6F0F\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 8,
+        "Window": 50,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2397,
+        "Correct": 2266,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.9453483521068001
+      },
+      "All": {
+        "Triggered": 3441,
+        "Correct": 3241,
+        "First": 2003051,
+        "Last": 2026109,
+        "Accuracy": 0.9418773612321999
+      }
+    },
+    {
+      "RuleId": "B-S-B-007",
+      "Name": "100\u671F\u957F\u7F3A\u56DE\u8865\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 5,
+        "Window": 100,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2023137,
+        "Last": 2026107,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 271,
+        "Correct": 256,
+        "First": 2004034,
+        "Last": 2019089,
+        "Accuracy": 0.9446494464944649
+      },
+      "All": {
+        "Triggered": 392,
+        "Correct": 366,
+        "First": 2004034,
+        "Last": 2026107,
+        "Accuracy": 0.9336734693877551
+      }
+    },
+    {
+      "RuleId": "B-S-B-008",
+      "Name": "15\u671F\u4E2D\u6BB5\u9057\u6F0F\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 7,
+        "Window": 15,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2436,
+        "Correct": 2301,
+        "First": 2003016,
+        "Last": 2019095,
+        "Accuracy": 0.9445812807881774
+      },
+      "All": {
+        "Triggered": 3488,
+        "Correct": 3291,
+        "First": 2003016,
+        "Last": 2026109,
+        "Accuracy": 0.9435206422018348
+      }
+    },
+    {
+      "RuleId": "B-S-B-009",
+      "Name": "25\u671F\u4F4E\u9891\u5DF2\u51FA\u73B0\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 1,
+        "Window": 25,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 2429,
+        "Correct": 2291,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.9431864965006176
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 3266,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.9382361390405056
+      }
+    },
+    {
+      "RuleId": "B-S-B-010",
+      "Name": "120\u671F\u9AD8\u9891\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 0,
+        "Window": 120,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2334,
+        "Correct": 2200,
+        "First": 2004032,
+        "Last": 2019095,
+        "Accuracy": 0.9425878320479862
+      },
+      "All": {
+        "Triggered": 3386,
+        "Correct": 3187,
+        "First": 2004032,
+        "Last": 2026109,
+        "Accuracy": 0.9412285883047844
+      }
+    },
+    {
+      "RuleId": "B-S-B-011",
+      "Name": "60\u671F\u4E2D\u6BB5\u9057\u6F0F\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 7,
+        "Window": 60,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2392,
+        "Correct": 2254,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.9423076923076923
+      },
+      "All": {
+        "Triggered": 3444,
+        "Correct": 3239,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.9404761904761905
+      }
+    },
+    {
+      "RuleId": "B-S-B-012",
+      "Name": "60\u671F\u4F4E\u9891\u5DF2\u51FA\u73B0\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 1,
+        "Window": 60,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2394,
+        "Correct": 2255,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.9419381787802841
+      },
+      "All": {
+        "Triggered": 3446,
+        "Correct": 3238,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.9396401625072548
+      }
+    },
+    {
+      "RuleId": "B-S-B-013",
+      "Name": "80\u671F\u964D\u6E29\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 2,
+        "Window": 80,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2374,
+        "Correct": 2236,
+        "First": 2003081,
+        "Last": 2019095,
+        "Accuracy": 0.9418702611625948
+      },
+      "All": {
+        "Triggered": 3426,
+        "Correct": 3227,
+        "First": 2003081,
+        "Last": 2026109,
+        "Accuracy": 0.9419147694103911
+      }
+    },
+    {
+      "RuleId": "B-S-B-014",
+      "Name": "20\u671F\u964D\u6E29\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 2,
+        "Window": 20,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2434,
+        "Correct": 2289,
+        "First": 2003021,
+        "Last": 2019095,
+        "Accuracy": 0.9404272801972062
+      },
+      "All": {
+        "Triggered": 3486,
+        "Correct": 3283,
+        "First": 2003021,
+        "Last": 2026109,
+        "Accuracy": 0.9417670682730924
+      }
+    },
+    {
+      "RuleId": "B-S-B-015",
+      "Name": "40\u671F\u5347\u6E29\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 3,
+        "Window": 40,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2414,
+        "Correct": 2264,
+        "First": 2003041,
+        "Last": 2019095,
+        "Accuracy": 0.9378624689312345
+      },
+      "All": {
+        "Triggered": 3466,
+        "Correct": 3251,
+        "First": 2003041,
+        "Last": 2026109,
+        "Accuracy": 0.9379688401615696
+      }
+    },
+    {
+      "RuleId": "B-S-B-016",
+      "Name": "10\u671F\u9AD8\u9891\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 0,
+        "Window": 10,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 2444,
+        "Correct": 2290,
+        "First": 2003011,
+        "Last": 2019095,
+        "Accuracy": 0.936988543371522
+      },
+      "All": {
+        "Triggered": 3496,
+        "Correct": 3267,
+        "First": 2003011,
+        "Last": 2026109,
+        "Accuracy": 0.9344965675057209
+      }
+    },
+    {
+      "RuleId": "B-S-B-017",
+      "Name": "50\u671F\u5347\u6E29\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 3,
+        "Window": 50,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 2404,
+        "Correct": 2251,
+        "First": 2003051,
+        "Last": 2019095,
+        "Accuracy": 0.9363560732113144
+      },
+      "All": {
+        "Triggered": 3456,
+        "Correct": 3233,
+        "First": 2003051,
+        "Last": 2026109,
+        "Accuracy": 0.9354745370370371
+      }
+    },
+    {
+      "RuleId": "B-S-B-018",
+      "Name": "25\u671F\u5347\u6E29\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 3,
+        "Window": 25,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2429,
+        "Correct": 2274,
+        "First": 2003026,
+        "Last": 2019095,
+        "Accuracy": 0.9361877315767806
+      },
+      "All": {
+        "Triggered": 3481,
+        "Correct": 3257,
+        "First": 2003026,
+        "Last": 2026109,
+        "Accuracy": 0.935650675093364
+      }
+    },
+    {
+      "RuleId": "B-S-B-019",
+      "Name": "50\u671F\u957F\u7F3A\u56DE\u8865\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 5,
+        "Window": 50,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2025106,
+        "Last": 2026106,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 762,
+        "Correct": 713,
+        "First": 2003052,
+        "Last": 2019093,
+        "Accuracy": 0.9356955380577427
+      },
+      "All": {
+        "Triggered": 1090,
+        "Correct": 1016,
+        "First": 2003052,
+        "Last": 2026106,
+        "Accuracy": 0.9321100917431193
+      }
+    },
+    {
+      "RuleId": "B-S-B-020",
+      "Name": "12\u671F\u9AD8\u9891\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 0,
+        "Window": 12,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026060,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 2442,
+        "Correct": 2284,
+        "First": 2003013,
+        "Last": 2019095,
+        "Accuracy": 0.9352989352989353
+      },
+      "All": {
+        "Triggered": 3494,
+        "Correct": 3260,
+        "First": 2003013,
+        "Last": 2026109,
+        "Accuracy": 0.933028048082427
+      }
+    },
+    {
+      "RuleId": "B-S-B-021",
+      "Name": "20\u671F\u957F\u7F3A\u56DE\u8865\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 5,
+        "Window": 20,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2025121,
+        "Last": 2026109,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 890,
+        "Correct": 830,
+        "First": 2003023,
+        "Last": 2019095,
+        "Accuracy": 0.9325842696629213
+      },
+      "All": {
+        "Triggered": 1270,
+        "Correct": 1188,
+        "First": 2003023,
+        "Last": 2026109,
+        "Accuracy": 0.9354330708661417
+      }
+    },
+    {
+      "RuleId": "B-S-B-022",
+      "Name": "100\u671F\u7D27\u90BB\u91CD\u5F00\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 9,
+        "Window": 100,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 48,
+        "First": 2026047,
+        "Last": 2026109,
+        "Accuracy": 0.96
+      },
+      "Older": {
+        "Triggered": 1877,
+        "Correct": 1748,
+        "First": 2004012,
+        "Last": 2019095,
+        "Accuracy": 0.9312733084709643
+      },
+      "All": {
+        "Triggered": 2712,
+        "Correct": 2529,
+        "First": 2004012,
+        "Last": 2026109,
+        "Accuracy": 0.9325221238938053
+      }
+    },
+    {
+      "RuleId": "B-S-B-023",
+      "Name": "60\u671F\u7D27\u90BB\u91CD\u5F00\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 9,
+        "Window": 60,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2026034,
+        "Last": 2026109,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 1483,
+        "Correct": 1374,
+        "First": 2003061,
+        "Last": 2019095,
+        "Accuracy": 0.9265003371544167
+      },
+      "All": {
+        "Triggered": 2140,
+        "Correct": 1986,
+        "First": 2003061,
+        "Last": 2026109,
+        "Accuracy": 0.9280373831775701
+      }
+    },
+    {
+      "RuleId": "B-S-B-024",
+      "Name": "12\u671F\u7D27\u90BB\u91CD\u5F00\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 9,
+        "Window": 12,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 47,
+        "First": 2025013,
+        "Last": 2026100,
+        "Accuracy": 0.94
+      },
+      "Older": {
+        "Triggered": 461,
+        "Correct": 421,
+        "First": 2003014,
+        "Last": 2019092,
+        "Accuracy": 0.913232104121475
+      },
+      "All": {
+        "Triggered": 663,
+        "Correct": 610,
+        "First": 2003014,
+        "Last": 2026100,
+        "Accuracy": 0.9200603318250377
+      }
+    },
+    {
+      "RuleId": "B-S-B-025",
+      "Name": "80\u671F\u77ED\u671F\u91CD\u590D\u5355\u53F7\u6740\u84DD",
+      "Spec": {
+        "Family": 4,
+        "Window": 80,
+        "Ball": 1
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Correct": 49,
+        "First": 2024121,
+        "Last": 2026100,
+        "Accuracy": 0.98
+      },
+      "Older": {
+        "Triggered": 463,
+        "Correct": 422,
+        "First": 2003088,
+        "Last": 2019092,
+        "Accuracy": 0.9114470842332614
+      },
+      "All": {
+        "Triggered": 676,
+        "Correct": 627,
+        "First": 2003088,
+        "Last": 2026100,
+        "Accuracy": 0.9275147928994083
+      }
+    }
+  ]
+}

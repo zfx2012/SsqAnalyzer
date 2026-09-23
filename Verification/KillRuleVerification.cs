@@ -10,13 +10,15 @@ internal static partial class VerificationSuite
     private static void VerifyBuiltinKillRuleCuration()
     {
         var active = BuiltinRules.LoadAll();
-        Assert(active.Count == 50 && active.Select(r => r.RuleId).Distinct().Count() == 50, "all 50 original rule identities are restored");
+        Assert(active.Count == 100 && active.Select(r => r.RuleId).Distinct().Count() == 100, "100 unique builtin rules are available");
         var originals = BuiltinRules.LoadOriginalCatalog().ToDictionary(r => r.RuleId);
-        Assert(active.Count(r => r.JsCode != originals[r.RuleId].JsCode) == 31, "31 failing rules have actual changed conditions");
-        Assert(active.All(r => r.Name == originals[r.RuleId].Name && r.BallType == originals[r.RuleId].BallType), "condition tuning preserves rule identity and ball type");
+        var previous = active.Where(r => originals.ContainsKey(r.RuleId)).ToArray();
+        Assert(previous.Length == 50 && previous.Count(r => r.JsCode != originals[r.RuleId].JsCode) == 31, "all previous rules and 31 changed conditions are preserved");
+        Assert(previous.All(r => r.Name == originals[r.RuleId].Name && r.BallType == originals[r.RuleId].BallType), "condition tuning preserves rule identity and ball type");
         var activeRepository = new RuleRepository();
-        Assert(activeRepository.Find("B-G-R-001") is not null && activeRepository.GetAll().Count(r => r.IsBuiltin) == 50, "restored rules enter the active repository");
+        Assert(activeRepository.Find("B-G-R-001") is not null && activeRepository.GetAll().Count(r => r.IsBuiltin) == 100, "100 rules enter the active repository");
         VerifyRuleConditions();
+        VerifyAddedBuiltinRules(active.Where(r => !originals.ContainsKey(r.RuleId)).ToArray());
         double redBaseline = 27.0 / 33.0;
         double blueBaseline = 15.0 / 16.0;
         Assert(Math.Abs(BuiltinRules.RandomKillAccuracy(BallType.Red) - redBaseline) < 1e-12,

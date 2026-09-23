@@ -17,7 +17,20 @@ public static class BuiltinRules
     private const string ResourceSuffix = "builtin-rules.json";
 
     private static readonly IReadOnlyList<KillRule> _cache = LoadInternal();
-    private static readonly IReadOnlyList<KillRule> _active = BuiltinRuleRevisions.Apply(_cache);
+    private static readonly IReadOnlyList<KillRule> _active = LoadActive();
+
+    private static IReadOnlyList<KillRule> LoadActive()
+    {
+        using var stream = typeof(BuiltinRules).Assembly.GetManifestResourceStream("SsqAnalyzer.Resources.builtin-rules-extra.json")
+            ?? throw new InvalidOperationException("新增内置规则资源缺失。");
+        using var reader = new StreamReader(stream, Encoding.UTF8);
+        var extra = ParseJson(reader.ReadToEnd(), "builtin-rules-extra.json");
+        var active = BuiltinRuleRevisions.Apply(_cache).Concat(extra).ToArray();
+        if (active.Select(r => r.RuleId).Distinct(StringComparer.Ordinal).Count() != active.Length
+            || extra.Any(r => !r.IsBuiltin || r.ForceEnabled))
+            throw new InvalidOperationException("新增内置规则存在重复 ID 或无效属性。");
+        return active;
+    }
 
     /// <summary>加载全部内置规则（单例缓存，进程内不变）。</summary>
     public static IReadOnlyList<KillRule> LoadAll() => _active;

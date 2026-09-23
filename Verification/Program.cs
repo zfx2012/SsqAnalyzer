@@ -1,4 +1,6 @@
-if (args.FirstOrDefault() == "--tune-alternation-gap")
+if (args.FirstOrDefault() == "--expand-builtin-rules")
+    BuiltinRuleExpansion.Run(args[1], args[2]);
+else if (args.FirstOrDefault() == "--tune-alternation-gap")
     KillConditionTuning.TuneGap(args[1], args[2]);
 else if (args.FirstOrDefault() == "--tune-rule-conditions")
     KillConditionTuning.Run(args[1], args[2], args.ElementAtOrDefault(3), args.Length > 4 ? int.Parse(args[4]) : 0);
