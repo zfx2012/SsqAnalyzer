@@ -1,4 +1,9 @@
-if (args.FirstOrDefault() == "--expand-builtin-rules")
+if (args.FirstOrDefault() == "--builtin-quality-audit")
+{
+    if (args.Length != 3) throw new ArgumentException("Usage: --builtin-quality-audit <ssq_data.txt> <output-directory>");
+    BuiltinQualityAudit.Run(args[1], args[2]);
+}
+else if (args.FirstOrDefault() == "--expand-builtin-rules")
     BuiltinRuleExpansion.Run(args[1], args[2]);
 else if (args.FirstOrDefault() == "--tune-alternation-gap")
     KillConditionTuning.TuneGap(args[1], args[2]);

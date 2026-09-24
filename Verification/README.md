@@ -20,6 +20,12 @@ dotnet tmp/verification-build/SsqAnalyzer.Tests.dll
 `KillSortingVerification.cs` 使用 60 条混合规则，逐一覆盖全部 9 个可排序列的升序、降序、默认顺序，以及真实复选框连续操作后的行容器、选择、横纵滚动和异步仓储通知。启用列在勾选时保持行位置，再次点击表头按最新状态排序；启用状态筛选仍即时生效。
 同时在验证程序目录生成 `kill-page.png`、`kill-details.png` 和 `kill-rules-1200.png` / `kill-rules-900.png`，用于检查实际 WPF 布局。
 
+## 内置杀号规则质量排查
+
+`--builtin-quality-audit <ssq_data.txt> <输出目录>` 固定当前100条规则逐期重放，检查执行、近期触发、正确率、重复输出与实际开奖号码保留。只写指定输出目录，不修改应用统计或提交记录。详见[质量排查报告及复现步骤](BUILTIN_QUALITY_AUDIT.md)。
+
+`check_builtin_quality_audit.py <输出目录> [--ledger <提交账本>]` 从逐期输出独立核算统计；提供账本时，还核对审计末期已提交的规则版本和预测。回顾性结果不视为独立前向验证。
+
 ## 离线性能测量
 
 ```powershell
