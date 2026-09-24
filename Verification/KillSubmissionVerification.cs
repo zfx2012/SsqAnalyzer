@@ -100,16 +100,21 @@ internal static partial class VerificationSuite
         submit.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
         PumpUntil(() => Equals(submit.Content, "该期已提交"));
         Assert(store.Read().Count == 1 && !submit.IsEnabled, "report button saves exactly once");
-        PumpDispatcher(); report.UpdateLayout(); SaveKillPreview(report, "submission-report.png", 1100, 760); report.Close();
+        PumpDispatcher(); report.UpdateLayout(); SaveKillPreview(report, "submission-report.png", 1100, 860); report.Close();
         coordinator.Start(); coordinator.Start();
         Assert(data.SubscriberCount == 1, "coordinator startup subscribes once");
         now = now.AddHours(2); data.SetRecords(SubmissionSource(), SubmissionActual()); data.NotifyDataUpdated();
         PumpUntil(() => store.Read().Single().Review is not null);
         var history = new KillSubmissionHistoryWindow(data, store, coordinator);
         history.Show();
-        PumpUntil(() => Descendants<TextBox>(history).Any(t => t.Text.Contains("错杀红球：01 32")));
+        PumpUntil(() => Descendants<TextBlock>(history).Any(t => t.Text.Contains("错杀红球：01 32")));
         Assert(Descendants<DataGrid>(history).Single().Items.Count == 1, "history displays persisted submission");
-        SaveKillPreview(history, "submission-review.png", 1100, 760);
+        PumpDispatcher(); history.UpdateLayout(); SaveKillPreview(history, "submission-review.png", 1100, 860);
+        history.Width = 760; history.Height = 680; PumpDispatcher(); history.UpdateLayout();
+        SaveKillPreview(history, "submission-review-narrow.png", 760, 680);
+        var reviewScroll = Descendants<ScrollViewer>(history).First(s => s.Content is StackPanel);
+        reviewScroll.ScrollToEnd(); PumpDispatcher(); history.UpdateLayout();
+        SaveKillPreview(history, "submission-review-rules.png", 760, 680);
         history.Close(); var refresh = coordinator.RefreshAsync(); PumpUntil(() => refresh.IsCompleted); refresh.GetAwaiter().GetResult(); PumpDispatcher();
         // Closing history unsubscribes from coordinator; refresh remains safe after closure.
         static IEnumerable<T> Descendants<T>(DependencyObject node) where T : DependencyObject

@@ -24,11 +24,13 @@ internal static class KillReportUi
     }
     internal static void Setup(Window window, string title)
     {
-        window.Title = title; window.Width = 1100; window.Height = 760;
+        window.Title = title; window.Width = 1100; window.Height = 860;
         window.MinWidth = 760; window.MinHeight = 480;
         window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
         window.SetResourceReference(Control.BackgroundProperty, "BgContent");
         window.SetResourceReference(Control.ForegroundProperty, "TextPrimary");
+        window.FontFamily = new System.Windows.Media.FontFamily("Microsoft YaHei UI");
+        window.UseLayoutRounding = true;
     }
 }
 
@@ -37,8 +39,11 @@ public sealed class KillReportWindow : Window
     public KillReportWindow(KillReport report, IDataService data, KillSubmissionStore store, KillReviewCoordinator coordinator)
     {
         KillReportUi.Setup(this, $"第 {report.TargetPeriod} 期杀号报告");
-        var root = new DockPanel { Margin = new Thickness(16) };
-        var actions = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 0, 0, 12) };
+        var root = new DockPanel { Margin = new Thickness(24) };
+        var header = KillReportPresentation.Header($"第 {report.TargetPeriod} 期杀号报告",
+            $"预计开奖 {report.TargetDate:yyyy-MM-dd}   ·   历史截至 {report.SourceThroughPeriod} 期   ·   生成于 {KillDrawSchedule.ChinaTime(report.GeneratedAt):MM-dd HH:mm}（北京时间）");
+        DockPanel.SetDock(header, Dock.Top); root.Children.Add(header);
+        var actions = new WrapPanel { Margin = new Thickness(0, 0, 0, 12) };
         var status = new TextBlock { TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 12), FontSize = 13,
             Text = $"提交后每期保留一份原始记录，开奖后自动复盘。预计 {report.TargetDate:yyyy-MM-dd} 开奖，本程序提交截止：当日北京时间 21:00。" };
         Button submit = null!;
@@ -69,8 +74,9 @@ public sealed class KillReportWindow : Window
             new KillSubmissionHistoryWindow(data, store, coordinator) { Owner = this }.ShowDialog()));
         actions.Children.Add(KillReportUi.Button("关闭", (_, _) => Close()));
         DockPanel.SetDock(actions, Dock.Top); root.Children.Add(actions);
-        DockPanel.SetDock(status, Dock.Top); root.Children.Add(status);
-        root.Children.Add(KillReportUi.Text(report.ToMarkdown())); Content = root;
+        var notice = KillReportPresentation.Card(status); notice.Padding = new Thickness(14, 8, 14, 0);
+        DockPanel.SetDock(notice, Dock.Top); root.Children.Add(notice);
+        root.Children.Add(KillReportPresentation.Scroll(KillReportPresentation.Report(report))); Content = root;
     }
 }
 
@@ -81,8 +87,10 @@ public sealed class KillSubmissionHistoryWindow : Window
     private readonly KillReviewCoordinator _coordinator;
     private readonly DataGrid _list = new() { IsReadOnly = true, AutoGenerateColumns = false, SelectionMode = DataGridSelectionMode.Single,
         CanUserAddRows = false, CanUserDeleteRows = false, MinHeight = 100 };
-    private readonly TextBox _review = KillReportUi.Text();
-    private readonly TextBox _original = KillReportUi.Text();
+    private readonly ScrollViewer _review = KillReportPresentation.Scroll(KillReportPresentation.Notice("选择一条记录，查看开奖后的复盘结果。"));
+    private readonly ScrollViewer _original = KillReportPresentation.Scroll(KillReportPresentation.Notice("选择一条记录，查看提交时的原始报告。"));
+    private string _reviewText = "";
+    private string _originalText = "";
     private readonly TextBlock _status = new() { TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 10, 0, 10) };
     private readonly Button _refresh;
     private readonly Button _update;
@@ -98,13 +106,32 @@ public sealed class KillSubmissionHistoryWindow : Window
     public KillSubmissionHistoryWindow(IDataService data, KillSubmissionStore store, KillReviewCoordinator coordinator)
     {
         _data = data; _store = store; _coordinator = coordinator;
-        _list.RowHeight = 32; _list.ColumnHeaderHeight = 34; _list.FontSize = 13;
+        _list.MinRowHeight = 38; _list.ColumnHeaderHeight = 38; _list.FontSize = 13;
         _list.GridLinesVisibility = DataGridGridLinesVisibility.Horizontal;
         _list.HeadersVisibility = DataGridHeadersVisibility.Column;
         _list.SetResourceReference(Control.BackgroundProperty, "BgSurface");
+        _list.BorderThickness = new Thickness(0);
+        _list.HorizontalGridLinesBrush = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(232, 237, 244));
+        _list.AlternatingRowBackground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(248, 250, 253));
+        _list.RowHeaderWidth = 0;
+        var cellStyle = new Style(typeof(DataGridCell));
+        cellStyle.Setters.Add(new Setter(Control.BorderThicknessProperty, new Thickness(0)));
+        cellStyle.Setters.Add(new Setter(Control.PaddingProperty, new Thickness(8, 6, 8, 6)));
+        var selectedCell = new Trigger { Property = DataGridCell.IsSelectedProperty, Value = true };
+        selectedCell.Setters.Add(new Setter(Control.BackgroundProperty, new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(234, 243, 255))));
+        selectedCell.Setters.Add(new Setter(Control.ForegroundProperty, new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(36, 50, 71))));
+        cellStyle.Triggers.Add(selectedCell); _list.CellStyle = cellStyle;
+        var columnStyle = new Style(typeof(System.Windows.Controls.Primitives.DataGridColumnHeader));
+        columnStyle.Setters.Add(new Setter(Control.BackgroundProperty, new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(244, 247, 251))));
+        columnStyle.Setters.Add(new Setter(Control.ForegroundProperty, new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(102, 117, 138))));
+        columnStyle.Setters.Add(new Setter(Control.PaddingProperty, new Thickness(8, 6, 8, 6)));
+        columnStyle.Setters.Add(new Setter(Control.BorderThicknessProperty, new Thickness(0)));
+        _list.ColumnHeaderStyle = columnStyle;
         KillReportUi.Setup(this, "杀号提交记录 / 错误报告");
-        var root = new DockPanel { Margin = new Thickness(16) };
-        var actions = new StackPanel { Orientation = Orientation.Horizontal };
+        var root = new DockPanel { Margin = new Thickness(24) };
+        var header = KillReportPresentation.Header("提交记录与开奖复盘", "每一次提交都有记录，每一个错杀都可追溯。");
+        DockPanel.SetDock(header, Dock.Top); root.Children.Add(header);
+        var actions = new WrapPanel();
         _refresh = KillReportUi.Button("刷新复盘", async (_, _) => await Refresh(false));
         _update = KillReportUi.Button("更新开奖并复盘", async (_, _) => await Refresh(true));
         actions.Children.Add(_refresh); actions.Children.Add(_update);
@@ -112,15 +139,27 @@ public sealed class KillSubmissionHistoryWindow : Window
         DockPanel.SetDock(actions, Dock.Top); root.Children.Add(actions);
         DockPanel.SetDock(_status, Dock.Top); root.Children.Add(_status);
         var grid = new Grid();
-        grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(180) });
+        grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(135), MinHeight = 85 });
         grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         grid.RowDefinitions.Add(new RowDefinition());
-        foreach (var (header, path, width) in new[] { ("期号", "Period", 110), ("提交时间（北京时间）", "Submitted", 220), ("复盘状态", "State", 200), ("错杀红球数", "RedErrors", 110), ("错杀蓝球数", "BlueErrors", 110) })
-            _list.Columns.Add(new DataGridTextColumn { Header = header, Binding = new Binding(path), Width = width });
-        _list.SelectionChanged += (_, _) => Select(); grid.Children.Add(_list);
+        foreach (var (columnTitle, path, width) in new[] { ("期号", "Period", 1d), ("提交时间（北京时间）", "Submitted", 2d), ("复盘状态", "State", 1.6d), ("错杀红球", "RedErrors", 1d), ("错杀蓝球", "BlueErrors", 1d) })
+        {
+            var textStyle = new Style(typeof(TextBlock));
+            textStyle.Setters.Add(new Setter(TextBlock.TextWrappingProperty, TextWrapping.Wrap));
+            textStyle.Setters.Add(new Setter(FrameworkElement.MarginProperty, new Thickness(8, 6, 8, 6)));
+            _list.Columns.Add(new DataGridTextColumn { Header = columnTitle, Binding = new Binding(path), ElementStyle = textStyle, Width = new DataGridLength(width, DataGridLengthUnitType.Star) });
+        }
+        _list.SelectionChanged += (_, _) => Select();
+        var listCard = KillReportPresentation.Card(_list); listCard.Padding = new Thickness(1); listCard.Margin = new Thickness(0);
+        grid.Children.Add(listCard);
         var splitter = new GridSplitter { Height = 6, HorizontalAlignment = HorizontalAlignment.Stretch, ResizeDirection = GridResizeDirection.Rows };
         Grid.SetRow(splitter, 1); grid.Children.Add(splitter);
-        var tabs = new TabControl();
+        var tabs = new TabControl { Background = System.Windows.Media.Brushes.Transparent, BorderThickness = new Thickness(0), Padding = new Thickness(0, 14, 0, 0) };
+        var tabStyle = new Style(typeof(TabItem));
+        tabStyle.Setters.Add(new Setter(Control.PaddingProperty, new Thickness(16, 9, 16, 9)));
+        tabStyle.Setters.Add(new Setter(Control.FontSizeProperty, 14d));
+        tabStyle.Setters.Add(new Setter(Control.FontWeightProperty, FontWeights.SemiBold));
+        tabs.Resources.Add(typeof(TabItem), tabStyle);
         tabs.Items.Add(new TabItem { Header = "复盘 / 错误报告", Content = _review });
         tabs.Items.Add(new TabItem { Header = "提交时的原始报告", Content = _original });
         Grid.SetRow(tabs, 2); grid.Children.Add(tabs); root.Children.Add(grid); Content = root;
@@ -161,22 +200,30 @@ public sealed class KillSubmissionHistoryWindow : Window
             if (_coordinator.Issues.Count > 0) _status.Text += $"  {_coordinator.Issues.Count} 期数据待核对，请查看详情。";
             Select();
         }
-        catch (Exception ex) { _list.ItemsSource = null; _review.Clear(); _original.Clear(); _status.Text = $"读取记录失败：{ex.Message}"; }
+        catch (Exception ex) { _list.ItemsSource = null; ClearDetails(); _status.Text = $"读取记录失败：{ex.Message}"; }
     }
     private void Select()
     {
-        if (_list.SelectedItem is not Row row) { _review.Clear(); _original.Clear(); return; }
+        if (_list.SelectedItem is not Row row) { ClearDetails(); return; }
         var warning = _coordinator.Issues.TryGetValue(row.Period, out var issue) ? $"数据核对提示：{issue}\n\n" : "";
-        _review.Text = warning + KillSubmissionStore.ReviewText(row.Entry);
-        _original.Text = row.Entry.Submission.OriginalReport;
+        _reviewText = warning + KillSubmissionStore.ReviewText(row.Entry);
+        _originalText = row.Entry.Submission.OriginalReport;
+        _review.Content = KillReportPresentation.Review(row.Entry, warning);
+        _original.Content = KillReportPresentation.Original(row.Entry.Submission);
         _review.ScrollToHome(); _original.ScrollToHome();
+    }
+    private void ClearDetails()
+    {
+        _reviewText = _originalText = "";
+        _review.Content = KillReportPresentation.Notice("暂无选中记录。提交本期报告后，可在这里查看复盘。");
+        _original.Content = KillReportPresentation.Notice("暂无选中记录。");
     }
     private void Export()
     {
         if (_list.SelectedItem is not Row row) { _status.Text = "请先选择一条提交记录。"; return; }
         var dialog = new Microsoft.Win32.SaveFileDialog { FileName = $"杀号复盘-{row.Period}.txt", Filter = "文本报告 (*.txt)|*.txt" };
         if (dialog.ShowDialog(this) != true) return;
-        try { File.WriteAllText(dialog.FileName, _review.Text + "\n\n" + _original.Text); _status.Text = "报告已导出。"; }
+        try { File.WriteAllText(dialog.FileName, _reviewText + "\n\n" + _originalText); _status.Text = "报告已导出。"; }
         catch (Exception ex) { _status.Text = $"导出失败：{ex.Message}"; }
     }
 }
