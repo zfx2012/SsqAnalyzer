@@ -100,7 +100,7 @@
                           RowHeaderWidth="0"
                           HorizontalScrollBarVisibility="Auto"
                           VerticalScrollBarVisibility="Auto"
-                          SelectionMode="Extended"
+                          SelectionMode="Single"
                           FrozenColumnCount="3"
                           SelectionUnit="FullRow"
                           MouseDoubleClick="RulesGrid_MouseDoubleClick"

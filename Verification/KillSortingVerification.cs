@@ -28,7 +28,7 @@ internal static partial class VerificationSuite
         page.Measure(new Size(900, 720)); page.Arrange(new Rect(0, 0, 900, 720)); page.UpdateLayout();
         var grid = (DataGrid)page.FindName("RulesGrid");
         var columns = grid.Columns.Where(c => c.CanUserSort).ToArray();
-        Assert(columns.Length == 12, "all twelve sortable kill columns covered");
+        Assert(columns.Length == 11, "all eleven sortable kill columns covered");
         List<RuleRowViewModel> Rows() => grid.Items.Cast<RuleRowViewModel>().ToList();
         void Sort(DataGridColumn column)
         {
@@ -120,7 +120,7 @@ internal static partial class VerificationSuite
                 "RuleId" => row.RuleId, "Name" => row.Name, "Description" => row.Description,
                 "BallTypeLabel" => row.BallTypeLabel, "CategoryLabel" => row.CategoryLabel, "SourceLabel" => row.SourceLabel,
                 "IsEnabled" => row.IsEnabled, "GateSortValue" => row.GateSortValue,
-                "IsFavorite" => row.IsFavorite, "ExecutionLabel" => row.ExecutionLabel, "ActualWrongCount" => row.ActualWrongCount,
+                "ExecutionLabel" => row.ExecutionLabel, "ActualWrongCount" => row.ActualWrongCount,
                 "AccuracyValue" => row.AccuracyValue ?? 0, _ => throw new InvalidOperationException(key)
             };
             var available = rows.Where(r => key != "AccuracyValue" || r.AccuracyValue.HasValue);

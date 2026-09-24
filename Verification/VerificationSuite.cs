@@ -13,7 +13,7 @@ internal static partial class VerificationSuite
             ("kill backtest correctness and persistence", VerifyBacktestCorrectness),
             ("kill research and forward validation", VerifyKillEvaluation),
             ("kill report submission and review", VerifyKillSubmissions),
-            ("kill workflow preferences and actual versions", VerifyKillWorkflowData),
+            ("kill actual versions and submission checks", VerifyKillWorkflowData),
             ("point range boundaries", VerifyPointRanges),
             ("builtin kill rule curation", VerifyBuiltinKillRuleCuration),
             ("ticket data period parsing", VerifyTicketDataPeriodParsing),

@@ -11,7 +11,7 @@ dotnet tmp/verification-build/SsqAnalyzer.Tests.dll
 
 成功时输出 `Passed 35/35 verification groups.`；任一断言失败会抛出异常并以非零退出码结束。完整运行包括年度研究，耗时明显长于普通单元检查。
 
-杀号工作流验证包含 12 列排序及勾选位置保持、多选与启用隔离、选中/筛选批量操作范围、回测取消、号码与规则联动、预览失效、收藏与布局恢复、实际表现版本隔离。`--page-check` 会生成 `kill-workflow-preview.png`，所有配置和实际提交均使用隔离测试文件。
+杀号工作流验证包含 11 列排序及勾选位置保持、单选列表、静态号码预览、规则或开奖变化后预览失效、实际表现版本隔离。`--page-check` 会生成 `kill-workflow-preview.png`，实际提交均使用隔离测试文件。
 
 杀号提交与复盘可单独运行 `dotnet run --project Verification/SsqAnalyzer.PositionVerification.csproj -- --submission-check`。覆盖原始结果快照、参数隔离、每期唯一提交、截止时间、已开奖和过期报告拦截、错杀去重与规则归因、重复复盘、数据修正及文件损坏保护。`--page-check` 同时验证提交按钮、记录窗口、数据更新后自动复盘和窗口关闭后的事件处理，并生成 `submission-report.png`、`submission-review.png` 界面预览。测试全部使用独立临时记录，不提交真实报告。
 

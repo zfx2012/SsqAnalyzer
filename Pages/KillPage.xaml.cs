@@ -45,7 +45,7 @@ namespace SsqAnalyzer.Pages
                    App.Services.GetRequiredService<IKillSettings>(),
                    App.Services.GetRequiredService<GroupInputStore>(),
                    App.Services.GetRequiredService<KillSubmissionStore>(),
-                   App.Services.GetRequiredService<KillReviewCoordinator>(), new KillPagePreferenceStore()) { }
+                   App.Services.GetRequiredService<KillReviewCoordinator>()) { }
 
         public KillPage(
             IDataService ds,
@@ -54,8 +54,7 @@ namespace SsqAnalyzer.Pages
             IBacktestEngine backtestEngine,
             IRuleContextBuilder ctxBuilder,
             IKillSettings killSettings,
-            GroupInputStore groupInputs, KillSubmissionStore? submissions = null, KillReviewCoordinator? reviews = null,
-            KillPagePreferenceStore? preferences = null)
+            GroupInputStore groupInputs, KillSubmissionStore? submissions = null, KillReviewCoordinator? reviews = null)
         {
             _ds = ds ?? throw new ArgumentNullException(nameof(ds));
             _ruleRepo = ruleRepo ?? throw new ArgumentNullException(nameof(ruleRepo));
@@ -65,7 +64,7 @@ namespace SsqAnalyzer.Pages
             _killSettings = killSettings ?? throw new ArgumentNullException(nameof(killSettings));
             _groupInputs = groupInputs ?? throw new ArgumentNullException(nameof(groupInputs));
             InitializeComponent();
-            InitializeWorkflow(submissions, reviews, preferences);
+            InitializeWorkflow(submissions, reviews);
             Loaded += OnLoaded;
             Unloaded += OnUnloaded;
         }
@@ -104,7 +103,6 @@ namespace SsqAnalyzer.Pages
             _loaded = false;
             _loadVersion++;
             _backtestCts?.Cancel();
-            SavePreferences();
             _rulesRefreshPending = false;
             _ruleRepo.RulesChanged -= OnRulesChanged;
             _ds.DataUpdated -= OnDataUpdated;
@@ -184,7 +182,6 @@ namespace SsqAnalyzer.Pages
         private void RenderRuleList()
         {
             CheckPreviewRules();
-            var selectedIds = RulesGrid.SelectedItems.Cast<RuleRowViewModel>().Select(r => r.RuleId).ToHashSet();
             string? selectedId = (RulesGrid.SelectedItem as RuleRowViewModel)?.RuleId;
             var scroll = FindScrollViewer(RulesGrid);
             double offset = scroll?.VerticalOffset ?? 0;
@@ -211,7 +208,7 @@ namespace SsqAnalyzer.Pages
                 (search.Length == 0 || $"{row.RuleId} {row.Name} {row.Description}".Contains(search, StringComparison.OrdinalIgnoreCase)) &&
                 (BallFilter.SelectedIndex <= 0 || row.BallTypeLabel == (BallFilter.SelectedIndex == 1 ? "红球" : "蓝球")) &&
                 (StateFilter.SelectedIndex <= 0 || row.IsEnabled == (StateFilter.SelectedIndex == 1)) &&
-                (HideFailedCheckBox.IsChecked != true || row.GateSortValue != 4) && WorkflowMatches(row)).ToList();
+                (HideFailedCheckBox.IsChecked != true || row.GateSortValue != 4)).ToList();
             RuleListSummary.Text += $" · 显示 {rows.Count} 条";
             EmptyHint.Visibility = rows.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
             EmptyHint.Text = visibleRules.Count == 0 ? "暂无可见规则，请添加规则或检查规则库。" : "没有匹配的规则，请调整搜索或筛选条件。";
@@ -225,14 +222,10 @@ namespace SsqAnalyzer.Pages
                 for (int i = 0; i < current.Count; i++) current[i].UpdateFrom(sorted[i]);
                 foreach (var column in RulesGrid.Columns)
                     column.SortDirection = column.SortMemberPath == _sortKey ? _sortDirection : null;
-                UpdateBatchLabels();
                 return;
             }
             RulesGrid.ItemsSource = sorted;
             RulesGrid.SelectedItem = sorted.FirstOrDefault(row => row.RuleId == selectedId);
-            foreach (var row in sorted.Where(r => selectedIds.Contains(r.RuleId)))
-                if (!RulesGrid.SelectedItems.Contains(row)) RulesGrid.SelectedItems.Add(row);
-            UpdateBatchLabels();
             // DataGrid resets header arrows when ItemsSource changes.
             foreach (var column in RulesGrid.Columns)
                 column.SortDirection = column.SortMemberPath == _sortKey ? _sortDirection : null;
@@ -367,7 +360,6 @@ namespace SsqAnalyzer.Pages
                 "GateSortValue" => _sortDirection == ListSortDirection.Ascending
                     ? rows.OrderBy(row => row.GateSortValue).ThenBy(row => row.RuleId)
                     : rows.OrderByDescending(row => row.GateSortValue).ThenBy(row => row.RuleId),
-                "IsFavorite" => _sortDirection == ListSortDirection.Ascending ? rows.OrderBy(r => r.IsFavorite).ThenBy(r => r.RuleId) : rows.OrderByDescending(r => r.IsFavorite).ThenBy(r => r.RuleId),
                 "ActualWrongCount" => _sortDirection == ListSortDirection.Ascending ? rows.OrderBy(r => r.ActualWrongCount).ThenBy(r => r.RuleId) : rows.OrderByDescending(r => r.ActualWrongCount).ThenBy(r => r.RuleId),
                 _ => _sortDirection == ListSortDirection.Ascending
                     ? rows.OrderBy(row => GetSortText(row, _sortKey), StringComparer.CurrentCulture).ThenBy(row => row.RuleId)
@@ -387,7 +379,6 @@ namespace SsqAnalyzer.Pages
             RuleSearch.Clear();
             BallFilter.SelectedIndex = StateFilter.SelectedIndex = 0;
             HideFailedCheckBox.IsChecked = false;
-            ResetWorkflowFilters();
             _sortKey = null;
             _sortClickCount = 0;
             _enabledSortSnapshot = null;
@@ -721,7 +712,6 @@ namespace SsqAnalyzer.Pages
             // 期数按钮在回测期间也不应操作（避免改窗口导致回测结果与显示不一致）
             foreach (var btn in new[] { Btn30, Btn50, Btn100, BtnAll })
                 btn.IsEnabled = !running;
-            UpdateBatchLabels();
         }
     }
 
@@ -748,8 +738,8 @@ namespace SsqAnalyzer.Pages
             GateSortValue = row.GateSortValue;
             GateBrush = row.GateBrush;
             IsDimmed = row.IsDimmed;
-            IsFavorite = row.IsFavorite; ExecutionLabel = row.ExecutionLabel; ExecutionHint = row.ExecutionHint;
-            ActualLabel = row.ActualLabel; ActualHint = row.ActualHint; ActualWrong = row.ActualWrong; ActualWrongCount = row.ActualWrongCount;
+            ExecutionLabel = row.ExecutionLabel; ExecutionHint = row.ExecutionHint;
+            ActualLabel = row.ActualLabel; ActualHint = row.ActualHint; ActualWrongCount = row.ActualWrongCount;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
         }
 
@@ -770,13 +760,10 @@ namespace SsqAnalyzer.Pages
         public int GateSortValue { get; set; }
         public Brush GateBrush { get; set; } = Brushes.Transparent;
         public bool IsDimmed { get; set; }
-        public bool IsFavorite { get; set; }
-        public string FavoriteLabel => IsFavorite ? "★" : "—";
         public string ExecutionLabel { get; set; } = "未执行";
         public string ExecutionHint { get; set; } = "";
         public string ActualLabel { get; set; } = "暂无记录";
         public string ActualHint { get; set; } = "";
-        public bool ActualWrong { get; set; }
         public int ActualWrongCount { get; set; }
     }
 }
