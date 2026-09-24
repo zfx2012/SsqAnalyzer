@@ -52,6 +52,7 @@ internal static partial class VerificationSuite
                 VerifyKillPageInteractions();
                 VerifyAllKillSortColumns();
                 VerifyFixedKillThresholds();
+                VerifyKillSubmissionWindows();
             }
             catch (Exception exception) { failure = exception; }
             finally { app?.Shutdown(); }

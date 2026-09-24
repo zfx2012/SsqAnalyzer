@@ -158,8 +158,8 @@ public sealed class RuleContextBuilder : IRuleContextBuilder
         else
         {
             // 未来期：基于 latest 推断下一期
-            currentCycle = InferNextCycle(latest.DrawDate);
-            int nextPeriod = latest.Period + 1;
+            currentCycle = ToCycleType(KillDrawSchedule.NextDate(latest.DrawDate).DayOfWeek);
+            int nextPeriod = KillDrawSchedule.NextPeriod(latest.Period, latest.DrawDate);
             currentParity = nextPeriod % 2 == 1 ? ParityType.Odd : ParityType.Even;
             currentShortPeriodSuffix = nextPeriod % 1000;
         }
@@ -175,18 +175,4 @@ public sealed class RuleContextBuilder : IRuleContextBuilder
         _ => CycleType.None
     };
 
-    /// <summary>双色球开奖日为周二/四/日。给定最近一次开奖日，推断下一次开奖日的周期类型。</summary>
-    private static CycleType InferNextCycle(DateTime lastDrawDate)
-    {
-        // 二/四/日 按时间顺序：周二 → 周四（+2）→ 周日（+3）→ 周二（+2）
-        int offset = lastDrawDate.DayOfWeek switch
-        {
-            DayOfWeek.Tuesday => 2,    // 周二 → 周四
-            DayOfWeek.Thursday => 3,   // 周四 → 周日
-            DayOfWeek.Sunday => 2,     // 周日 → 周二
-            _ => 2
-        };
-        var next = lastDrawDate.AddDays(offset);
-        return ToCycleType(next.DayOfWeek);
-    }
 }

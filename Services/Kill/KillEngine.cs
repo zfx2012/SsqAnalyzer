@@ -50,27 +50,30 @@ public sealed class KillEngine : IKillEngine
         if (rules is null) throw new ArgumentNullException(nameof(rules));
 
         var ruleList = rules.ToList();
+        var definitions = ruleList.Select(KillRuleDefinition.Capture).ToArray();
         var ctx = _ctxBuilder.BuildLatest();
         var targetPeriod = ComputeTargetPeriod(ctx);
 
         // 逐规则执行（单规则失败不影响其他规则）
         var results = new List<KillResult>(ruleList.Count);
-        foreach (var rule in ruleList)
+        foreach (var definition in definitions)
         {
+            var rule = definition.ToRule();
             try
             {
                 var result = _executor.Execute(rule, ctx);
                 results.Add(result);
             }
-            catch (RuleExecutionException)
+            catch (RuleExecutionException ex)
             {
-                // 单规则执行失败：记录空结果（未触发），其他规则继续
+                // 单规则执行失败：保留异常，复盘时与正常未触发区分，其他规则继续
                 results.Add(new KillResult
                 {
                     RuleId = rule.RuleId,
                     BallType = rule.BallType,
                     KilledBalls = Array.Empty<int>(),
                     Reason = $"规则执行失败，已跳过",
+                    ExecutionError = ex.Message,
                     Elapsed = TimeSpan.Zero
                 });
             }
@@ -107,6 +110,10 @@ public sealed class KillEngine : IKillEngine
         return new KillReport
         {
             TargetPeriod = targetPeriod,
+            TargetDate = ctx.LatestRecord is { } latest ? KillDrawSchedule.NextDate(latest.DrawDate) : null,
+            SourceThroughPeriod = ctx.LatestRecord?.Period ?? 0,
+            SourceDataHash = KillRuleDefinition.DataHash(ctx.HistoryRecords),
+            RuleDefinitions = definitions,
             EvaluationWindow = evaluationWindow,
             GeneratedAt = DateTime.UtcNow,
             EnabledRules = ruleList,
@@ -125,7 +132,7 @@ public sealed class KillEngine : IKillEngine
     private static int ComputeTargetPeriod(RuleContext ctx)
     {
         if (ctx.LatestRecord is null) return 0;
-        return ctx.LatestRecord.Period + 1;
+        return KillDrawSchedule.NextPeriod(ctx.LatestRecord.Period, ctx.LatestRecord.DrawDate);
     }
 
     /// <summary>

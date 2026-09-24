@@ -9,6 +9,7 @@ public sealed class KillResult
     public required BallType BallType { get; init; }
     public IReadOnlyList<int> KilledBalls { get; init; } = Array.Empty<int>();
     public string Reason { get; init; } = "";          // 引擎推断或 JS 写入
+    public string? ExecutionError { get; init; }
     public bool Triggered => KilledBalls.Count > 0;
     public TimeSpan Elapsed { get; init; }
 }

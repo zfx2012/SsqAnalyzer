@@ -49,3 +49,6 @@ kill_forward_validation.json.lock
 .DS_Store
 Thumbs.db
 Desktop.ini
+kill_report_submissions.json
+kill_report_submissions.json.lock
+kill_report_submissions.json.*.tmp

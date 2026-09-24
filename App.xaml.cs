@@ -40,6 +40,8 @@ namespace SsqAnalyzer
             services.AddSingleton<IRuleContextBuilder, RuleContextBuilder>();
             services.AddSingleton<INlToCodeService, NlToCodeService>();   // NL→Code 生成
             services.AddTransient<IKillEngine, KillEngine>();
+            services.AddSingleton<KillSubmissionStore>();
+            services.AddSingleton<KillReviewCoordinator>();
             services.AddTransient<IBacktestEngine, BacktestEngine>();
             Services = services.BuildServiceProvider();
 
@@ -70,6 +72,7 @@ namespace SsqAnalyzer
 
             // ⚡ StartupUri 已移除，手动创建 MainWindow 并注入 DI 服务
             Services.GetRequiredService<PositionExperimentCoordinator>().EnsureCurrentPredictions();
+            Services.GetRequiredService<KillReviewCoordinator>().Start();
             var mainWindow = new MainWindow(Services.GetRequiredService<IDataService>());
             mainWindow.Show();
         }

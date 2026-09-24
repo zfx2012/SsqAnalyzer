@@ -8,6 +8,8 @@ else if (args.FirstOrDefault() == "--rule-revision-refresh")
     KillRuleRevisionAudit.Refresh();
 else if (args.FirstOrDefault() == "--rule-revision-audit")
     KillRuleRevisionAudit.Run(args[1], args[2]);
+else if (args.FirstOrDefault() == "--submission-check")
+    VerificationSuite.VerifyKillSubmissions();
 else if (args.FirstOrDefault() == "--evaluation-check")
     VerificationSuite.VerifyKillEvaluation();
 else if (args.FirstOrDefault() == "--backtest-check")

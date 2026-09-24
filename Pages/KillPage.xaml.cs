@@ -13,7 +13,7 @@ namespace SsqAnalyzer.Pages
     /// <summary>
     /// 杀号页（重构版）。
     /// 全宽规则列表表格（DataGrid） + 顶部按钮组。
-    /// 移除左右分栏与内联报告区；执行杀号临时用 MessageBox 显示 KillReport.ToMarkdown()，
+    /// 报告弹窗支持提交保存和开奖后复盘，
     /// 支持列表筛选、三态排序、规则详情与回测。
     /// </summary>
     public partial class KillPage : UserControl
@@ -516,7 +516,11 @@ namespace SsqAnalyzer.Pages
 
         private void RunKill_Click(object sender, RoutedEventArgs e) => RunKill();
 
-        /// <summary>执行杀号：取启用规则 → IKillEngine.Execute → MessageBox 显示 ToMarkdown()（临时方案）。</summary>
+        private void SubmissionHistory_Click(object sender, RoutedEventArgs e) =>
+            new KillSubmissionHistoryWindow(_ds, App.Services.GetRequiredService<KillSubmissionStore>(),
+                App.Services.GetRequiredService<KillReviewCoordinator>()) { Owner = Window.GetWindow(this) }.ShowDialog();
+
+        /// <summary>执行启用规则并打开可提交的报告。</summary>
         private void RunKill()
         {
             if (_data is null || _data.Count == 0)
@@ -536,8 +540,8 @@ namespace SsqAnalyzer.Pages
             {
                 _lastReport = _killEngine.Execute(enabledRules, SelectedWindow);
                 _groupInputs.SaveKill(_lastReport);
-                // 临时方案：用 MessageBox 显示 Markdown 文本；正式报告弹窗之后做。
-                MessageBox.Show(_lastReport.ToMarkdown(), "杀号报告", MessageBoxButton.OK, MessageBoxImage.Information);
+                new KillReportWindow(_lastReport, _ds, App.Services.GetRequiredService<KillSubmissionStore>(),
+                    App.Services.GetRequiredService<KillReviewCoordinator>()) { Owner = Window.GetWindow(this) }.ShowDialog();
             }
             catch (Exception ex)
             {

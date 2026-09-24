@@ -7,6 +7,10 @@ namespace SsqAnalyzer.Services.Kill;
 /// </summary>
 public sealed class KillReport
 {
+    public DateTime? TargetDate { get; init; }
+    public int SourceThroughPeriod { get; init; }
+    public string? SourceDataHash { get; init; }
+    public IReadOnlyList<KillRuleDefinition> RuleDefinitions { get; init; } = Array.Empty<KillRuleDefinition>();
     public BacktestWindow? EvaluationWindow { get; init; }
     public required int TargetPeriod { get; init; }                    // 被预测期号
     public required DateTime GeneratedAt { get; init; }
@@ -15,15 +19,19 @@ public sealed class KillReport
     public required IReadOnlyList<KilledBallDetail> KilledRedBalls { get; init; }
     public required IReadOnlyList<KilledBallDetail> KilledBlueBalls { get; init; }
     public required IReadOnlyList<int> RecommendedRedBalls { get; init; }    // 1-33 扣杀
-    public required IReadOnlyList<int> RecommendedBlueBalls { get; init; }   // 1-16 全集（MVP 不杀蓝）
+    public required IReadOnlyList<int> RecommendedBlueBalls { get; init; }   // 1-16 扣杀
 
     public string ToMarkdown()
     {
         var sb = new StringBuilder();
         sb.AppendLine($"# 第 {TargetPeriod} 期杀号报告");
         sb.AppendLine();
-        sb.AppendLine($"- 生成时间：{GeneratedAt:yyyy-MM-dd HH:mm:ss}");
+        sb.AppendLine($"- 生成时间：{KillDrawSchedule.ChinaTime(GeneratedAt.ToUniversalTime()):yyyy-MM-dd HH:mm:ss}（北京时间）");
         sb.AppendLine($"- 启用规则：{EnabledRules.Count} 条");
+        if (TargetDate is { } date) sb.AppendLine($"- 预计开奖日期：{date:yyyy-MM-dd}（常规日历推算）");
+        if (SourceThroughPeriod > 0) sb.AppendLine($"- 历史数据截至：{SourceThroughPeriod}");
+        foreach (var failed in Results.Where(r => r.ExecutionError is not null))
+            sb.AppendLine($"- 执行异常 {failed.RuleId}：{failed.ExecutionError}");
         string windowLabel = EvaluationWindow switch
         {
             BacktestWindow.Last30Triggers => "近 30 次触发",
