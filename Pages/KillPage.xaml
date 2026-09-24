@@ -5,6 +5,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -42,7 +43,7 @@
                 <Button Content="提交记录" Style="{StaticResource ActionButton}" Click="SubmissionHistory_Click" Margin="0,0,8,0" ToolTip="查看提交记录及开奖后的错杀复盘" />
                 <Button x:Name="BtnAddRule" Content="➕ 添加规则" Style="{StaticResource ActionButton}"
                         Click="AddRule_Click" Margin="0,0,8,0" />
-                <Button x:Name="BtnBatchBacktest" Content="📊 批量回测" Style="{StaticResource ActionButton}"
+                <Button x:Name="BtnBatchBacktest" Content="📊 回测全部" Style="{StaticResource ActionButton}"
                         Click="BatchBacktest_Click" Margin="0,0,8,0" ToolTip="回测规则库中的全部规则，不受列表搜索和筛选影响" />
                 <Button x:Name="BtnRunKill" Content="▶ 执行杀号" Style="{StaticResource PrimaryButton}"
                         Click="RunKill_Click" ToolTip="使用规则库中所有已启用规则执行杀号，不受列表筛选影响" />
@@ -50,7 +51,8 @@
         </Grid>
 
         <!-- ======== 主体：全宽规则列表表格 ======== -->
-        <Border Grid.Row="1" Style="{StaticResource PanelBorder}" Margin="16,0,16,12">
+        <StackPanel x:Name="WorkflowHost" Grid.Row="1" Margin="16,0,16,8" />
+        <Border Grid.Row="2" Style="{StaticResource PanelBorder}" Margin="16,0,16,12">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -98,7 +100,7 @@
                           RowHeaderWidth="0"
                           HorizontalScrollBarVisibility="Auto"
                           VerticalScrollBarVisibility="Auto"
-                          SelectionMode="Single"
+                          SelectionMode="Extended"
                           FrozenColumnCount="3"
                           SelectionUnit="FullRow"
                           MouseDoubleClick="RulesGrid_MouseDoubleClick"

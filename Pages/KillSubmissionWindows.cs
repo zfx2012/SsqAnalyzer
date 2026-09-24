@@ -45,7 +45,7 @@ public sealed class KillReportWindow : Window
         DockPanel.SetDock(header, Dock.Top); root.Children.Add(header);
         var actions = new WrapPanel { Margin = new Thickness(0, 0, 0, 12) };
         var status = new TextBlock { TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 12), FontSize = 13,
-            Text = $"提交后每期保留一份原始记录，开奖后自动复盘。预计 {report.TargetDate:yyyy-MM-dd} 开奖，本程序提交截止：当日北京时间 21:00。" };
+            Text = $"提交后每期保留一份原始记录。预计 {report.TargetDate:yyyy-MM-dd} 开奖，本程序提交截止：当日北京时间 21:00。\n" + KillSubmissionChecks.Describe(report, data.GetAllRecords()) };
         Button submit = null!;
         submit = KillReportUi.Button("提交本期报告", async (_, _) =>
         {
@@ -72,7 +72,18 @@ public sealed class KillReportWindow : Window
         actions.Children.Add(submit);
         actions.Children.Add(KillReportUi.Button("提交记录 / 错误报告", (_, _) =>
             new KillSubmissionHistoryWindow(data, store, coordinator) { Owner = this }.ShowDialog()));
-        actions.Children.Add(KillReportUi.Button("关闭", (_, _) => Close()));
+        actions.Children.Add(KillReportUi.Button("返回调整规则", (_, _) => Close()));
+        actions.Children.Add(KillReportUi.Button("更新开奖数据", async (sender, _) =>
+        {
+            var button = (Button)sender; button.IsEnabled = false;
+            try
+            {
+                await data.TryUpdateAsync();
+                status.Text = data.LastErrorMessage is { } error ? $"更新失败：{error}" : KillSubmissionChecks.Describe(report, data.GetAllRecords());
+            }
+            catch (Exception ex) { status.Text = $"更新失败：{ex.Message}"; }
+            finally { button.IsEnabled = true; }
+        }));
         DockPanel.SetDock(actions, Dock.Top); root.Children.Add(actions);
         var notice = KillReportPresentation.Card(status); notice.Padding = new Thickness(14, 8, 14, 0);
         DockPanel.SetDock(notice, Dock.Top); root.Children.Add(notice);
@@ -95,6 +106,7 @@ public sealed class KillSubmissionHistoryWindow : Window
     private readonly Button _refresh;
     private readonly Button _update;
     private bool _closed;
+    private int? _initialPeriod;
     private sealed record Row(KillSubmissionEntry Entry)
     {
         public int Period => Entry.Submission.TargetPeriod;
@@ -103,8 +115,9 @@ public sealed class KillSubmissionHistoryWindow : Window
         public string RedErrors => Entry.Review is null ? "—" : KillSubmissionStore.WrongBalls(Entry, BallType.Red).Length.ToString();
         public string BlueErrors => Entry.Review is null ? "—" : KillSubmissionStore.WrongBalls(Entry, BallType.Blue).Length.ToString();
     }
-    public KillSubmissionHistoryWindow(IDataService data, KillSubmissionStore store, KillReviewCoordinator coordinator)
+    public KillSubmissionHistoryWindow(IDataService data, KillSubmissionStore store, KillReviewCoordinator coordinator, int? initialPeriod = null)
     {
+        _initialPeriod = initialPeriod;
         _data = data; _store = store; _coordinator = coordinator;
         _list.MinRowHeight = 38; _list.ColumnHeaderHeight = 38; _list.FontSize = 13;
         _list.GridLinesVisibility = DataGridGridLinesVisibility.Horizontal;
@@ -190,10 +203,11 @@ public sealed class KillSubmissionHistoryWindow : Window
     {
         try
         {
-            var selected = (_list.SelectedItem as Row)?.Period;
+            var selected = (_list.SelectedItem as Row)?.Period ?? _initialPeriod;
             var rows = _store.Read().Select(e => new Row(e)).ToArray();
             _list.ItemsSource = rows;
             _list.SelectedItem = rows.FirstOrDefault(r => r.Period == selected) ?? rows.FirstOrDefault();
+            _initialPeriod = null;
             int pending = rows.Count(r => r.Entry.Review is null);
             _status.Text = _coordinator.LastError ?? (rows.Length == 0 ? "暂无提交记录。执行杀号后，在报告中点击“提交本期报告”。"
                 : $"共 {rows.Length} 期，待复盘 {pending} 期，有错杀 {rows.Count(r => r.State == "有错杀")} 期。启动程序或更新开奖数据时自动复盘。");

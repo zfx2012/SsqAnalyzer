@@ -37,7 +37,7 @@ internal static partial class VerificationSuite
         List<RuleRowViewModel> Rows() => grid.Items.Cast<RuleRowViewModel>().ToList();
         void Sort(string key) => typeof(KillPage).GetMethod("RulesGrid_Sorting", BindingFlags.Instance | BindingFlags.NonPublic)!
             .Invoke(page, new object[] { grid, new DataGridSortingEventArgs(grid.Columns.Single(c => c.SortMemberPath == key)) });
-        Assert(Rows()[1].GateLabel == "待判定" && Rows()[2].GateLabel == "待判定", "untested and empty samples are not labelled passed");
+        Assert(Rows()[1].GateLabel == "未回测" && Rows()[2].GateLabel == "无有效样本", "untested and empty samples have distinct states");
         grid.SelectedItem = Rows()[0];
         Sort("Name");
         Assert(Rows().Select(r => r.Name).SequenceEqual(new[] { "Alpha", "Beta", "Zulu" }), "name ascending uses names");

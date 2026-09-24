@@ -17,7 +17,8 @@ public class KillRuleDetailWindow : Window
 {
     private readonly IKillSettings? _settings;
 
-    public KillRuleDetailWindow(KillRule rule, IKillSettings? settings = null, int periodCount = 50)
+    public KillRuleDetailWindow(KillRule rule, IKillSettings? settings = null, int periodCount = 50,
+        IReadOnlyList<KillSubmissionEntry>? actualEntries = null, Action<int?>? openReview = null)
     {
         _settings = settings ?? App.Services.GetService<IKillSettings>();
         Title = $"规则详情 - {rule.Name}";
@@ -59,6 +60,16 @@ public class KillRuleDetailWindow : Window
         // A. 基础信息区
         root.Children.Add(BuildSectionTitle("基础信息"));
         root.Children.Add(BuildBasicInfoGrid(rule));
+        if (actualEntries is not null)
+        {
+            root.Children.Add(BuildSectionTitle("实际提交表现 · 与历史回测分开统计"));
+            root.Children.Add(new TextBlock { Text = KillActualPerformance.Text(rule, actualEntries), TextWrapping = TextWrapping.Wrap, FontSize = 12 });
+            var periods = KillActualPerformance.Summarize(rule, actualEntries).SelectMany(v => v.ErrorPeriods).Distinct().OrderDescending();
+            var links = new WrapPanel { Margin = new Thickness(0, 8, 0, 10) };
+            foreach (int period in periods)
+                links.Children.Add(KillReportUi.Button($"查看 {period} 错误报告", (_, _) => openReview?.Invoke(period)));
+            root.Children.Add(links);
+        }
 
         // B. 回测详情区
         root.Children.Add(BuildSectionTitle("回测详情"));

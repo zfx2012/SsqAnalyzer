@@ -52,3 +52,4 @@ Desktop.ini
 kill_report_submissions.json
 kill_report_submissions.json.lock
 kill_report_submissions.json.*.tmp
+kill_page_preferences.json
