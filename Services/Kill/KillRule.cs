@@ -65,6 +65,7 @@ public sealed class KillRule : IKillRule
                     JsonValueKind.Number when prop.Value.TryGetInt32(out var iv) => iv,
                     JsonValueKind.Number => prop.Value.GetDouble(),
                     JsonValueKind.String => (object)prop.Value.GetString()!,
+                    JsonValueKind.Array or JsonValueKind.Object => prop.Value.Clone(),
                     _ => prop.Value.GetRawText()
                 };
             }
@@ -106,6 +107,7 @@ public sealed class KillRule : IKillRule
                     case long l: writer.WriteNumber(kv.Key, l); break;
                     case double dd: writer.WriteNumber(kv.Key, dd); break;
                     case string ss: writer.WriteString(kv.Key, ss); break;
+                    case JsonElement element: writer.WritePropertyName(kv.Key); element.WriteTo(writer); break;
                     default: writer.WriteString(kv.Key, kv.Value?.ToString()); break;
                 }
             }

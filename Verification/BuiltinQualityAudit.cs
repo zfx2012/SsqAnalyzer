@@ -57,9 +57,15 @@ internal static class BuiltinQualityAudit
                 if (rules[r].RuleId.StartsWith("B-S-", StringComparison.Ordinal) && !failures[r][i])
                 {
                     var p = rules[r].Params;
-                    var spec = new BuiltinRuleExpansion.Spec(((JsonElement)p["family"]).GetInt32(), ((JsonElement)p["window"]).GetInt32(), rules[r].BallType);
-                    int expected = BuiltinRuleExpansion.Predict(spec, history, i);
-                    if (masks[r][i] != (expected == 0 ? 0UL : 1UL << (expected - 1))) throw new InvalidOperationException($"Independent mismatch {rules[r].RuleId}/{history[i].Period}");
+                    ulong expectedMask;
+                    if (p.ContainsKey("geometryVersion")) expectedMask = Mask(VerificationSuite.GeometryReference(rules[r], history, i));
+                    else
+                    {
+                        var spec = new BuiltinRuleExpansion.Spec(((JsonElement)p["family"]).GetInt32(), ((JsonElement)p["window"]).GetInt32(), rules[r].BallType);
+                        int expected = BuiltinRuleExpansion.Predict(spec, history, i);
+                        expectedMask = expected == 0 ? 0UL : 1UL << (expected - 1);
+                    }
+                    if (masks[r][i] != expectedMask) throw new InvalidOperationException($"Independent mismatch {rules[r].RuleId}/{history[i].Period}");
                     independentComparisons++;
                 }
             }

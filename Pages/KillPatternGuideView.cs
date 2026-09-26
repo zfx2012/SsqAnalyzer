@@ -19,7 +19,7 @@ internal static class KillPatternGuideView
             panel.Children.Add(Text("结构示意 · 不代表当前期已触发"));
             var grid = new Grid { HorizontalAlignment = HorizontalAlignment.Left, Margin = new Thickness(0, 6, 0, 6) };
             grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(110) });
-            foreach (var _ in guide.Columns) grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(70) });
+            foreach (var _ in guide.Columns) grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(55) });
             for (int row = 0; row <= guide.Cells.Length; row++) grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(29) });
             void Cell(int row, int col, string text)
             {

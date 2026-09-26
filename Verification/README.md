@@ -22,6 +22,8 @@ dotnet tmp/verification-build/SsqAnalyzer.Tests.dll
 
 ## 内置杀号规则质量排查
 
+后50条已从统计条件替换为红蓝轨迹图形，详见[图形化定义、版本迁移及触发检查](EXTRA_GEOMETRY_RULES.md)。旧统计定义归档供复核，不在应用中加载。
+
 原50条图形识别、图层距离修复和详情示意见[图形规则梳理](PATTERN_RULE_REVIEW.md)。`--pattern-check [清单输出路径]` 检查形态、图层等价性及说明覆盖，并可导出50条说明。
 
 `--builtin-quality-audit <ssq_data.txt> <输出目录>` 固定当前100条规则逐期重放，检查执行、近期触发、正确率、重复输出与实际开奖号码保留。只写指定输出目录，不修改应用统计或提交记录。详见[质量排查报告及复现步骤](BUILTIN_QUALITY_AUDIT.md)。

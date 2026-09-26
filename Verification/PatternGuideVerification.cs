@@ -65,7 +65,7 @@ internal static partial class VerificationSuite
         foreach (var (_, guide) in guides)
             Assert(guide!.Cells.Length == guide.RowLabels.Length && guide.Cells.All(row => row.Length == guide.Columns.Length), "diagram dimensions");
         Assert(guides.Single(g => g.Rule.RuleId == "B-G-R-005").Guide!.Cells.SequenceEqual(new[] { "●", "○", "○", "●", "○", "○", "×" }), "current two-gap alternation shown");
-        Assert(BuiltinPatternGuide.For(BuiltinRules.LoadAll().Single(r => r.RuleId == "B-S-R-001")) is null, "statistical extra rule is not presented as original geometry");
+        Assert(BuiltinPatternGuide.For(BuiltinRules.LoadAll().Single(r => r.RuleId == "B-S-R-001")) is { Kind: "轨迹图形" }, "converted extra has a geometry guide");
         Console.WriteLine($"PASS pattern guides and {comparisons} scoped/base comparisons");
     }
 

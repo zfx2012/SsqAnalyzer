@@ -1,1302 +1,1552 @@
 [
   {
     "ruleId": "B-S-R-001",
-    "name": "30期长缺回补单号杀红",
+    "name": "隔列斜线图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 30,
-      "family": 5,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        2,
+        4
+      ],
+      "target": 6,
       "blue": false
     },
-    "description": "只使用此前30个实际开奖期：最新一期出现，且此前连续未出现期数至少为窗口的三分之一，选择空缺最长者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+2 → n+4，下一行杀 n+6；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "长缺回补",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-002",
-    "name": "12期中段遗漏单号杀红",
+    "name": "四重竖线图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 12,
-      "family": 7,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        0,
+        0
+      ],
+      "target": 0,
       "blue": false
     },
-    "description": "只使用此前12个实际开奖期：当前遗漏位于窗口的四分之一到二分之一之间，选择窗口频次最高者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n → n，下一行杀 n；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "中段遗漏",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-003",
-    "name": "15期高频单号杀红",
+    "name": "相邻折返图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 15,
-      "family": 0,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1,
+        0
+      ],
+      "target": 1,
       "blue": false
     },
-    "description": "只使用此前15个实际开奖期：选择窗口内出现次数最多的号码；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+1 → n，下一行杀 n+1；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "高频",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-004",
-    "name": "25期长缺回补单号杀红",
+    "name": "隔列折返图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 25,
-      "family": 5,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        2,
+        0
+      ],
+      "target": 2,
       "blue": false
     },
-    "description": "只使用此前25个实际开奖期：最新一期出现，且此前连续未出现期数至少为窗口的三分之一，选择空缺最长者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+2 → n，下一行杀 n+2；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "长缺回补",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-005",
-    "name": "15期中段遗漏单号杀红",
+    "name": "尖顶回落图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 15,
-      "family": 7,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1,
+        2,
+        1
+      ],
+      "target": 0,
       "blue": false
     },
-    "description": "只使用此前15个实际开奖期：当前遗漏位于窗口的四分之一到二分之一之间，选择窗口频次最高者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+1 → n+2 → n+1，下一行杀 n；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "中段遗漏",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-006",
-    "name": "25期短期重复单号杀红",
+    "name": "尖顶回弹图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 25,
-      "family": 4,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1,
+        2,
+        1,
+        0
+      ],
+      "target": 1,
       "blue": false
     },
-    "description": "只使用此前25个实际开奖期：最近3期出现至少2次，选择窗口总频次最多者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+1 → n+2 → n+1 → n，下一行杀 n+1；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "短期重复",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-007",
-    "name": "15期升温单号杀红",
+    "name": "单起双阶梯图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 15,
-      "family": 3,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1,
+        1,
+        2
+      ],
+      "target": 2,
       "blue": false
     },
-    "description": "只使用此前15个实际开奖期：后半窗口比前半窗口出现频率高，按两段长度归一后选择增幅最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+1 → n+1 → n+2，下一行杀 n+2；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "升温",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-008",
-    "name": "20期短期重复单号杀红",
+    "name": "双阶梯图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 20,
-      "family": 4,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "target": 2,
       "blue": false
     },
-    "description": "只使用此前20个实际开奖期：最近3期出现至少2次，选择窗口总频次最多者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n → n+1 → n+1，下一行杀 n+2；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "短期重复",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-009",
-    "name": "12期高频单号杀红",
+    "name": "三阶梯图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 12,
-      "family": 0,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "target": 1,
       "blue": false
     },
-    "description": "只使用此前12个实际开奖期：选择窗口内出现次数最多的号码；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n → n → n+1 → n+1，下一行杀 n+1；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "高频",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-010",
-    "name": "20期降温单号杀红",
+    "name": "连续相邻锯齿图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 20,
-      "family": 2,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "target": 0,
       "blue": false
     },
-    "description": "只使用此前20个实际开奖期：前半窗口比后半窗口出现频率高，按两段长度归一后选择降幅最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+1 → n → n+1，下一行杀 n；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "降温",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-011",
-    "name": "120期短期密集单号杀红",
+    "name": "连续隔列锯齿图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 120,
-      "family": 6,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        2,
+        0,
+        2
+      ],
+      "target": 0,
       "blue": false
     },
-    "description": "只使用此前120个实际开奖期：最近5期至少出现2次且频率高于整窗均值，选择超出幅度最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+2 → n → n+2，下一行杀 n；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "短期密集",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-012",
-    "name": "20期超均值遗漏单号杀红",
+    "name": "单起双折返图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 20,
-      "family": 8,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "target": 0,
       "blue": false
     },
-    "description": "只使用此前20个实际开奖期：窗口内至少出现2次，当前遗漏大于窗口期数除以出现次数，选择遗漏与频次乘积最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+1 → n+1 → n，下一行杀 n；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "超均值遗漏",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-013",
-    "name": "10期降温单号杀红",
+    "name": "双折返图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 10,
-      "family": 2,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "target": 0,
       "blue": false
     },
-    "description": "只使用此前10个实际开奖期：前半窗口比后半窗口出现频率高，按两段长度归一后选择降幅最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n → n+1 → n+1 → n，下一行杀 n；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "降温",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-014",
-    "name": "60期长缺回补单号杀红",
+    "name": "三列循环图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 60,
-      "family": 5,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1,
+        2,
+        0,
+        1
+      ],
+      "target": 2,
       "blue": false
     },
-    "description": "只使用此前60个实际开奖期：最新一期出现，且此前连续未出现期数至少为窗口的三分之一，选择空缺最长者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+1 → n+2 → n → n+1，下一行杀 n+2；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "长缺回补",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-015",
-    "name": "30期高频单号杀红",
+    "name": "三列宽循环图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 30,
-      "family": 0,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        2,
+        4,
+        0,
+        2
+      ],
+      "target": 4,
       "blue": false
     },
-    "description": "只使用此前30个实际开奖期：选择窗口内出现次数最多的号码；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+2 → n+4 → n → n+2，下一行杀 n+4；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "高频",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-016",
-    "name": "30期升温单号杀红",
+    "name": "五斜连图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 30,
-      "family": 3,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "target": 4,
       "blue": false
     },
-    "description": "只使用此前30个实际开奖期：后半窗口比前半窗口出现频率高，按两段长度归一后选择增幅最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+1 → n+2 → n+3，下一行杀 n+4；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "升温",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-017",
-    "name": "60期降温单号杀红",
+    "name": "加速斜线图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 60,
-      "family": 2,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1,
+        3
+      ],
+      "target": 6,
       "blue": false
     },
-    "description": "只使用此前60个实际开奖期：前半窗口比后半窗口出现频率高，按两段长度归一后选择降幅最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+1 → n+3，下一行杀 n+6；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "降温",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-018",
-    "name": "25期升温单号杀红",
+    "name": "减速斜线图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 25,
-      "family": 3,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        3,
+        5
+      ],
+      "target": 6,
       "blue": false
     },
-    "description": "只使用此前25个实际开奖期：后半窗口比前半窗口出现频率高，按两段长度归一后选择增幅最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+3 → n+5，下一行杀 n+6；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "升温",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-019",
-    "name": "25期超均值遗漏单号杀红",
+    "name": "一二步阶梯图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 25,
-      "family": 8,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "target": 6,
       "blue": false
     },
-    "description": "只使用此前25个实际开奖期：窗口内至少出现2次，当前遗漏大于窗口期数除以出现次数，选择遗漏与频次乘积最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+1 → n+3 → n+4，下一行杀 n+6；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "超均值遗漏",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-020",
-    "name": "12期短期重复单号杀红",
+    "name": "二一步阶梯图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 12,
-      "family": 4,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        2,
+        3,
+        5
+      ],
+      "target": 6,
       "blue": false
     },
-    "description": "只使用此前12个实际开奖期：最近3期出现至少2次，选择窗口总频次最多者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+2 → n+3 → n+5，下一行杀 n+6；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "短期重复",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-021",
-    "name": "50期中段遗漏单号杀红",
+    "name": "中心摆动图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 50,
-      "family": 7,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1,
+        0,
+        -1
+      ],
+      "target": 0,
       "blue": false
     },
-    "description": "只使用此前50个实际开奖期：当前遗漏位于窗口的四分之一到二分之一之间，选择窗口频次最高者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+1 → n → n-1，下一行杀 n；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "中段遗漏",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-022",
-    "name": "20期短期密集单号杀红",
+    "name": "宽幅中心摆动图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 20,
-      "family": 6,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        2,
+        0,
+        -2
+      ],
+      "target": 0,
       "blue": false
     },
-    "description": "只使用此前20个实际开奖期：最近5期至少出现2次且频率高于整窗均值，选择超出幅度最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+2 → n → n-2，下一行杀 n；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "短期密集",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-023",
-    "name": "15期短期密集单号杀红",
+    "name": "平顶回落图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 15,
-      "family": 6,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1,
+        2,
+        2,
+        1
+      ],
+      "target": 0,
       "blue": false
     },
-    "description": "只使用此前15个实际开奖期：最近5期至少出现2次且频率高于整窗均值，选择超出幅度最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+1 → n+2 → n+2 → n+1，下一行杀 n；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "短期密集",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-024",
-    "name": "20期紧邻重开单号杀红",
+    "name": "宽平顶折返图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 20,
-      "family": 9,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        2,
+        2,
+        0
+      ],
+      "target": 0,
       "blue": false
     },
-    "description": "只使用此前20个实际开奖期：最新一期出现，且上次出现距最新期不超过窗口四分之一，选择间距最小者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+2 → n+2 → n，下一行杀 n；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "紧邻重开",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-025",
-    "name": "20期低频已出现单号杀红",
+    "name": "三行平台图形杀红",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Red",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 20,
-      "family": 1,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "target": 2,
       "blue": false
     },
-    "description": "只使用此前20个实际开奖期：在窗口内至少出现一次的号码中选择出现次数最少者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+1 → n+1 → n+1，下一行杀 n+2；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "低频已出现",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-001",
-    "name": "12期超均值遗漏单号杀蓝",
+    "name": "三重竖线图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 12,
-      "family": 8,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        0
+      ],
+      "target": 0,
       "blue": true
     },
-    "description": "只使用此前12个实际开奖期：窗口内至少出现2次，当前遗漏大于窗口期数除以出现次数，选择遗漏与频次乘积最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n，下一行杀 n；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "超均值遗漏",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-002",
-    "name": "12期降温单号杀蓝",
+    "name": "1步三斜连图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 12,
-      "family": 2,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1
+      ],
+      "target": 2,
       "blue": true
     },
-    "description": "只使用此前12个实际开奖期：前半窗口比后半窗口出现频率高，按两段长度归一后选择降幅最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+1，下一行杀 n+2；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "降温",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-003",
-    "name": "120期中段遗漏单号杀蓝",
+    "name": "2步三斜连图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 120,
-      "family": 7,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        2
+      ],
+      "target": 4,
       "blue": true
     },
-    "description": "只使用此前120个实际开奖期：当前遗漏位于窗口的四分之一到二分之一之间，选择窗口频次最高者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+2，下一行杀 n+4；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "中段遗漏",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-004",
-    "name": "30期低频已出现单号杀蓝",
+    "name": "3步三斜连图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 30,
-      "family": 1,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        3
+      ],
+      "target": 6,
       "blue": true
     },
-    "description": "只使用此前30个实际开奖期：在窗口内至少出现一次的号码中选择出现次数最少者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+3，下一行杀 n+6；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "低频已出现",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-005",
-    "name": "15期超均值遗漏单号杀蓝",
+    "name": "4步三斜连图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 15,
-      "family": 8,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        4
+      ],
+      "target": 8,
       "blue": true
     },
-    "description": "只使用此前15个实际开奖期：窗口内至少出现2次，当前遗漏大于窗口期数除以出现次数，选择遗漏与频次乘积最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+4，下一行杀 n+8；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "超均值遗漏",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-006",
-    "name": "50期超均值遗漏单号杀蓝",
+    "name": "5步三斜连图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 50,
-      "family": 8,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        5
+      ],
+      "target": 10,
       "blue": true
     },
-    "description": "只使用此前50个实际开奖期：窗口内至少出现2次，当前遗漏大于窗口期数除以出现次数，选择遗漏与频次乘积最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+5，下一行杀 n+10；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "超均值遗漏",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-007",
-    "name": "100期长缺回补单号杀蓝",
+    "name": "6步三斜连图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 100,
-      "family": 5,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        6
+      ],
+      "target": 12,
       "blue": true
     },
-    "description": "只使用此前100个实际开奖期：最新一期出现，且此前连续未出现期数至少为窗口的三分之一，选择空缺最长者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+6，下一行杀 n+12；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "长缺回补",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-008",
-    "name": "15期中段遗漏单号杀蓝",
+    "name": "7步三斜连图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 15,
-      "family": 7,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        7
+      ],
+      "target": 14,
       "blue": true
     },
-    "description": "只使用此前15个实际开奖期：当前遗漏位于窗口的四分之一到二分之一之间，选择窗口频次最高者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+7，下一行杀 n+14；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "中段遗漏",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-009",
-    "name": "25期低频已出现单号杀蓝",
+    "name": "间距1折返图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 25,
-      "family": 1,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1
+      ],
+      "target": 0,
       "blue": true
     },
-    "description": "只使用此前25个实际开奖期：在窗口内至少出现一次的号码中选择出现次数最少者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+1，下一行杀 n；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "低频已出现",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-010",
-    "name": "120期高频单号杀蓝",
+    "name": "间距2折返图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 120,
-      "family": 0,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        2
+      ],
+      "target": 0,
       "blue": true
     },
-    "description": "只使用此前120个实际开奖期：选择窗口内出现次数最多的号码；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+2，下一行杀 n；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "高频",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-011",
-    "name": "60期中段遗漏单号杀蓝",
+    "name": "间距3折返图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 60,
-      "family": 7,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        3
+      ],
+      "target": 0,
       "blue": true
     },
-    "description": "只使用此前60个实际开奖期：当前遗漏位于窗口的四分之一到二分之一之间，选择窗口频次最高者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+3，下一行杀 n；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "中段遗漏",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-012",
-    "name": "60期低频已出现单号杀蓝",
+    "name": "间距4折返图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 60,
-      "family": 1,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        4
+      ],
+      "target": 0,
       "blue": true
     },
-    "description": "只使用此前60个实际开奖期：在窗口内至少出现一次的号码中选择出现次数最少者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+4，下一行杀 n；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "低频已出现",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-013",
-    "name": "80期降温单号杀蓝",
+    "name": "间距5折返图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 80,
-      "family": 2,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        5
+      ],
+      "target": 0,
       "blue": true
     },
-    "description": "只使用此前80个实际开奖期：前半窗口比后半窗口出现频率高，按两段长度归一后选择降幅最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+5，下一行杀 n；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "降温",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-014",
-    "name": "20期降温单号杀蓝",
+    "name": "间距6折返图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 20,
-      "family": 2,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        6
+      ],
+      "target": 0,
       "blue": true
     },
-    "description": "只使用此前20个实际开奖期：前半窗口比后半窗口出现频率高，按两段长度归一后选择降幅最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+6，下一行杀 n；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "降温",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-015",
-    "name": "40期升温单号杀蓝",
+    "name": "间距7折返图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 40,
-      "family": 3,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        7
+      ],
+      "target": 0,
       "blue": true
     },
-    "description": "只使用此前40个实际开奖期：后半窗口比前半窗口出现频率高，按两段长度归一后选择增幅最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+7，下一行杀 n；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "升温",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-016",
-    "name": "10期高频单号杀蓝",
+    "name": "间距8折返图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 10,
-      "family": 0,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        8
+      ],
+      "target": 0,
       "blue": true
     },
-    "description": "只使用此前10个实际开奖期：选择窗口内出现次数最多的号码；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+8，下一行杀 n；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "高频",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-017",
-    "name": "50期升温单号杀蓝",
+    "name": "间距9折返图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 50,
-      "family": 3,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        9
+      ],
+      "target": 0,
       "blue": true
     },
-    "description": "只使用此前50个实际开奖期：后半窗口比前半窗口出现频率高，按两段长度归一后选择增幅最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+9，下一行杀 n；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "升温",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-018",
-    "name": "25期升温单号杀蓝",
+    "name": "间距10折返图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 25,
-      "family": 3,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        10
+      ],
+      "target": 0,
       "blue": true
     },
-    "description": "只使用此前25个实际开奖期：后半窗口比前半窗口出现频率高，按两段长度归一后选择增幅最大者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+10，下一行杀 n；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "升温",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-019",
-    "name": "50期长缺回补单号杀蓝",
+    "name": "间距11折返图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 50,
-      "family": 5,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        11
+      ],
+      "target": 0,
       "blue": true
     },
-    "description": "只使用此前50个实际开奖期：最新一期出现，且此前连续未出现期数至少为窗口的三分之一，选择空缺最长者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+11，下一行杀 n；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "长缺回补",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-020",
-    "name": "12期高频单号杀蓝",
+    "name": "间距12折返图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 12,
-      "family": 0,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        12
+      ],
+      "target": 0,
       "blue": true
     },
-    "description": "只使用此前12个实际开奖期：选择窗口内出现次数最多的号码；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+12，下一行杀 n；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "高频",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-021",
-    "name": "20期长缺回补单号杀蓝",
+    "name": "间距13折返图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 20,
-      "family": 5,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        13
+      ],
+      "target": 0,
       "blue": true
     },
-    "description": "只使用此前20个实际开奖期：最新一期出现，且此前连续未出现期数至少为窗口的三分之一，选择空缺最长者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+13，下一行杀 n；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "长缺回补",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-022",
-    "name": "100期紧邻重开单号杀蓝",
+    "name": "间距14折返图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 100,
-      "family": 9,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        14
+      ],
+      "target": 0,
       "blue": true
     },
-    "description": "只使用此前100个实际开奖期：最新一期出现，且上次出现距最新期不超过窗口四分之一，选择间距最小者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+14，下一行杀 n；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "紧邻重开",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-023",
-    "name": "60期紧邻重开单号杀蓝",
+    "name": "间距15折返图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 60,
-      "family": 9,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        15
+      ],
+      "target": 0,
       "blue": true
     },
-    "description": "只使用此前60个实际开奖期：最新一期出现，且上次出现距最新期不超过窗口四分之一，选择间距最小者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+15，下一行杀 n；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "紧邻重开",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-024",
-    "name": "12期紧邻重开单号杀蓝",
+    "name": "二列中点内折图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 12,
-      "family": 9,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        2
+      ],
+      "target": 1,
       "blue": true
     },
-    "description": "只使用此前12个实际开奖期：最新一期出现，且上次出现距最新期不超过窗口四分之一，选择间距最小者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+2，下一行杀 n+1；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "紧邻重开",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   },
   {
     "ruleId": "B-S-B-025",
-    "name": "80期短期重复单号杀蓝",
+    "name": "四列中点内折图形杀蓝",
     "category": "Pattern",
-    "subCategory": "统计条件",
+    "subCategory": "轨迹图形",
     "ballType": "Blue",
     "isBuiltin": true,
     "isEnabled": true,
     "isVisible": true,
     "minAccuracy": 0.94,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var w=ctx.params.window, f=ctx.params.family, blue=ctx.params.blue;\n  var h=ctx.history(w); if(h.length<w) return [];\n  var max=blue?16:33, count=[], newer=[], last3=[], last5=[], miss=[], gap=[];\n  for(var b=1;b<=max;b++){count[b]=0;newer[b]=0;last3[b]=0;last5[b]=0;miss[b]=w;gap[b]=-1;}\n  for(var i=0;i<w;i++){\n    var balls=blue?[h[i].blueBall]:h[i].redBalls;\n    for(var j=0;j<balls.length;j++){\n      var b=balls[j];count[b]++;\n      if(i>=Math.floor(w/2))newer[b]++;\n      if(i>=w-3)last3[b]++;if(i>=w-5)last5[b]++;\n      if(i<w-1)gap[b]=w-1-i;\n      miss[b]=w-1-i;\n    }\n  }\n  var best=0, bestScore=-Infinity;\n  for(var b=1;b<=max;b++){\n    var score=-Infinity, c=count[b], n=newer[b], m=miss[b], g=gap[b];\n    if(f===0)score=c;\n    if(f===1&&c>0)score=-c;\n    var change=n*Math.floor(w/2)-(c-n)*(w-Math.floor(w/2));\n    if(f===2&&change<0)score=-change;\n    if(f===3&&change>0)score=change;\n    if(f===4&&last3[b]>=2)score=c;\n    if(f===5&&m===0&&g>=0&&g-1>=Math.floor(w/3))score=g;\n    if(f===6&&last5[b]>=2&&last5[b]*w>5*c)score=last5[b]*w-5*c;\n    if(f===7&&m>=Math.floor(w/4)&&m<=Math.floor(w/2))score=c;\n    if(f===8&&c>=2&&m*c>w)score=m*c;\n    if(f===9&&m===0&&g>0&&g<=Math.floor(w/4))score=-g;\n    if(score>bestScore){best=b;bestScore=score;}\n  }\n  return best===0?[]:[best];\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
-      "window": 80,
-      "family": 4,
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        4
+      ],
+      "target": 2,
       "blue": true
     },
-    "description": "只使用此前80个实际开奖期：最近3期出现至少2次，选择窗口总频次最多者；同分取小号；条件不满足则不杀号，每次最多1个。近50次成绩参与历史筛选，尚未前向验证。",
+    "description": "连续实际开奖行依次出现 n → n+4，下一行杀 n+2；同时识别左右镜像。历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
     "tags": [
-      "统计条件",
-      "短期重复",
-      "历史筛选"
+      "图形",
+      "轨迹",
+      "待验证"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-23T00:00:00Z"
+    "createdAt": "2026-09-26T00:00:00Z"
   }
 ]

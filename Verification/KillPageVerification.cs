@@ -106,7 +106,7 @@ internal static partial class VerificationSuite
         content.Measure(new Size(760, 680)); content.Arrange(new Rect(0, 0, 760, 680)); content.UpdateLayout();
         SaveKillPreview(content, "kill-details.png", 760, 680);
         details.Close();
-        foreach (string id in new[] { "B-G-R-008-HS", "B-G-R-011", "B-G-R-005" })
+        foreach (string id in new[] { "B-G-R-008-HS", "B-G-R-011", "B-G-R-005", "B-S-R-017", "B-S-B-021" })
         {
             var guide = BuiltinPatternGuide.For(BuiltinRules.LoadAll().Single(r => r.RuleId == id))!;
             var card = KillPatternGuideView.Build(guide);

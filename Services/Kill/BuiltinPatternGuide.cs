@@ -1,14 +1,31 @@
 namespace SsqAnalyzer.Services.Kill;
 
-/// <summary>Human-readable geometry for the original catalog. Sketches explain definitions, not real predictions.</summary>
+/// <summary>Human-readable geometry for current builtins. Sketches explain definitions, not real predictions.</summary>
 internal sealed record BuiltinPatternGuide(string Kind, string Scope, string Shape, string Target,
     string Condition, string[] Columns, string[] RowLabels, string[] Cells)
 {
     internal static BuiltinPatternGuide? For(KillRule rule)
     {
         var current = BuiltinRules.LoadAll().FirstOrDefault(r => r.RuleId == rule.RuleId);
-        if (!rule.IsBuiltin || !rule.RuleId.StartsWith("B-G-", StringComparison.Ordinal) || current is null
+        if (!rule.IsBuiltin || current is null
             || KillRuleDefinition.Capture(rule).Fingerprint != KillRuleDefinition.Capture(current).Fingerprint) return null;
+        if (rule.RuleId.StartsWith("B-S-", StringComparison.Ordinal) && rule.Params.ContainsKey("geometryVersion"))
+        {
+            var offsets = System.Text.Json.JsonSerializer.Deserialize<int[]>(System.Text.Json.JsonSerializer.Serialize(rule.Params["offsets"]))!;
+            int targetOffset = System.Text.Json.JsonSerializer.Deserialize<int>(System.Text.Json.JsonSerializer.Serialize(rule.Params["target"]));
+            int min = offsets.Append(targetOffset).Min(), max = offsets.Append(targetOffset).Max();
+            var shownColumns = max - min <= 6 ? Enumerable.Range(min, max - min + 1).ToArray() : offsets.Append(targetOffset).Distinct().Order().ToArray();
+            string Column(int n) => n == 0 ? "n" : $"n{n:+0;-0}";
+            var diagram = offsets.Select(offset => string.Concat(shownColumns.Select(n => n == offset ? '●' : '·')))
+                .Append(string.Concat(shownColumns.Select(n => n == targetOffset ? '×' : '·'))).ToArray();
+            return new("轨迹图形", "基本图：每行一个实际开奖期，从上到下由旧到新。",
+                "连续各行依次出现 " + string.Join(" → ", offsets.Select(Column)) + "；同时识别左右镜像。其他位置不限制。" + (max-min > 6 ? "示意省略无关列，实际间距以列头数字为准。" : ""),
+                "下一行 " + Column(targetOffset) + "；镜像取对应反向位置，越界舍弃，多个匹配合并去重。",
+                "无频次、冷热或遗漏过滤；尚未前向验证，旧统计规则成绩不代表此版本。",
+                shownColumns.Select(Column).ToArray(),
+                Enumerable.Range(0, offsets.Length).Select(i => $"前{offsets.Length - i}行").Append("下一行").ToArray(), diagram);
+        }
+        if (!rule.RuleId.StartsWith("B-G-", StringComparison.Ordinal)) return null;
         string id = string.Join("-", rule.RuleId.Split('-').Take(4));
         string scope = rule.RuleId.EndsWith("-HS", StringComparison.Ordinal) ? "历史同期图：每行是往年相同期号，不是连续实际开奖。"
             : rule.RuleId.EndsWith("-OE", StringComparison.Ordinal) ? "奇偶图：只保留与目标期号同奇偶的开奖，每行是一个匹配期。"
