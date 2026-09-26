@@ -81,7 +81,7 @@ public static class MissMatrixCalculator
     }
 
     /// <summary>
-    /// 计算截止 cutoffRow 的最近 window 期内每个球的当前遗漏值。
+    /// 计算截止 cutoffRow 的每个球的累计遗漏值。window 为兼容参数，不限制累计长度。
     /// cutoffRow 是被预测期在矩阵中的索引（不含），即规则能看到 [0, cutoffRow)。
     /// endRow = min(cutoffRow-1, rowCount-1)，返回 matrix[endRow, n]（真实累加遗漏值）。
     /// </summary>

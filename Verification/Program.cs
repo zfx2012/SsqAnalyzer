@@ -1,4 +1,9 @@
-if (args.FirstOrDefault() == "--builtin-quality-audit")
+if (args.FirstOrDefault() == "--pattern-check")
+{
+    VerificationSuite.VerifyPatternGuides();
+    if (args.Length > 1) VerificationSuite.ExportPatternGuides(args[1]);
+}
+else if (args.FirstOrDefault() == "--builtin-quality-audit")
 {
     if (args.Length != 3) throw new ArgumentException("Usage: --builtin-quality-audit <ssq_data.txt> <output-directory>");
     BuiltinQualityAudit.Run(args[1], args[2]);

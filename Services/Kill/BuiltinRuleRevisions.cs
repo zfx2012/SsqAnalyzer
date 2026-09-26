@@ -6,6 +6,15 @@ namespace SsqAnalyzer.Services.Kill;
 /// <summary>Explicit condition revisions and optional retirement manifest; never tunes conditions at runtime.</summary>
 internal static class BuiltinRuleRevisions
 {
+    internal static KillRuleCondition? FindCondition(string ruleId)
+    {
+        using var stream = typeof(BuiltinRuleRevisions).Assembly.GetManifestResourceStream("SsqAnalyzer.Resources.builtin-rule-revisions.json")
+            ?? throw new InvalidOperationException("内置规则修订清单缺失。");
+        using var document = JsonDocument.Parse(stream);
+        return document.RootElement.GetProperty("conditions").TryGetProperty(ruleId, out var value)
+            ? JsonSerializer.Deserialize<KillRuleCondition>(value.GetRawText()) : null;
+    }
+
     internal static IReadOnlyList<KillRule> Apply(IReadOnlyList<KillRule> original)
     {
         using var stream = typeof(BuiltinRuleRevisions).Assembly.GetManifestResourceStream("SsqAnalyzer.Resources.builtin-rule-revisions.json")

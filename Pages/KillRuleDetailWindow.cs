@@ -60,6 +60,11 @@ public class KillRuleDetailWindow : Window
         // A. 基础信息区
         root.Children.Add(BuildSectionTitle("基础信息"));
         root.Children.Add(BuildBasicInfoGrid(rule));
+        if (BuiltinPatternGuide.For(rule) is { } patternGuide)
+        {
+            root.Children.Add(BuildSectionTitle("图形与杀号位置"));
+            root.Children.Add(KillPatternGuideView.Build(patternGuide));
+        }
         if (actualEntries is not null)
         {
             root.Children.Add(BuildSectionTitle("实际提交表现 · 与历史回测分开统计"));

@@ -53,7 +53,7 @@ public sealed class RuleContext
     public IReadOnlyList<MissValue> GetMissValues(int window, BallType ballType = BallType.Red)
         => MissMatrixCalculator.GetMissValues(_missMatrix, CurrentIndex, window, ballType);
 
-    /// <summary>指定球在最近 window 期的遗漏值。ball 范围 1-33=红球, 34-49=蓝球（与矩阵列对齐）。</summary>
+    /// <summary>指定球截止当前的累计遗漏。window 为兼容参数，不截断遗漏；ball 1-33=红球、34-49=蓝球。</summary>
     public int GetMiss(int ball, int window)
     {
         if (ball < 1 || ball > BallCount) return 0;
@@ -79,8 +79,10 @@ public sealed class RuleContext
     public IReadOnlyList<DrawRecord> History(int n)
     {
         if (n <= 0) return Array.Empty<DrawRecord>();
-        if (n >= HistoryRecords.Count) return HistoryRecords;
-        return HistoryRecords.TakeLast(n).ToList();
+        // Keep one runtime collection type at the Jint boundary, including empty scopes.
+        // Jint caches conversions for IReadOnlyList<T>; switching Array/List can miscast later calls.
+        if (n >= HistoryRecords.Count) return HistoryRecords.ToArray();
+        return HistoryRecords.TakeLast(n).ToArray();
     }
 
     /// <summary>按预测下一期的图层属性取最近 n 条历史，结果保持升序。</summary>
@@ -93,7 +95,7 @@ public sealed class RuleContext
             if (ScopeMatches(HistoryRecords[i], scope)) result.Add(HistoryRecords[i]);
         }
         result.Reverse();
-        return result;
+        return result.ToArray();
     }
 
     /// <summary>按预测下一期的图层属性返回最近一条历史记录。</summary>
@@ -104,13 +106,28 @@ public sealed class RuleContext
         return null;
     }
 
-    /// <summary>按图层计算红球遗漏，避免规则把完整历史复制到 JS。</summary>
+    /// <summary>按图层行数计算红球累计遗漏；window 为兼容参数，不截断遗漏。</summary>
     public IReadOnlyList<MissValue> GetMissValuesFor(string scope, int window)
     {
         var records = HistoryFor(scope, int.MaxValue);
         if (records.Count == 0) return Array.Empty<MissValue>();
         var matrix = MissMatrixCalculator.Compute(records);
         return MissMatrixCalculator.GetMissValues(matrix, records.Count, window, BallType.Red);
+    }
+
+    /// <summary>只在指定图层内累计红球遗漏，与 HistoryFor 的行距使用同一单位。window 不截断遗漏。</summary>
+    public int GetMissFor(string scope, int ball, int window)
+    {
+        if (ball is < 1 or > RedCount) return 0;
+        int miss = 0;
+        for (int i = HistoryRecords.Count - 1; i >= 0; i--)
+        {
+            var record = HistoryRecords[i];
+            if (!ScopeMatches(record, scope)) continue;
+            if (record.RedBalls.Contains(ball)) break;
+            miss++;
+        }
+        return miss;
     }
 
     /// <summary>按图层返回红球在最近一条匹配记录之前的上次出现距离。</summary>
@@ -156,13 +173,13 @@ public sealed class RuleContext
         foreach (var r in HistoryRecords)
             if (r.Period % 1000 == shortPeriodSuffix3)
                 result.Add(r);
-        return result;
+        return result.ToArray();
     }
 
     /// <summary>周期历史：DrawDate.DayOfWeek 匹配的子集。None 返回全部。</summary>
     public IReadOnlyList<DrawRecord> GetCycleRecords(CycleType type)
     {
-        if (type == CycleType.None) return HistoryRecords;
+        if (type == CycleType.None) return HistoryRecords.ToArray();
         DayOfWeek dow = type switch
         {
             CycleType.Tuesday => DayOfWeek.Tuesday,
@@ -174,13 +191,13 @@ public sealed class RuleContext
         foreach (var r in HistoryRecords)
             if (r.DrawDate.DayOfWeek == dow)
                 result.Add(r);
-        return result;
+        return result.ToArray();
     }
 
     /// <summary>单双期历史：期号奇偶匹配的子集。None 返回全部。</summary>
     public IReadOnlyList<DrawRecord> GetParityRecords(ParityType parity)
     {
-        if (parity == ParityType.None) return HistoryRecords;
+        if (parity == ParityType.None) return HistoryRecords.ToArray();
         bool wantOdd = parity == ParityType.Odd;
         var result = new List<DrawRecord>();
         foreach (var r in HistoryRecords)
@@ -188,6 +205,6 @@ public sealed class RuleContext
             bool isOdd = r.Period % 2 == 1;
             if (isOdd == wantOdd) result.Add(r);
         }
-        return result;
+        return result.ToArray();
     }
 }

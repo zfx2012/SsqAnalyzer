@@ -28,7 +28,7 @@
     "minAccuracy": 0.80,
     "jsCode": "function getKillBalls(ctx) {\n  var TH = ctx.params.missThreshold != null ? ctx.params.missThreshold : 16;\n  var recs = ctx.getSamePeriodRecords(ctx.currentShortPeriodSuffix);\n  var result = [];\n  for (var b = 1; b <= 16; b++) {\n    var miss = 0;\n    for (var i = recs.length - 1; i >= 0; i--) {\n      if (recs[i].blueBall === b) break;\n      miss++;\n    }\n    if (miss >= TH) result.push(b);\n  }\n  return result;\n}",
     "params": { "missThreshold": 16 },
-    "description": "同期图：杀掉遗漏值≥16的蓝球",
+    "description": "同期图：按往年相同期号的样本行累计遗漏，杀掉遗漏值≥16的蓝球；16行不是16个连续实际开奖期",
     "tags": ["冷号", "同期", "蓝球"],
     "source": "builtin",
     "createdAt": "2026-07-21T00:00:00Z"
@@ -130,7 +130,7 @@
     "minAccuracy": 0.80,
     "jsCode": "function getKillBalls(ctx) {\n  var history = ctx.history(2);\n  if (!history || history.length < 2) return [];\n  var earlier = history[0].redBalls;\n  var latestSet = {};\n  var latest = history[1].redBalls;\n  for (var i = 0; i < latest.length; i++) latestSet[latest[i]] = true;\n  var result = [];\n  for (var j = 0; j < earlier.length; j++) {\n    var center = earlier[j];\n    if (center > 1 && center < 33 && !latestSet[center] && latestSet[center - 1] && latestSet[center + 1]) result.push(center);\n  }\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}",
     "params": {},
-    "description": "基本图：前一期某红球开出，后一期同时开出其左右相邻号，形成三角图形，杀掉三角形中间的红球",
+    "description": "基本图：前一期某红球开出，后一期该号未开且左右相邻号同时开出，形成三角图形，杀掉下一期三角形中间的红球",
     "tags": ["三角中心", "基本图", "红球"],
     "source": "builtin",
     "createdAt": "2026-08-03T00:00:00Z"
@@ -164,7 +164,7 @@
     "minAccuracy": 0.80,
     "jsCode": "function getKillBalls(ctx) {\n  return ctx.latestRecord ? [ctx.latestRecord.blueBall] : [];\n}",
     "params": {},
-    "description": "蓝球图：蓝球通常不会连续两期开出同一号码，杀掉上期已开出的蓝球",
+    "description": "蓝球图：把上期蓝球作为下一期杀号候选，检验重号不延续的假设",
     "tags": ["重号", "蓝球图", "蓝球"],
     "source": "builtin",
     "createdAt": "2026-08-04T00:00:00Z"
@@ -181,7 +181,7 @@
     "minAccuracy": 0.80,
     "jsCode": "function getKillBalls(ctx) {\n  return ctx.latestRecord ? [ctx.latestRecord.blueBall] : [];\n}",
     "params": {},
-    "description": "红蓝混合图：红球通常不会开出与上期蓝球相同的号码，杀掉上期蓝球对应的红球号码",
+    "description": "红蓝混合图：把上期蓝球对应的红球号码作为下一期杀号候选，检验红蓝同号不延续的假设",
     "tags": ["上期蓝号", "红蓝混合图", "红球"],
     "source": "builtin",
     "createdAt": "2026-08-04T00:00:00Z"
@@ -198,7 +198,7 @@
     "minAccuracy": 0.80,
     "jsCode": "function getKillBalls(ctx) {\n  if (!ctx.latestRecord) return [];\n  var reds = ctx.latestRecord.redBalls;\n  var opened = {};\n  var killed = {};\n  for (var i = 0; i < reds.length; i++) opened[reds[i]] = true;\n  for (var j = 0; j < reds.length; j++) {\n    var start = reds[j];\n    if (opened[start + 1] && opened[start + 2]) {\n      killed[start] = true;\n      killed[start + 1] = true;\n      killed[start + 2] = true;\n    }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}",
     "params": {},
-    "description": "基本图：上期同时开出三个连续红球，下一期通常不会在其正下方重复开出，杀掉这三个连号对应的红球",
+    "description": "基本图：上期同时开出三个连续红球，把下一期其正下方的三个号码作为杀号候选；多个三连候选合并去重",
     "tags": ["三连号", "基本图", "红球"],
     "source": "builtin",
     "createdAt": "2026-08-04T00:00:00Z"

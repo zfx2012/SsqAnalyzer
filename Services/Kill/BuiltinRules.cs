@@ -161,6 +161,7 @@ public static class BuiltinRules
             .Replace("ctx.latestRecord", $"ctx.latestFor({quoted})", StringComparison.Ordinal)
             .Replace("ctx.history(", $"ctx.historyFor({quoted}, ", StringComparison.Ordinal)
             .Replace("ctx.getMissValues(", $"ctx.getMissValuesFor({quoted}, ", StringComparison.Ordinal)
+            .Replace("ctx.getMiss(", $"ctx.getMissFor({quoted}, ", StringComparison.Ordinal)
             .Replace("ctx.getPreviousRedOccurrenceDistance(",
                 $"ctx.getPreviousRedOccurrenceDistanceFor({quoted}, ", StringComparison.Ordinal);
     }

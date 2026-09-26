@@ -217,6 +217,7 @@ var ctx = {
     historyFor: function (scope, n) { return __toRecordArray(__ctx.HistoryFor(scope, n)); },
     latestFor: function (scope) { return __toRecordView(__ctx.LatestFor(scope)); },
     getMiss: function (ball, window) { return __ctx.GetMiss(ball, window); },
+    getMissFor: function (scope, ball, window) { return __ctx.GetMissFor(scope, ball, window); },
     getPreviousRedOccurrenceDistance: function (ball) { return __ctx.GetPreviousRedOccurrenceDistance(ball); },
     getPreviousRedOccurrenceDistanceFor: function (scope, ball) { return __ctx.GetPreviousRedOccurrenceDistanceFor(scope, ball); },
     getMissValues: function (window) { return __toMissArray(__ctx.GetMissValues(window)); },

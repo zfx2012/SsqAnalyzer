@@ -15,7 +15,7 @@ internal static partial class VerificationSuite
             ("kill report submission and review", VerifyKillSubmissions),
             ("kill actual versions and submission checks", VerifyKillWorkflowData),
             ("point range boundaries", VerifyPointRanges),
-            ("builtin kill rule curation", VerifyBuiltinKillRuleCuration),
+            ("builtin geometry, scope and guide consistency", VerifyPatternGuides),
             ("ticket data period parsing", VerifyTicketDataPeriodParsing),
             ("anonymous Bili WBI search", VerifyAnonymousBiliWbiSearch),
             ("keyword video search disabled", VerifyKeywordVideoSearchDisabled),

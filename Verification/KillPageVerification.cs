@@ -106,6 +106,16 @@ internal static partial class VerificationSuite
         content.Measure(new Size(760, 680)); content.Arrange(new Rect(0, 0, 760, 680)); content.UpdateLayout();
         SaveKillPreview(content, "kill-details.png", 760, 680);
         details.Close();
+        foreach (string id in new[] { "B-G-R-008-HS", "B-G-R-011", "B-G-R-005" })
+        {
+            var guide = BuiltinPatternGuide.For(BuiltinRules.LoadAll().Single(r => r.RuleId == id))!;
+            var card = KillPatternGuideView.Build(guide);
+            card.Width = 610;
+            card.Measure(new Size(610, double.PositiveInfinity));
+            int cardHeight = (int)Math.Ceiling(card.DesiredSize.Height);
+            card.Arrange(new Rect(0, 0, 610, cardHeight)); card.UpdateLayout();
+            SaveKillPreview(card, $"pattern-{id}.png", 610, cardHeight);
+        }
         page.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
 
         var preview = new KillPage(data, new ListRuleRepository(BuiltinRules.LoadAll().Cast<IKillRule>().ToArray()),
