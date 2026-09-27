@@ -1,4 +1,6 @@
-if (args.FirstOrDefault() == "--pattern-check")
+if (args.FirstOrDefault() == "--geometry-optimization-audit")
+    GeometryOptimizationAudit.Run(args[1], args[2]);
+else if (args.FirstOrDefault() == "--pattern-check")
 {
     VerificationSuite.VerifyPatternGuides();
     if (args.Length > 1) VerificationSuite.ExportPatternGuides(args[1]);

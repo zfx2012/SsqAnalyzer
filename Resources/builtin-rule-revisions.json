@@ -190,5 +190,15 @@
       "Maximum": 22,
       "Gap": 2
     }
+  },
+  "geometryConditions": {
+    "B-G-R-008-OE": {
+      "Direction": 0,
+      "MinimumGap": 2
+    },
+    "B-G-R-008-CY": {
+      "Direction": -1,
+      "MinimumGap": 3
+    }
   }
 }

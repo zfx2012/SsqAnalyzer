@@ -9,11 +9,12 @@ internal static partial class VerificationSuite
         var path = JsonSerializer.Deserialize<int[]>(JsonSerializer.Serialize(rule.Params["offsets"]))!;
         int target = JsonSerializer.Deserialize<int>(JsonSerializer.Serialize(rule.Params["target"]));
         bool blue = rule.BallType == BallType.Blue;
+        int direction = rule.Params.TryGetValue("direction", out var d) ? JsonSerializer.Deserialize<int>(JsonSerializer.Serialize(d)) : 0;
         if (index < path.Length) return [];
         IEnumerable<int> Balls(DrawRecord r) => blue ? new[] { r.BlueBall } : r.RedBalls;
         var rows = data.Skip(index - path.Length).Take(path.Length).Select(r => Balls(r).ToHashSet()).ToArray();
         var result = new SortedSet<int>();
-        foreach (int first in rows[0]) foreach (int sign in new[] { 1, -1 })
+        foreach (int first in rows[0]) foreach (int sign in direction == 0 ? new[] { 1, -1 } : new[] { direction })
         {
             int anchor = first - sign * path[0], candidate = anchor + sign * target;
             if (candidate >= 1 && candidate <= (blue ? 16 : 33)
@@ -38,12 +39,14 @@ internal static partial class VerificationSuite
             Assert(executor.Execute(snapshot, builder.Build(sample, 159)).KilledBalls.SequenceEqual(executor.Execute(rule, builder.Build(sample, 159)).KilledBalls), "submitted geometry definition replays identically");
             var path = JsonSerializer.Deserialize<int[]>(JsonSerializer.Serialize(rule.Params["offsets"]))!;
             int target = Convert.ToInt32(rule.Params["target"]);
+            int direction = rule.Params.TryGetValue("direction", out var d) ? Convert.ToInt32(d) : 0;
             foreach (int sign in new[] { 1, -1 })
             {
                 int origin = 1 - path.Append(target).Min(v => sign * v);
                 var records = path.Select((offset,i) => new DrawRecord { Period=2026001+i, DrawDate=new DateTime(2026,1,1).AddDays(i),
-                    RedBalls=new[]{origin+sign*offset,20,22,24,26,28}.Order().ToArray(), BlueBall=origin+sign*offset }).ToArray();
-                Assert(executor.Execute(rule,builder.Build(records,records.Length)).KilledBalls.Contains(origin+sign*target), "positive and mirrored geometry fixture");
+                    RedBalls=Enumerable.Range(1,33).Where(v => v > Math.Max(path.Append(target).Max(), -path.Append(target).Min()) + 2).TakeLast(5).Append(origin+sign*offset).Distinct().Order().ToArray(), BlueBall=origin+sign*offset }).ToArray();
+                bool expectedDirection = direction == 0 || direction == sign;
+                Assert(executor.Execute(rule,builder.Build(records,records.Length)).KilledBalls.Contains(origin+sign*target) == expectedDirection, "positive and permitted/rejected mirrored geometry fixture");
                 Assert(executor.Execute(rule,builder.Build(records,records.Length-1)).KilledBalls.Count == 0, "insufficient rows never trigger");
                 records[0].RedBalls=new[]{17,19,21,23,25,27}; records[0].BlueBall=records[0].BlueBall==16?15:16;
                 Assert(!executor.Execute(rule,builder.Build(records,records.Length)).KilledBalls.Contains(origin+sign*target), "broken required point removes fixture target");

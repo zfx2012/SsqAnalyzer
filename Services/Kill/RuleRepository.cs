@@ -215,7 +215,7 @@ public sealed class RuleRepository : IRuleRepository
     /// <summary>
     /// 准确率门槛判定（架构 §3.5/§3.6 注解）：
     /// 若 stat.Accuracy &lt; 对应球种的固定门槛 且 !rule.ForceEnabled → rule.IsEnabled = false。
-    /// 门槛判定使用最近完成的窗口；样本不足或执行失败不自动禁用。
+    /// 门槛判定使用最近完成的窗口；不足次数按全部实际触发判定，无触发或执行失败不自动禁用。
     /// </summary>
     public void ApplyAccuracyGate(KillRule rule)
     {

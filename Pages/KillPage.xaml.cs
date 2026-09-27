@@ -429,13 +429,13 @@ namespace SsqAnalyzer.Pages
                 // TriggeredCount == 0 → 该窗口从未回测（或从未触发）；> 0 → 回测了但触发次数不够
                 if (w.TriggeredCount == 0)
                     return ("无有效样本", (Brush)Application.Current.FindResource("TextTertiary"), true);
-                return ("样本不足", (Brush)Application.Current.FindResource("TextTertiary"), true);
+                return ($"{w.Accuracy:P1} · 全{w.TriggeredCount}次", (Brush)Application.Current.FindResource("Accent"), false);
             }
 
             return ($"{w.Accuracy:P1}", (Brush)Application.Current.FindResource("Accent"), false);
         }
 
-        /// <summary>门槛判定：按 _periodCount 选中的窗口是否达标；样本不足视为未判定 → 返回 true 不阻塞启用。</summary>
+        /// <summary>门槛判定：未凑满窗口时按全部实际触发计算；无触发、异常或旧版本不作判定。</summary>
         private bool IsGatePassed(IKillRule rule)
         {
             var stats = rule.BacktestStats;

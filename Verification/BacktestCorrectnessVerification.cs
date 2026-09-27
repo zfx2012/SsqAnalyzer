@@ -48,6 +48,7 @@ internal static partial class VerificationSuite
             var result = Engine(accurate).Run(rule, BacktestWindow.All);
             Assert(result.SampleInsufficient == (count < 30), $"all-history minimum samples: {count}");
             Assert(result.EvaluatedCount == count && result.TriggeredCount == count, "coverage includes attempted periods");
+            Assert(rule.BacktestStats!.WindowAll.IsUsable == (count > 0), "nonempty all-history sample is usable regardless of count");
         }
         data.SetRecords(records);
         var noTrigger = Engine(new DiagnosticExecutor(_ => Array.Empty<int>())).Run(rule, BacktestWindow.All);

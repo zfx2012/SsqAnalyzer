@@ -264,7 +264,7 @@ public partial class AddRuleWindow : Window
             if (stat.FailureCount > 0)
                 SetStatus($"回测存在执行异常：检查 {stat.EvaluatedCount} 期，失败 {stat.FailureCount} 次；结果不参与达标判断。{stat.LastExecutionError}", ok: false);
             else if (stat.SampleInsufficient)
-                SetStatus($"回测完成：触发 {stat.TriggeredCount} 次（样本不足）· 准确率 {stat.Accuracy:P1}",
+                SetStatus(stat.TriggeredCount == 0 ? "回测完成：无触发，不参与门槛判断" : $"回测完成：按全部 {stat.TriggeredCount} 次触发计算 · 准确率 {stat.Accuracy:P1}",
                           ok: true);
             else
                 SetStatus($"回测完成：触发 {stat.TriggeredCount} 次 · 杀球 {stat.KillBallCount} · 准确率 {stat.Accuracy:P1} · 耗时 {FormatElapsed(stat.ElapsedMs)}",

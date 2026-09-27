@@ -82,7 +82,7 @@ public class KillRuleDetailWindow : Window
         {
             Text = $"当前查看：{(periodCount == 0 ? "全部历史" : $"近 {periodCount} 次触发")}\n"
                 + (rule.BacktestStats is null ? "尚未回测" : $"最近回测：{rule.BacktestStats.LastRunAt.ToLocalTime():yyyy-MM-dd HH:mm:ss}")
-                + "\n各窗口独立保存；全部窗口至少 30 次触发。失败结果不参与达标判定。",
+                + "\n各窗口独立保存；不足指定次数时按全部实际触发计算并参与门槛判断。无触发或执行失败不判定。",
             TextWrapping = TextWrapping.Wrap,
             Foreground = (Brush)Application.Current.FindResource("TextTertiary"),
             Margin = new Thickness(0, 0, 0, 8)
@@ -258,7 +258,7 @@ public class KillRuleDetailWindow : Window
                 wrong = (w.KillBallCount - w.CorrectBallCount).ToString();
                 acc = w.KillBallCount == 0 ? "—" : $"{w.Accuracy:P1}";
                 status = w.FailureCount > 0 ? $"失败 {w.FailureCount}"
-                    : w.SampleInsufficient ? (w.TriggeredCount == 0 ? "无触发" : "样本不足") : "充足";
+                    : w.SampleInsufficient ? (w.TriggeredCount == 0 ? "无触发" : $"全部{w.TriggeredCount}次") : "充足";
                 elapsed = w.ElapsedMs <= 0 ? "—" : (w.ElapsedMs < 1000 ? $"{w.ElapsedMs} ms" : $"{w.ElapsedMs / 1000.0:F2} s");
             }
 

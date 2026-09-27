@@ -1,0 +1,5452 @@
+{
+  "Through": 2026111,
+  "Count": 3508,
+  "DataFileSha256": "7fff348568e2e2a9e94004f3e2fb8b06b71fe12edb0c242b17d8b16f3d8bdcd1",
+  "Rules": [
+    {
+      "Id": "B-S-R-001",
+      "Before": {
+        "AllTriggers": 990,
+        "Triggers": 50,
+        "Killed": 54,
+        "Correct": 47,
+        "Accuracy": 0.8703703703703703
+      },
+      "After": {
+        "AllTriggers": 990,
+        "Triggers": 50,
+        "Killed": 54,
+        "Correct": 47,
+        "Accuracy": 0.8703703703703703
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-R-002",
+      "Before": {
+        "AllTriggers": 635,
+        "Triggers": 50,
+        "Killed": 53,
+        "Correct": 43,
+        "Accuracy": 0.8113207547169812
+      },
+      "After": {
+        "AllTriggers": 635,
+        "Triggers": 50,
+        "Killed": 53,
+        "Correct": 43,
+        "Accuracy": 0.8113207547169812
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              0,
+              0
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 635,
+            "Triggers": 50,
+            "Killed": 53,
+            "Correct": 43,
+            "Accuracy": 0.8113207547169812
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              0,
+              0
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 635,
+            "Triggers": 50,
+            "Killed": 53,
+            "Correct": 43,
+            "Accuracy": 0.8113207547169812
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              0,
+              0
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 635,
+            "Triggers": 50,
+            "Killed": 53,
+            "Correct": 43,
+            "Accuracy": 0.8113207547169812
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-R-003",
+      "Before": {
+        "AllTriggers": 1080,
+        "Triggers": 50,
+        "Killed": 59,
+        "Correct": 46,
+        "Accuracy": 0.7796610169491526
+      },
+      "After": {
+        "AllTriggers": 597,
+        "Triggers": 50,
+        "Killed": 52,
+        "Correct": 43,
+        "Accuracy": 0.8269230769230769
+      },
+      "Changed": true,
+      "Selected": {
+        "Parameters": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            2,
+            0
+          ],
+          "target": 2,
+          "blue": false,
+          "direction": 1
+        },
+        "Score": {
+          "AllTriggers": 597,
+          "Triggers": 50,
+          "Killed": 52,
+          "Correct": 43,
+          "Accuracy": 0.8269230769230769
+        },
+        "Eligible": true,
+        "Duplicate": false,
+        "Scale": "2/1"
+      },
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              0
+            ],
+            "target": 1,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 1080,
+            "Triggers": 50,
+            "Killed": 59,
+            "Correct": 46,
+            "Accuracy": 0.7796610169491526
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              0
+            ],
+            "target": 1,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 614,
+            "Triggers": 50,
+            "Killed": 54,
+            "Correct": 44,
+            "Accuracy": 0.8148148148148148
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              0
+            ],
+            "target": 1,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 610,
+            "Triggers": 50,
+            "Killed": 51,
+            "Correct": 41,
+            "Accuracy": 0.803921568627451
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              0
+            ],
+            "target": 2,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 1018,
+            "Triggers": 50,
+            "Killed": 62,
+            "Correct": 56,
+            "Accuracy": 0.9032258064516129
+          },
+          "Eligible": false,
+          "Duplicate": true,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              0
+            ],
+            "target": 2,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 554,
+            "Triggers": 50,
+            "Killed": 54,
+            "Correct": 46,
+            "Accuracy": 0.8518518518518519
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              0
+            ],
+            "target": 2,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 597,
+            "Triggers": 50,
+            "Killed": 52,
+            "Correct": 43,
+            "Accuracy": 0.8269230769230769
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "2/1"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-R-004",
+      "Before": {
+        "AllTriggers": 1018,
+        "Triggers": 50,
+        "Killed": 62,
+        "Correct": 56,
+        "Accuracy": 0.9032258064516129
+      },
+      "After": {
+        "AllTriggers": 1018,
+        "Triggers": 50,
+        "Killed": 62,
+        "Correct": 56,
+        "Accuracy": 0.9032258064516129
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-R-005",
+      "Before": {
+        "AllTriggers": 205,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Accuracy": 0.82
+      },
+      "After": {
+        "AllTriggers": 205,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Accuracy": 0.82
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-R-006",
+      "Before": {
+        "AllTriggers": 30,
+        "Triggers": 30,
+        "Killed": 30,
+        "Correct": 26,
+        "Accuracy": 0.8666666666666667
+      },
+      "After": {
+        "AllTriggers": 30,
+        "Triggers": 30,
+        "Killed": 30,
+        "Correct": 26,
+        "Accuracy": 0.8666666666666667
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-R-007",
+      "Before": {
+        "AllTriggers": 235,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 43,
+        "Accuracy": 0.86
+      },
+      "After": {
+        "AllTriggers": 235,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 43,
+        "Accuracy": 0.86
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-R-008",
+      "Before": {
+        "AllTriggers": 205,
+        "Triggers": 50,
+        "Killed": 54,
+        "Correct": 45,
+        "Accuracy": 0.8333333333333334
+      },
+      "After": {
+        "AllTriggers": 205,
+        "Triggers": 50,
+        "Killed": 54,
+        "Correct": 45,
+        "Accuracy": 0.8333333333333334
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-R-009",
+      "Before": {
+        "AllTriggers": 45,
+        "Triggers": 45,
+        "Killed": 46,
+        "Correct": 35,
+        "Accuracy": 0.7608695652173914
+      },
+      "After": {
+        "AllTriggers": 45,
+        "Triggers": 45,
+        "Killed": 46,
+        "Correct": 35,
+        "Accuracy": 0.7608695652173914
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              0,
+              0,
+              1,
+              1
+            ],
+            "target": 1,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 45,
+            "Triggers": 45,
+            "Killed": 46,
+            "Correct": 35,
+            "Accuracy": 0.7608695652173914
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              0,
+              0,
+              1,
+              1
+            ],
+            "target": 1,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 21,
+            "Triggers": 21,
+            "Killed": 21,
+            "Correct": 16,
+            "Accuracy": 0.7619047619047619
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              0,
+              0,
+              1,
+              1
+            ],
+            "target": 1,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 26,
+            "Triggers": 26,
+            "Killed": 26,
+            "Correct": 20,
+            "Accuracy": 0.7692307692307693
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              0,
+              0,
+              2,
+              2
+            ],
+            "target": 2,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 42,
+            "Triggers": 42,
+            "Killed": 43,
+            "Correct": 35,
+            "Accuracy": 0.813953488372093
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              0,
+              0,
+              2,
+              2
+            ],
+            "target": 2,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 19,
+            "Triggers": 19,
+            "Killed": 20,
+            "Correct": 18,
+            "Accuracy": 0.9
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              0,
+              0,
+              2,
+              2
+            ],
+            "target": 2,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 23,
+            "Triggers": 23,
+            "Killed": 23,
+            "Correct": 17,
+            "Accuracy": 0.7391304347826086
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-R-010",
+      "Before": {
+        "AllTriggers": 213,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 35,
+        "Accuracy": 0.7
+      },
+      "After": {
+        "AllTriggers": 108,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 45,
+        "Accuracy": 0.9
+      },
+      "Changed": true,
+      "Selected": {
+        "Parameters": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            2,
+            0,
+            2
+          ],
+          "target": 0,
+          "blue": false,
+          "direction": -1
+        },
+        "Score": {
+          "AllTriggers": 108,
+          "Triggers": 50,
+          "Killed": 50,
+          "Correct": 45,
+          "Accuracy": 0.9
+        },
+        "Eligible": true,
+        "Duplicate": false,
+        "Scale": "2/1"
+      },
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 213,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 35,
+            "Accuracy": 0.7
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 115,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 40,
+            "Accuracy": 0.8
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 101,
+            "Triggers": 50,
+            "Killed": 51,
+            "Correct": 43,
+            "Accuracy": 0.8431372549019608
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              0,
+              2
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 208,
+            "Triggers": 50,
+            "Killed": 51,
+            "Correct": 47,
+            "Accuracy": 0.9215686274509803
+          },
+          "Eligible": false,
+          "Duplicate": true,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              0,
+              2
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 108,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 45,
+            "Accuracy": 0.9
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              0,
+              2
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 102,
+            "Triggers": 50,
+            "Killed": 51,
+            "Correct": 45,
+            "Accuracy": 0.8823529411764706
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-R-011",
+      "Before": {
+        "AllTriggers": 208,
+        "Triggers": 50,
+        "Killed": 51,
+        "Correct": 47,
+        "Accuracy": 0.9215686274509803
+      },
+      "After": {
+        "AllTriggers": 208,
+        "Triggers": 50,
+        "Killed": 51,
+        "Correct": 47,
+        "Accuracy": 0.9215686274509803
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-R-012",
+      "Before": {
+        "AllTriggers": 237,
+        "Triggers": 50,
+        "Killed": 52,
+        "Correct": 46,
+        "Accuracy": 0.8846153846153846
+      },
+      "After": {
+        "AllTriggers": 237,
+        "Triggers": 50,
+        "Killed": 52,
+        "Correct": 46,
+        "Accuracy": 0.8846153846153846
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-R-013",
+      "Before": {
+        "AllTriggers": 45,
+        "Triggers": 45,
+        "Killed": 45,
+        "Correct": 37,
+        "Accuracy": 0.8222222222222222
+      },
+      "After": {
+        "AllTriggers": 45,
+        "Triggers": 45,
+        "Killed": 45,
+        "Correct": 37,
+        "Accuracy": 0.8222222222222222
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-R-014",
+      "Before": {
+        "AllTriggers": 56,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Accuracy": 0.82
+      },
+      "After": {
+        "AllTriggers": 56,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Accuracy": 0.82
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-R-015",
+      "Before": {
+        "AllTriggers": 37,
+        "Triggers": 37,
+        "Killed": 37,
+        "Correct": 28,
+        "Accuracy": 0.7567567567567568
+      },
+      "After": {
+        "AllTriggers": 37,
+        "Triggers": 37,
+        "Killed": 37,
+        "Correct": 28,
+        "Accuracy": 0.7567567567567568
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              4,
+              0,
+              2
+            ],
+            "target": 4,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 37,
+            "Triggers": 37,
+            "Killed": 37,
+            "Correct": 28,
+            "Accuracy": 0.7567567567567568
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              4,
+              0,
+              2
+            ],
+            "target": 4,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 26,
+            "Triggers": 26,
+            "Killed": 26,
+            "Correct": 21,
+            "Accuracy": 0.8076923076923077
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              4,
+              0,
+              2
+            ],
+            "target": 4,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 11,
+            "Triggers": 11,
+            "Killed": 11,
+            "Correct": 7,
+            "Accuracy": 0.6363636363636364
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              4,
+              8,
+              0,
+              4
+            ],
+            "target": 8,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 29,
+            "Triggers": 29,
+            "Killed": 29,
+            "Correct": 20,
+            "Accuracy": 0.6896551724137931
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              4,
+              8,
+              0,
+              4
+            ],
+            "target": 8,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 14,
+            "Triggers": 14,
+            "Killed": 14,
+            "Correct": 9,
+            "Accuracy": 0.6428571428571429
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              4,
+              8,
+              0,
+              4
+            ],
+            "target": 8,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 15,
+            "Triggers": 15,
+            "Killed": 15,
+            "Correct": 11,
+            "Accuracy": 0.7333333333333333
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              2,
+              0,
+              1
+            ],
+            "target": 2,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 56,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 41,
+            "Accuracy": 0.82
+          },
+          "Eligible": false,
+          "Duplicate": true,
+          "Scale": "1/2"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              2,
+              0,
+              1
+            ],
+            "target": 2,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 28,
+            "Triggers": 28,
+            "Killed": 28,
+            "Correct": 21,
+            "Accuracy": 0.75
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/2"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              2,
+              0,
+              1
+            ],
+            "target": 2,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 29,
+            "Triggers": 29,
+            "Killed": 29,
+            "Correct": 25,
+            "Accuracy": 0.8620689655172413
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/2"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-R-016",
+      "Before": {
+        "AllTriggers": 174,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 39,
+        "Accuracy": 0.78
+      },
+      "After": {
+        "AllTriggers": 88,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Accuracy": 0.82
+      },
+      "Changed": true,
+      "Selected": {
+        "Parameters": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "target": 4,
+          "blue": false,
+          "direction": 1
+        },
+        "Score": {
+          "AllTriggers": 88,
+          "Triggers": 50,
+          "Killed": 50,
+          "Correct": 41,
+          "Accuracy": 0.82
+        },
+        "Eligible": true,
+        "Duplicate": false,
+        "Scale": "1/1"
+      },
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "target": 4,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 174,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 39,
+            "Accuracy": 0.78
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "target": 4,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 87,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 41,
+            "Accuracy": 0.82
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "target": 4,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 88,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 41,
+            "Accuracy": 0.82
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              4,
+              6
+            ],
+            "target": 8,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 151,
+            "Triggers": 50,
+            "Killed": 51,
+            "Correct": 39,
+            "Accuracy": 0.7647058823529411
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              4,
+              6
+            ],
+            "target": 8,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 86,
+            "Triggers": 50,
+            "Killed": 52,
+            "Correct": 40,
+            "Accuracy": 0.7692307692307693
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              4,
+              6
+            ],
+            "target": 8,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 66,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 41,
+            "Accuracy": 0.82
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-R-017",
+      "Before": {
+        "AllTriggers": 958,
+        "Triggers": 50,
+        "Killed": 54,
+        "Correct": 48,
+        "Accuracy": 0.8888888888888888
+      },
+      "After": {
+        "AllTriggers": 958,
+        "Triggers": 50,
+        "Killed": 54,
+        "Correct": 48,
+        "Accuracy": 0.8888888888888888
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-R-018",
+      "Before": {
+        "AllTriggers": 1000,
+        "Triggers": 50,
+        "Killed": 55,
+        "Correct": 40,
+        "Accuracy": 0.7272727272727273
+      },
+      "After": {
+        "AllTriggers": 798,
+        "Triggers": 50,
+        "Killed": 54,
+        "Correct": 51,
+        "Accuracy": 0.9444444444444444
+      },
+      "Changed": true,
+      "Selected": {
+        "Parameters": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            6,
+            10
+          ],
+          "target": 12,
+          "blue": false,
+          "direction": 0
+        },
+        "Score": {
+          "AllTriggers": 798,
+          "Triggers": 50,
+          "Killed": 54,
+          "Correct": 51,
+          "Accuracy": 0.9444444444444444
+        },
+        "Eligible": true,
+        "Duplicate": false,
+        "Scale": "2/1"
+      },
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              3,
+              5
+            ],
+            "target": 6,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 1000,
+            "Triggers": 50,
+            "Killed": 55,
+            "Correct": 40,
+            "Accuracy": 0.7272727272727273
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              3,
+              5
+            ],
+            "target": 6,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 563,
+            "Triggers": 50,
+            "Killed": 53,
+            "Correct": 39,
+            "Accuracy": 0.7358490566037735
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              3,
+              5
+            ],
+            "target": 6,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 511,
+            "Triggers": 50,
+            "Killed": 52,
+            "Correct": 44,
+            "Accuracy": 0.8461538461538461
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              6,
+              10
+            ],
+            "target": 12,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 798,
+            "Triggers": 50,
+            "Killed": 54,
+            "Correct": 51,
+            "Accuracy": 0.9444444444444444
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              6,
+              10
+            ],
+            "target": 12,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 437,
+            "Triggers": 50,
+            "Killed": 53,
+            "Correct": 45,
+            "Accuracy": 0.8490566037735849
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              6,
+              10
+            ],
+            "target": 12,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 411,
+            "Triggers": 50,
+            "Killed": 53,
+            "Correct": 45,
+            "Accuracy": 0.8490566037735849
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-R-019",
+      "Before": {
+        "AllTriggers": 202,
+        "Triggers": 50,
+        "Killed": 52,
+        "Correct": 41,
+        "Accuracy": 0.7884615384615384
+      },
+      "After": {
+        "AllTriggers": 151,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 43,
+        "Accuracy": 0.86
+      },
+      "Changed": true,
+      "Selected": {
+        "Parameters": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            2,
+            6,
+            8
+          ],
+          "target": 12,
+          "blue": false,
+          "direction": 0
+        },
+        "Score": {
+          "AllTriggers": 151,
+          "Triggers": 50,
+          "Killed": 50,
+          "Correct": 43,
+          "Accuracy": 0.86
+        },
+        "Eligible": true,
+        "Duplicate": false,
+        "Scale": "2/1"
+      },
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              3,
+              4
+            ],
+            "target": 6,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 202,
+            "Triggers": 50,
+            "Killed": 52,
+            "Correct": 41,
+            "Accuracy": 0.7884615384615384
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              3,
+              4
+            ],
+            "target": 6,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 100,
+            "Triggers": 50,
+            "Killed": 51,
+            "Correct": 42,
+            "Accuracy": 0.8235294117647058
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              3,
+              4
+            ],
+            "target": 6,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 105,
+            "Triggers": 50,
+            "Killed": 51,
+            "Correct": 40,
+            "Accuracy": 0.7843137254901961
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              6,
+              8
+            ],
+            "target": 12,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 151,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 43,
+            "Accuracy": 0.86
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              6,
+              8
+            ],
+            "target": 12,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 79,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 45,
+            "Accuracy": 0.9
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              6,
+              8
+            ],
+            "target": 12,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 74,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 40,
+            "Accuracy": 0.8
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-R-020",
+      "Before": {
+        "AllTriggers": 207,
+        "Triggers": 50,
+        "Killed": 51,
+        "Correct": 44,
+        "Accuracy": 0.8627450980392157
+      },
+      "After": {
+        "AllTriggers": 207,
+        "Triggers": 50,
+        "Killed": 51,
+        "Correct": 44,
+        "Accuracy": 0.8627450980392157
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-R-021",
+      "Before": {
+        "AllTriggers": 206,
+        "Triggers": 50,
+        "Killed": 52,
+        "Correct": 40,
+        "Accuracy": 0.7692307692307693
+      },
+      "After": {
+        "AllTriggers": 125,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 42,
+        "Accuracy": 0.84
+      },
+      "Changed": true,
+      "Selected": {
+        "Parameters": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            2,
+            0,
+            -2
+          ],
+          "target": 0,
+          "blue": false,
+          "direction": 1
+        },
+        "Score": {
+          "AllTriggers": 125,
+          "Triggers": 50,
+          "Killed": 50,
+          "Correct": 42,
+          "Accuracy": 0.84
+        },
+        "Eligible": true,
+        "Duplicate": false,
+        "Scale": "2/1"
+      },
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              0,
+              -1
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 206,
+            "Triggers": 50,
+            "Killed": 52,
+            "Correct": 40,
+            "Accuracy": 0.7692307692307693
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              0,
+              -1
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 112,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 39,
+            "Accuracy": 0.78
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              0,
+              -1
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 101,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 42,
+            "Accuracy": 0.84
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              0,
+              -2
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 222,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 37,
+            "Accuracy": 0.74
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              0,
+              -2
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 97,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 44,
+            "Accuracy": 0.88
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              0,
+              -2
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 125,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 42,
+            "Accuracy": 0.84
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "2/1"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-R-022",
+      "Before": {
+        "AllTriggers": 222,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 37,
+        "Accuracy": 0.74
+      },
+      "After": {
+        "AllTriggers": 193,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 43,
+        "Accuracy": 0.86
+      },
+      "Changed": true,
+      "Selected": {
+        "Parameters": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            4,
+            0,
+            -4
+          ],
+          "target": 0,
+          "blue": false,
+          "direction": 0
+        },
+        "Score": {
+          "AllTriggers": 193,
+          "Triggers": 50,
+          "Killed": 50,
+          "Correct": 43,
+          "Accuracy": 0.86
+        },
+        "Eligible": true,
+        "Duplicate": false,
+        "Scale": "2/1"
+      },
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              0,
+              -2
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 222,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 37,
+            "Accuracy": 0.74
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              0,
+              -2
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 97,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 44,
+            "Accuracy": 0.88
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              0,
+              -2
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 125,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 42,
+            "Accuracy": 0.84
+          },
+          "Eligible": false,
+          "Duplicate": true,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              4,
+              0,
+              -4
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 193,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 43,
+            "Accuracy": 0.86
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              4,
+              0,
+              -4
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 110,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 44,
+            "Accuracy": 0.88
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              4,
+              0,
+              -4
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 89,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 43,
+            "Accuracy": 0.86
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              0,
+              -1
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 206,
+            "Triggers": 50,
+            "Killed": 52,
+            "Correct": 40,
+            "Accuracy": 0.7692307692307693
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/2"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              0,
+              -1
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 112,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 39,
+            "Accuracy": 0.78
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/2"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              0,
+              -1
+            ],
+            "target": 0,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 101,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 42,
+            "Accuracy": 0.84
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/2"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-R-023",
+      "Before": {
+        "AllTriggers": 43,
+        "Triggers": 43,
+        "Killed": 43,
+        "Correct": 42,
+        "Accuracy": 0.9767441860465116
+      },
+      "After": {
+        "AllTriggers": 43,
+        "Triggers": 43,
+        "Killed": 43,
+        "Correct": 42,
+        "Accuracy": 0.9767441860465116
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-R-024",
+      "Before": {
+        "AllTriggers": 188,
+        "Triggers": 50,
+        "Killed": 51,
+        "Correct": 45,
+        "Accuracy": 0.8823529411764706
+      },
+      "After": {
+        "AllTriggers": 188,
+        "Triggers": 50,
+        "Killed": 51,
+        "Correct": 45,
+        "Accuracy": 0.8823529411764706
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-R-025",
+      "Before": {
+        "AllTriggers": 200,
+        "Triggers": 50,
+        "Killed": 56,
+        "Correct": 41,
+        "Accuracy": 0.7321428571428571
+      },
+      "After": {
+        "AllTriggers": 182,
+        "Triggers": 50,
+        "Killed": 55,
+        "Correct": 49,
+        "Accuracy": 0.8909090909090909
+      },
+      "Changed": true,
+      "Selected": {
+        "Parameters": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            2,
+            2,
+            2
+          ],
+          "target": 4,
+          "blue": false,
+          "direction": 0
+        },
+        "Score": {
+          "AllTriggers": 182,
+          "Triggers": 50,
+          "Killed": 55,
+          "Correct": 49,
+          "Accuracy": 0.8909090909090909
+        },
+        "Eligible": true,
+        "Duplicate": false,
+        "Scale": "2/1"
+      },
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              1,
+              1
+            ],
+            "target": 2,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 200,
+            "Triggers": 50,
+            "Killed": 56,
+            "Correct": 41,
+            "Accuracy": 0.7321428571428571
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              1,
+              1
+            ],
+            "target": 2,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 110,
+            "Triggers": 50,
+            "Killed": 51,
+            "Correct": 37,
+            "Accuracy": 0.7254901960784313
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1,
+              1,
+              1
+            ],
+            "target": 2,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 109,
+            "Triggers": 50,
+            "Killed": 51,
+            "Correct": 38,
+            "Accuracy": 0.7450980392156863
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              2,
+              2
+            ],
+            "target": 4,
+            "blue": false,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 182,
+            "Triggers": 50,
+            "Killed": 55,
+            "Correct": 49,
+            "Accuracy": 0.8909090909090909
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              2,
+              2
+            ],
+            "target": 4,
+            "blue": false,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 106,
+            "Triggers": 50,
+            "Killed": 51,
+            "Correct": 39,
+            "Accuracy": 0.7647058823529411
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2,
+              2,
+              2
+            ],
+            "target": 4,
+            "blue": false,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 94,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 44,
+            "Accuracy": 0.88
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-B-001",
+      "Before": {
+        "AllTriggers": 242,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "After": {
+        "AllTriggers": 242,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-B-002",
+      "Before": {
+        "AllTriggers": 382,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "After": {
+        "AllTriggers": 382,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-B-003",
+      "Before": {
+        "AllTriggers": 321,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94
+      },
+      "After": {
+        "AllTriggers": 321,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-B-004",
+      "Before": {
+        "AllTriggers": 271,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "After": {
+        "AllTriggers": 271,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-B-005",
+      "Before": {
+        "AllTriggers": 209,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 45,
+        "Accuracy": 0.9
+      },
+      "After": {
+        "AllTriggers": 167,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "Changed": true,
+      "Selected": {
+        "Parameters": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            2
+          ],
+          "target": 4,
+          "blue": true,
+          "direction": 1
+        },
+        "Score": {
+          "AllTriggers": 167,
+          "Triggers": 50,
+          "Killed": 50,
+          "Correct": 48,
+          "Accuracy": 0.96
+        },
+        "Eligible": true,
+        "Duplicate": false,
+        "Scale": "1/2"
+      },
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              4
+            ],
+            "target": 8,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 209,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 45,
+            "Accuracy": 0.9
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              4
+            ],
+            "target": 8,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 95,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 46,
+            "Accuracy": 0.92
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              4
+            ],
+            "target": 8,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 114,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 48,
+            "Accuracy": 0.96
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2
+            ],
+            "target": 4,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 321,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 47,
+            "Accuracy": 0.94
+          },
+          "Eligible": false,
+          "Duplicate": true,
+          "Scale": "1/2"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2
+            ],
+            "target": 4,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 154,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 45,
+            "Accuracy": 0.9
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/2"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2
+            ],
+            "target": 4,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 167,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 48,
+            "Accuracy": 0.96
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/2"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-B-006",
+      "Before": {
+        "AllTriggers": 151,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94
+      },
+      "After": {
+        "AllTriggers": 151,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-B-007",
+      "Before": {
+        "AllTriggers": 102,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 49,
+        "Accuracy": 0.98
+      },
+      "After": {
+        "AllTriggers": 102,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 49,
+        "Accuracy": 0.98
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-B-008",
+      "Before": {
+        "AllTriggers": 55,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94
+      },
+      "After": {
+        "AllTriggers": 55,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-B-009",
+      "Before": {
+        "AllTriggers": 405,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94
+      },
+      "After": {
+        "AllTriggers": 405,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-B-010",
+      "Before": {
+        "AllTriggers": 364,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 43,
+        "Accuracy": 0.86
+      },
+      "After": {
+        "AllTriggers": 364,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 43,
+        "Accuracy": 0.86
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 364,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 43,
+            "Accuracy": 0.86
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 171,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 45,
+            "Accuracy": 0.9
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              2
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 193,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 45,
+            "Accuracy": 0.9
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              4
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 331,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 48,
+            "Accuracy": 0.96
+          },
+          "Eligible": false,
+          "Duplicate": true,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              4
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 152,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 48,
+            "Accuracy": 0.96
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              4
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 179,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 47,
+            "Accuracy": 0.94
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 405,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 47,
+            "Accuracy": 0.94
+          },
+          "Eligible": false,
+          "Duplicate": true,
+          "Scale": "1/2"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 202,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 46,
+            "Accuracy": 0.92
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/2"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              1
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 203,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 46,
+            "Accuracy": 0.92
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/2"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-B-011",
+      "Before": {
+        "AllTriggers": 347,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "After": {
+        "AllTriggers": 347,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-B-012",
+      "Before": {
+        "AllTriggers": 331,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "After": {
+        "AllTriggers": 331,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-B-013",
+      "Before": {
+        "AllTriggers": 268,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 45,
+        "Accuracy": 0.9
+      },
+      "After": {
+        "AllTriggers": 268,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 45,
+        "Accuracy": 0.9
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              5
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 268,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 45,
+            "Accuracy": 0.9
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              5
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 140,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 46,
+            "Accuracy": 0.92
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              5
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 128,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 48,
+            "Accuracy": 0.96
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              10
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 183,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 47,
+            "Accuracy": 0.94
+          },
+          "Eligible": false,
+          "Duplicate": true,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              10
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 91,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 47,
+            "Accuracy": 0.94
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              10
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 92,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 44,
+            "Accuracy": 0.88
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-B-014",
+      "Before": {
+        "AllTriggers": 261,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92
+      },
+      "After": {
+        "AllTriggers": 175,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "Changed": true,
+      "Selected": {
+        "Parameters": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            3
+          ],
+          "target": 0,
+          "blue": true,
+          "direction": 1
+        },
+        "Score": {
+          "AllTriggers": 175,
+          "Triggers": 50,
+          "Killed": 50,
+          "Correct": 48,
+          "Accuracy": 0.96
+        },
+        "Eligible": true,
+        "Duplicate": false,
+        "Scale": "1/2"
+      },
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              6
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 261,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 46,
+            "Accuracy": 0.92
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              6
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 142,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 47,
+            "Accuracy": 0.94
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              6
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 119,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 46,
+            "Accuracy": 0.92
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              12
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 103,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 45,
+            "Accuracy": 0.9
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              12
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 51,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 49,
+            "Accuracy": 0.98
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              12
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 52,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 45,
+            "Accuracy": 0.9
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              3
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 347,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 48,
+            "Accuracy": 0.96
+          },
+          "Eligible": false,
+          "Duplicate": true,
+          "Scale": "1/2"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              3
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 172,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 46,
+            "Accuracy": 0.92
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/2"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              3
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 175,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 48,
+            "Accuracy": 0.96
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/2"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-B-015",
+      "Before": {
+        "AllTriggers": 243,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92
+      },
+      "After": {
+        "AllTriggers": 129,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94
+      },
+      "Changed": true,
+      "Selected": {
+        "Parameters": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            7
+          ],
+          "target": 0,
+          "blue": true,
+          "direction": 1
+        },
+        "Score": {
+          "AllTriggers": 129,
+          "Triggers": 50,
+          "Killed": 50,
+          "Correct": 47,
+          "Accuracy": 0.94
+        },
+        "Eligible": true,
+        "Duplicate": false,
+        "Scale": "1/1"
+      },
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              7
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 243,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 46,
+            "Accuracy": 0.92
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              7
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 114,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 43,
+            "Accuracy": 0.86
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              7
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 129,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 47,
+            "Accuracy": 0.94
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              14
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 65,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 46,
+            "Accuracy": 0.92
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              14
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 29,
+            "Triggers": 29,
+            "Killed": 29,
+            "Correct": 27,
+            "Accuracy": 0.9310344827586207
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              14
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 36,
+            "Triggers": 36,
+            "Killed": 36,
+            "Correct": 34,
+            "Accuracy": 0.9444444444444444
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "2/1"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-B-016",
+      "Before": {
+        "AllTriggers": 208,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92
+      },
+      "After": {
+        "AllTriggers": 179,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94
+      },
+      "Changed": true,
+      "Selected": {
+        "Parameters": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            4
+          ],
+          "target": 0,
+          "blue": true,
+          "direction": 1
+        },
+        "Score": {
+          "AllTriggers": 179,
+          "Triggers": 50,
+          "Killed": 50,
+          "Correct": 47,
+          "Accuracy": 0.94
+        },
+        "Eligible": true,
+        "Duplicate": false,
+        "Scale": "1/2"
+      },
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              8
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 208,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 46,
+            "Accuracy": 0.92
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              8
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 112,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 47,
+            "Accuracy": 0.94
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              8
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 96,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 47,
+            "Accuracy": 0.94
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              4
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 331,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 48,
+            "Accuracy": 0.96
+          },
+          "Eligible": false,
+          "Duplicate": true,
+          "Scale": "1/2"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              4
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 152,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 48,
+            "Accuracy": 0.96
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/2"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              4
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 179,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 47,
+            "Accuracy": 0.94
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/2"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-B-017",
+      "Before": {
+        "AllTriggers": 198,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94
+      },
+      "After": {
+        "AllTriggers": 198,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-B-018",
+      "Before": {
+        "AllTriggers": 183,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94
+      },
+      "After": {
+        "AllTriggers": 183,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-B-019",
+      "Before": {
+        "AllTriggers": 151,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94
+      },
+      "After": {
+        "AllTriggers": 151,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-B-020",
+      "Before": {
+        "AllTriggers": 103,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 45,
+        "Accuracy": 0.9
+      },
+      "After": {
+        "AllTriggers": 142,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94
+      },
+      "Changed": true,
+      "Selected": {
+        "Parameters": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            6
+          ],
+          "target": 0,
+          "blue": true,
+          "direction": -1
+        },
+        "Score": {
+          "AllTriggers": 142,
+          "Triggers": 50,
+          "Killed": 50,
+          "Correct": 47,
+          "Accuracy": 0.94
+        },
+        "Eligible": true,
+        "Duplicate": false,
+        "Scale": "1/2"
+      },
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              12
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 103,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 45,
+            "Accuracy": 0.9
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              12
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 51,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 49,
+            "Accuracy": 0.98
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              12
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 52,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 45,
+            "Accuracy": 0.9
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              6
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 261,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 46,
+            "Accuracy": 0.92
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/2"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              6
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 142,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 47,
+            "Accuracy": 0.94
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/2"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              6
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 119,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 46,
+            "Accuracy": 0.92
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/2"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-B-021",
+      "Before": {
+        "AllTriggers": 107,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 45,
+        "Accuracy": 0.9
+      },
+      "After": {
+        "AllTriggers": 58,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 49,
+        "Accuracy": 0.98
+      },
+      "Changed": true,
+      "Selected": {
+        "Parameters": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            13
+          ],
+          "target": 0,
+          "blue": true,
+          "direction": -1
+        },
+        "Score": {
+          "AllTriggers": 58,
+          "Triggers": 50,
+          "Killed": 50,
+          "Correct": 49,
+          "Accuracy": 0.98
+        },
+        "Eligible": true,
+        "Duplicate": false,
+        "Scale": "1/1"
+      },
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              13
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 107,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 45,
+            "Accuracy": 0.9
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              13
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 58,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 49,
+            "Accuracy": 0.98
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              13
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 49,
+            "Triggers": 49,
+            "Killed": 49,
+            "Correct": 41,
+            "Accuracy": 0.8367346938775511
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/1"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-B-022",
+      "Before": {
+        "AllTriggers": 65,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92
+      },
+      "After": {
+        "AllTriggers": 36,
+        "Triggers": 36,
+        "Killed": 36,
+        "Correct": 34,
+        "Accuracy": 0.9444444444444444
+      },
+      "Changed": true,
+      "Selected": {
+        "Parameters": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            14
+          ],
+          "target": 0,
+          "blue": true,
+          "direction": 1
+        },
+        "Score": {
+          "AllTriggers": 36,
+          "Triggers": 36,
+          "Killed": 36,
+          "Correct": 34,
+          "Accuracy": 0.9444444444444444
+        },
+        "Eligible": true,
+        "Duplicate": false,
+        "Scale": "1/1"
+      },
+      "Trials": [
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              14
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 65,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 46,
+            "Accuracy": 0.92
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              14
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 29,
+            "Triggers": 29,
+            "Killed": 29,
+            "Correct": 27,
+            "Accuracy": 0.9310344827586207
+          },
+          "Eligible": false,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              14
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 36,
+            "Triggers": 36,
+            "Killed": 36,
+            "Correct": 34,
+            "Accuracy": 0.9444444444444444
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/1"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              7
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 0
+          },
+          "Score": {
+            "AllTriggers": 243,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 46,
+            "Accuracy": 0.92
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/2"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              7
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": -1
+          },
+          "Score": {
+            "AllTriggers": 114,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 43,
+            "Accuracy": 0.86
+          },
+          "Eligible": true,
+          "Duplicate": false,
+          "Scale": "1/2"
+        },
+        {
+          "Parameters": {
+            "geometryVersion": 1,
+            "offsets": [
+              0,
+              7
+            ],
+            "target": 0,
+            "blue": true,
+            "direction": 1
+          },
+          "Score": {
+            "AllTriggers": 129,
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 47,
+            "Accuracy": 0.94
+          },
+          "Eligible": false,
+          "Duplicate": true,
+          "Scale": "1/2"
+        }
+      ]
+    },
+    {
+      "Id": "B-S-B-023",
+      "Before": {
+        "AllTriggers": 30,
+        "Triggers": 30,
+        "Killed": 30,
+        "Correct": 29,
+        "Accuracy": 0.9666666666666667
+      },
+      "After": {
+        "AllTriggers": 30,
+        "Triggers": 30,
+        "Killed": 30,
+        "Correct": 29,
+        "Accuracy": 0.9666666666666667
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-B-024",
+      "Before": {
+        "AllTriggers": 364,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "After": {
+        "AllTriggers": 364,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    },
+    {
+      "Id": "B-S-B-025",
+      "Before": {
+        "AllTriggers": 331,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 49,
+        "Accuracy": 0.98
+      },
+      "After": {
+        "AllTriggers": 331,
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 49,
+        "Accuracy": 0.98
+      },
+      "Changed": false,
+      "Selected": null,
+      "Trials": []
+    }
+  ],
+  "OriginalRules": [
+    {
+      "RuleId": "B-G-R-001",
+      "Name": "冷号杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 39,
+        "Evaluated": 57,
+        "Accuracy": 0.78
+      },
+      "WithoutFilter": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 38,
+        "Evaluated": 54,
+        "Accuracy": 0.76
+      },
+      "Candidates": [
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 1,
+            "MissThreshold": 10
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 38,
+            "Evaluated": 54,
+            "Accuracy": 0.76
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 1,
+            "MissThreshold": 12
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 39,
+            "Evaluated": 57,
+            "Accuracy": 0.78
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 1,
+            "MissThreshold": 14
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 39,
+            "Evaluated": 60,
+            "Accuracy": 0.78
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 1,
+            "MissThreshold": 16
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 40,
+            "Evaluated": 64,
+            "Accuracy": 0.8
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 1,
+            "MissThreshold": 18
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 40,
+            "Evaluated": 68,
+            "Accuracy": 0.8
+          }
+        }
+      ],
+      "Fingerprint": "0F42F4D4EBA4F19C3035EA2F61E4CD75FC337741BDE58580870DA8D7CF48C897"
+    },
+    {
+      "RuleId": "B-G-B-001",
+      "Name": "历史同期冷号杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 287,
+        "Correct": 269,
+        "Evaluated": 50,
+        "Accuracy": 0.9372822299651568
+      },
+      "WithoutFilter": null,
+      "Candidates": [
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 1,
+            "MissThreshold": 10
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 417,
+            "Correct": 392,
+            "Evaluated": 50,
+            "Accuracy": 0.9400479616306955
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 1,
+            "MissThreshold": 12
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 368,
+            "Correct": 346,
+            "Evaluated": 50,
+            "Accuracy": 0.9402173913043478
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 1,
+            "MissThreshold": 14
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 324,
+            "Correct": 303,
+            "Evaluated": 50,
+            "Accuracy": 0.9351851851851852
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 1,
+            "MissThreshold": 16
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 287,
+            "Correct": 269,
+            "Evaluated": 50,
+            "Accuracy": 0.9372822299651568
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 1,
+            "MissThreshold": 18
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 256,
+            "Correct": 240,
+            "Evaluated": 50,
+            "Accuracy": 0.9375
+          }
+        }
+      ],
+      "Fingerprint": "E472709F7CFFB8FE6368DFED3BEC09EDE807163E007CFCA9DD3F2B3FCDFA214B"
+    },
+    {
+      "RuleId": "B-G-R-002",
+      "Name": "三重及以上杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 75,
+        "Correct": 63,
+        "Evaluated": 64,
+        "Accuracy": 0.84
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "B4F3A137D32AA0C18F8F623815DD16AE98CA5B8A02B2DB38B76B47E87F5B6B7A"
+    },
+    {
+      "RuleId": "B-G-R-003",
+      "Name": "L形图形杀",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 116,
+        "Correct": 99,
+        "Evaluated": 188,
+        "Accuracy": 0.853448275862069
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "26AEDB6AB6B2B9FFE3E8832DE21E1FAD8B9F631BB1D190A08DA294B25F9C5D2C"
+    },
+    {
+      "RuleId": "B-G-R-004",
+      "Name": "倒L形图形杀",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 91,
+        "Correct": 76,
+        "Evaluated": 217,
+        "Accuracy": 0.8351648351648352
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "7A9CE5AC019D7E899A9AECAA4DEBC0C218DA4C89832D8B41C070E07EF50A5BEE"
+    },
+    {
+      "RuleId": "B-G-R-005",
+      "Name": "隔期交替杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 59,
+        "Correct": 51,
+        "Evaluated": 143,
+        "Accuracy": 0.864406779661017
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "E8AA553042C674818C9F3112F6EBA026CA3C92610BE420FFDFEA7A31A0D74151"
+    },
+    {
+      "RuleId": "B-G-R-006",
+      "Name": "重重对称杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Evaluated": 1038,
+        "Accuracy": 0.82
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "0563EFE0477515E9542D66B9256A0FC3B636274150F5711C1A92BA83226A6BC0"
+    },
+    {
+      "RuleId": "B-G-R-007",
+      "Name": "三角中心杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 51,
+        "Correct": 45,
+        "Evaluated": 848,
+        "Accuracy": 0.8823529411764706
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "8A509EB09494FFC919A7790A3A55AA5FE534F06ECB3B5179B204FE8405A3AF2D"
+    },
+    {
+      "RuleId": "B-G-R-008",
+      "Name": "平行四边形缺角杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 54,
+        "Correct": 45,
+        "Evaluated": 378,
+        "Accuracy": 0.8333333333333334
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "19BCF306A526A4338928382A1423D5CB634563586E5DA258757609C97AFD240E"
+    },
+    {
+      "RuleId": "B-G-B-002",
+      "Name": "蓝球重号杀",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Evaluated": 50,
+        "Accuracy": 0.96
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "AA27BDACC7731078DB0445BCB1623E41659D1ADB156F0B55CE6A999E8E229859"
+    },
+    {
+      "RuleId": "B-G-R-009",
+      "Name": "上期蓝号杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Evaluated": 50,
+        "Accuracy": 0.82
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "3B63B47388D44559711E94ECD7C810455B5633360C8D261898EA05F191D71C9E"
+    },
+    {
+      "RuleId": "B-G-R-010",
+      "Name": "三连号下方杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 156,
+        "Correct": 137,
+        "Evaluated": 638,
+        "Accuracy": 0.8782051282051282
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "FB7EAFF3A599F1967B02F914607358D24416ABFED5AE8739DBB892633599A02F"
+    },
+    {
+      "RuleId": "B-G-R-011",
+      "Name": "四斜连杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 53,
+        "Correct": 44,
+        "Evaluated": 250,
+        "Accuracy": 0.8301886792452831
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "3AF934A5965408BE7185DEBAED77590F5775A657EC796FBAE4BBB652687414B7"
+    },
+    {
+      "RuleId": "B-G-R-012",
+      "Name": "空心长方形杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 102,
+        "Correct": 84,
+        "Evaluated": 1023,
+        "Accuracy": 0.8235294117647058
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "430937CFB0D623804E6CA9608407A556D80703251D433E52A5D1F1ADFC1D5E3D"
+    },
+    {
+      "RuleId": "B-G-R-001-HS",
+      "Name": "冷号杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 42,
+        "Evaluated": 159,
+        "Accuracy": 0.84
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "D727561A334C18E3181ED5D907119BFAFD34F40C53FFDA042A9094B737125810"
+    },
+    {
+      "RuleId": "B-G-R-001-OE",
+      "Name": "冷号杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 40,
+        "Evaluated": 53,
+        "Accuracy": 0.8
+      },
+      "WithoutFilter": null,
+      "Candidates": [
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 1,
+            "MissThreshold": 10
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 40,
+            "Evaluated": 51,
+            "Accuracy": 0.8
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 1,
+            "MissThreshold": 12
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 40,
+            "Evaluated": 53,
+            "Accuracy": 0.8
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 1,
+            "MissThreshold": 14
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 40,
+            "Evaluated": 57,
+            "Accuracy": 0.8
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 1,
+            "MissThreshold": 16
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 40,
+            "Evaluated": 71,
+            "Accuracy": 0.8
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 1,
+            "MissThreshold": 18
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 50,
+            "Correct": 35,
+            "Evaluated": 99,
+            "Accuracy": 0.7
+          }
+        }
+      ],
+      "Fingerprint": "EDBE730419A7AF38F48ADFE6D4D9074DEB8C58E763A0E24DA3682575ADE87647"
+    },
+    {
+      "RuleId": "B-G-R-001-CY",
+      "Name": "冷号杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Evaluated": 124,
+        "Accuracy": 0.82
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "F1A3BAA01C366EEF7163EEB8CA66FB359109705E199C70789602AD9842A8954B"
+    },
+    {
+      "RuleId": "B-G-R-002-HS",
+      "Name": "三重及以上杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 58,
+        "Correct": 49,
+        "Evaluated": 144,
+        "Accuracy": 0.8448275862068966
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "FDF91C070BBA83FA7C5EFE2E8DB0B3EC2250E424A5AF150EF4EDDD5BC6240256"
+    },
+    {
+      "RuleId": "B-G-R-002-OE",
+      "Name": "三重及以上杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 55,
+        "Correct": 46,
+        "Evaluated": 367,
+        "Accuracy": 0.8363636363636363
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "B4D19F3303270095A53A17C0BADFF1FD4291A79BB9064CA81B3B1320B4B7D5AE"
+    },
+    {
+      "RuleId": "B-G-R-002-CY",
+      "Name": "三重及以上杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 62,
+        "Correct": 51,
+        "Evaluated": 99,
+        "Accuracy": 0.8225806451612904
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "B7EC8734F17399014EFE2F4E7D6DD3F6E9C3DBC4F9B1FB5D4667EA39383A629C"
+    },
+    {
+      "RuleId": "B-G-R-003-HS",
+      "Name": "L形图形杀（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 106,
+        "Correct": 87,
+        "Evaluated": 199,
+        "Accuracy": 0.8207547169811321
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "25C2150D72D9F338D3A8B7C2D967317CC598B65FA74AB80AC25BB1176F5B32F2"
+    },
+    {
+      "RuleId": "B-G-R-003-OE",
+      "Name": "L形图形杀（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 78,
+        "Correct": 66,
+        "Evaluated": 217,
+        "Accuracy": 0.8461538461538461
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "209A7862067931830A6D7958C2EA206158441ABF83E72AC47530791BD5172397"
+    },
+    {
+      "RuleId": "B-G-R-003-CY",
+      "Name": "L形图形杀（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 79,
+        "Correct": 66,
+        "Evaluated": 201,
+        "Accuracy": 0.8354430379746836
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "661617A1D17DF64653D68287F66C6F2261255C893C15314AC7BC061F2A6D6AE0"
+    },
+    {
+      "RuleId": "B-G-R-004-HS",
+      "Name": "倒L形图形杀（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 94,
+        "Correct": 79,
+        "Evaluated": 189,
+        "Accuracy": 0.8404255319148937
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "72B7A8CCD173B0C0993D721988C1BBA08FC1CF0B09326B3749B0C8328ED91515"
+    },
+    {
+      "RuleId": "B-G-R-004-OE",
+      "Name": "倒L形图形杀（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 64,
+        "Correct": 53,
+        "Evaluated": 271,
+        "Accuracy": 0.828125
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "4EFC2217E9D96EFC77F794069070D557EB147677BADFFFB7AEB3EEE7BDCFC8D0"
+    },
+    {
+      "RuleId": "B-G-R-004-CY",
+      "Name": "倒L形图形杀（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 68,
+        "Correct": 57,
+        "Evaluated": 187,
+        "Accuracy": 0.8382352941176471
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "44A24AD8A2A0FA6B61EA76F7BB5059137D2F394F392533C88FB5CF54294FAC51"
+    },
+    {
+      "RuleId": "B-G-R-005-HS",
+      "Name": "隔期交替杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 43,
+        "Evaluated": 503,
+        "Accuracy": 0.86
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "BCF06BE621B8233846E801DD65C742041AA249F040FF7E80A96917D8B4887176"
+    },
+    {
+      "RuleId": "B-G-R-005-OE",
+      "Name": "隔期交替杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 58,
+        "Correct": 48,
+        "Evaluated": 115,
+        "Accuracy": 0.8275862068965517
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "599006011F456FC1BE1BC4735E3A219E40BA0F398823AABDB866A086CC748EC1"
+    },
+    {
+      "RuleId": "B-G-R-005-CY",
+      "Name": "隔期交替杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 56,
+        "Correct": 46,
+        "Evaluated": 132,
+        "Accuracy": 0.8214285714285714
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "F0A68287E40F17BC5B2976CA28A2EC6364CA26DEFFE3EA90D371B0F81AB65C89"
+    },
+    {
+      "RuleId": "B-G-R-006-HS",
+      "Name": "重重对称杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 52,
+        "Correct": 46,
+        "Evaluated": 303,
+        "Accuracy": 0.8846153846153846
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "26A90A48E1097E723DD4FB0596A274AC9570EDEF92E7482C789975E221A30FCB"
+    },
+    {
+      "RuleId": "B-G-R-006-OE",
+      "Name": "重重对称杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 42,
+        "Evaluated": 905,
+        "Accuracy": 0.84
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "872A94B5794F844A7933F15D21B9E6376236B0A7714730F68C6BB26036076A35"
+    },
+    {
+      "RuleId": "B-G-R-006-CY",
+      "Name": "重重对称杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Evaluated": 313,
+        "Accuracy": 0.82
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "EDD465F2B05F1CFF48633B3306E873DA2166391EC85BB522C4F773CCCEE36BFD"
+    },
+    {
+      "RuleId": "B-G-R-007-HS",
+      "Name": "三角中心杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 53,
+        "Correct": 45,
+        "Evaluated": 365,
+        "Accuracy": 0.8490566037735849
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "CC817B08EDD34547BA9C15FDC5638DD9674EC59F85E05DBFEDB9F8C1857339A2"
+    },
+    {
+      "RuleId": "B-G-R-007-OE",
+      "Name": "三角中心杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 54,
+        "Correct": 46,
+        "Evaluated": 335,
+        "Accuracy": 0.8518518518518519
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "4BD4E11173600F78833878BCCB21EA7E8828A9978AAE505BF6D77E0D36C25923"
+    },
+    {
+      "RuleId": "B-G-R-007-CY",
+      "Name": "三角中心杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 51,
+        "Correct": 42,
+        "Evaluated": 719,
+        "Accuracy": 0.8235294117647058
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "F06876FB597711EA84F41D6E3DE79A5C16A2C7D38EF0262A12DDED3D272D57DB"
+    },
+    {
+      "RuleId": "B-G-R-008-HS",
+      "Name": "平行四边形缺角杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 66,
+        "Correct": 55,
+        "Evaluated": 99,
+        "Accuracy": 0.8333333333333334
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "9EA83B55FC66AEAE584B3BD354EFF8D7E8A3DFEE8C3062BEB51384B788FE52FB"
+    },
+    {
+      "RuleId": "B-G-R-008-OE",
+      "Name": "平行四边形缺角杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 70,
+        "Correct": 56,
+        "Evaluated": 117,
+        "Accuracy": 0.8
+      },
+      "WithoutFilter": null,
+      "Candidates": [
+        {
+          "Condition": {
+            "Direction": -1,
+            "MinimumGap": 1,
+            "MissThreshold": null
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 60,
+            "Correct": 48,
+            "Evaluated": 189,
+            "Accuracy": 0.8
+          }
+        },
+        {
+          "Condition": {
+            "Direction": -1,
+            "MinimumGap": 2,
+            "MissThreshold": null
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 53,
+            "Correct": 45,
+            "Evaluated": 269,
+            "Accuracy": 0.8490566037735849
+          }
+        },
+        {
+          "Condition": {
+            "Direction": -1,
+            "MinimumGap": 3,
+            "MissThreshold": null
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 54,
+            "Correct": 44,
+            "Evaluated": 394,
+            "Accuracy": 0.8148148148148148
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 1,
+            "MissThreshold": null
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 70,
+            "Correct": 56,
+            "Evaluated": 117,
+            "Accuracy": 0.8
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 2,
+            "MissThreshold": null
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 62,
+            "Correct": 53,
+            "Evaluated": 169,
+            "Accuracy": 0.8548387096774194
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 3,
+            "MissThreshold": null
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 61,
+            "Correct": 53,
+            "Evaluated": 210,
+            "Accuracy": 0.8688524590163934
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 1,
+            "MinimumGap": 1,
+            "MissThreshold": null
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 58,
+            "Correct": 47,
+            "Evaluated": 177,
+            "Accuracy": 0.8103448275862069
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 1,
+            "MinimumGap": 2,
+            "MissThreshold": null
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 57,
+            "Correct": 48,
+            "Evaluated": 267,
+            "Accuracy": 0.8421052631578947
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 1,
+            "MinimumGap": 3,
+            "MissThreshold": null
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 55,
+            "Correct": 45,
+            "Evaluated": 351,
+            "Accuracy": 0.8181818181818182
+          }
+        }
+      ],
+      "Fingerprint": "183DB9ADFF0059218C61299828A18462C05EB446A83490A2A954199087DA61DE"
+    },
+    {
+      "RuleId": "B-G-R-008-CY",
+      "Name": "平行四边形缺角杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 73,
+        "Correct": 57,
+        "Evaluated": 97,
+        "Accuracy": 0.7808219178082192
+      },
+      "WithoutFilter": null,
+      "Candidates": [
+        {
+          "Condition": {
+            "Direction": -1,
+            "MinimumGap": 1,
+            "MissThreshold": null
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 62,
+            "Correct": 50,
+            "Evaluated": 142,
+            "Accuracy": 0.8064516129032258
+          }
+        },
+        {
+          "Condition": {
+            "Direction": -1,
+            "MinimumGap": 2,
+            "MissThreshold": null
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 58,
+            "Correct": 45,
+            "Evaluated": 269,
+            "Accuracy": 0.7758620689655172
+          }
+        },
+        {
+          "Condition": {
+            "Direction": -1,
+            "MinimumGap": 3,
+            "MissThreshold": null
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 53,
+            "Correct": 46,
+            "Evaluated": 371,
+            "Accuracy": 0.8679245283018868
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 1,
+            "MissThreshold": null
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 73,
+            "Correct": 57,
+            "Evaluated": 97,
+            "Accuracy": 0.7808219178082192
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 2,
+            "MissThreshold": null
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 68,
+            "Correct": 52,
+            "Evaluated": 132,
+            "Accuracy": 0.7647058823529411
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 0,
+            "MinimumGap": 3,
+            "MissThreshold": null
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 59,
+            "Correct": 47,
+            "Evaluated": 246,
+            "Accuracy": 0.7966101694915254
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 1,
+            "MinimumGap": 1,
+            "MissThreshold": null
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 59,
+            "Correct": 47,
+            "Evaluated": 201,
+            "Accuracy": 0.7966101694915254
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 1,
+            "MinimumGap": 2,
+            "MissThreshold": null
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 56,
+            "Correct": 44,
+            "Evaluated": 270,
+            "Accuracy": 0.7857142857142857
+          }
+        },
+        {
+          "Condition": {
+            "Direction": 1,
+            "MinimumGap": 3,
+            "MissThreshold": null
+          },
+          "Score": {
+            "Triggers": 50,
+            "Killed": 53,
+            "Correct": 42,
+            "Evaluated": 416,
+            "Accuracy": 0.7924528301886793
+          }
+        }
+      ],
+      "Fingerprint": "F8308907674C4642E4691BD79E144F2331470EF945189F762BFF1FE41DD0CC19"
+    },
+    {
+      "RuleId": "B-G-R-009-HS",
+      "Name": "上期蓝号杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Evaluated": 75,
+        "Accuracy": 0.82
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "399093DE070657D1134E308566E645BC03B1FE915B6D2A2FB14E0CE28C7A4590"
+    },
+    {
+      "RuleId": "B-G-R-009-OE",
+      "Name": "上期蓝号杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 43,
+        "Evaluated": 98,
+        "Accuracy": 0.86
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "9995CA144BA0C35E0932FEF2E04D4D405C7233DFD532CB8C1ABCD875647E2AE5"
+    },
+    {
+      "RuleId": "B-G-R-009-CY",
+      "Name": "上期蓝号杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 44,
+        "Evaluated": 471,
+        "Accuracy": 0.88
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "4B9D5098A717D589D44F42DFAAEA18F48AECE1B92B56EA7B9DC63E0E3162342C"
+    },
+    {
+      "RuleId": "B-G-R-010-HS",
+      "Name": "三连号下方杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 156,
+        "Correct": 129,
+        "Evaluated": 615,
+        "Accuracy": 0.8269230769230769
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "30FF65E1C8319B2D138386C4C826E09B94775A26D282F39445D1A49A8876E2F9"
+    },
+    {
+      "RuleId": "B-G-R-010-OE",
+      "Name": "三连号下方杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 83,
+        "Correct": 69,
+        "Evaluated": 710,
+        "Accuracy": 0.8313253012048193
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "940A9E40672E3AC610C3039CAD1A6AC3EEF4CA19DC044E23783F875217B7189C"
+    },
+    {
+      "RuleId": "B-G-R-010-CY",
+      "Name": "三连号下方杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 73,
+        "Correct": 61,
+        "Evaluated": 762,
+        "Accuracy": 0.8356164383561644
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "D9A5D1377507E42D1492961647E0DD07D20A43B2C0FD9A068444787A9BA3D7BB"
+    },
+    {
+      "RuleId": "B-G-R-011-HS",
+      "Name": "四斜连杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 59,
+        "Correct": 49,
+        "Evaluated": 162,
+        "Accuracy": 0.8305084745762712
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "522DD57BB09CFFCB0A0766AE6F34F651AA811E50C36005BE6A9A72A89BEC2CE2"
+    },
+    {
+      "RuleId": "B-G-R-011-OE",
+      "Name": "四斜连杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 57,
+        "Correct": 50,
+        "Evaluated": 177,
+        "Accuracy": 0.8771929824561403
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "26A4F1D1783E0F82C7D232D338F824BFA2AAE606A9AC56F5C04C0C1E90F7C2CA"
+    },
+    {
+      "RuleId": "B-G-R-011-CY",
+      "Name": "四斜连杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 56,
+        "Correct": 48,
+        "Evaluated": 191,
+        "Accuracy": 0.8571428571428571
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "B01453224F220940C544FB09328EF28BC49268FE0E1AE701350A17E44AB2C643"
+    },
+    {
+      "RuleId": "B-G-R-012-HS",
+      "Name": "空心长方形杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 77,
+        "Correct": 64,
+        "Evaluated": 1103,
+        "Accuracy": 0.8311688311688312
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "852CAA3089954F35422257B1CA1BA98AC67B547DA0D50E58156358119DD3D06C"
+    },
+    {
+      "RuleId": "B-G-R-012-OE",
+      "Name": "空心长方形杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 103,
+        "Correct": 87,
+        "Evaluated": 1155,
+        "Accuracy": 0.8446601941747572
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "3B064C6D6459A819B36DC53B6E671B76B05BE948FB18CEF81BE7E978050CAA47"
+    },
+    {
+      "RuleId": "B-G-R-012-CY",
+      "Name": "空心长方形杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 68,
+        "Correct": 56,
+        "Evaluated": 1443,
+        "Accuracy": 0.8235294117647058
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "942BBB55B08C12B9ADA5A42CFEC31B6A0990FA7BEA44EE41C07921E9DF25A50B"
+    }
+  ],
+  "OriginalSelected": {
+    "B-G-R-008-OE": {
+      "Direction": 0,
+      "MinimumGap": 2
+    },
+    "B-G-R-008-CY": {
+      "Direction": -1,
+      "MinimumGap": 3
+    }
+  },
+  "OriginalRejectedNote": "Cold blue thresholds 10/12 crossed pooled gate but increased wrong balls across the same 50 triggers (18 to 25/22); retained current definition. Cold red alternatives did not reach gate."
+}

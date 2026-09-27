@@ -13,15 +13,18 @@ internal sealed record BuiltinPatternGuide(string Kind, string Scope, string Sha
         {
             var offsets = System.Text.Json.JsonSerializer.Deserialize<int[]>(System.Text.Json.JsonSerializer.Serialize(rule.Params["offsets"]))!;
             int targetOffset = System.Text.Json.JsonSerializer.Deserialize<int>(System.Text.Json.JsonSerializer.Serialize(rule.Params["target"]));
+            int direction = rule.Params.TryGetValue("direction", out var dir) ? System.Text.Json.JsonSerializer.Deserialize<int>(System.Text.Json.JsonSerializer.Serialize(dir)) : 0;
+            if (direction < 0) { offsets = offsets.Select(v => -v).ToArray(); targetOffset = -targetOffset; }
+            string orientation = direction == 0 ? "同时识别左右镜像" : "仅识别所示方向，不识别其镜像";
             int min = offsets.Append(targetOffset).Min(), max = offsets.Append(targetOffset).Max();
             var shownColumns = max - min <= 6 ? Enumerable.Range(min, max - min + 1).ToArray() : offsets.Append(targetOffset).Distinct().Order().ToArray();
             string Column(int n) => n == 0 ? "n" : $"n{n:+0;-0}";
             var diagram = offsets.Select(offset => string.Concat(shownColumns.Select(n => n == offset ? '●' : '·')))
                 .Append(string.Concat(shownColumns.Select(n => n == targetOffset ? '×' : '·'))).ToArray();
             return new("轨迹图形", "基本图：每行一个实际开奖期，从上到下由旧到新。",
-                "连续各行依次出现 " + string.Join(" → ", offsets.Select(Column)) + "；同时识别左右镜像。其他位置不限制。" + (max-min > 6 ? "示意省略无关列，实际间距以列头数字为准。" : ""),
-                "下一行 " + Column(targetOffset) + "；镜像取对应反向位置，越界舍弃，多个匹配合并去重。",
-                "无频次、冷热或遗漏过滤；尚未前向验证，旧统计规则成绩不代表此版本。",
+                "连续各行依次出现 " + string.Join(" → ", offsets.Select(Column)) + "；" + orientation + "。其他位置不限制。" + (max-min > 6 ? "示意省略无关列，实际间距以列头数字为准。" : ""),
+                "下一行 " + Column(targetOffset) + "；" + (direction == 0 ? "镜像取对应反向位置，" : "") + "越界舍弃，多个匹配合并去重。",
+                "无频次、冷热或遗漏过滤；" + (rule.Description.Contains("历史优化", StringComparison.Ordinal) ? "方向与间距参与历史优化，成绩不是独立验证；" : "") + "不足窗口时按全部实际触发计算，旧版本成绩不代表此版本。",
                 shownColumns.Select(Column).ToArray(),
                 Enumerable.Range(0, offsets.Length).Select(i => $"前{offsets.Length - i}行").Append("下一行").ToArray(), diagram);
         }
@@ -87,6 +90,22 @@ internal sealed record BuiltinPatternGuide(string Kind, string Scope, string Sha
                 shape = "一对相邻号在较早行和最新行同时开出，中间至少一行，且这两个号码均未开出。"; target = "下一行这两个相邻号码；不限固定高度。";
                 columns = ["n", "n+1"]; labels = ["较早行", "中间1至多行", "最新行", "下一行"]; cells = ["●●", "○○", "●●", "××"]; break;
             default: return null;
+        }
+        if (BuiltinRuleRevisions.FindGeometryCondition(rule.RuleId) is { } geometry)
+        {
+            filter += " 图形修订：" + geometry.Label + "；历史优化，尚未前向验证。";
+            if (id == "B-G-R-008")
+            {
+                shape = shape.Replace("左右镜像都识别。", geometry.Direction == 0 ? "左右镜像都识别。" : "仅识别所示方向。", StringComparison.Ordinal);
+                columns[1] = geometry.Direction == 0 ? "B=A±1" : geometry.Direction > 0 ? "B=A+1" : "B=A-1";
+                if (geometry.Direction < 0)
+                {
+                    columns = columns.Reverse().ToArray();
+                    cells = cells.Select(row => new string(row.Reverse().ToArray())).ToArray();
+                }
+                labels[2] = $"中间至少{geometry.MinimumGap-1}行";
+                target = $"下一行补第四角的B；中间至少{geometry.MinimumGap-1}行，两列均未开出。";
+            }
         }
         return new(kind, scope, shape, target, filter, columns, labels, cells);
     }

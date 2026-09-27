@@ -29,6 +29,8 @@ public sealed record BacktestWindowStat(
     public string? LastExecutionError { get; init; }
     public int? FirstPeriod { get; init; }
     public int? LastPeriod { get; init; }
-    public bool IsUsable => !SampleInsufficient && KillBallCount > 0 && FailureCount == 0;
+    /// <summary>Unfilled windows contain every available trigger. Small samples still use their actual pooled rate.</summary>
+    public bool UsesAllAvailableTriggers => SampleInsufficient && TriggeredCount > 0 && KillBallCount > 0;
+    public bool IsUsable => TriggeredCount > 0 && KillBallCount > 0 && FailureCount == 0;
     public static BacktestWindowStat Empty { get; } = new(0, 0, 0, 0, true);
 }

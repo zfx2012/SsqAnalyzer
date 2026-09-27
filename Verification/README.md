@@ -22,6 +22,8 @@ dotnet tmp/verification-build/SsqAnalyzer.Tests.dll
 
 ## 内置杀号规则质量排查
 
+最新的方向／间距优化与“窗口不足时按全部触发计算”见[规则优化记录](GEOMETRY_OPTIMIZATION.md)。该口径参与排序、隐藏筛选与门槛判定；零触发和执行异常仍不判定。
+
 后50条已从统计条件替换为红蓝轨迹图形，详见[图形化定义、版本迁移及触发检查](EXTRA_GEOMETRY_RULES.md)。旧统计定义归档供复核，不在应用中加载。
 
 原50条图形识别、图层距离修复和详情示意见[图形规则梳理](PATTERN_RULE_REVIEW.md)。`--pattern-check [清单输出路径]` 检查形态、图层等价性及说明覆盖，并可导出50条说明。

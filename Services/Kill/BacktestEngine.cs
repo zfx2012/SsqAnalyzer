@@ -281,7 +281,7 @@ public sealed class BacktestEngine : IBacktestEngine
 
     /// <summary>
     /// 准确率门槛判定（等价于 RuleRepository.ApplyAccuracyGate，§3.5/§3.6 注解）：
-    /// 使用最近完成的窗口；样本不足或执行失败时不自动改变启用状态。
+    /// 使用最近完成的窗口；未凑满窗口按全部实际触发判定，无触发或执行失败不改变状态。
     /// accuracy &lt; 全局门槛（_settings?.GetMinAccuracy(rule.BallType) ?? KillSettings.For(rule.BallType)）且 !ForceEnabled → IsEnabled = false。
     /// </summary>
     private void ApplyAccuracyGate(IKillRule rule)

@@ -98,7 +98,7 @@ internal static partial class VerificationSuite
         hideFailed.IsChecked = true;
         Assert(Rows().Select(r => r.RuleId).SequenceEqual(expectedVisible), "hide failed preserves active sorting");
         Assert(Rows().Any(r => r.GateSortValue == 1) && Rows().Any(r => r.GateSortValue == 2)
-            && Rows().Any(r => r.GateSortValue == 3), "hide failed retains forced, untested and insufficient rules");
+            && Rows().Any(r => r.GateSortValue == 3), "hide failed retains forced, untested and zero-trigger rules");
         page.LoadData(); PumpDispatcher();
         Assert(Rows().Select(r => r.RuleId).SequenceEqual(expectedVisible), "reload preserves hide-failed filter");
         ((ComboBox)page.FindName("BallFilter")).SelectedIndex = 1;
@@ -110,7 +110,8 @@ internal static partial class VerificationSuite
 
         static BacktestStatsSnapshot Snapshot(int i)
         {
-            var stat = new BacktestWindowStat(50, 100, 60 + i % 4 * 10, .6 + i % 4 * .1, i % 6 == 1);
+            var stat = i % 12 == 1 ? BacktestWindowStat.Empty
+                : new BacktestWindowStat(i % 6 == 1 ? 20 : 50, 100, 60 + i % 4 * 10, .6 + i % 4 * .1, i % 6 == 1);
             return new(stat, stat, stat, new DateTime(2026, 1, 1));
         }
         static IEnumerable<RuleRowViewModel> Expected(List<RuleRowViewModel> rows, string key, ListSortDirection direction)

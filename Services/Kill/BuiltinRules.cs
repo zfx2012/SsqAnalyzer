@@ -48,6 +48,7 @@ public static class BuiltinRules
     /// <summary>样本充足且表现同时超过用户门槛和随机基准，才进入内置初选。</summary>
     public static bool IsCuratedCandidate(BallType ballType, BacktestWindowStat stat, double minAccuracy) =>
         stat.IsUsable
+        && !stat.SampleInsufficient
         && stat.Accuracy > Math.Max(minAccuracy, RandomKillAccuracy(ballType));
 
     private static IReadOnlyList<KillRule> LoadInternal()

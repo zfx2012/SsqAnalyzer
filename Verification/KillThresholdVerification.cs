@@ -46,6 +46,25 @@ internal static partial class VerificationSuite
             Assert(page.FindName("ThresholdSlider") is null, "manual threshold slider removed");
             page.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
         }
+        data.SetRecords(data.GetAllRecords().Take(21).ToArray());
+        foreach (var (ball, correct, passed) in new[] { (BallType.Red,16,false), (BallType.Red,17,true), (BallType.Blue,18,false), (BallType.Blue,19,true) })
+        {
+            var rule = new KillRule { RuleId="short-sample", Name="short sample", BallType=ball, Category=RuleCategory.Formula, JsCode="" };
+            var repo = new CancellationRepository(rule); var context = new RuleContextBuilder(data); var settings = new KillSettings();
+            var backtest = new BacktestEngine(new ThresholdExecutor(correct), context, repo, data, settings);
+            var result = backtest.Run(rule, BacktestWindow.Last50Triggers);
+            Assert(result.TriggeredCount == 20 && result.SampleInsufficient && result.Accuracy == correct/20d
+                && rule.BacktestStats!.Window50.IsUsable && rule.BacktestStats.Window50.UsesAllAvailableTriggers && rule.IsEnabled == passed,
+                "underfilled 50-trigger window uses all 20 triggers for fixed gate");
+            var page = new KillPage(data, repo, new KillEngine(repo,new ThresholdExecutor(0),context),backtest,context,settings,new GroupInputStore());
+            page.RaiseEvent(new RoutedEventArgs(FrameworkElement.LoadedEvent));
+            var grid = (DataGrid)page.FindName("RulesGrid"); var row = grid.Items.Cast<RuleRowViewModel>().Single();
+            Assert(row.GateSortValue == (passed ? 0 : 4) && row.AccuracyValue == correct/20d && row.AccuracyLabel.Contains("全20次"),
+                "small-sample UI shows percentage, real count and sortable gate");
+            ((CheckBox)page.FindName("HideFailedCheckBox")).IsChecked=true;
+            Assert(grid.Items.Count == (passed ? 1 : 0), "hide failed applies to underfilled windows");
+            page.RaiseEvent(new RoutedEventArgs(FrameworkElement.UnloadedEvent));
+        }
     }
 
     private sealed class ThresholdExecutor(int correctCount) : IRuleExecutor
