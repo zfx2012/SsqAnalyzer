@@ -8,7 +8,7 @@ namespace SsqAnalyzer.Services.Kill;
 /// <summary>
 /// 规则仓储默认实现（架构设计 §3.7）。
 /// - 内置规则：从 <see cref="BuiltinRules"/> 静态加载（进程内单例缓存）
-/// - 用户规则：持久化到 data/kill_rules_user.json（原子写 .tmp + File.Move，与 TicketStore 一致）
+/// - 用户规则：持久化到 data/kill_rules_user.json（同目录临时文件 + 原子替换，短暂占用有限重试）
 /// - 回测统计：用户规则持久化到同一文件 stats 字段；内置规则仅更新内存（§7.5）
 /// - 内置规则启用状态覆盖：持久化到同一文件 builtinOverrides 字段
 /// </summary>
@@ -71,7 +71,10 @@ public sealed class RuleRepository : IRuleRepository
         _builtinStats.Clear();
         foreach (var kv in renamed) _builtinStats[kv.Key] = kv.Value;
 
-        PersistUserFile();
+        // The in-memory migration is already complete; a read-only installation must
+        // not prevent startup. Leave the original file for a later save to migrate.
+        try { PersistUserFile(); }
+        catch (IOException ex) { Debug.WriteLine($"[RuleRepository] ID迁移暂未保存：{ex.Message}"); }
     }
     /// <inheritdoc />
     public IReadOnlyList<IKillRule> GetAll()
@@ -116,15 +119,9 @@ public sealed class RuleRepository : IRuleRepository
         lock (_stateLock)
         {
             _userRules.Add(AsKillRule(rule));
-            try
-            {
-                PersistUserFile();
-            }
-            catch
-            {
-                _userRules.RemoveAt(_userRules.Count - 1);
-                throw;
-            }
+            // PersistUserFile restores the saved list on failure; do not remove
+            // another item from that restored list a second time.
+            PersistUserFile();
         }
         RulesChanged?.Invoke();
     }
@@ -482,7 +479,7 @@ public sealed class RuleRepository : IRuleRepository
         {
             RestorePersistedState();
             Debug.WriteLine($"[RuleRepository] 持久化用户规则失败：{ex.Message}");
-            throw new IOException("规则数据保存失败，请检查安装目录是否可写", ex);
+            throw new IOException($"规则数据保存失败：{UserRulesPath}\n原文件未被覆盖。请检查文件是否只读、被其他程序占用，或目录权限是否允许替换文件。\n原因：{ex.Message}", ex);
         }
     }
 
@@ -522,7 +519,7 @@ public sealed class RuleRepository : IRuleRepository
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[RuleRepository] 鍥炴粴鍐呭瓨鐘舵€佸け璐ワ細{ex.Message}");
+            Debug.WriteLine($"[RuleRepository] 回滚内存状态失败：{ex.Message}");
         }
     }
 
@@ -596,13 +593,37 @@ public sealed class RuleRepository : IRuleRepository
         var tmp = path + "." + Guid.NewGuid().ToString("N") + ".tmp";
         try
         {
-            File.WriteAllBytes(tmp, bytes);
-            File.Move(tmp, path, overwrite: true);
+            using (var stream = new FileStream(tmp, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+            {
+                stream.Write(bytes);
+                stream.Flush(flushToDisk: true);
+            }
+            for (int attempt = 0; ; attempt++)
+            {
+                try
+                {
+                    // Replace preserves the existing file's ACL. Never delete the
+                    // destination or fall back to truncating it after a failure.
+                    if (File.Exists(path)) File.Replace(tmp, path, null);
+                    else File.Move(tmp, path);
+                    break;
+                }
+                catch (Exception ex) when (attempt < 4 && IsTransientReplaceFailure(ex))
+                {
+                    System.Threading.Thread.Sleep(50 * (attempt + 1));
+                }
+            }
         }
         finally
         {
             try { if (File.Exists(tmp)) File.Delete(tmp); } catch { }
         }
+    }
+
+    private static bool IsTransientReplaceFailure(Exception ex)
+    {
+        int code = ex.HResult & 0xffff;
+        return (ex is IOException || ex is UnauthorizedAccessException) && code is 5 or 32 or 33;
     }
 
     /// <summary>把 IKillRule 转为可变的 KillRule 实例（若已是 KillRule 则直接返回）。</summary>

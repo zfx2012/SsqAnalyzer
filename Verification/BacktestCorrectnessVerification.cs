@@ -115,6 +115,7 @@ internal static partial class VerificationSuite
             diskRepo.SaveBacktestStats(persisted.RuleId, migrated);
             restored = new RuleRepository().Find(persisted.RuleId)!;
             Assert(restored.BacktestStats!.LegacyCombinedWindow!.TriggeredCount == 120, "legacy data preserved on new-format round trip");
+            VerifyRuleFileReplacement(path, diskRepo);
         }
         finally
         {
@@ -124,6 +125,56 @@ internal static partial class VerificationSuite
                 old.Rule.IsEnabled = old.IsEnabled; old.Rule.ForceEnabled = old.ForceEnabled; old.Rule.BacktestStats = old.BacktestStats;
             }
         }
+    }
+
+    private static void VerifyRuleFileReplacement(string path, RuleRepository repository)
+    {
+        var atomic = typeof(RuleRepository).GetMethod("AtomicWrite", BindingFlags.Static | BindingFlags.NonPublic)!;
+        void Write(byte[] bytes)
+        {
+            try { atomic.Invoke(null, new object[] { path, bytes }); }
+            catch (TargetInvocationException ex) when (ex.InnerException is not null)
+            { System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(ex.InnerException).Throw(); }
+        }
+        var original = File.ReadAllBytes(path);
+        var attributes = File.GetAttributes(path);
+        try
+        {
+            File.SetAttributes(path, attributes | FileAttributes.Hidden);
+            Write(original);
+            Assert(File.ReadAllBytes(path).SequenceEqual(original), "hidden destination supports atomic replacement");
+            File.SetAttributes(path, attributes);
+
+            using (var held = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                var release = Task.Run(() => { Thread.Sleep(120); held.Dispose(); });
+                Write(original);
+                release.GetAwaiter().GetResult();
+            }
+            Assert(File.ReadAllBytes(path).SequenceEqual(original), "short replacement lock is retried successfully");
+
+            using (var held = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                bool failed = false;
+                try { Write(System.Text.Encoding.UTF8.GetBytes("must not replace")); }
+                catch (IOException) { failed = true; }
+                catch (UnauthorizedAccessException) { failed = true; }
+                Assert(failed && File.ReadAllBytes(path).SequenceEqual(original), "persistent lock preserves original bytes");
+            }
+
+            File.SetAttributes(path, attributes | FileAttributes.ReadOnly);
+            int count = repository.GetAll().Count;
+            bool saveFailed = false;
+            try { repository.Add(new KillRule { RuleId = "failed-save-fixture", Name = "failed-save-fixture",
+                Category = RuleCategory.Formula, BallType = BallType.Red, JsCode = "" }); }
+            catch (IOException ex) { saveFailed = ex.Message.Contains(path) && ex.InnerException is not null; }
+            Assert(saveFailed && repository.GetAll().Count == count && repository.Find("failed-save-fixture") is null,
+                "failed add preserves existing rules without double rollback and reports destination");
+            Assert(File.ReadAllBytes(path).SequenceEqual(original), "read-only failure preserves original bytes");
+            Assert(!Directory.EnumerateFiles(Path.GetDirectoryName(path)!, "kill_rules_user.json.*.tmp").Any(),
+                "failed replacements clean up their temporary files");
+        }
+        finally { File.SetAttributes(path, attributes); }
     }
 
     private sealed class DiagnosticExecutor(Func<RuleContext, int[]> run) : IRuleExecutor
