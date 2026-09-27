@@ -9,7 +9,7 @@ internal sealed record BuiltinPatternGuide(string Kind, string Scope, string Sha
         var current = BuiltinRules.LoadAll().FirstOrDefault(r => r.RuleId == rule.RuleId);
         if (!rule.IsBuiltin || current is null
             || KillRuleDefinition.Capture(rule).Fingerprint != KillRuleDefinition.Capture(current).Fingerprint) return null;
-        if (rule.RuleId.StartsWith("B-S-", StringComparison.Ordinal) && rule.Params.ContainsKey("geometryVersion"))
+        if (rule.Params.ContainsKey("geometryVersion"))
         {
             var offsets = System.Text.Json.JsonSerializer.Deserialize<int[]>(System.Text.Json.JsonSerializer.Serialize(rule.Params["offsets"]))!;
             int targetOffset = System.Text.Json.JsonSerializer.Deserialize<int>(System.Text.Json.JsonSerializer.Serialize(rule.Params["target"]));

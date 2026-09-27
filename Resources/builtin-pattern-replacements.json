@@ -1,0 +1,255 @@
+[
+  {
+    "ruleId": "B-G-R-001",
+    "name": "折后反穿（图距1）双向图形杀红",
+    "category": "Pattern",
+    "subCategory": "轨迹图形",
+    "ballType": "Red",
+    "isBuiltin": true,
+    "isEnabled": true,
+    "isVisible": true,
+    "minAccuracy": 0.82,
+    "forceEnabled": false,
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+    "params": {
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1,
+        0
+      ],
+      "target": -1,
+      "blue": false,
+      "direction": 0
+    },
+    "description": "替换原不达标规则，改用连续实际开奖行：n → n+1 → n，下一行杀n-1；双向识别，越界舍弃、候选去重。图形及方向经过历史优化，近50次成绩参与选择，不是独立验证；不足50次按全部实际触发。旧规则快照保持原样。",
+    "tags": [
+      "图形",
+      "替换规则",
+      "历史优化"
+    ],
+    "source": "builtin",
+    "createdAt": "2026-09-27T00:00:00Z"
+  },
+  {
+    "ruleId": "B-G-R-001-OE",
+    "name": "平台回折（图距1）双向图形杀红",
+    "category": "Pattern",
+    "subCategory": "轨迹图形",
+    "ballType": "Red",
+    "isBuiltin": true,
+    "isEnabled": true,
+    "isVisible": true,
+    "minAccuracy": 0.82,
+    "forceEnabled": false,
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+    "params": {
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1,
+        1
+      ],
+      "target": 0,
+      "blue": false,
+      "direction": 0
+    },
+    "description": "替换原不达标规则，改用连续实际开奖行：n → n+1 → n+1，下一行杀n；双向识别，越界舍弃、候选去重。图形及方向经过历史优化，近50次成绩参与选择，不是独立验证；不足50次按全部实际触发。旧规则快照保持原样。",
+    "tags": [
+      "图形",
+      "替换规则",
+      "历史优化"
+    ],
+    "source": "builtin",
+    "createdAt": "2026-09-27T00:00:00Z"
+  },
+  {
+    "ruleId": "B-S-R-002",
+    "name": "三列短循环（图距1）双向图形杀红",
+    "category": "Pattern",
+    "subCategory": "轨迹图形",
+    "ballType": "Red",
+    "isBuiltin": true,
+    "isEnabled": true,
+    "isVisible": true,
+    "minAccuracy": 0.82,
+    "forceEnabled": false,
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+    "params": {
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1,
+        2
+      ],
+      "target": 0,
+      "blue": false,
+      "direction": 0
+    },
+    "description": "替换原不达标规则，改用连续实际开奖行：n → n+1 → n+2，下一行杀n；双向识别，越界舍弃、候选去重。图形及方向经过历史优化，近50次成绩参与选择，不是独立验证；不足50次按全部实际触发。旧规则快照保持原样。",
+    "tags": [
+      "图形",
+      "替换规则",
+      "历史优化"
+    ],
+    "source": "builtin",
+    "createdAt": "2026-09-27T00:00:00Z"
+  },
+  {
+    "ruleId": "B-S-R-009",
+    "name": "平台回折（图距2）双向图形杀红",
+    "category": "Pattern",
+    "subCategory": "轨迹图形",
+    "ballType": "Red",
+    "isBuiltin": true,
+    "isEnabled": true,
+    "isVisible": true,
+    "minAccuracy": 0.82,
+    "forceEnabled": false,
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+    "params": {
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        2,
+        2
+      ],
+      "target": 0,
+      "blue": false,
+      "direction": 0
+    },
+    "description": "替换原不达标规则，改用连续实际开奖行：n → n+2 → n+2，下一行杀n；双向识别，越界舍弃、候选去重。图形及方向经过历史优化，近50次成绩参与选择，不是独立验证；不足50次按全部实际触发。旧规则快照保持原样。",
+    "tags": [
+      "图形",
+      "替换规则",
+      "历史优化"
+    ],
+    "source": "builtin",
+    "createdAt": "2026-09-27T00:00:00Z"
+  },
+  {
+    "ruleId": "B-S-R-015",
+    "name": "平台上行（图距1）双向图形杀红",
+    "category": "Pattern",
+    "subCategory": "轨迹图形",
+    "ballType": "Red",
+    "isBuiltin": true,
+    "isEnabled": true,
+    "isVisible": true,
+    "minAccuracy": 0.82,
+    "forceEnabled": false,
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+    "params": {
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        1,
+        1
+      ],
+      "target": 2,
+      "blue": false,
+      "direction": 0
+    },
+    "description": "替换原不达标规则，改用连续实际开奖行：n → n+1 → n+1，下一行杀n+2；双向识别，越界舍弃、候选去重。图形及方向经过历史优化，近50次成绩参与选择，不是独立验证；不足50次按全部实际触发。旧规则快照保持原样。",
+    "tags": [
+      "图形",
+      "替换规则",
+      "历史优化"
+    ],
+    "source": "builtin",
+    "createdAt": "2026-09-27T00:00:00Z"
+  },
+  {
+    "ruleId": "B-G-B-001",
+    "name": "跨度6中点回折双向图形杀蓝",
+    "category": "Pattern",
+    "subCategory": "轨迹图形",
+    "ballType": "Blue",
+    "isBuiltin": true,
+    "isEnabled": true,
+    "isVisible": true,
+    "minAccuracy": 0.94,
+    "forceEnabled": false,
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+    "params": {
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        6
+      ],
+      "target": 3,
+      "blue": true,
+      "direction": 0
+    },
+    "description": "替换原不达标规则，改用连续实际开奖行：n → n+6，下一行杀n+3；双向识别，越界舍弃、候选去重。图形及方向经过历史优化，近50次成绩参与选择，不是独立验证；不足50次按全部实际触发。旧规则快照保持原样。",
+    "tags": [
+      "图形",
+      "替换规则",
+      "历史优化"
+    ],
+    "source": "builtin",
+    "createdAt": "2026-09-27T00:00:00Z"
+  },
+  {
+    "ruleId": "B-S-B-010",
+    "name": "跨度10中点回折双向图形杀蓝",
+    "category": "Pattern",
+    "subCategory": "轨迹图形",
+    "ballType": "Blue",
+    "isBuiltin": true,
+    "isEnabled": true,
+    "isVisible": true,
+    "minAccuracy": 0.94,
+    "forceEnabled": false,
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+    "params": {
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        10
+      ],
+      "target": 5,
+      "blue": true,
+      "direction": 0
+    },
+    "description": "替换原不达标规则，改用连续实际开奖行：n → n+10，下一行杀n+5；双向识别，越界舍弃、候选去重。图形及方向经过历史优化，近50次成绩参与选择，不是独立验证；不足50次按全部实际触发。旧规则快照保持原样。",
+    "tags": [
+      "图形",
+      "替换规则",
+      "历史优化"
+    ],
+    "source": "builtin",
+    "createdAt": "2026-09-27T00:00:00Z"
+  },
+  {
+    "ruleId": "B-S-B-013",
+    "name": "跨度8中点回折反向图形杀蓝",
+    "category": "Pattern",
+    "subCategory": "轨迹图形",
+    "ballType": "Blue",
+    "isBuiltin": true,
+    "isEnabled": true,
+    "isVisible": true,
+    "minAccuracy": 0.94,
+    "forceEnabled": false,
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+    "params": {
+      "geometryVersion": 1,
+      "offsets": [
+        0,
+        8
+      ],
+      "target": 4,
+      "blue": true,
+      "direction": -1
+    },
+    "description": "替换原不达标规则，改用连续实际开奖行：n → n+8，下一行杀n+4；反向识别，越界舍弃、候选去重。图形及方向经过历史优化，近50次成绩参与选择，不是独立验证；不足50次按全部实际触发。旧规则快照保持原样。",
+    "tags": [
+      "图形",
+      "替换规则",
+      "历史优化"
+    ],
+    "source": "builtin",
+    "createdAt": "2026-09-27T00:00:00Z"
+  }
+]

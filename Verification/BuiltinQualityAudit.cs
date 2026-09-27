@@ -54,7 +54,7 @@ internal static class BuiltinQualityAudit
             {
                 try { masks[r][i] = Mask(executor.Execute(rules[r], contexts[i]).KilledBalls); }
                 catch (RuleExecutionException ex) { failures[r][i] = true; errors[r].Add($"{history[i].Period}: {ex.Message}"); }
-                if (rules[r].RuleId.StartsWith("B-S-", StringComparison.Ordinal) && !failures[r][i])
+                if ((rules[r].Params.ContainsKey("geometryVersion") || rules[r].RuleId.StartsWith("B-S-", StringComparison.Ordinal)) && !failures[r][i])
                 {
                     var p = rules[r].Params;
                     ulong expectedMask;
@@ -166,7 +166,7 @@ internal static class BuiltinQualityAudit
         var md = new StringBuilder("# 100 条内置杀号规则质量排查\n\n");
         md.AppendLine($"数据：{history[0].Period}—{history[^1].Period}，共 {n} 期。规则指纹：`{result.RuleSetHash}`。\n");
         md.AppendLine("固定当前规则逐期重放，不改参数、不启停规则、不写回统计。以下历史结果都属于回顾性排查；近期成绩曾参与规则挑选，不能当作独立验证。近500期指500个实际开奖点，近50次指50次触发，两者不可混用。\n");
-        md.AppendLine($"执行异常总数：{audits.Sum(r => r.All.Failed)}。新增50条与独立C#实现逐点比较：{independentComparisons} 次；未来开奖改动与重复执行检查：{futureChecks} 组（每组两次复算）。\n");
+        md.AppendLine($"执行异常总数：{audits.Sum(r => r.All.Failed)}。轨迹规则与独立C#实现逐点比较：{independentComparisons} 次；未来开奖改动与重复执行检查：{futureChecks} 组（每组两次复算）。\n");
         md.AppendLine("## 组合目标检查\n\n目标固定为红球剩余6—15个、蓝球剩余1—5个；不强行补删号码。完整保留是实际6红+1蓝均在候选集内。\n");
         md.AppendLine("|范围|开奖期数|平均剩余红/蓝|同时达到数量目标|平均保留实际红球|红球完整保留|蓝球保留|红蓝完整保留|数量达标且红蓝完整保留|\n|---|---:|---|---:|---:|---:|---:|---:|---:|");
         foreach (var c in combined) md.AppendLine($"|{c.Range}|{c.Draws}|{c.AverageRedRemaining:F2} / {c.AverageBlueRemaining:F2}|{c.JointTarget}|{c.AverageRetainedReds:F2}/6|{c.RedFullyRetained}|{c.BlueRetained}|{c.BothFullyRetained}|{c.TargetAndBothFull}|");

@@ -29,7 +29,17 @@ public static class BuiltinRules
         if (active.Select(r => r.RuleId).Distinct(StringComparer.Ordinal).Count() != active.Length
             || extra.Any(r => !r.IsBuiltin || r.ForceEnabled))
             throw new InvalidOperationException("新增内置规则存在重复 ID 或无效属性。");
-        return active;
+        using var replacementStream = typeof(BuiltinRules).Assembly.GetManifestResourceStream("SsqAnalyzer.Resources.builtin-pattern-replacements.json")
+            ?? throw new InvalidOperationException("图形替换资源缺失。");
+        using var replacementReader = new StreamReader(replacementStream, Encoding.UTF8);
+        var replacements = ParseJson(replacementReader.ReadToEnd(), "builtin-pattern-replacements.json");
+        var originals = active.ToDictionary(r => r.RuleId, StringComparer.Ordinal);
+        if (replacements.Select(r => r.RuleId).Distinct(StringComparer.Ordinal).Count() != replacements.Count
+            || replacements.Any(r => !originals.TryGetValue(r.RuleId, out var previous) || previous.BallType != r.BallType
+                || !r.IsBuiltin || r.ForceEnabled || !r.Params.ContainsKey("geometryVersion")))
+            throw new InvalidOperationException("图形替换存在无效ID、重复ID或球种变化。");
+        var byId = replacements.ToDictionary(r => r.RuleId, StringComparer.Ordinal);
+        return active.Select(r => byId.TryGetValue(r.RuleId, out var replacement) ? replacement : r).ToArray();
     }
 
     /// <summary>加载全部内置规则（单例缓存，进程内不变）。</summary>

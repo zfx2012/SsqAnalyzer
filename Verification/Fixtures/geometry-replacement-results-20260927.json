@@ -1,0 +1,1407 @@
+{
+  "Last": 2026111,
+  "Count": 3508,
+  "DataHash": "73E7DCC07022E7B14CF4E06522DF1842AA6B1C37F4A60037FE702B337054F79C",
+  "Rules": [
+    {
+      "RuleId": "B-G-R-001",
+      "Name": "折后反穿（图距1）双向图形杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 60,
+        "Correct": 51,
+        "Evaluated": 136,
+        "Accuracy": 0.85
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "BBCB5B38DA50B9F289D5BE1F947024311DC82BF039F70FCC9222F7A9AC8B5C90"
+    },
+    {
+      "RuleId": "B-G-B-001",
+      "Name": "跨度6中点回折双向图形杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Evaluated": 619,
+        "Accuracy": 0.96
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "4123DFEAB769F363D3CD287A9E8FFCAC594C665C4401B52277527C24BB8427AE"
+    },
+    {
+      "RuleId": "B-G-R-002",
+      "Name": "三重及以上杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 75,
+        "Correct": 63,
+        "Evaluated": 64,
+        "Accuracy": 0.84
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "B4F3A137D32AA0C18F8F623815DD16AE98CA5B8A02B2DB38B76B47E87F5B6B7A"
+    },
+    {
+      "RuleId": "B-G-R-003",
+      "Name": "L形图形杀",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 116,
+        "Correct": 99,
+        "Evaluated": 188,
+        "Accuracy": 0.853448275862069
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "26AEDB6AB6B2B9FFE3E8832DE21E1FAD8B9F631BB1D190A08DA294B25F9C5D2C"
+    },
+    {
+      "RuleId": "B-G-R-004",
+      "Name": "倒L形图形杀",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 91,
+        "Correct": 76,
+        "Evaluated": 217,
+        "Accuracy": 0.8351648351648352
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "7A9CE5AC019D7E899A9AECAA4DEBC0C218DA4C89832D8B41C070E07EF50A5BEE"
+    },
+    {
+      "RuleId": "B-G-R-005",
+      "Name": "隔期交替杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 59,
+        "Correct": 51,
+        "Evaluated": 143,
+        "Accuracy": 0.864406779661017
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "E8AA553042C674818C9F3112F6EBA026CA3C92610BE420FFDFEA7A31A0D74151"
+    },
+    {
+      "RuleId": "B-G-R-006",
+      "Name": "重重对称杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Evaluated": 1038,
+        "Accuracy": 0.82
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "0563EFE0477515E9542D66B9256A0FC3B636274150F5711C1A92BA83226A6BC0"
+    },
+    {
+      "RuleId": "B-G-R-007",
+      "Name": "三角中心杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 51,
+        "Correct": 45,
+        "Evaluated": 848,
+        "Accuracy": 0.8823529411764706
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "8A509EB09494FFC919A7790A3A55AA5FE534F06ECB3B5179B204FE8405A3AF2D"
+    },
+    {
+      "RuleId": "B-G-R-008",
+      "Name": "平行四边形缺角杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 54,
+        "Correct": 45,
+        "Evaluated": 378,
+        "Accuracy": 0.8333333333333334
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "19BCF306A526A4338928382A1423D5CB634563586E5DA258757609C97AFD240E"
+    },
+    {
+      "RuleId": "B-G-B-002",
+      "Name": "蓝球重号杀",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Evaluated": 50,
+        "Accuracy": 0.96
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "AA27BDACC7731078DB0445BCB1623E41659D1ADB156F0B55CE6A999E8E229859"
+    },
+    {
+      "RuleId": "B-G-R-009",
+      "Name": "上期蓝号杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Evaluated": 50,
+        "Accuracy": 0.82
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "3B63B47388D44559711E94ECD7C810455B5633360C8D261898EA05F191D71C9E"
+    },
+    {
+      "RuleId": "B-G-R-010",
+      "Name": "三连号下方杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 156,
+        "Correct": 137,
+        "Evaluated": 638,
+        "Accuracy": 0.8782051282051282
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "FB7EAFF3A599F1967B02F914607358D24416ABFED5AE8739DBB892633599A02F"
+    },
+    {
+      "RuleId": "B-G-R-011",
+      "Name": "四斜连杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 53,
+        "Correct": 44,
+        "Evaluated": 250,
+        "Accuracy": 0.8301886792452831
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "3AF934A5965408BE7185DEBAED77590F5775A657EC796FBAE4BBB652687414B7"
+    },
+    {
+      "RuleId": "B-G-R-012",
+      "Name": "空心长方形杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 102,
+        "Correct": 84,
+        "Evaluated": 1023,
+        "Accuracy": 0.8235294117647058
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "430937CFB0D623804E6CA9608407A556D80703251D433E52A5D1F1ADFC1D5E3D"
+    },
+    {
+      "RuleId": "B-G-R-001-HS",
+      "Name": "冷号杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 42,
+        "Evaluated": 159,
+        "Accuracy": 0.84
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "D727561A334C18E3181ED5D907119BFAFD34F40C53FFDA042A9094B737125810"
+    },
+    {
+      "RuleId": "B-G-R-001-OE",
+      "Name": "平台回折（图距1）双向图形杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 65,
+        "Correct": 58,
+        "Evaluated": 153,
+        "Accuracy": 0.8923076923076924
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "165933638C02A0D077454360461919218459CBE0BD57BECB7F782DC7B647FA89"
+    },
+    {
+      "RuleId": "B-G-R-001-CY",
+      "Name": "冷号杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Evaluated": 124,
+        "Accuracy": 0.82
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "F1A3BAA01C366EEF7163EEB8CA66FB359109705E199C70789602AD9842A8954B"
+    },
+    {
+      "RuleId": "B-G-R-002-HS",
+      "Name": "三重及以上杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 58,
+        "Correct": 49,
+        "Evaluated": 144,
+        "Accuracy": 0.8448275862068966
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "FDF91C070BBA83FA7C5EFE2E8DB0B3EC2250E424A5AF150EF4EDDD5BC6240256"
+    },
+    {
+      "RuleId": "B-G-R-002-OE",
+      "Name": "三重及以上杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 55,
+        "Correct": 46,
+        "Evaluated": 367,
+        "Accuracy": 0.8363636363636363
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "B4D19F3303270095A53A17C0BADFF1FD4291A79BB9064CA81B3B1320B4B7D5AE"
+    },
+    {
+      "RuleId": "B-G-R-002-CY",
+      "Name": "三重及以上杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 62,
+        "Correct": 51,
+        "Evaluated": 99,
+        "Accuracy": 0.8225806451612904
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "B7EC8734F17399014EFE2F4E7D6DD3F6E9C3DBC4F9B1FB5D4667EA39383A629C"
+    },
+    {
+      "RuleId": "B-G-R-003-HS",
+      "Name": "L形图形杀（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 106,
+        "Correct": 87,
+        "Evaluated": 199,
+        "Accuracy": 0.8207547169811321
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "25C2150D72D9F338D3A8B7C2D967317CC598B65FA74AB80AC25BB1176F5B32F2"
+    },
+    {
+      "RuleId": "B-G-R-003-OE",
+      "Name": "L形图形杀（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 78,
+        "Correct": 66,
+        "Evaluated": 217,
+        "Accuracy": 0.8461538461538461
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "209A7862067931830A6D7958C2EA206158441ABF83E72AC47530791BD5172397"
+    },
+    {
+      "RuleId": "B-G-R-003-CY",
+      "Name": "L形图形杀（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 79,
+        "Correct": 66,
+        "Evaluated": 201,
+        "Accuracy": 0.8354430379746836
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "661617A1D17DF64653D68287F66C6F2261255C893C15314AC7BC061F2A6D6AE0"
+    },
+    {
+      "RuleId": "B-G-R-004-HS",
+      "Name": "倒L形图形杀（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 94,
+        "Correct": 79,
+        "Evaluated": 189,
+        "Accuracy": 0.8404255319148937
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "72B7A8CCD173B0C0993D721988C1BBA08FC1CF0B09326B3749B0C8328ED91515"
+    },
+    {
+      "RuleId": "B-G-R-004-OE",
+      "Name": "倒L形图形杀（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 64,
+        "Correct": 53,
+        "Evaluated": 271,
+        "Accuracy": 0.828125
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "4EFC2217E9D96EFC77F794069070D557EB147677BADFFFB7AEB3EEE7BDCFC8D0"
+    },
+    {
+      "RuleId": "B-G-R-004-CY",
+      "Name": "倒L形图形杀（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 68,
+        "Correct": 57,
+        "Evaluated": 187,
+        "Accuracy": 0.8382352941176471
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "44A24AD8A2A0FA6B61EA76F7BB5059137D2F394F392533C88FB5CF54294FAC51"
+    },
+    {
+      "RuleId": "B-G-R-005-HS",
+      "Name": "隔期交替杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 43,
+        "Evaluated": 503,
+        "Accuracy": 0.86
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "BCF06BE621B8233846E801DD65C742041AA249F040FF7E80A96917D8B4887176"
+    },
+    {
+      "RuleId": "B-G-R-005-OE",
+      "Name": "隔期交替杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 58,
+        "Correct": 48,
+        "Evaluated": 115,
+        "Accuracy": 0.8275862068965517
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "599006011F456FC1BE1BC4735E3A219E40BA0F398823AABDB866A086CC748EC1"
+    },
+    {
+      "RuleId": "B-G-R-005-CY",
+      "Name": "隔期交替杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 56,
+        "Correct": 46,
+        "Evaluated": 132,
+        "Accuracy": 0.8214285714285714
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "F0A68287E40F17BC5B2976CA28A2EC6364CA26DEFFE3EA90D371B0F81AB65C89"
+    },
+    {
+      "RuleId": "B-G-R-006-HS",
+      "Name": "重重对称杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 52,
+        "Correct": 46,
+        "Evaluated": 303,
+        "Accuracy": 0.8846153846153846
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "26A90A48E1097E723DD4FB0596A274AC9570EDEF92E7482C789975E221A30FCB"
+    },
+    {
+      "RuleId": "B-G-R-006-OE",
+      "Name": "重重对称杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 42,
+        "Evaluated": 905,
+        "Accuracy": 0.84
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "872A94B5794F844A7933F15D21B9E6376236B0A7714730F68C6BB26036076A35"
+    },
+    {
+      "RuleId": "B-G-R-006-CY",
+      "Name": "重重对称杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Evaluated": 313,
+        "Accuracy": 0.82
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "EDD465F2B05F1CFF48633B3306E873DA2166391EC85BB522C4F773CCCEE36BFD"
+    },
+    {
+      "RuleId": "B-G-R-007-HS",
+      "Name": "三角中心杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 53,
+        "Correct": 45,
+        "Evaluated": 365,
+        "Accuracy": 0.8490566037735849
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "CC817B08EDD34547BA9C15FDC5638DD9674EC59F85E05DBFEDB9F8C1857339A2"
+    },
+    {
+      "RuleId": "B-G-R-007-OE",
+      "Name": "三角中心杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 54,
+        "Correct": 46,
+        "Evaluated": 335,
+        "Accuracy": 0.8518518518518519
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "4BD4E11173600F78833878BCCB21EA7E8828A9978AAE505BF6D77E0D36C25923"
+    },
+    {
+      "RuleId": "B-G-R-007-CY",
+      "Name": "三角中心杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 51,
+        "Correct": 42,
+        "Evaluated": 719,
+        "Accuracy": 0.8235294117647058
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "F06876FB597711EA84F41D6E3DE79A5C16A2C7D38EF0262A12DDED3D272D57DB"
+    },
+    {
+      "RuleId": "B-G-R-008-HS",
+      "Name": "平行四边形缺角杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 66,
+        "Correct": 55,
+        "Evaluated": 99,
+        "Accuracy": 0.8333333333333334
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "9EA83B55FC66AEAE584B3BD354EFF8D7E8A3DFEE8C3062BEB51384B788FE52FB"
+    },
+    {
+      "RuleId": "B-G-R-008-OE",
+      "Name": "平行四边形缺角杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 62,
+        "Correct": 53,
+        "Evaluated": 169,
+        "Accuracy": 0.8548387096774194
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "1D48BC9BB6FE61045E724984E975C70172C4A2E8E20A63A70317F486F4B8DA6E"
+    },
+    {
+      "RuleId": "B-G-R-008-CY",
+      "Name": "平行四边形缺角杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 53,
+        "Correct": 46,
+        "Evaluated": 371,
+        "Accuracy": 0.8679245283018868
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "5F5C46CE343ED824825BCEF3C31E2D503CCDB3278E8038CE2E1486F8A3C1B9DF"
+    },
+    {
+      "RuleId": "B-G-R-009-HS",
+      "Name": "上期蓝号杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Evaluated": 75,
+        "Accuracy": 0.82
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "399093DE070657D1134E308566E645BC03B1FE915B6D2A2FB14E0CE28C7A4590"
+    },
+    {
+      "RuleId": "B-G-R-009-OE",
+      "Name": "上期蓝号杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 43,
+        "Evaluated": 98,
+        "Accuracy": 0.86
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "9995CA144BA0C35E0932FEF2E04D4D405C7233DFD532CB8C1ABCD875647E2AE5"
+    },
+    {
+      "RuleId": "B-G-R-009-CY",
+      "Name": "上期蓝号杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 44,
+        "Evaluated": 471,
+        "Accuracy": 0.88
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "4B9D5098A717D589D44F42DFAAEA18F48AECE1B92B56EA7B9DC63E0E3162342C"
+    },
+    {
+      "RuleId": "B-G-R-010-HS",
+      "Name": "三连号下方杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 156,
+        "Correct": 129,
+        "Evaluated": 615,
+        "Accuracy": 0.8269230769230769
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "30FF65E1C8319B2D138386C4C826E09B94775A26D282F39445D1A49A8876E2F9"
+    },
+    {
+      "RuleId": "B-G-R-010-OE",
+      "Name": "三连号下方杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 83,
+        "Correct": 69,
+        "Evaluated": 710,
+        "Accuracy": 0.8313253012048193
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "940A9E40672E3AC610C3039CAD1A6AC3EEF4CA19DC044E23783F875217B7189C"
+    },
+    {
+      "RuleId": "B-G-R-010-CY",
+      "Name": "三连号下方杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 73,
+        "Correct": 61,
+        "Evaluated": 762,
+        "Accuracy": 0.8356164383561644
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "D9A5D1377507E42D1492961647E0DD07D20A43B2C0FD9A068444787A9BA3D7BB"
+    },
+    {
+      "RuleId": "B-G-R-011-HS",
+      "Name": "四斜连杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 59,
+        "Correct": 49,
+        "Evaluated": 162,
+        "Accuracy": 0.8305084745762712
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "522DD57BB09CFFCB0A0766AE6F34F651AA811E50C36005BE6A9A72A89BEC2CE2"
+    },
+    {
+      "RuleId": "B-G-R-011-OE",
+      "Name": "四斜连杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 57,
+        "Correct": 50,
+        "Evaluated": 177,
+        "Accuracy": 0.8771929824561403
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "26A4F1D1783E0F82C7D232D338F824BFA2AAE606A9AC56F5C04C0C1E90F7C2CA"
+    },
+    {
+      "RuleId": "B-G-R-011-CY",
+      "Name": "四斜连杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 56,
+        "Correct": 48,
+        "Evaluated": 191,
+        "Accuracy": 0.8571428571428571
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "B01453224F220940C544FB09328EF28BC49268FE0E1AE701350A17E44AB2C643"
+    },
+    {
+      "RuleId": "B-G-R-012-HS",
+      "Name": "空心长方形杀红（历史同期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 77,
+        "Correct": 64,
+        "Evaluated": 1103,
+        "Accuracy": 0.8311688311688312
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "852CAA3089954F35422257B1CA1BA98AC67B547DA0D50E58156358119DD3D06C"
+    },
+    {
+      "RuleId": "B-G-R-012-OE",
+      "Name": "空心长方形杀红（奇偶图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 103,
+        "Correct": 87,
+        "Evaluated": 1155,
+        "Accuracy": 0.8446601941747572
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "3B064C6D6459A819B36DC53B6E671B76B05BE948FB18CEF81BE7E978050CAA47"
+    },
+    {
+      "RuleId": "B-G-R-012-CY",
+      "Name": "空心长方形杀红（周期图）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 68,
+        "Correct": 56,
+        "Evaluated": 1443,
+        "Accuracy": 0.8235294117647058
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "942BBB55B08C12B9ADA5A42CFEC31B6A0990FA7BEA44EE41C07921E9DF25A50B"
+    },
+    {
+      "RuleId": "B-S-R-001",
+      "Name": "隔列斜线图形杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 54,
+        "Correct": 47,
+        "Evaluated": 187,
+        "Accuracy": 0.8703703703703703
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "8328B9328D0C6F3D9F9F321E776FCC8D3BE275E806916E021BB4B70194C09A41"
+    },
+    {
+      "RuleId": "B-S-R-002",
+      "Name": "三列短循环（图距1）双向图形杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 55,
+        "Correct": 46,
+        "Evaluated": 152,
+        "Accuracy": 0.8363636363636363
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "FDB65984BE559BB34B9C6C88A9BDD77DAE66C78544856C1AC6B7207BCE6B26B8"
+    },
+    {
+      "RuleId": "B-S-R-003",
+      "Name": "相邻折返图形杀红（正向，图距×2/1）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 52,
+        "Correct": 43,
+        "Evaluated": 236,
+        "Accuracy": 0.8269230769230769
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "A7BECB8001DF74971506FB97DF3E0B65A3D59E63EF2B851F9D80695E27DFCE21"
+    },
+    {
+      "RuleId": "B-S-R-004",
+      "Name": "隔列折返图形杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 62,
+        "Correct": 56,
+        "Evaluated": 168,
+        "Accuracy": 0.9032258064516129
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "9F6A650F07CF64734249021AF2C9E69B42FEFBCE95B16261BFDBF6B0072026E0"
+    },
+    {
+      "RuleId": "B-S-R-005",
+      "Name": "尖顶回落图形杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Evaluated": 803,
+        "Accuracy": 0.82
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "DA470CEB47C8C85FDFAFB59114BFA42515116CA36F49ACAB605961386F8314E2"
+    },
+    {
+      "RuleId": "B-S-R-006",
+      "Name": "尖顶回弹图形杀红",
+      "Current": {
+        "Triggers": 30,
+        "Killed": 30,
+        "Correct": 26,
+        "Evaluated": 3507,
+        "Accuracy": 0.8666666666666667
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "843E39C12643CCF2C1A53176683B746111BFCC0294B1624CE3C55CD6698D98F7"
+    },
+    {
+      "RuleId": "B-S-R-007",
+      "Name": "单起双阶梯图形杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 43,
+        "Evaluated": 735,
+        "Accuracy": 0.86
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "27B43EA05C537DC89C0DB06F0A56E41C716D227BE01C24BB4C757537C6300D19"
+    },
+    {
+      "RuleId": "B-S-R-008",
+      "Name": "双阶梯图形杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 54,
+        "Correct": 45,
+        "Evaluated": 730,
+        "Accuracy": 0.8333333333333334
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "C35DC34ED83657A080AD2E4BD92360E7D713270D5516A4DD90D3FF4B4EB42160"
+    },
+    {
+      "RuleId": "B-S-R-009",
+      "Name": "平台回折（图距2）双向图形杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 57,
+        "Correct": 50,
+        "Evaluated": 153,
+        "Accuracy": 0.8771929824561403
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "B5CB142F9A2B4CFCB77A57BFAC5E97EE0BD75C3FE6579AE18B7617967530E6C5"
+    },
+    {
+      "RuleId": "B-S-R-010",
+      "Name": "连续相邻锯齿图形杀红（反向，图距×2/1）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 45,
+        "Evaluated": 1851,
+        "Accuracy": 0.9
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "C2B6618DDB5921720D40371517BA431091BB6D5EDB516C9AEB445002A5113E65"
+    },
+    {
+      "RuleId": "B-S-R-011",
+      "Name": "连续隔列锯齿图形杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 51,
+        "Correct": 47,
+        "Evaluated": 753,
+        "Accuracy": 0.9215686274509803
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "7F170777B795E6B6B716DF8B2ECCF5F283D94F4EEFCC22E0167C341932CA1D44"
+    },
+    {
+      "RuleId": "B-S-R-012",
+      "Name": "单起双折返图形杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 52,
+        "Correct": 46,
+        "Evaluated": 894,
+        "Accuracy": 0.8846153846153846
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "A3816B4FA5BB4E7E05624D061E136731FA2FEF0430547E2C8F59C9B83FDF796B"
+    },
+    {
+      "RuleId": "B-S-R-013",
+      "Name": "双折返图形杀红",
+      "Current": {
+        "Triggers": 45,
+        "Killed": 45,
+        "Correct": 37,
+        "Evaluated": 3507,
+        "Accuracy": 0.8222222222222222
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "38D91055810E953083F9287D857614A43BB977E988E18EDD5A0DE62DD0222DF9"
+    },
+    {
+      "RuleId": "B-S-R-014",
+      "Name": "三列循环图形杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Evaluated": 3377,
+        "Accuracy": 0.82
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "A68985F6BE1FA0B3C96230D9CA02B22033A536AEC34FF90C6F4D391295FCDA88"
+    },
+    {
+      "RuleId": "B-S-R-015",
+      "Name": "平台上行（图距1）双向图形杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 65,
+        "Correct": 58,
+        "Evaluated": 153,
+        "Accuracy": 0.8923076923076924
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "FCD8A90C330FD24523973DE87C1CACE26774BE2834857852D58E16A607374A53"
+    },
+    {
+      "RuleId": "B-S-R-016",
+      "Name": "五斜连图形杀红（正向，图距×1/1）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Evaluated": 1737,
+        "Accuracy": 0.82
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "D80D6005904B87E885266626716CE422E71B2CC8AAC073AA423F16E1F0997F98"
+    },
+    {
+      "RuleId": "B-S-R-017",
+      "Name": "加速斜线图形杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 54,
+        "Correct": 48,
+        "Evaluated": 143,
+        "Accuracy": 0.8888888888888888
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "379D79FAADD242AF7752B92789259CD069273D3E230A328FED3C26CEB75ACF1B"
+    },
+    {
+      "RuleId": "B-S-R-018",
+      "Name": "减速斜线图形杀红（左右镜像，图距×2/1）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 54,
+        "Correct": 51,
+        "Evaluated": 251,
+        "Accuracy": 0.9444444444444444
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "90C1F85C2A6D8E5093F1B835CA6BA21B0D7CE9A36A3695A64A40155A80DDC924"
+    },
+    {
+      "RuleId": "B-S-R-019",
+      "Name": "一二步阶梯图形杀红（左右镜像，图距×2/1）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 43,
+        "Evaluated": 1165,
+        "Accuracy": 0.86
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "9D94402661510ED2ED26244B696F55D222100DF5BA0F1B89FF47BE96A8D0B11E"
+    },
+    {
+      "RuleId": "B-S-R-020",
+      "Name": "二一步阶梯图形杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 51,
+        "Correct": 44,
+        "Evaluated": 785,
+        "Accuracy": 0.8627450980392157
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "FC55C2846B31C4334B40CA95E57D39C8E8D9AD9963E5EB154B91C802931C35A8"
+    },
+    {
+      "RuleId": "B-S-R-021",
+      "Name": "中心摆动图形杀红（正向，图距×2/1）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 42,
+        "Evaluated": 1222,
+        "Accuracy": 0.84
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "723FA2492C4C57CC7914EEF8F0DFA42DB4D9FBC0E63F90D7A00296A339FABA21"
+    },
+    {
+      "RuleId": "B-S-R-022",
+      "Name": "宽幅中心摆动图形杀红（左右镜像，图距×2/1）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 43,
+        "Evaluated": 748,
+        "Accuracy": 0.86
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "33AF9ADE235C13529B0467F985B728AA77266AA30E75295D410671BA4BFA4C9B"
+    },
+    {
+      "RuleId": "B-S-R-023",
+      "Name": "平顶回落图形杀红",
+      "Current": {
+        "Triggers": 43,
+        "Killed": 43,
+        "Correct": 42,
+        "Evaluated": 3507,
+        "Accuracy": 0.9767441860465116
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "45B03CE75227615E1CB86605DC4DA3EDC273C5C699459D096448090CB5D172B3"
+    },
+    {
+      "RuleId": "B-S-R-024",
+      "Name": "宽平顶折返图形杀红",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 51,
+        "Correct": 45,
+        "Evaluated": 931,
+        "Accuracy": 0.8823529411764706
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "09E5317DFA4640888425757DB9841A63C1CFA88BC98EBA03261C26698BEBC600"
+    },
+    {
+      "RuleId": "B-S-R-025",
+      "Name": "三行平台图形杀红（左右镜像，图距×2/1）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 55,
+        "Correct": 49,
+        "Evaluated": 940,
+        "Accuracy": 0.8909090909090909
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "2B8D3220E6AA3CA6451670F1BA8CF19D9A1EF7CAA6247F195857AF336CCC2BF9"
+    },
+    {
+      "RuleId": "B-S-B-001",
+      "Name": "三重竖线图形杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Evaluated": 760,
+        "Accuracy": 0.96
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "4659E367E320844A067D53985C3ADE3880D6E497BA039295B0A9B7EFC47DDC4D"
+    },
+    {
+      "RuleId": "B-S-B-002",
+      "Name": "1步三斜连图形杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Evaluated": 469,
+        "Accuracy": 0.96
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "3A0D951289E042D6A7FC7228E02CE28F215ABCD0B01D0CFECDAC405378AF246D"
+    },
+    {
+      "RuleId": "B-S-B-003",
+      "Name": "2步三斜连图形杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Evaluated": 501,
+        "Accuracy": 0.94
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "7EF24E99474A413209E914D95D166F8A2D65E0AD079022DC7977EA33520FBE67"
+    },
+    {
+      "RuleId": "B-S-B-004",
+      "Name": "3步三斜连图形杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Evaluated": 866,
+        "Accuracy": 0.96
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "02905496537423DF36A79EDC358B16F348352562812A0D320825D2732B1C89BB"
+    },
+    {
+      "RuleId": "B-S-B-005",
+      "Name": "4步三斜连图形杀蓝（正向，图距×1/2）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Evaluated": 1024,
+        "Accuracy": 0.96
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "D0302DC2DE4561BF6D44ECED23D361C7159DE146EF11E51AE11D86FCD1C06C7C"
+    },
+    {
+      "RuleId": "B-S-B-006",
+      "Name": "5步三斜连图形杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Evaluated": 1296,
+        "Accuracy": 0.94
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "66640D5999E0A02AEB833FB9CC2E89071C799C87089CAB43BA71023BAEA7711F"
+    },
+    {
+      "RuleId": "B-S-B-007",
+      "Name": "6步三斜连图形杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 49,
+        "Evaluated": 1826,
+        "Accuracy": 0.98
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "88F0A0F346FAEBCE5B2E43380FFA60EDEC8E627A7003921BE28607FA7E161361"
+    },
+    {
+      "RuleId": "B-S-B-008",
+      "Name": "7步三斜连图形杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Evaluated": 3024,
+        "Accuracy": 0.94
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "D6743818040CD0112EBAF060D8E4D52C2DB16D32271F0800DCE6D5B0DEA15141"
+    },
+    {
+      "RuleId": "B-S-B-009",
+      "Name": "间距1折返图形杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Evaluated": 451,
+        "Accuracy": 0.94
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "62CCA22DC857CC1A39E8C227AADC07352CFAA322F082D9829F132A9B7228D7DC"
+    },
+    {
+      "RuleId": "B-S-B-010",
+      "Name": "跨度10中点回折双向图形杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Evaluated": 1123,
+        "Accuracy": 0.96
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "B5B16749CFC2AFB38461F6B5141311D1BB70DF7981068FF2F8319C88D2398B6A"
+    },
+    {
+      "RuleId": "B-S-B-011",
+      "Name": "间距3折返图形杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Evaluated": 627,
+        "Accuracy": 0.96
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "3659F11BDD833819221A08DF1994E7005F0A157D602E7BF6CAE3689565F40BD3"
+    },
+    {
+      "RuleId": "B-S-B-012",
+      "Name": "间距4折返图形杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Evaluated": 532,
+        "Accuracy": 0.96
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "754347D08746085F5CF474A7DBA2FAE81EEF33EB6C09A7B12549EE02E4530005"
+    },
+    {
+      "RuleId": "B-S-B-013",
+      "Name": "跨度8中点回折反向图形杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Evaluated": 1270,
+        "Accuracy": 0.94
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "CF2C41A35BC88F3C0FD7DC0902EB59485E9C64731AE0FA31D92019975F2FDC53"
+    },
+    {
+      "RuleId": "B-S-B-014",
+      "Name": "间距6折返图形杀蓝（正向，图距×1/2）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Evaluated": 1183,
+        "Accuracy": 0.96
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "B2D6F773161918E61B641835B217D6416F688C0D950F512882D102B85EBA9696"
+    },
+    {
+      "RuleId": "B-S-B-015",
+      "Name": "间距7折返图形杀蓝（正向，图距×1/1）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Evaluated": 1338,
+        "Accuracy": 0.94
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "7114F3949918937580A71EE2EC11FE99E8C66617FF040CF9EF9F62DF863E14CF"
+    },
+    {
+      "RuleId": "B-S-B-016",
+      "Name": "间距8折返图形杀蓝（正向，图距×1/2）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Evaluated": 1184,
+        "Accuracy": 0.94
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "4A1F05934EFC83B524155BD2AC1BC9A94F246FA40A5CC5106C7FC5F7F5ED7A71"
+    },
+    {
+      "RuleId": "B-S-B-017",
+      "Name": "间距9折返图形杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Evaluated": 867,
+        "Accuracy": 0.94
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "E802921DB721BE5BA505652D70CD7C1AD45835BA39FF04AA1ECA31002526D4C5"
+    },
+    {
+      "RuleId": "B-S-B-018",
+      "Name": "间距10折返图形杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Evaluated": 1123,
+        "Accuracy": 0.94
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "04FA29E90737CDB34E05AB43581E3FE4F09EA5CA097E074AA5D4B69EE473B649"
+    },
+    {
+      "RuleId": "B-S-B-019",
+      "Name": "间距11折返图形杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Evaluated": 1199,
+        "Accuracy": 0.94
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "6D7D4E82B738C716A5A1DA44A5A30147284D1A0E4E74ADBB1431EE8690ACFB72"
+    },
+    {
+      "RuleId": "B-S-B-020",
+      "Name": "间距12折返图形杀蓝（反向，图距×1/2）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Evaluated": 1244,
+        "Accuracy": 0.94
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "409EA2F7BA91537DF3E670A8595B8381E665762FA94786DDD48B3F331C35BA0B"
+    },
+    {
+      "RuleId": "B-S-B-021",
+      "Name": "间距13折返图形杀蓝（反向，图距×1/1）",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 49,
+        "Evaluated": 3184,
+        "Accuracy": 0.98
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "89C76F81F53DC7BD9611372E9EE30AB815D8B83559699912EF19518AFDAFE91F"
+    },
+    {
+      "RuleId": "B-S-B-022",
+      "Name": "间距14折返图形杀蓝（正向，图距×1/1）",
+      "Current": {
+        "Triggers": 36,
+        "Killed": 36,
+        "Correct": 34,
+        "Evaluated": 3507,
+        "Accuracy": 0.9444444444444444
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "AEF70080B9313EF2248C6C6F87F9662C5C966B0656C3C58E421B34106E9D3574"
+    },
+    {
+      "RuleId": "B-S-B-023",
+      "Name": "间距15折返图形杀蓝",
+      "Current": {
+        "Triggers": 30,
+        "Killed": 30,
+        "Correct": 29,
+        "Evaluated": 3507,
+        "Accuracy": 0.9666666666666667
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "C6EB8D1A633212FED415EE8F24A0321F5AEB65BAE534DD1866B2A59680AAB6F0"
+    },
+    {
+      "RuleId": "B-S-B-024",
+      "Name": "二列中点内折图形杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Evaluated": 398,
+        "Accuracy": 0.96
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "D9CDC6DA32BF3FF573AAB26DBF2DD72C44FFBB1652F3BE3973EDF336E70306FE"
+    },
+    {
+      "RuleId": "B-S-B-025",
+      "Name": "四列中点内折图形杀蓝",
+      "Current": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 49,
+        "Evaluated": 532,
+        "Accuracy": 0.98
+      },
+      "WithoutFilter": null,
+      "Candidates": [],
+      "Fingerprint": "A2CDE99F94C861302CAAD2C9E5515B3E61EF37DCC691774759FDD5C4831D311D"
+    }
+  ]
+}

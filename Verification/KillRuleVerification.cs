@@ -13,8 +13,11 @@ internal static partial class VerificationSuite
         Assert(active.Count == 100 && active.Select(r => r.RuleId).Distinct().Count() == 100, "100 unique builtin rules are available");
         var originals = BuiltinRules.LoadOriginalCatalog().ToDictionary(r => r.RuleId);
         var previous = active.Where(r => originals.ContainsKey(r.RuleId)).ToArray();
-        Assert(previous.Length == 50 && previous.All(r => (r.JsCode != originals[r.RuleId].JsCode) == (BuiltinRuleRevisions.FindCondition(r.RuleId) is not null || BuiltinRuleRevisions.FindGeometryCondition(r.RuleId) is { MissThreshold: null })), "all previous rules and explicit condition revisions are preserved");
-        Assert(previous.All(r => r.Name == originals[r.RuleId].Name && r.BallType == originals[r.RuleId].BallType), "condition tuning preserves rule identity and ball type");
+        Assert(previous.Length == 50 && previous.All(r => (r.JsCode != originals[r.RuleId].JsCode) == (r.Params.ContainsKey("geometryVersion") || BuiltinRuleRevisions.FindCondition(r.RuleId) is not null || BuiltinRuleRevisions.FindGeometryCondition(r.RuleId) is { MissThreshold: null })), "all previous IDs and explicit revisions/replacements are preserved");
+        Assert(previous.All(r => (r.Params.ContainsKey("geometryVersion") || r.Name == originals[r.RuleId].Name) && r.BallType == originals[r.RuleId].BallType), "only explicit replacements rename original mechanisms; ball types stay fixed");
+        var replacedOriginals = previous.Where(r => r.Params.ContainsKey("geometryVersion")).ToArray();
+        Assert(replacedOriginals.Select(r => r.RuleId).Order().SequenceEqual(new[] { "B-G-B-001", "B-G-R-001", "B-G-R-001-OE" }), "exactly three original mechanisms replaced");
+        VerifyGeometryRules(replacedOriginals);
         var activeRepository = new RuleRepository();
         Assert(activeRepository.Find("B-G-R-001") is not null && activeRepository.GetAll().Count(r => r.IsBuiltin) == 100, "100 rules enter the active repository");
         VerifyRuleConditions();

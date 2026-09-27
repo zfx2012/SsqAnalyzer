@@ -37,6 +37,9 @@
     <EmbeddedResource Include="Resources\builtin-rules-extra.json">
       <LogicalName>SsqAnalyzer.Resources.builtin-rules-extra.json</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\builtin-pattern-replacements.json">
+      <LogicalName>SsqAnalyzer.Resources.builtin-pattern-replacements.json</LogicalName>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\position_export_cache.seed.json">
       <LogicalName>SsqAnalyzer.Resources.position_export_cache.seed.json</LogicalName>
     </EmbeddedResource>

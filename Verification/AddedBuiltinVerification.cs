@@ -27,6 +27,11 @@ internal static partial class VerificationSuite
     {
         Assert(added.Length == 50 && added.Count(r => r.BallType == BallType.Red) == 25 && added.Count(r => r.BallType == BallType.Blue) == 25, "50 geometry rules retain identities and ball types");
         Assert(added.All(r => r.IsBuiltin && !r.ForceEnabled && r.Params.ContainsKey("geometryVersion") && !r.Params.ContainsKey("family")), "statistical conditions replaced by geometry");
+        VerifyGeometryRules(added);
+    }
+
+    private static void VerifyGeometryRules(KillRule[] added)
+    {
         var executor = new JintRuleExecutor(); var builder = new RuleContextBuilder();
         var random = new Random(926);
         var sample = Enumerable.Range(0, 160).Select(i => new DrawRecord { Period = 2026001+i, DrawDate = new DateTime(2026,1,1).AddDays(i),
