@@ -1,0 +1,946 @@
+{
+  "Through": 2026112,
+  "DataHash": "EFFBE8EEC0FFA00CBF0D974C05D94AE10886A614FE0D7FC9A0DA59F9F9AD40E1",
+  "Changed": [
+    "B-S-B-006",
+    "B-S-B-007",
+    "B-S-B-008",
+    "B-S-B-014",
+    "B-S-B-015",
+    "B-S-B-021",
+    "B-S-B-022",
+    "B-S-B-023"
+  ],
+  "Unchanged": 92,
+  "IndependentComparisons": 4008,
+  "Before": {
+    "CurrentRemaining": 14,
+    "CurrentBalls": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      9,
+      10,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "AverageRemaining": 13.724,
+    "TargetPeriods": 0,
+    "UnderMinimum": 0,
+    "FullyRetained": 445,
+    "TargetAndRetained": 0
+  },
+  "After": {
+    "CurrentRemaining": 5,
+    "CurrentBalls": [
+      1,
+      3,
+      5,
+      9,
+      13
+    ],
+    "AverageRemaining": 5.964,
+    "TargetPeriods": 388,
+    "UnderMinimum": 0,
+    "FullyRetained": 199,
+    "TargetAndRetained": 144
+  },
+  "Red": {
+    "CurrentRemaining": 15,
+    "CurrentBalls": [
+      2,
+      3,
+      6,
+      12,
+      14,
+      19,
+      21,
+      22,
+      25,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "AverageRemaining": 13.658,
+    "TargetPeriods": 383,
+    "UnderMinimum": 0,
+    "FullyRetained": 3,
+    "TargetAndRetained": 2
+  },
+  "Rules": [
+    {
+      "Id": "B-G-R-001",
+      "Triggers": 50,
+      "Killed": 60,
+      "Correct": 51,
+      "Accuracy": 0.85,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-B-001",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Latest": [
+        8
+      ]
+    },
+    {
+      "Id": "B-G-R-002",
+      "Triggers": 50,
+      "Killed": 75,
+      "Correct": 63,
+      "Accuracy": 0.84,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-003",
+      "Triggers": 50,
+      "Killed": 116,
+      "Correct": 99,
+      "Accuracy": 0.853448275862069,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-004",
+      "Triggers": 50,
+      "Killed": 91,
+      "Correct": 76,
+      "Accuracy": 0.8351648351648352,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-005",
+      "Triggers": 50,
+      "Killed": 59,
+      "Correct": 51,
+      "Accuracy": 0.864406779661017,
+      "Latest": [
+        5
+      ]
+    },
+    {
+      "Id": "B-G-R-006",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 41,
+      "Accuracy": 0.82,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-007",
+      "Triggers": 50,
+      "Killed": 51,
+      "Correct": 45,
+      "Accuracy": 0.8823529411764706,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-008",
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 45,
+      "Accuracy": 0.8333333333333334,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-B-002",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Latest": [
+        11
+      ]
+    },
+    {
+      "Id": "B-G-R-009",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 42,
+      "Accuracy": 0.84,
+      "Latest": [
+        11
+      ]
+    },
+    {
+      "Id": "B-G-R-010",
+      "Triggers": 50,
+      "Killed": 156,
+      "Correct": 137,
+      "Accuracy": 0.8782051282051282,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-011",
+      "Triggers": 50,
+      "Killed": 53,
+      "Correct": 44,
+      "Accuracy": 0.8301886792452831,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-012",
+      "Triggers": 50,
+      "Killed": 102,
+      "Correct": 84,
+      "Accuracy": 0.8235294117647058,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-001-HS",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 42,
+      "Accuracy": 0.84,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-001-OE",
+      "Triggers": 50,
+      "Killed": 65,
+      "Correct": 58,
+      "Accuracy": 0.8923076923076924,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-001-CY",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 41,
+      "Accuracy": 0.82,
+      "Latest": [
+        10
+      ]
+    },
+    {
+      "Id": "B-G-R-002-HS",
+      "Triggers": 50,
+      "Killed": 58,
+      "Correct": 48,
+      "Accuracy": 0.8275862068965517,
+      "Latest": [
+        24
+      ]
+    },
+    {
+      "Id": "B-G-R-002-OE",
+      "Triggers": 50,
+      "Killed": 55,
+      "Correct": 46,
+      "Accuracy": 0.8363636363636363,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-002-CY",
+      "Triggers": 50,
+      "Killed": 62,
+      "Correct": 51,
+      "Accuracy": 0.8225806451612904,
+      "Latest": [
+        5
+      ]
+    },
+    {
+      "Id": "B-G-R-003-HS",
+      "Triggers": 50,
+      "Killed": 106,
+      "Correct": 87,
+      "Accuracy": 0.8207547169811321,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-003-OE",
+      "Triggers": 50,
+      "Killed": 78,
+      "Correct": 66,
+      "Accuracy": 0.8461538461538461,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-003-CY",
+      "Triggers": 50,
+      "Killed": 79,
+      "Correct": 66,
+      "Accuracy": 0.8354430379746836,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-004-HS",
+      "Triggers": 50,
+      "Killed": 94,
+      "Correct": 79,
+      "Accuracy": 0.8404255319148937,
+      "Latest": [
+        23,
+        24
+      ]
+    },
+    {
+      "Id": "B-G-R-004-OE",
+      "Triggers": 50,
+      "Killed": 64,
+      "Correct": 53,
+      "Accuracy": 0.828125,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-004-CY",
+      "Triggers": 50,
+      "Killed": 68,
+      "Correct": 57,
+      "Accuracy": 0.8382352941176471,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-005-HS",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 43,
+      "Accuracy": 0.86,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-005-OE",
+      "Triggers": 50,
+      "Killed": 58,
+      "Correct": 48,
+      "Accuracy": 0.8275862068965517,
+      "Latest": [
+        15
+      ]
+    },
+    {
+      "Id": "B-G-R-005-CY",
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 48,
+      "Accuracy": 0.8888888888888888,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-006-HS",
+      "Triggers": 50,
+      "Killed": 52,
+      "Correct": 46,
+      "Accuracy": 0.8846153846153846,
+      "Latest": [
+        13
+      ]
+    },
+    {
+      "Id": "B-G-R-006-OE",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 42,
+      "Accuracy": 0.84,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-006-CY",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 41,
+      "Accuracy": 0.82,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-007-HS",
+      "Triggers": 50,
+      "Killed": 53,
+      "Correct": 45,
+      "Accuracy": 0.8490566037735849,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-007-OE",
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 46,
+      "Accuracy": 0.8518518518518519,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-007-CY",
+      "Triggers": 50,
+      "Killed": 51,
+      "Correct": 42,
+      "Accuracy": 0.8235294117647058,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-008-HS",
+      "Triggers": 50,
+      "Killed": 66,
+      "Correct": 55,
+      "Accuracy": 0.8333333333333334,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-008-OE",
+      "Triggers": 50,
+      "Killed": 62,
+      "Correct": 53,
+      "Accuracy": 0.8548387096774194,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-008-CY",
+      "Triggers": 50,
+      "Killed": 53,
+      "Correct": 46,
+      "Accuracy": 0.8679245283018868,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-009-HS",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 41,
+      "Accuracy": 0.82,
+      "Latest": [
+        16
+      ]
+    },
+    {
+      "Id": "B-G-R-009-OE",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 43,
+      "Accuracy": 0.86,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-009-CY",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 44,
+      "Accuracy": 0.88,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-010-HS",
+      "Triggers": 50,
+      "Killed": 156,
+      "Correct": 129,
+      "Accuracy": 0.8269230769230769,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-010-OE",
+      "Triggers": 50,
+      "Killed": 83,
+      "Correct": 69,
+      "Accuracy": 0.8313253012048193,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-010-CY",
+      "Triggers": 50,
+      "Killed": 73,
+      "Correct": 61,
+      "Accuracy": 0.8356164383561644,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-011-HS",
+      "Triggers": 50,
+      "Killed": 59,
+      "Correct": 49,
+      "Accuracy": 0.8305084745762712,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-011-OE",
+      "Triggers": 50,
+      "Killed": 57,
+      "Correct": 50,
+      "Accuracy": 0.8771929824561403,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-011-CY",
+      "Triggers": 50,
+      "Killed": 56,
+      "Correct": 48,
+      "Accuracy": 0.8571428571428571,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-012-HS",
+      "Triggers": 50,
+      "Killed": 77,
+      "Correct": 64,
+      "Accuracy": 0.8311688311688312,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-012-OE",
+      "Triggers": 50,
+      "Killed": 103,
+      "Correct": 87,
+      "Accuracy": 0.8446601941747572,
+      "Latest": []
+    },
+    {
+      "Id": "B-G-R-012-CY",
+      "Triggers": 50,
+      "Killed": 68,
+      "Correct": 56,
+      "Accuracy": 0.8235294117647058,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-R-001",
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 47,
+      "Accuracy": 0.8703703703703703,
+      "Latest": [
+        10
+      ]
+    },
+    {
+      "Id": "B-S-R-002",
+      "Triggers": 50,
+      "Killed": 55,
+      "Correct": 46,
+      "Accuracy": 0.8363636363636363,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-R-003",
+      "Triggers": 50,
+      "Killed": 52,
+      "Correct": 43,
+      "Accuracy": 0.8269230769230769,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-R-004",
+      "Triggers": 50,
+      "Killed": 62,
+      "Correct": 56,
+      "Accuracy": 0.9032258064516129,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-R-005",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 41,
+      "Accuracy": 0.82,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-R-006",
+      "Triggers": 50,
+      "Killed": 86,
+      "Correct": 71,
+      "Accuracy": 0.8255813953488372,
+      "Latest": [
+        10,
+        11,
+        17
+      ]
+    },
+    {
+      "Id": "B-S-R-007",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 43,
+      "Accuracy": 0.86,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-R-008",
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 45,
+      "Accuracy": 0.8333333333333334,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-R-009",
+      "Triggers": 50,
+      "Killed": 57,
+      "Correct": 50,
+      "Accuracy": 0.8771929824561403,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-R-010",
+      "Triggers": 50,
+      "Killed": 79,
+      "Correct": 67,
+      "Accuracy": 0.8481012658227848,
+      "Latest": [
+        15
+      ]
+    },
+    {
+      "Id": "B-S-R-011",
+      "Triggers": 50,
+      "Killed": 51,
+      "Correct": 47,
+      "Accuracy": 0.9215686274509803,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-R-012",
+      "Triggers": 50,
+      "Killed": 52,
+      "Correct": 46,
+      "Accuracy": 0.8846153846153846,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-R-013",
+      "Triggers": 50,
+      "Killed": 91,
+      "Correct": 79,
+      "Accuracy": 0.8681318681318682,
+      "Latest": [
+        1,
+        8,
+        20,
+        26
+      ]
+    },
+    {
+      "Id": "B-S-R-014",
+      "Triggers": 50,
+      "Killed": 110,
+      "Correct": 93,
+      "Accuracy": 0.8454545454545455,
+      "Latest": [
+        8,
+        16,
+        33
+      ]
+    },
+    {
+      "Id": "B-S-R-015",
+      "Triggers": 50,
+      "Killed": 65,
+      "Correct": 58,
+      "Accuracy": 0.8923076923076924,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-R-016",
+      "Triggers": 50,
+      "Killed": 71,
+      "Correct": 62,
+      "Accuracy": 0.8732394366197183,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-R-017",
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 48,
+      "Accuracy": 0.8888888888888888,
+      "Latest": [
+        26
+      ]
+    },
+    {
+      "Id": "B-S-R-018",
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 51,
+      "Accuracy": 0.9444444444444444,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-R-019",
+      "Triggers": 50,
+      "Killed": 85,
+      "Correct": 73,
+      "Accuracy": 0.8588235294117647,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-R-020",
+      "Triggers": 50,
+      "Killed": 51,
+      "Correct": 44,
+      "Accuracy": 0.8627450980392157,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-R-021",
+      "Triggers": 50,
+      "Killed": 99,
+      "Correct": 82,
+      "Accuracy": 0.8282828282828283,
+      "Latest": [
+        7
+      ]
+    },
+    {
+      "Id": "B-S-R-022",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 43,
+      "Accuracy": 0.86,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-R-023",
+      "Triggers": 50,
+      "Killed": 95,
+      "Correct": 84,
+      "Accuracy": 0.8842105263157894,
+      "Latest": [
+        4,
+        9
+      ]
+    },
+    {
+      "Id": "B-S-R-024",
+      "Triggers": 50,
+      "Killed": 87,
+      "Correct": 75,
+      "Accuracy": 0.8620689655172413,
+      "Latest": [
+        18
+      ]
+    },
+    {
+      "Id": "B-S-R-025",
+      "Triggers": 50,
+      "Killed": 55,
+      "Correct": 49,
+      "Accuracy": 0.8909090909090909,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-001",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-002",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-003",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-004",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-005",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-006",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-007",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Latest": [
+        2
+      ]
+    },
+    {
+      "Id": "B-S-B-008",
+      "Triggers": 50,
+      "Killed": 71,
+      "Correct": 68,
+      "Accuracy": 0.9577464788732394,
+      "Latest": [
+        7,
+        15
+      ]
+    },
+    {
+      "Id": "B-S-B-009",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-010",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-011",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-012",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-013",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-014",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 50,
+      "Accuracy": 1,
+      "Latest": [
+        14
+      ]
+    },
+    {
+      "Id": "B-S-B-015",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-016",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-017",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-018",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-019",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-020",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-021",
+      "Triggers": 50,
+      "Killed": 63,
+      "Correct": 60,
+      "Accuracy": 0.9523809523809523,
+      "Latest": [
+        6,
+        16
+      ]
+    },
+    {
+      "Id": "B-S-B-022",
+      "Triggers": 50,
+      "Killed": 57,
+      "Correct": 55,
+      "Accuracy": 0.9649122807017544,
+      "Latest": [
+        4
+      ]
+    },
+    {
+      "Id": "B-S-B-023",
+      "Triggers": 50,
+      "Killed": 93,
+      "Correct": 92,
+      "Accuracy": 0.989247311827957,
+      "Latest": [
+        10,
+        12
+      ]
+    },
+    {
+      "Id": "B-S-B-024",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Latest": []
+    },
+    {
+      "Id": "B-S-B-025",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 49,
+      "Accuracy": 0.98,
+      "Latest": []
+    }
+  ]
+}

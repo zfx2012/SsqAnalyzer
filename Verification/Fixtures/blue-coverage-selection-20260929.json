@@ -1,0 +1,1379 @@
+{
+  "Through": 2026112,
+  "DataSha256": "003ccfc01fd1338ea02da58b8ae0fa10ebcf0cb2052dddc693417b519372f2fe",
+  "CandidateCount": 45,
+  "Before": {
+    "CurrentRemaining": 14,
+    "CurrentBalls": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      9,
+      10,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "AverageRemaining": 13.724,
+    "TargetPeriods": 0,
+    "Zero": 0,
+    "Retained": 445,
+    "TargetAndRetained": 0
+  },
+  "After": {
+    "CurrentRemaining": 5,
+    "CurrentBalls": [
+      1,
+      3,
+      5,
+      9,
+      13
+    ],
+    "AverageRemaining": 5.964,
+    "TargetPeriods": 388,
+    "Zero": 0,
+    "Retained": 199,
+    "TargetAndRetained": 144
+  },
+  "Selected": [
+    {
+      "Id": "B-S-B-023",
+      "OldName": "间距15折返图形杀蓝",
+      "Rule": {
+        "ruleId": "B-S-B-023",
+        "name": "单锚点斜距1双向杀蓝",
+        "category": "Pattern",
+        "subCategory": "轨迹图形",
+        "ballType": "Blue",
+        "isBuiltin": true,
+        "isEnabled": true,
+        "isVisible": true,
+        "minAccuracy": 0.94,
+        "forceEnabled": false,
+        "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+        "params": {
+          "geometryVersion": 1,
+          "offsets": [
+            0
+          ],
+          "target": 1,
+          "blue": true,
+          "direction": 0
+        },
+        "description": "以上一期蓝球为单个锚点，下一行按固定列距排除对应位置；不是多点已成形规律。越界舍弃，不循环，不按推荐数量临时补删。间距与方向经过历史优化，近50次94%门槛和近500期覆盖参与选择，不是独立验证。",
+        "tags": [
+          "短斜线",
+          "单锚点",
+          "历史优化"
+        ],
+        "source": "builtin",
+        "createdAt": "2026-09-29T00:00:00Z"
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 93,
+        "Correct": 92,
+        "Accuracy": 0.989247311827957,
+        "Recent500Triggers": 500,
+        "Recent500Accuracy": 0.9387755102040817
+      },
+      "Combined": {
+        "CurrentRemaining": 12,
+        "CurrentBalls": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          9,
+          13,
+          14,
+          15,
+          16
+        ],
+        "AverageRemaining": 12.22,
+        "TargetPeriods": 0,
+        "Zero": 0,
+        "Retained": 398,
+        "TargetAndRetained": 0
+      }
+    },
+    {
+      "Id": "B-S-B-008",
+      "OldName": "7步三斜连图形杀蓝",
+      "Rule": {
+        "ruleId": "B-S-B-008",
+        "name": "单锚点斜距4双向杀蓝",
+        "category": "Pattern",
+        "subCategory": "轨迹图形",
+        "ballType": "Blue",
+        "isBuiltin": true,
+        "isEnabled": true,
+        "isVisible": true,
+        "minAccuracy": 0.94,
+        "forceEnabled": false,
+        "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+        "params": {
+          "geometryVersion": 1,
+          "offsets": [
+            0
+          ],
+          "target": 4,
+          "blue": true,
+          "direction": 0
+        },
+        "description": "以上一期蓝球为单个锚点，下一行按固定列距排除对应位置；不是多点已成形规律。越界舍弃，不循环，不按推荐数量临时补删。间距与方向经过历史优化，近50次94%门槛和近500期覆盖参与选择，不是独立验证。",
+        "tags": [
+          "短斜线",
+          "单锚点",
+          "历史优化"
+        ],
+        "source": "builtin",
+        "createdAt": "2026-09-29T00:00:00Z"
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 71,
+        "Correct": 68,
+        "Accuracy": 0.9577464788732394,
+        "Recent500Triggers": 500,
+        "Recent500Accuracy": 0.9398084815321477
+      },
+      "Combined": {
+        "CurrentRemaining": 10,
+        "CurrentBalls": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          9,
+          13,
+          14,
+          16
+        ],
+        "AverageRemaining": 10.902,
+        "TargetPeriods": 0,
+        "Zero": 0,
+        "Retained": 356,
+        "TargetAndRetained": 0
+      }
+    },
+    {
+      "Id": "B-S-B-021",
+      "OldName": "间距13折返图形杀蓝（反向，图距×1/1）",
+      "Rule": {
+        "ruleId": "B-S-B-021",
+        "name": "单锚点斜距5双向杀蓝",
+        "category": "Pattern",
+        "subCategory": "轨迹图形",
+        "ballType": "Blue",
+        "isBuiltin": true,
+        "isEnabled": true,
+        "isVisible": true,
+        "minAccuracy": 0.94,
+        "forceEnabled": false,
+        "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+        "params": {
+          "geometryVersion": 1,
+          "offsets": [
+            0
+          ],
+          "target": 5,
+          "blue": true,
+          "direction": 0
+        },
+        "description": "以上一期蓝球为单个锚点，下一行按固定列距排除对应位置；不是多点已成形规律。越界舍弃，不循环，不按推荐数量临时补删。间距与方向经过历史优化，近50次94%门槛和近500期覆盖参与选择，不是独立验证。",
+        "tags": [
+          "短斜线",
+          "单锚点",
+          "历史优化"
+        ],
+        "source": "builtin",
+        "createdAt": "2026-09-29T00:00:00Z"
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 63,
+        "Correct": 60,
+        "Accuracy": 0.9523809523809523,
+        "Recent500Triggers": 500,
+        "Recent500Accuracy": 0.9491778774289985
+      },
+      "Combined": {
+        "CurrentRemaining": 8,
+        "CurrentBalls": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          9,
+          13,
+          14
+        ],
+        "AverageRemaining": 9.666,
+        "TargetPeriods": 7,
+        "Zero": 0,
+        "Retained": 322,
+        "TargetAndRetained": 4
+      }
+    },
+    {
+      "Id": "B-S-B-022",
+      "OldName": "间距14折返图形杀蓝（正向，图距×1/1）",
+      "Rule": {
+        "ruleId": "B-S-B-022",
+        "name": "单锚点斜距7双向杀蓝",
+        "category": "Pattern",
+        "subCategory": "轨迹图形",
+        "ballType": "Blue",
+        "isBuiltin": true,
+        "isEnabled": true,
+        "isVisible": true,
+        "minAccuracy": 0.94,
+        "forceEnabled": false,
+        "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+        "params": {
+          "geometryVersion": 1,
+          "offsets": [
+            0
+          ],
+          "target": 7,
+          "blue": true,
+          "direction": 0
+        },
+        "description": "以上一期蓝球为单个锚点，下一行按固定列距排除对应位置；不是多点已成形规律。越界舍弃，不循环，不按推荐数量临时补删。间距与方向经过历史优化，近50次94%门槛和近500期覆盖参与选择，不是独立验证。",
+        "tags": [
+          "短斜线",
+          "单锚点",
+          "历史优化"
+        ],
+        "source": "builtin",
+        "createdAt": "2026-09-29T00:00:00Z"
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 57,
+        "Correct": 55,
+        "Accuracy": 0.9649122807017544,
+        "Recent500Triggers": 500,
+        "Recent500Accuracy": 0.927007299270073
+      },
+      "Combined": {
+        "CurrentRemaining": 7,
+        "CurrentBalls": [
+          1,
+          2,
+          3,
+          5,
+          9,
+          13,
+          14
+        ],
+        "AverageRemaining": 8.626,
+        "TargetPeriods": 46,
+        "Zero": 0,
+        "Retained": 282,
+        "TargetAndRetained": 19
+      }
+    },
+    {
+      "Id": "B-S-B-007",
+      "OldName": "6步三斜连图形杀蓝",
+      "Rule": {
+        "ruleId": "B-S-B-007",
+        "name": "单锚点斜距9双向杀蓝",
+        "category": "Pattern",
+        "subCategory": "轨迹图形",
+        "ballType": "Blue",
+        "isBuiltin": true,
+        "isEnabled": true,
+        "isVisible": true,
+        "minAccuracy": 0.94,
+        "forceEnabled": false,
+        "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+        "params": {
+          "geometryVersion": 1,
+          "offsets": [
+            0
+          ],
+          "target": 9,
+          "blue": true,
+          "direction": 0
+        },
+        "description": "以上一期蓝球为单个锚点，下一行按固定列距排除对应位置；不是多点已成形规律。越界舍弃，不循环，不按推荐数量临时补删。间距与方向经过历史优化，近50次94%门槛和近500期覆盖参与选择，不是独立验证。",
+        "tags": [
+          "短斜线",
+          "单锚点",
+          "历史优化"
+        ],
+        "source": "builtin",
+        "createdAt": "2026-09-29T00:00:00Z"
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96,
+        "Recent500Triggers": 452,
+        "Recent500Accuracy": 0.9336283185840708
+      },
+      "Combined": {
+        "CurrentRemaining": 6,
+        "CurrentBalls": [
+          1,
+          3,
+          5,
+          9,
+          13,
+          14
+        ],
+        "AverageRemaining": 7.812,
+        "TargetPeriods": 91,
+        "Zero": 0,
+        "Retained": 254,
+        "TargetAndRetained": 37
+      }
+    },
+    {
+      "Id": "B-S-B-006",
+      "OldName": "5步三斜连图形杀蓝",
+      "Rule": {
+        "ruleId": "B-S-B-006",
+        "name": "单锚点斜距11双向杀蓝",
+        "category": "Pattern",
+        "subCategory": "轨迹图形",
+        "ballType": "Blue",
+        "isBuiltin": true,
+        "isEnabled": true,
+        "isVisible": true,
+        "minAccuracy": 0.94,
+        "forceEnabled": false,
+        "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+        "params": {
+          "geometryVersion": 1,
+          "offsets": [
+            0
+          ],
+          "target": 11,
+          "blue": true,
+          "direction": 0
+        },
+        "description": "以上一期蓝球为单个锚点，下一行按固定列距排除对应位置；不是多点已成形规律。越界舍弃，不循环，不按推荐数量临时补删。间距与方向经过历史优化，近50次94%门槛和近500期覆盖参与选择，不是独立验证。",
+        "tags": [
+          "短斜线",
+          "单锚点",
+          "历史优化"
+        ],
+        "source": "builtin",
+        "createdAt": "2026-09-29T00:00:00Z"
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96,
+        "Recent500Triggers": 331,
+        "Recent500Accuracy": 0.9335347432024169
+      },
+      "Combined": {
+        "CurrentRemaining": 6,
+        "CurrentBalls": [
+          1,
+          3,
+          5,
+          9,
+          13,
+          14
+        ],
+        "AverageRemaining": 7.194,
+        "TargetPeriods": 123,
+        "Zero": 0,
+        "Retained": 233,
+        "TargetAndRetained": 52
+      }
+    },
+    {
+      "Id": "B-S-B-015",
+      "OldName": "间距7折返图形杀蓝（正向，图距×1/1）",
+      "Rule": {
+        "ruleId": "B-S-B-015",
+        "name": "单锚点斜距12双向杀蓝",
+        "category": "Pattern",
+        "subCategory": "轨迹图形",
+        "ballType": "Blue",
+        "isBuiltin": true,
+        "isEnabled": true,
+        "isVisible": true,
+        "minAccuracy": 0.94,
+        "forceEnabled": false,
+        "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+        "params": {
+          "geometryVersion": 1,
+          "offsets": [
+            0
+          ],
+          "target": 12,
+          "blue": true,
+          "direction": 0
+        },
+        "description": "以上一期蓝球为单个锚点，下一行按固定列距排除对应位置；不是多点已成形规律。越界舍弃，不循环，不按推荐数量临时补删。间距与方向经过历史优化，近50次94%门槛和近500期覆盖参与选择，不是独立验证。",
+        "tags": [
+          "短斜线",
+          "单锚点",
+          "历史优化"
+        ],
+        "source": "builtin",
+        "createdAt": "2026-09-29T00:00:00Z"
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94,
+        "Recent500Triggers": 269,
+        "Recent500Accuracy": 0.9330855018587361
+      },
+      "Combined": {
+        "CurrentRemaining": 6,
+        "CurrentBalls": [
+          1,
+          3,
+          5,
+          9,
+          13,
+          14
+        ],
+        "AverageRemaining": 6.656,
+        "TargetPeriods": 185,
+        "Zero": 0,
+        "Retained": 215,
+        "TargetAndRetained": 72
+      }
+    },
+    {
+      "Id": "B-S-B-014",
+      "OldName": "间距6折返图形杀蓝（正向，图距×1/2）",
+      "Rule": {
+        "ruleId": "B-S-B-014",
+        "name": "单锚点斜距3正向杀蓝",
+        "category": "Pattern",
+        "subCategory": "轨迹图形",
+        "ballType": "Blue",
+        "isBuiltin": true,
+        "isEnabled": true,
+        "isVisible": true,
+        "minAccuracy": 0.94,
+        "forceEnabled": false,
+        "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+        "params": {
+          "geometryVersion": 1,
+          "offsets": [
+            0
+          ],
+          "target": 3,
+          "blue": true,
+          "direction": 1
+        },
+        "description": "以上一期蓝球为单个锚点，下一行按固定列距排除对应位置；不是多点已成形规律。越界舍弃，不循环，不按推荐数量临时补删。间距与方向经过历史优化，近50次94%门槛和近500期覆盖参与选择，不是独立验证。",
+        "tags": [
+          "短斜线",
+          "单锚点",
+          "历史优化"
+        ],
+        "source": "builtin",
+        "createdAt": "2026-09-29T00:00:00Z"
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 50,
+        "Accuracy": 1.0,
+        "Recent500Triggers": 398,
+        "Recent500Accuracy": 0.9547738693467337
+      },
+      "Combined": {
+        "CurrentRemaining": 5,
+        "CurrentBalls": [
+          1,
+          3,
+          5,
+          9,
+          13
+        ],
+        "AverageRemaining": 5.964,
+        "TargetPeriods": 388,
+        "Zero": 0,
+        "Retained": 199,
+        "TargetAndRetained": 144
+      }
+    }
+  ],
+  "Trials": [
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 1,
+        "blue": true,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 93,
+        "Correct": 92,
+        "Accuracy": 0.989247311827957,
+        "Recent500Triggers": 500,
+        "Recent500Accuracy": 0.9387755102040817
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 1,
+        "blue": true,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 50,
+        "Accuracy": 1.0,
+        "Recent500Triggers": 463,
+        "Recent500Accuracy": 0.9308855291576674
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 1,
+        "blue": true,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 49,
+        "Accuracy": 0.98,
+        "Recent500Triggers": 468,
+        "Recent500Accuracy": 0.9465811965811965
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 2,
+        "blue": true,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 86,
+        "Correct": 78,
+        "Accuracy": 0.9069767441860465,
+        "Recent500Triggers": 500,
+        "Recent500Accuracy": 0.9303944315545244
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 2,
+        "blue": true,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 44,
+        "Accuracy": 0.88,
+        "Recent500Triggers": 424,
+        "Recent500Accuracy": 0.9221698113207547
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 2,
+        "blue": true,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92,
+        "Recent500Triggers": 438,
+        "Recent500Accuracy": 0.9383561643835616
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 3,
+        "blue": true,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 80,
+        "Correct": 74,
+        "Accuracy": 0.925,
+        "Recent500Triggers": 500,
+        "Recent500Accuracy": 0.9538077403245943
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 3,
+        "blue": true,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 50,
+        "Accuracy": 1.0,
+        "Recent500Triggers": 398,
+        "Recent500Accuracy": 0.9547738693467337
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 3,
+        "blue": true,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 44,
+        "Accuracy": 0.88,
+        "Recent500Triggers": 403,
+        "Recent500Accuracy": 0.9528535980148883
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 4,
+        "blue": true,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 71,
+        "Correct": 68,
+        "Accuracy": 0.9577464788732394,
+        "Recent500Triggers": 500,
+        "Recent500Accuracy": 0.9398084815321477
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 4,
+        "blue": true,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 49,
+        "Accuracy": 0.98,
+        "Recent500Triggers": 370,
+        "Recent500Accuracy": 0.9486486486486486
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 4,
+        "blue": true,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92,
+        "Recent500Triggers": 361,
+        "Recent500Accuracy": 0.9307479224376731
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 5,
+        "blue": true,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 63,
+        "Correct": 60,
+        "Accuracy": 0.9523809523809523,
+        "Recent500Triggers": 500,
+        "Recent500Accuracy": 0.9491778774289985
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 5,
+        "blue": true,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96,
+        "Recent500Triggers": 343,
+        "Recent500Accuracy": 0.9446064139941691
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 5,
+        "blue": true,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94,
+        "Recent500Triggers": 326,
+        "Recent500Accuracy": 0.9539877300613497
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 6,
+        "blue": true,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 59,
+        "Correct": 52,
+        "Accuracy": 0.8813559322033898,
+        "Recent500Triggers": 500,
+        "Recent500Accuracy": 0.933993399339934
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 6,
+        "blue": true,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 43,
+        "Accuracy": 0.86,
+        "Recent500Triggers": 308,
+        "Recent500Accuracy": 0.9285714285714286
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 6,
+        "blue": true,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 45,
+        "Accuracy": 0.9,
+        "Recent500Triggers": 298,
+        "Recent500Accuracy": 0.9395973154362416
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 7,
+        "blue": true,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 57,
+        "Correct": 55,
+        "Accuracy": 0.9649122807017544,
+        "Recent500Triggers": 500,
+        "Recent500Accuracy": 0.927007299270073
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 7,
+        "blue": true,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96,
+        "Recent500Triggers": 278,
+        "Recent500Accuracy": 0.9388489208633094
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 7,
+        "blue": true,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92,
+        "Recent500Triggers": 270,
+        "Recent500Accuracy": 0.9148148148148149
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 8,
+        "blue": true,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92,
+        "Recent500Triggers": 500,
+        "Recent500Accuracy": 0.936
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 8,
+        "blue": true,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96,
+        "Recent500Triggers": 259,
+        "Recent500Accuracy": 0.9459459459459459
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 8,
+        "blue": true,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92,
+        "Recent500Triggers": 241,
+        "Recent500Accuracy": 0.9253112033195021
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 9,
+        "blue": true,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96,
+        "Recent500Triggers": 452,
+        "Recent500Accuracy": 0.9336283185840708
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 9,
+        "blue": true,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 49,
+        "Accuracy": 0.98,
+        "Recent500Triggers": 230,
+        "Recent500Accuracy": 0.9347826086956522
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 9,
+        "blue": true,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 44,
+        "Accuracy": 0.88,
+        "Recent500Triggers": 222,
+        "Recent500Accuracy": 0.9324324324324325
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 10,
+        "blue": true,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92,
+        "Recent500Triggers": 394,
+        "Recent500Accuracy": 0.9390862944162437
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 10,
+        "blue": true,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96,
+        "Recent500Triggers": 202,
+        "Recent500Accuracy": 0.9455445544554455
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 10,
+        "blue": true,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 45,
+        "Accuracy": 0.9,
+        "Recent500Triggers": 192,
+        "Recent500Accuracy": 0.9322916666666666
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 11,
+        "blue": true,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96,
+        "Recent500Triggers": 331,
+        "Recent500Accuracy": 0.9335347432024169
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 11,
+        "blue": true,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94,
+        "Recent500Triggers": 174,
+        "Recent500Accuracy": 0.9310344827586207
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 11,
+        "blue": true,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 49,
+        "Accuracy": 0.98,
+        "Recent500Triggers": 157,
+        "Recent500Accuracy": 0.9363057324840764
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 12,
+        "blue": true,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 47,
+        "Accuracy": 0.94,
+        "Recent500Triggers": 269,
+        "Recent500Accuracy": 0.9330855018587361
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 12,
+        "blue": true,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 49,
+        "Accuracy": 0.98,
+        "Recent500Triggers": 139,
+        "Recent500Accuracy": 0.9280575539568345
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 12,
+        "blue": true,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 45,
+        "Accuracy": 0.9,
+        "Recent500Triggers": 130,
+        "Recent500Accuracy": 0.9384615384615385
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 13,
+        "blue": true,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92,
+        "Recent500Triggers": 199,
+        "Recent500Accuracy": 0.9447236180904522
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 13,
+        "blue": true,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 49,
+        "Accuracy": 0.98,
+        "Recent500Triggers": 97,
+        "Recent500Accuracy": 0.9896907216494846
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 13,
+        "blue": true,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 45,
+        "Accuracy": 0.9,
+        "Recent500Triggers": 102,
+        "Recent500Accuracy": 0.9019607843137255
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 14,
+        "blue": true,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 44,
+        "Accuracy": 0.88,
+        "Recent500Triggers": 138,
+        "Recent500Accuracy": 0.9057971014492754
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 14,
+        "blue": true,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 41,
+        "Accuracy": 0.82,
+        "Recent500Triggers": 62,
+        "Recent500Accuracy": 0.8225806451612904
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 14,
+        "blue": true,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96,
+        "Recent500Triggers": 76,
+        "Recent500Accuracy": 0.9736842105263158
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 15,
+        "blue": true,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 43,
+        "Accuracy": 0.86,
+        "Recent500Triggers": 69,
+        "Recent500Accuracy": 0.8840579710144928
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 15,
+        "blue": true,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 44,
+        "Accuracy": 0.88,
+        "Recent500Triggers": 32,
+        "Recent500Accuracy": 0.875
+      }
+    },
+    {
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0
+        ],
+        "target": 15,
+        "blue": true,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 45,
+        "Accuracy": 0.9,
+        "Recent500Triggers": 37,
+        "Recent500Accuracy": 0.8918918918918919
+      }
+    }
+  ]
+}

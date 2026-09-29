@@ -145,7 +145,7 @@ internal static class BuiltinQualityAudit
                 ulong red = 0, blue = 0;
                 for (int r = 0; r < 100; r++) { if (rules[r].BallType == BallType.Red) red |= masks[r][i]; else blue |= masks[r][i]; }
                 int nr = 33 - Pop(red), nb = 16 - Pop(blue), hits = Pop(red & actualR[i]);
-                bool rt = nr is >= 6 and <= 15, bt = nb is >= 1 and <= 5, rf = hits == 0, bf = (blue & actualB[i]) == 0;
+                bool rt = nr is >= 6 and <= 15, bt = nb is >= 1 and <= 6, rf = hits == 0, bf = (blue & actualB[i]) == 0;
                 double random = Choose(nr, 6) / Choose(33, 6) * nb / 16d;
                 remainingR += nr; remainingB += nb; keptR += 6 - hits; randomFull += random;
                 if (rt) redTarget++; if (bt) blueTarget++; if (rf) redFull++; if (bf) blueFull++; if (rf && bf) full++;
@@ -167,7 +167,7 @@ internal static class BuiltinQualityAudit
         md.AppendLine($"数据：{history[0].Period}—{history[^1].Period}，共 {n} 期。规则指纹：`{result.RuleSetHash}`。\n");
         md.AppendLine("固定当前规则逐期重放，不改参数、不启停规则、不写回统计。以下历史结果都属于回顾性排查；近期成绩曾参与规则挑选，不能当作独立验证。近500期指500个实际开奖点，近50次指50次触发，两者不可混用。\n");
         md.AppendLine($"执行异常总数：{audits.Sum(r => r.All.Failed)}。轨迹规则与独立C#实现逐点比较：{independentComparisons} 次；未来开奖改动与重复执行检查：{futureChecks} 组（每组两次复算）。\n");
-        md.AppendLine("## 组合目标检查\n\n目标固定为红球剩余6—15个、蓝球剩余1—5个；不强行补删号码。完整保留是实际6红+1蓝均在候选集内。\n");
+        md.AppendLine("## 组合目标检查\n\n目标固定为红球剩余6—15个、蓝球剩余1—6个；不强行补删号码。完整保留是实际6红+1蓝均在候选集内。\n");
         md.AppendLine("|范围|开奖期数|平均剩余红/蓝|同时达到数量目标|平均保留实际红球|红球完整保留|蓝球保留|红蓝完整保留|数量达标且红蓝完整保留|\n|---|---:|---|---:|---:|---:|---:|---:|---:|");
         foreach (var c in combined) md.AppendLine($"|{c.Range}|{c.Draws}|{c.AverageRedRemaining:F2} / {c.AverageBlueRemaining:F2}|{c.JointTarget}|{c.AverageRetainedReds:F2}/6|{c.RedFullyRetained}|{c.BlueRetained}|{c.BothFullyRetained}|{c.TargetAndBothFull}|");
         md.AppendLine("\n## 逐条规则结果\n\n随机单号排除基准：红球27/33=81.82%，蓝球15/16=93.75%。这不是效果承诺。‘低于基准’仅描述样本；独有排除指只有该规则排除的号码。所有标记均为复核优先级，未自动淘汰。\n");

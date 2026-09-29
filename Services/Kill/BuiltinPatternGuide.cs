@@ -21,8 +21,9 @@ internal sealed record BuiltinPatternGuide(string Kind, string Scope, string Sha
             string Column(int n) => n == 0 ? "n" : $"n{n:+0;-0}";
             var diagram = offsets.Select(offset => string.Concat(shownColumns.Select(n => n == offset ? '●' : '·')))
                 .Append(string.Concat(shownColumns.Select(n => n == targetOffset ? '×' : '·'))).ToArray();
-            return new("轨迹图形", "基本图：每行一个实际开奖期，从上到下由旧到新。",
-                "连续各行依次出现 " + string.Join(" → ", offsets.Select(Column)) + "；" + orientation + "。其他位置不限制。" + (max-min > 6 ? "示意省略无关列，实际间距以列头数字为准。" : ""),
+            bool singleAnchor = offsets.Length == 1;
+            return new(singleAnchor ? "单锚点短斜线" : "轨迹图形", "基本图：每行一个实际开奖期，从上到下由旧到新。",
+                (singleAnchor ? "以上一期号码 " + Column(offsets[0]) + " 为单个锚点，并非多点已成形规律" : "连续各行依次出现 " + string.Join(" → ", offsets.Select(Column))) + "；" + orientation + "。其他位置不限制。" + (max-min > 6 ? "示意省略无关列，实际间距以列头数字为准。" : ""),
                 "下一行 " + Column(targetOffset) + "；" + (direction == 0 ? "镜像取对应反向位置，" : "") + "越界舍弃，多个匹配合并去重。",
                 "无频次、冷热或遗漏过滤；" + (rule.Description.Contains("历史优化", StringComparison.Ordinal) ? "方向与间距参与历史优化，成绩不是独立验证；" : "") + "不足窗口时按全部实际触发计算，旧版本成绩不代表此版本。",
                 shownColumns.Select(Column).ToArray(),
