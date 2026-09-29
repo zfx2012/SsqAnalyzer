@@ -1,0 +1,2728 @@
+{
+  "Through": 2026112,
+  "DataSha256": "003ccfc01fd1338ea02da58b8ae0fa10ebcf0cb2052dddc693417b519372f2fe",
+  "CandidateCount": 96,
+  "Before": {
+    "CurrentRemaining": 23,
+    "CurrentBalls": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      12,
+      14,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      25,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33
+    ],
+    "AverageRemaining": 20.368,
+    "TargetPeriods": 11,
+    "Under6": 0,
+    "FullyRetained": 24,
+    "AverageRetained": 3.766,
+    "TargetAndFull": 1
+  },
+  "After": {
+    "CurrentRemaining": 15,
+    "CurrentBalls": [
+      2,
+      3,
+      6,
+      12,
+      14,
+      19,
+      21,
+      22,
+      25,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "AverageRemaining": 13.586,
+    "TargetPeriods": 390,
+    "Under6": 0,
+    "FullyRetained": 2,
+    "AverageRetained": 2.564,
+    "TargetAndFull": 2
+  },
+  "Selected": [
+    {
+      "Id": "B-S-R-006",
+      "OldName": "尖顶回弹图形杀红",
+      "Rule": {
+        "ruleId": "B-S-R-006",
+        "name": "两行反向延伸（图距3）双向图形杀红",
+        "category": "Pattern",
+        "subCategory": "轨迹图形",
+        "ballType": "Red",
+        "isBuiltin": true,
+        "isEnabled": true,
+        "isVisible": true,
+        "minAccuracy": 0.82,
+        "forceEnabled": false,
+        "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+        "params": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            3
+          ],
+          "target": -3,
+          "blue": false,
+          "direction": 0
+        },
+        "description": "连续两期出现固定轨迹，按图形延伸或折返位置杀号，越界舍弃，多处匹配合并去重。历史优化同时考察近50次门槛与近500期组合覆盖；成绩不是独立验证，不保证每期剩余15个以内。",
+        "tags": [
+          "图形",
+          "组合覆盖",
+          "历史优化"
+        ],
+        "source": "builtin",
+        "createdAt": "2026-09-29T00:00:00Z"
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 86,
+        "Correct": 71,
+        "Accuracy": 0.8255813953488372,
+        "Recent500Accuracy": 0.8321513002364066,
+        "Recent500Triggers": 430
+      },
+      "Combined": {
+        "CurrentRemaining": 22,
+        "CurrentBalls": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          12,
+          14,
+          18,
+          19,
+          20,
+          21,
+          22,
+          25,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33
+        ],
+        "AverageRemaining": 19.296,
+        "TargetPeriods": 38,
+        "Under6": 0,
+        "FullyRetained": 18,
+        "AverageRetained": 3.6,
+        "TargetAndFull": 2
+      }
+    },
+    {
+      "Id": "B-S-R-014",
+      "OldName": "三列循环图形杀红",
+      "Rule": {
+        "ruleId": "B-S-R-014",
+        "name": "两行反向延伸（图距2）双向图形杀红",
+        "category": "Pattern",
+        "subCategory": "轨迹图形",
+        "ballType": "Red",
+        "isBuiltin": true,
+        "isEnabled": true,
+        "isVisible": true,
+        "minAccuracy": 0.82,
+        "forceEnabled": false,
+        "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+        "params": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            2
+          ],
+          "target": -2,
+          "blue": false,
+          "direction": 0
+        },
+        "description": "连续两期出现固定轨迹，按图形延伸或折返位置杀号，越界舍弃，多处匹配合并去重。历史优化同时考察近50次门槛与近500期组合覆盖；成绩不是独立验证，不保证每期剩余15个以内。",
+        "tags": [
+          "图形",
+          "组合覆盖",
+          "历史优化"
+        ],
+        "source": "builtin",
+        "createdAt": "2026-09-29T00:00:00Z"
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 110,
+        "Correct": 93,
+        "Accuracy": 0.8454545454545455,
+        "Recent500Accuracy": 0.8228941684665226,
+        "Recent500Triggers": 447
+      },
+      "Combined": {
+        "CurrentRemaining": 20,
+        "CurrentBalls": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          7,
+          12,
+          14,
+          18,
+          19,
+          20,
+          21,
+          22,
+          25,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "AverageRemaining": 18.264,
+        "TargetPeriods": 75,
+        "Under6": 0,
+        "FullyRetained": 11,
+        "AverageRetained": 3.402,
+        "TargetAndFull": 1
+      }
+    },
+    {
+      "Id": "B-S-R-013",
+      "OldName": "双折返图形杀红",
+      "Rule": {
+        "ruleId": "B-S-R-013",
+        "name": "两行斜线延伸（图距3）双向图形杀红",
+        "category": "Pattern",
+        "subCategory": "轨迹图形",
+        "ballType": "Red",
+        "isBuiltin": true,
+        "isEnabled": true,
+        "isVisible": true,
+        "minAccuracy": 0.82,
+        "forceEnabled": false,
+        "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+        "params": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            3
+          ],
+          "target": 6,
+          "blue": false,
+          "direction": 0
+        },
+        "description": "连续两期出现固定轨迹，按图形延伸或折返位置杀号，越界舍弃，多处匹配合并去重。历史优化同时考察近50次门槛与近500期组合覆盖；成绩不是独立验证，不保证每期剩余15个以内。",
+        "tags": [
+          "图形",
+          "组合覆盖",
+          "历史优化"
+        ],
+        "source": "builtin",
+        "createdAt": "2026-09-29T00:00:00Z"
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 91,
+        "Correct": 79,
+        "Accuracy": 0.8681318681318682,
+        "Recent500Accuracy": 0.8259345794392523,
+        "Recent500Triggers": 430
+      },
+      "Combined": {
+        "CurrentRemaining": 18,
+        "CurrentBalls": [
+          2,
+          3,
+          4,
+          6,
+          7,
+          12,
+          14,
+          18,
+          19,
+          21,
+          22,
+          25,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "AverageRemaining": 17.308,
+        "TargetPeriods": 127,
+        "Under6": 0,
+        "FullyRetained": 8,
+        "AverageRetained": 3.216,
+        "TargetAndFull": 1
+      }
+    },
+    {
+      "Id": "B-S-R-023",
+      "OldName": "平顶回落图形杀红",
+      "Rule": {
+        "ruleId": "B-S-R-023",
+        "name": "两行中点回折（图距3）双向图形杀红",
+        "category": "Pattern",
+        "subCategory": "轨迹图形",
+        "ballType": "Red",
+        "isBuiltin": true,
+        "isEnabled": true,
+        "isVisible": true,
+        "minAccuracy": 0.82,
+        "forceEnabled": false,
+        "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+        "params": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            6
+          ],
+          "target": 3,
+          "blue": false,
+          "direction": 0
+        },
+        "description": "连续两期出现固定轨迹，按图形延伸或折返位置杀号，越界舍弃，多处匹配合并去重。历史优化同时考察近50次门槛与近500期组合覆盖；成绩不是独立验证，不保证每期剩余15个以内。",
+        "tags": [
+          "图形",
+          "组合覆盖",
+          "历史优化"
+        ],
+        "source": "builtin",
+        "createdAt": "2026-09-29T00:00:00Z"
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 95,
+        "Correct": 84,
+        "Accuracy": 0.8842105263157894,
+        "Recent500Accuracy": 0.8270588235294117,
+        "Recent500Triggers": 431
+      },
+      "Combined": {
+        "CurrentRemaining": 17,
+        "CurrentBalls": [
+          2,
+          3,
+          6,
+          7,
+          12,
+          14,
+          18,
+          19,
+          21,
+          22,
+          25,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "AverageRemaining": 16.572,
+        "TargetPeriods": 164,
+        "Under6": 0,
+        "FullyRetained": 6,
+        "AverageRetained": 3.098,
+        "TargetAndFull": 1
+      }
+    },
+    {
+      "Id": "B-S-R-010",
+      "OldName": "连续相邻锯齿图形杀红（反向，图距×2/1）",
+      "Rule": {
+        "ruleId": "B-S-R-010",
+        "name": "两行反向延伸（图距7）双向图形杀红",
+        "category": "Pattern",
+        "subCategory": "轨迹图形",
+        "ballType": "Red",
+        "isBuiltin": true,
+        "isEnabled": true,
+        "isVisible": true,
+        "minAccuracy": 0.82,
+        "forceEnabled": false,
+        "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+        "params": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            7
+          ],
+          "target": -7,
+          "blue": false,
+          "direction": 0
+        },
+        "description": "连续两期出现固定轨迹，按图形延伸或折返位置杀号，越界舍弃，多处匹配合并去重。历史优化同时考察近50次门槛与近500期组合覆盖；成绩不是独立验证，不保证每期剩余15个以内。",
+        "tags": [
+          "图形",
+          "组合覆盖",
+          "历史优化"
+        ],
+        "source": "builtin",
+        "createdAt": "2026-09-29T00:00:00Z"
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 79,
+        "Correct": 67,
+        "Accuracy": 0.8481012658227848,
+        "Recent500Accuracy": 0.82,
+        "Recent500Triggers": 379
+      },
+      "Combined": {
+        "CurrentRemaining": 17,
+        "CurrentBalls": [
+          2,
+          3,
+          6,
+          7,
+          12,
+          14,
+          18,
+          19,
+          21,
+          22,
+          25,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "AverageRemaining": 15.866,
+        "TargetPeriods": 212,
+        "Under6": 0,
+        "FullyRetained": 5,
+        "AverageRetained": 2.968,
+        "TargetAndFull": 1
+      }
+    },
+    {
+      "Id": "B-S-R-021",
+      "OldName": "中心摆动图形杀红（正向，图距×2/1）",
+      "Rule": {
+        "ruleId": "B-S-R-021",
+        "name": "两行原点折返（图距4）双向图形杀红",
+        "category": "Pattern",
+        "subCategory": "轨迹图形",
+        "ballType": "Red",
+        "isBuiltin": true,
+        "isEnabled": true,
+        "isVisible": true,
+        "minAccuracy": 0.82,
+        "forceEnabled": false,
+        "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+        "params": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            4
+          ],
+          "target": 0,
+          "blue": false,
+          "direction": 0
+        },
+        "description": "连续两期出现固定轨迹，按图形延伸或折返位置杀号，越界舍弃，多处匹配合并去重。历史优化同时考察近50次门槛与近500期组合覆盖；成绩不是独立验证，不保证每期剩余15个以内。",
+        "tags": [
+          "图形",
+          "组合覆盖",
+          "历史优化"
+        ],
+        "source": "builtin",
+        "createdAt": "2026-09-29T00:00:00Z"
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 99,
+        "Correct": 82,
+        "Accuracy": 0.8282828282828283,
+        "Recent500Accuracy": 0.8200455580865603,
+        "Recent500Triggers": 445
+      },
+      "Combined": {
+        "CurrentRemaining": 16,
+        "CurrentBalls": [
+          2,
+          3,
+          6,
+          12,
+          14,
+          18,
+          19,
+          21,
+          22,
+          25,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "AverageRemaining": 15.21,
+        "TargetPeriods": 268,
+        "Under6": 0,
+        "FullyRetained": 3,
+        "AverageRetained": 2.84,
+        "TargetAndFull": 1
+      }
+    },
+    {
+      "Id": "B-S-R-016",
+      "OldName": "五斜连图形杀红（正向，图距×1/1）",
+      "Rule": {
+        "ruleId": "B-S-R-016",
+        "name": "两行中点回折（图距8）双向图形杀红",
+        "category": "Pattern",
+        "subCategory": "轨迹图形",
+        "ballType": "Red",
+        "isBuiltin": true,
+        "isEnabled": true,
+        "isVisible": true,
+        "minAccuracy": 0.82,
+        "forceEnabled": false,
+        "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+        "params": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            16
+          ],
+          "target": 8,
+          "blue": false,
+          "direction": 0
+        },
+        "description": "连续两期出现固定轨迹，按图形延伸或折返位置杀号，越界舍弃，多处匹配合并去重。历史优化同时考察近50次门槛与近500期组合覆盖；成绩不是独立验证，不保证每期剩余15个以内。",
+        "tags": [
+          "图形",
+          "组合覆盖",
+          "历史优化"
+        ],
+        "source": "builtin",
+        "createdAt": "2026-09-29T00:00:00Z"
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 71,
+        "Correct": 62,
+        "Accuracy": 0.8732394366197183,
+        "Recent500Accuracy": 0.8278260869565217,
+        "Recent500Triggers": 377
+      },
+      "Combined": {
+        "CurrentRemaining": 16,
+        "CurrentBalls": [
+          2,
+          3,
+          6,
+          12,
+          14,
+          18,
+          19,
+          21,
+          22,
+          25,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "AverageRemaining": 14.622,
+        "TargetPeriods": 312,
+        "Under6": 0,
+        "FullyRetained": 2,
+        "AverageRetained": 2.742,
+        "TargetAndFull": 2
+      }
+    },
+    {
+      "Id": "B-S-R-019",
+      "OldName": "一二步阶梯图形杀红（左右镜像，图距×2/1）",
+      "Rule": {
+        "ruleId": "B-S-R-019",
+        "name": "两行中点回折（图距6）双向图形杀红",
+        "category": "Pattern",
+        "subCategory": "轨迹图形",
+        "ballType": "Red",
+        "isBuiltin": true,
+        "isEnabled": true,
+        "isVisible": true,
+        "minAccuracy": 0.82,
+        "forceEnabled": false,
+        "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+        "params": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            12
+          ],
+          "target": 6,
+          "blue": false,
+          "direction": 0
+        },
+        "description": "连续两期出现固定轨迹，按图形延伸或折返位置杀号，越界舍弃，多处匹配合并去重。历史优化同时考察近50次门槛与近500期组合覆盖；成绩不是独立验证，不保证每期剩余15个以内。",
+        "tags": [
+          "图形",
+          "组合覆盖",
+          "历史优化"
+        ],
+        "source": "builtin",
+        "createdAt": "2026-09-29T00:00:00Z"
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 85,
+        "Correct": 73,
+        "Accuracy": 0.8588235294117647,
+        "Recent500Accuracy": 0.8321870701513068,
+        "Recent500Triggers": 417
+      },
+      "Combined": {
+        "CurrentRemaining": 16,
+        "CurrentBalls": [
+          2,
+          3,
+          6,
+          12,
+          14,
+          18,
+          19,
+          21,
+          22,
+          25,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "AverageRemaining": 14.068,
+        "TargetPeriods": 354,
+        "Under6": 0,
+        "FullyRetained": 2,
+        "AverageRetained": 2.63,
+        "TargetAndFull": 2
+      }
+    },
+    {
+      "Id": "B-S-R-024",
+      "OldName": "宽平顶折返图形杀红",
+      "Rule": {
+        "ruleId": "B-S-R-024",
+        "name": "两行斜线延伸（图距6）双向图形杀红",
+        "category": "Pattern",
+        "subCategory": "轨迹图形",
+        "ballType": "Red",
+        "isBuiltin": true,
+        "isEnabled": true,
+        "isVisible": true,
+        "minAccuracy": 0.82,
+        "forceEnabled": false,
+        "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+        "params": {
+          "geometryVersion": 1,
+          "offsets": [
+            0,
+            6
+          ],
+          "target": 12,
+          "blue": false,
+          "direction": 0
+        },
+        "description": "连续两期出现固定轨迹，按图形延伸或折返位置杀号，越界舍弃，多处匹配合并去重。历史优化同时考察近50次门槛与近500期组合覆盖；成绩不是独立验证，不保证每期剩余15个以内。",
+        "tags": [
+          "图形",
+          "组合覆盖",
+          "历史优化"
+        ],
+        "source": "builtin",
+        "createdAt": "2026-09-29T00:00:00Z"
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 87,
+        "Correct": 75,
+        "Accuracy": 0.8620689655172413,
+        "Recent500Accuracy": 0.8432267884322678,
+        "Recent500Triggers": 383
+      },
+      "Combined": {
+        "CurrentRemaining": 15,
+        "CurrentBalls": [
+          2,
+          3,
+          6,
+          12,
+          14,
+          19,
+          21,
+          22,
+          25,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "AverageRemaining": 13.586,
+        "TargetPeriods": 390,
+        "Under6": 0,
+        "FullyRetained": 2,
+        "AverageRetained": 2.564,
+        "TargetAndFull": 2
+      }
+    }
+  ],
+  "Trials": [
+    {
+      "Name": "两行斜线延伸（图距1）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          1
+        ],
+        "target": 2,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 127,
+        "Correct": 99,
+        "Accuracy": 0.7795275590551181,
+        "Recent500Accuracy": 0.8199004975124378,
+        "Recent500Triggers": 452
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距1）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          1
+        ],
+        "target": 2,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 77,
+        "Correct": 58,
+        "Accuracy": 0.7532467532467533,
+        "Recent500Accuracy": 0.7961904761904762,
+        "Recent500Triggers": 361
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距1）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          1
+        ],
+        "target": 2,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 66,
+        "Correct": 54,
+        "Accuracy": 0.8181818181818182,
+        "Recent500Accuracy": 0.8483606557377049,
+        "Recent500Triggers": 355
+      }
+    },
+    {
+      "Name": "两行原点折返（图距1）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          1
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 121,
+        "Correct": 94,
+        "Accuracy": 0.7768595041322314,
+        "Recent500Accuracy": 0.8083333333333333,
+        "Recent500Triggers": 457
+      }
+    },
+    {
+      "Name": "两行原点折返（图距1）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          1
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 77,
+        "Correct": 61,
+        "Accuracy": 0.7922077922077922,
+        "Recent500Accuracy": 0.8074766355140187,
+        "Recent500Triggers": 366
+      }
+    },
+    {
+      "Name": "两行原点折返（图距1）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          1
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 67,
+        "Correct": 53,
+        "Accuracy": 0.7910447761194029,
+        "Recent500Accuracy": 0.8082191780821918,
+        "Recent500Triggers": 362
+      }
+    },
+    {
+      "Name": "两行中点回折（图距1）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          2
+        ],
+        "target": 1,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 112,
+        "Correct": 88,
+        "Accuracy": 0.7857142857142857,
+        "Recent500Accuracy": 0.8034102306920762,
+        "Recent500Triggers": 454
+      }
+    },
+    {
+      "Name": "两行中点回折（图距1）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          2
+        ],
+        "target": 1,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 67,
+        "Correct": 52,
+        "Accuracy": 0.7761194029850746,
+        "Recent500Accuracy": 0.8074656188605108,
+        "Recent500Triggers": 359
+      }
+    },
+    {
+      "Name": "两行中点回折（图距1）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          2
+        ],
+        "target": 1,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 74,
+        "Correct": 60,
+        "Accuracy": 0.8108108108108109,
+        "Recent500Accuracy": 0.8024193548387096,
+        "Recent500Triggers": 341
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距1）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          1
+        ],
+        "target": -1,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 126,
+        "Correct": 109,
+        "Accuracy": 0.8650793650793651,
+        "Recent500Accuracy": 0.8164493480441324,
+        "Recent500Triggers": 456
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距1）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          1
+        ],
+        "target": -1,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 76,
+        "Correct": 66,
+        "Accuracy": 0.868421052631579,
+        "Recent500Accuracy": 0.8174757281553398,
+        "Recent500Triggers": 359
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距1）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          1
+        ],
+        "target": -1,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 65,
+        "Correct": 57,
+        "Accuracy": 0.8769230769230769,
+        "Recent500Accuracy": 0.8142857142857143,
+        "Recent500Triggers": 355
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距2）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          2
+        ],
+        "target": 4,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 104,
+        "Correct": 86,
+        "Accuracy": 0.8269230769230769,
+        "Recent500Accuracy": 0.8125,
+        "Recent500Triggers": 441
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距2）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          2
+        ],
+        "target": 4,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 67,
+        "Correct": 56,
+        "Accuracy": 0.835820895522388,
+        "Recent500Accuracy": 0.8140495867768595,
+        "Recent500Triggers": 350
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距2）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          2
+        ],
+        "target": 4,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 73,
+        "Correct": 59,
+        "Accuracy": 0.8082191780821918,
+        "Recent500Accuracy": 0.8141592920353983,
+        "Recent500Triggers": 320
+      }
+    },
+    {
+      "Name": "两行原点折返（图距2）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          2
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 103,
+        "Correct": 86,
+        "Accuracy": 0.8349514563106796,
+        "Recent500Accuracy": 0.8153681963713981,
+        "Recent500Triggers": 454
+      }
+    },
+    {
+      "Name": "两行原点折返（图距2）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          2
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 67,
+        "Correct": 54,
+        "Accuracy": 0.8059701492537313,
+        "Recent500Accuracy": 0.7956777996070727,
+        "Recent500Triggers": 359
+      }
+    },
+    {
+      "Name": "两行原点折返（图距2）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          2
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 74,
+        "Correct": 65,
+        "Accuracy": 0.8783783783783784,
+        "Recent500Accuracy": 0.8387096774193549,
+        "Recent500Triggers": 341
+      }
+    },
+    {
+      "Name": "两行中点回折（图距2）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          4
+        ],
+        "target": 2,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 104,
+        "Correct": 87,
+        "Accuracy": 0.8365384615384616,
+        "Recent500Accuracy": 0.844845908607864,
+        "Recent500Triggers": 445
+      }
+    },
+    {
+      "Name": "两行中点回折（图距2）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          4
+        ],
+        "target": 2,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 67,
+        "Correct": 53,
+        "Accuracy": 0.7910447761194029,
+        "Recent500Accuracy": 0.835820895522388,
+        "Recent500Triggers": 335
+      }
+    },
+    {
+      "Name": "两行中点回折（图距2）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          4
+        ],
+        "target": 2,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 72,
+        "Correct": 60,
+        "Accuracy": 0.8333333333333334,
+        "Recent500Accuracy": 0.8526970954356846,
+        "Recent500Triggers": 338
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距2）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          2
+        ],
+        "target": -2,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 110,
+        "Correct": 93,
+        "Accuracy": 0.8454545454545455,
+        "Recent500Accuracy": 0.8228941684665226,
+        "Recent500Triggers": 447
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距2）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          2
+        ],
+        "target": -2,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 67,
+        "Correct": 58,
+        "Accuracy": 0.8656716417910447,
+        "Recent500Accuracy": 0.8220338983050848,
+        "Recent500Triggers": 344
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距2）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          2
+        ],
+        "target": -2,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 70,
+        "Correct": 59,
+        "Accuracy": 0.8428571428571429,
+        "Recent500Accuracy": 0.8236559139784946,
+        "Recent500Triggers": 327
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距3）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          3
+        ],
+        "target": 6,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 91,
+        "Correct": 79,
+        "Accuracy": 0.8681318681318682,
+        "Recent500Accuracy": 0.8259345794392523,
+        "Recent500Triggers": 430
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距3）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          3
+        ],
+        "target": 6,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 62,
+        "Correct": 52,
+        "Accuracy": 0.8387096774193549,
+        "Recent500Accuracy": 0.8198198198198198,
+        "Recent500Triggers": 313
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距3）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          3
+        ],
+        "target": 6,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 73,
+        "Correct": 62,
+        "Accuracy": 0.8493150684931506,
+        "Recent500Accuracy": 0.8325358851674641,
+        "Recent500Triggers": 302
+      }
+    },
+    {
+      "Name": "两行原点折返（图距3）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          3
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 92,
+        "Correct": 72,
+        "Accuracy": 0.782608695652174,
+        "Recent500Accuracy": 0.8178733031674208,
+        "Recent500Triggers": 447
+      }
+    },
+    {
+      "Name": "两行原点折返（图距3）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          3
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 65,
+        "Correct": 50,
+        "Accuracy": 0.7692307692307693,
+        "Recent500Accuracy": 0.8004115226337448,
+        "Recent500Triggers": 334
+      }
+    },
+    {
+      "Name": "两行原点折返（图距3）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          3
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 72,
+        "Correct": 60,
+        "Accuracy": 0.8333333333333334,
+        "Recent500Accuracy": 0.8318965517241379,
+        "Recent500Triggers": 328
+      }
+    },
+    {
+      "Name": "两行中点回折（图距3）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          6
+        ],
+        "target": 3,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 95,
+        "Correct": 84,
+        "Accuracy": 0.8842105263157894,
+        "Recent500Accuracy": 0.8270588235294117,
+        "Recent500Triggers": 431
+      }
+    },
+    {
+      "Name": "两行中点回折（图距3）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          6
+        ],
+        "target": 3,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 68,
+        "Correct": 58,
+        "Accuracy": 0.8529411764705882,
+        "Recent500Accuracy": 0.8427230046948356,
+        "Recent500Triggers": 317
+      }
+    },
+    {
+      "Name": "两行中点回折（图距3）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          6
+        ],
+        "target": 3,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 74,
+        "Correct": 63,
+        "Accuracy": 0.8513513513513513,
+        "Recent500Accuracy": 0.812933025404157,
+        "Recent500Triggers": 318
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距3）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          3
+        ],
+        "target": -3,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 86,
+        "Correct": 71,
+        "Accuracy": 0.8255813953488372,
+        "Recent500Accuracy": 0.8321513002364066,
+        "Recent500Triggers": 430
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距3）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          3
+        ],
+        "target": -3,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 62,
+        "Correct": 49,
+        "Accuracy": 0.7903225806451613,
+        "Recent500Accuracy": 0.8105022831050228,
+        "Recent500Triggers": 310
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距3）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          3
+        ],
+        "target": -3,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 68,
+        "Correct": 59,
+        "Accuracy": 0.8676470588235294,
+        "Recent500Accuracy": 0.8574821852731591,
+        "Recent500Triggers": 310
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距4）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          4
+        ],
+        "target": 8,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 100,
+        "Correct": 79,
+        "Accuracy": 0.79,
+        "Recent500Accuracy": 0.801452784503632,
+        "Recent500Triggers": 420
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距4）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          4
+        ],
+        "target": 8,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 64,
+        "Correct": 55,
+        "Accuracy": 0.859375,
+        "Recent500Accuracy": 0.8121951219512196,
+        "Recent500Triggers": 303
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距4）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          4
+        ],
+        "target": 8,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 71,
+        "Correct": 54,
+        "Accuracy": 0.7605633802816901,
+        "Recent500Accuracy": 0.788235294117647,
+        "Recent500Triggers": 311
+      }
+    },
+    {
+      "Name": "两行原点折返（图距4）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          4
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 99,
+        "Correct": 82,
+        "Accuracy": 0.8282828282828283,
+        "Recent500Accuracy": 0.8200455580865603,
+        "Recent500Triggers": 445
+      }
+    },
+    {
+      "Name": "两行原点折返（图距4）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          4
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 67,
+        "Correct": 56,
+        "Accuracy": 0.835820895522388,
+        "Recent500Accuracy": 0.8294243070362474,
+        "Recent500Triggers": 335
+      }
+    },
+    {
+      "Name": "两行原点折返（图距4）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          4
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 72,
+        "Correct": 62,
+        "Accuracy": 0.8611111111111112,
+        "Recent500Accuracy": 0.8174273858921162,
+        "Recent500Triggers": 338
+      }
+    },
+    {
+      "Name": "两行中点回折（图距4）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          8
+        ],
+        "target": 4,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 97,
+        "Correct": 80,
+        "Accuracy": 0.8247422680412371,
+        "Recent500Accuracy": 0.8285371702637889,
+        "Recent500Triggers": 438
+      }
+    },
+    {
+      "Name": "两行中点回折（图距4）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          8
+        ],
+        "target": 4,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 70,
+        "Correct": 59,
+        "Accuracy": 0.8428571428571429,
+        "Recent500Accuracy": 0.7894736842105263,
+        "Recent500Triggers": 307
+      }
+    },
+    {
+      "Name": "两行中点回折（图距4）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          8
+        ],
+        "target": 4,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 67,
+        "Correct": 56,
+        "Accuracy": 0.835820895522388,
+        "Recent500Accuracy": 0.8632286995515696,
+        "Recent500Triggers": 316
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距4）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          4
+        ],
+        "target": -4,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 95,
+        "Correct": 77,
+        "Accuracy": 0.8105263157894737,
+        "Recent500Accuracy": 0.8095238095238095,
+        "Recent500Triggers": 416
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距4）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          4
+        ],
+        "target": -4,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 63,
+        "Correct": 53,
+        "Accuracy": 0.8412698412698413,
+        "Recent500Accuracy": 0.7910447761194029,
+        "Recent500Triggers": 302
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距4）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          4
+        ],
+        "target": -4,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 70,
+        "Correct": 56,
+        "Accuracy": 0.8,
+        "Recent500Accuracy": 0.8254716981132075,
+        "Recent500Triggers": 315
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距5）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          5
+        ],
+        "target": 10,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 90,
+        "Correct": 78,
+        "Accuracy": 0.8666666666666667,
+        "Recent500Accuracy": 0.8081081081081081,
+        "Recent500Triggers": 406
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距5）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          5
+        ],
+        "target": 10,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 67,
+        "Correct": 55,
+        "Accuracy": 0.8208955223880597,
+        "Recent500Accuracy": 0.8153034300791556,
+        "Recent500Triggers": 297
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距5）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          5
+        ],
+        "target": 10,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 68,
+        "Correct": 58,
+        "Accuracy": 0.8529411764705882,
+        "Recent500Accuracy": 0.8027397260273973,
+        "Recent500Triggers": 275
+      }
+    },
+    {
+      "Name": "两行原点折返（图距5）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          5
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 96,
+        "Correct": 75,
+        "Accuracy": 0.78125,
+        "Recent500Accuracy": 0.810304449648712,
+        "Recent500Triggers": 451
+      }
+    },
+    {
+      "Name": "两行原点折返（图距5）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          5
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 72,
+        "Correct": 63,
+        "Accuracy": 0.875,
+        "Recent500Accuracy": 0.8183807439824945,
+        "Recent500Triggers": 332
+      }
+    },
+    {
+      "Name": "两行原点折返（图距5）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          5
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 72,
+        "Correct": 53,
+        "Accuracy": 0.7361111111111112,
+        "Recent500Accuracy": 0.8074398249452954,
+        "Recent500Triggers": 329
+      }
+    },
+    {
+      "Name": "两行中点回折（图距5）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          10
+        ],
+        "target": 5,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 87,
+        "Correct": 66,
+        "Accuracy": 0.7586206896551724,
+        "Recent500Accuracy": 0.8203753351206434,
+        "Recent500Triggers": 419
+      }
+    },
+    {
+      "Name": "两行中点回折（图距5）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          10
+        ],
+        "target": 5,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 66,
+        "Correct": 48,
+        "Accuracy": 0.7272727272727273,
+        "Recent500Accuracy": 0.836272040302267,
+        "Recent500Triggers": 301
+      }
+    },
+    {
+      "Name": "两行中点回折（图距5）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          10
+        ],
+        "target": 5,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 63,
+        "Correct": 52,
+        "Accuracy": 0.8253968253968254,
+        "Recent500Accuracy": 0.8027777777777778,
+        "Recent500Triggers": 287
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距5）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          5
+        ],
+        "target": -5,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 97,
+        "Correct": 76,
+        "Accuracy": 0.7835051546391752,
+        "Recent500Accuracy": 0.8048128342245989,
+        "Recent500Triggers": 409
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距5）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          5
+        ],
+        "target": -5,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 66,
+        "Correct": 50,
+        "Accuracy": 0.7575757575757576,
+        "Recent500Accuracy": 0.7912087912087912,
+        "Recent500Triggers": 281
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距5）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          5
+        ],
+        "target": -5,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 71,
+        "Correct": 59,
+        "Accuracy": 0.8309859154929577,
+        "Recent500Accuracy": 0.8200514138817481,
+        "Recent500Triggers": 287
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距6）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          6
+        ],
+        "target": 12,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 87,
+        "Correct": 75,
+        "Accuracy": 0.8620689655172413,
+        "Recent500Accuracy": 0.8432267884322678,
+        "Recent500Triggers": 383
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距6）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          6
+        ],
+        "target": 12,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 62,
+        "Correct": 53,
+        "Accuracy": 0.8548387096774194,
+        "Recent500Accuracy": 0.85,
+        "Recent500Triggers": 254
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距6）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          6
+        ],
+        "target": 12,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 68,
+        "Correct": 58,
+        "Accuracy": 0.8529411764705882,
+        "Recent500Accuracy": 0.8348082595870207,
+        "Recent500Triggers": 274
+      }
+    },
+    {
+      "Name": "两行原点折返（图距6）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          6
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 90,
+        "Correct": 77,
+        "Accuracy": 0.8555555555555555,
+        "Recent500Accuracy": 0.8238916256157636,
+        "Recent500Triggers": 431
+      }
+    },
+    {
+      "Name": "两行原点折返（图距6）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          6
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 68,
+        "Correct": 56,
+        "Accuracy": 0.8235294117647058,
+        "Recent500Accuracy": 0.8098591549295775,
+        "Recent500Triggers": 317
+      }
+    },
+    {
+      "Name": "两行原点折返（图距6）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          6
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 74,
+        "Correct": 62,
+        "Accuracy": 0.8378378378378378,
+        "Recent500Accuracy": 0.8267898383371824,
+        "Recent500Triggers": 318
+      }
+    },
+    {
+      "Name": "两行中点回折（图距6）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          12
+        ],
+        "target": 6,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 85,
+        "Correct": 73,
+        "Accuracy": 0.8588235294117647,
+        "Recent500Accuracy": 0.8321870701513068,
+        "Recent500Triggers": 417
+      }
+    },
+    {
+      "Name": "两行中点回折（图距6）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          12
+        ],
+        "target": 6,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 66,
+        "Correct": 53,
+        "Accuracy": 0.803030303030303,
+        "Recent500Accuracy": 0.8242894056847545,
+        "Recent500Triggers": 298
+      }
+    },
+    {
+      "Name": "两行中点回折（图距6）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          12
+        ],
+        "target": 6,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 64,
+        "Correct": 55,
+        "Accuracy": 0.859375,
+        "Recent500Accuracy": 0.8434782608695652,
+        "Recent500Triggers": 269
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距6）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          6
+        ],
+        "target": -6,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 83,
+        "Correct": 70,
+        "Accuracy": 0.8433734939759037,
+        "Recent500Accuracy": 0.8093797276853253,
+        "Recent500Triggers": 390
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距6）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          6
+        ],
+        "target": -6,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 64,
+        "Correct": 49,
+        "Accuracy": 0.765625,
+        "Recent500Accuracy": 0.8048780487804879,
+        "Recent500Triggers": 265
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距6）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          6
+        ],
+        "target": -6,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 60,
+        "Correct": 48,
+        "Accuracy": 0.8,
+        "Recent500Accuracy": 0.8149253731343283,
+        "Recent500Triggers": 270
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距7）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          7
+        ],
+        "target": 14,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 85,
+        "Correct": 63,
+        "Accuracy": 0.7411764705882353,
+        "Recent500Accuracy": 0.8125960061443932,
+        "Recent500Triggers": 377
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距7）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          7
+        ],
+        "target": 14,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 65,
+        "Correct": 53,
+        "Accuracy": 0.8153846153846154,
+        "Recent500Accuracy": 0.8263473053892215,
+        "Recent500Triggers": 257
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距7）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          7
+        ],
+        "target": 14,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 62,
+        "Correct": 47,
+        "Accuracy": 0.7580645161290323,
+        "Recent500Accuracy": 0.7987421383647799,
+        "Recent500Triggers": 254
+      }
+    },
+    {
+      "Name": "两行原点折返（图距7）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          7
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 97,
+        "Correct": 82,
+        "Accuracy": 0.845360824742268,
+        "Recent500Accuracy": 0.8050239234449761,
+        "Recent500Triggers": 435
+      }
+    },
+    {
+      "Name": "两行原点折返（图距7）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          7
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 69,
+        "Correct": 54,
+        "Accuracy": 0.782608695652174,
+        "Recent500Accuracy": 0.7911832946635731,
+        "Recent500Triggers": 315
+      }
+    },
+    {
+      "Name": "两行原点折返（图距7）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          7
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 67,
+        "Correct": 60,
+        "Accuracy": 0.8955223880597015,
+        "Recent500Accuracy": 0.8153846153846154,
+        "Recent500Triggers": 325
+      }
+    },
+    {
+      "Name": "两行中点回折（图距7）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          14
+        ],
+        "target": 7,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 77,
+        "Correct": 65,
+        "Accuracy": 0.8441558441558441,
+        "Recent500Accuracy": 0.8138747884940778,
+        "Recent500Triggers": 364
+      }
+    },
+    {
+      "Name": "两行中点回折（图距7）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          14
+        ],
+        "target": 7,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 60,
+        "Correct": 48,
+        "Accuracy": 0.8,
+        "Recent500Accuracy": 0.8160535117056856,
+        "Recent500Triggers": 239
+      }
+    },
+    {
+      "Name": "两行中点回折（图距7）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          14
+        ],
+        "target": 7,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 62,
+        "Correct": 54,
+        "Accuracy": 0.8709677419354839,
+        "Recent500Accuracy": 0.8133333333333334,
+        "Recent500Triggers": 243
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距7）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          7
+        ],
+        "target": -7,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 79,
+        "Correct": 67,
+        "Accuracy": 0.8481012658227848,
+        "Recent500Accuracy": 0.82,
+        "Recent500Triggers": 379
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距7）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          7
+        ],
+        "target": -7,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 58,
+        "Correct": 50,
+        "Accuracy": 0.8620689655172413,
+        "Recent500Accuracy": 0.8211920529801324,
+        "Recent500Triggers": 250
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距7）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          7
+        ],
+        "target": -7,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 64,
+        "Correct": 56,
+        "Accuracy": 0.875,
+        "Recent500Accuracy": 0.8181818181818182,
+        "Recent500Triggers": 276
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距8）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          8
+        ],
+        "target": 16,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 82,
+        "Correct": 65,
+        "Accuracy": 0.7926829268292683,
+        "Recent500Accuracy": 0.7975352112676056,
+        "Recent500Triggers": 365
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距8）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          8
+        ],
+        "target": 16,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 62,
+        "Correct": 49,
+        "Accuracy": 0.7903225806451613,
+        "Recent500Accuracy": 0.8158844765342961,
+        "Recent500Triggers": 234
+      }
+    },
+    {
+      "Name": "两行斜线延伸（图距8）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          8
+        ],
+        "target": 16,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 67,
+        "Correct": 54,
+        "Accuracy": 0.8059701492537313,
+        "Recent500Accuracy": 0.7808219178082192,
+        "Recent500Triggers": 234
+      }
+    },
+    {
+      "Name": "两行原点折返（图距8）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          8
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 96,
+        "Correct": 79,
+        "Accuracy": 0.8229166666666666,
+        "Recent500Accuracy": 0.825653798256538,
+        "Recent500Triggers": 438
+      }
+    },
+    {
+      "Name": "两行原点折返（图距8）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          8
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 70,
+        "Correct": 59,
+        "Accuracy": 0.8428571428571429,
+        "Recent500Accuracy": 0.8045112781954887,
+        "Recent500Triggers": 307
+      }
+    },
+    {
+      "Name": "两行原点折返（图距8）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          8
+        ],
+        "target": 0,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 67,
+        "Correct": 53,
+        "Accuracy": 0.7910447761194029,
+        "Recent500Accuracy": 0.8497757847533632,
+        "Recent500Triggers": 316
+      }
+    },
+    {
+      "Name": "两行中点回折（图距8）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          16
+        ],
+        "target": 8,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 71,
+        "Correct": 62,
+        "Accuracy": 0.8732394366197183,
+        "Recent500Accuracy": 0.8278260869565217,
+        "Recent500Triggers": 377
+      }
+    },
+    {
+      "Name": "两行中点回折（图距8）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          16
+        ],
+        "target": 8,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 62,
+        "Correct": 53,
+        "Accuracy": 0.8548387096774194,
+        "Recent500Accuracy": 0.8256578947368421,
+        "Recent500Triggers": 250
+      }
+    },
+    {
+      "Name": "两行中点回折（图距8）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          16
+        ],
+        "target": 8,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 60,
+        "Correct": 52,
+        "Accuracy": 0.8666666666666667,
+        "Recent500Accuracy": 0.8309352517985612,
+        "Recent500Triggers": 231
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距8）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          8
+        ],
+        "target": -8,
+        "blue": false,
+        "direction": 0
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 73,
+        "Correct": 62,
+        "Accuracy": 0.8493150684931506,
+        "Recent500Accuracy": 0.803448275862069,
+        "Recent500Triggers": 365
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距8）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          8
+        ],
+        "target": -8,
+        "blue": false,
+        "direction": 1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 59,
+        "Correct": 51,
+        "Accuracy": 0.864406779661017,
+        "Recent500Accuracy": 0.8157894736842105,
+        "Recent500Triggers": 223
+      }
+    },
+    {
+      "Name": "两行反向延伸（图距8）",
+      "Parameters": {
+        "geometryVersion": 1,
+        "offsets": [
+          0,
+          8
+        ],
+        "target": -8,
+        "blue": false,
+        "direction": -1
+      },
+      "Score": {
+        "Triggers": 50,
+        "Killed": 58,
+        "Correct": 49,
+        "Accuracy": 0.8448275862068966,
+        "Recent500Accuracy": 0.7936507936507936,
+        "Recent500Triggers": 249
+      }
+    }
+  ]
+}

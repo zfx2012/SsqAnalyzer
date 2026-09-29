@@ -158,7 +158,7 @@
   },
   {
     "ruleId": "B-S-R-006",
-    "name": "尖顶回弹图形杀红",
+    "name": "两行反向延伸（图距3）双向图形杀红",
     "category": "Pattern",
     "subCategory": "轨迹图形",
     "ballType": "Red",
@@ -167,27 +167,25 @@
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
       "geometryVersion": 1,
       "offsets": [
         0,
-        1,
-        2,
-        1,
-        0
+        3
       ],
-      "target": 1,
-      "blue": false
+      "target": -3,
+      "blue": false,
+      "direction": 0
     },
-    "description": "连续实际开奖行依次出现 n → n+1 → n+2 → n+1 → n，下一行杀 n+1；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
+    "description": "连续两期出现固定轨迹，按图形延伸或折返位置杀号，越界舍弃，多处匹配合并去重。历史优化同时考察近50次门槛与近500期组合覆盖；成绩不是独立验证，不保证每期剩余15个以内。",
     "tags": [
       "图形",
-      "轨迹",
-      "待验证"
+      "组合覆盖",
+      "历史优化"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-26T00:00:00Z"
+    "createdAt": "2026-09-29T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-007",
@@ -288,7 +286,7 @@
   },
   {
     "ruleId": "B-S-R-010",
-    "name": "连续相邻锯齿图形杀红（反向，图距×2/1）",
+    "name": "两行反向延伸（图距7）双向图形杀红",
     "category": "Pattern",
     "subCategory": "轨迹图形",
     "ballType": "Red",
@@ -302,22 +300,20 @@
       "geometryVersion": 1,
       "offsets": [
         0,
-        2,
-        0,
-        2
+        7
       ],
-      "target": 0,
+      "target": -7,
       "blue": false,
-      "direction": -1
+      "direction": 0
     },
-    "description": "连续实际开奖行依次出现 n → n+2 → n → n+2，下一行杀 n；反向识别，其他位置不限制，越界舍弃，候选去重。方向和间距经过历史优化；近期成绩参与选择，不是独立验证。不足50次使用全部实际触发。",
+    "description": "连续两期出现固定轨迹，按图形延伸或折返位置杀号，越界舍弃，多处匹配合并去重。历史优化同时考察近50次门槛与近500期组合覆盖；成绩不是独立验证，不保证每期剩余15个以内。",
     "tags": [
       "图形",
-      "轨迹",
-      "待验证"
+      "组合覆盖",
+      "历史优化"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-26T00:00:00Z"
+    "createdAt": "2026-09-29T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-011",
@@ -385,7 +381,7 @@
   },
   {
     "ruleId": "B-S-R-013",
-    "name": "双折返图形杀红",
+    "name": "两行斜线延伸（图距3）双向图形杀红",
     "category": "Pattern",
     "subCategory": "轨迹图形",
     "ballType": "Red",
@@ -394,31 +390,29 @@
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
       "geometryVersion": 1,
       "offsets": [
         0,
-        0,
-        1,
-        1,
-        0
+        3
       ],
-      "target": 0,
-      "blue": false
+      "target": 6,
+      "blue": false,
+      "direction": 0
     },
-    "description": "连续实际开奖行依次出现 n → n → n+1 → n+1 → n，下一行杀 n；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
+    "description": "连续两期出现固定轨迹，按图形延伸或折返位置杀号，越界舍弃，多处匹配合并去重。历史优化同时考察近50次门槛与近500期组合覆盖；成绩不是独立验证，不保证每期剩余15个以内。",
     "tags": [
       "图形",
-      "轨迹",
-      "待验证"
+      "组合覆盖",
+      "历史优化"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-26T00:00:00Z"
+    "createdAt": "2026-09-29T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-014",
-    "name": "三列循环图形杀红",
+    "name": "两行反向延伸（图距2）双向图形杀红",
     "category": "Pattern",
     "subCategory": "轨迹图形",
     "ballType": "Red",
@@ -427,27 +421,25 @@
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
       "geometryVersion": 1,
       "offsets": [
         0,
-        1,
-        2,
-        0,
-        1
+        2
       ],
-      "target": 2,
-      "blue": false
+      "target": -2,
+      "blue": false,
+      "direction": 0
     },
-    "description": "连续实际开奖行依次出现 n → n+1 → n+2 → n → n+1，下一行杀 n+2；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
+    "description": "连续两期出现固定轨迹，按图形延伸或折返位置杀号，越界舍弃，多处匹配合并去重。历史优化同时考察近50次门槛与近500期组合覆盖；成绩不是独立验证，不保证每期剩余15个以内。",
     "tags": [
       "图形",
-      "轨迹",
-      "待验证"
+      "组合覆盖",
+      "历史优化"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-26T00:00:00Z"
+    "createdAt": "2026-09-29T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-015",
@@ -484,7 +476,7 @@
   },
   {
     "ruleId": "B-S-R-016",
-    "name": "五斜连图形杀红（正向，图距×1/1）",
+    "name": "两行中点回折（图距8）双向图形杀红",
     "category": "Pattern",
     "subCategory": "轨迹图形",
     "ballType": "Red",
@@ -498,22 +490,20 @@
       "geometryVersion": 1,
       "offsets": [
         0,
-        1,
-        2,
-        3
+        16
       ],
-      "target": 4,
+      "target": 8,
       "blue": false,
-      "direction": 1
+      "direction": 0
     },
-    "description": "连续实际开奖行依次出现 n → n+1 → n+2 → n+3，下一行杀 n+4；正向识别，其他位置不限制，越界舍弃，候选去重。方向和间距经过历史优化；近期成绩参与选择，不是独立验证。不足50次使用全部实际触发。",
+    "description": "连续两期出现固定轨迹，按图形延伸或折返位置杀号，越界舍弃，多处匹配合并去重。历史优化同时考察近50次门槛与近500期组合覆盖；成绩不是独立验证，不保证每期剩余15个以内。",
     "tags": [
       "图形",
-      "轨迹",
-      "待验证"
+      "组合覆盖",
+      "历史优化"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-26T00:00:00Z"
+    "createdAt": "2026-09-29T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-017",
@@ -580,7 +570,7 @@
   },
   {
     "ruleId": "B-S-R-019",
-    "name": "一二步阶梯图形杀红（左右镜像，图距×2/1）",
+    "name": "两行中点回折（图距6）双向图形杀红",
     "category": "Pattern",
     "subCategory": "轨迹图形",
     "ballType": "Red",
@@ -594,22 +584,20 @@
       "geometryVersion": 1,
       "offsets": [
         0,
-        2,
-        6,
-        8
+        12
       ],
-      "target": 12,
+      "target": 6,
       "blue": false,
       "direction": 0
     },
-    "description": "连续实际开奖行依次出现 n → n+2 → n+6 → n+8，下一行杀 n+12；左右镜像识别，其他位置不限制，越界舍弃，候选去重。方向和间距经过历史优化；近期成绩参与选择，不是独立验证。不足50次使用全部实际触发。",
+    "description": "连续两期出现固定轨迹，按图形延伸或折返位置杀号，越界舍弃，多处匹配合并去重。历史优化同时考察近50次门槛与近500期组合覆盖；成绩不是独立验证，不保证每期剩余15个以内。",
     "tags": [
       "图形",
-      "轨迹",
-      "待验证"
+      "组合覆盖",
+      "历史优化"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-26T00:00:00Z"
+    "createdAt": "2026-09-29T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-020",
@@ -645,7 +633,7 @@
   },
   {
     "ruleId": "B-S-R-021",
-    "name": "中心摆动图形杀红（正向，图距×2/1）",
+    "name": "两行原点折返（图距4）双向图形杀红",
     "category": "Pattern",
     "subCategory": "轨迹图形",
     "ballType": "Red",
@@ -659,22 +647,20 @@
       "geometryVersion": 1,
       "offsets": [
         0,
-        2,
-        0,
-        -2
+        4
       ],
       "target": 0,
       "blue": false,
-      "direction": 1
+      "direction": 0
     },
-    "description": "连续实际开奖行依次出现 n → n+2 → n → n-2，下一行杀 n；正向识别，其他位置不限制，越界舍弃，候选去重。方向和间距经过历史优化；近期成绩参与选择，不是独立验证。不足50次使用全部实际触发。",
+    "description": "连续两期出现固定轨迹，按图形延伸或折返位置杀号，越界舍弃，多处匹配合并去重。历史优化同时考察近50次门槛与近500期组合覆盖；成绩不是独立验证，不保证每期剩余15个以内。",
     "tags": [
       "图形",
-      "轨迹",
-      "待验证"
+      "组合覆盖",
+      "历史优化"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-26T00:00:00Z"
+    "createdAt": "2026-09-29T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-022",
@@ -711,7 +697,7 @@
   },
   {
     "ruleId": "B-S-R-023",
-    "name": "平顶回落图形杀红",
+    "name": "两行中点回折（图距3）双向图形杀红",
     "category": "Pattern",
     "subCategory": "轨迹图形",
     "ballType": "Red",
@@ -720,31 +706,29 @@
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
       "geometryVersion": 1,
       "offsets": [
         0,
-        1,
-        2,
-        2,
-        1
+        6
       ],
-      "target": 0,
-      "blue": false
+      "target": 3,
+      "blue": false,
+      "direction": 0
     },
-    "description": "连续实际开奖行依次出现 n → n+1 → n+2 → n+2 → n+1，下一行杀 n；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
+    "description": "连续两期出现固定轨迹，按图形延伸或折返位置杀号，越界舍弃，多处匹配合并去重。历史优化同时考察近50次门槛与近500期组合覆盖；成绩不是独立验证，不保证每期剩余15个以内。",
     "tags": [
       "图形",
-      "轨迹",
-      "待验证"
+      "组合覆盖",
+      "历史优化"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-26T00:00:00Z"
+    "createdAt": "2026-09-29T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-024",
-    "name": "宽平顶折返图形杀红",
+    "name": "两行斜线延伸（图距6）双向图形杀红",
     "category": "Pattern",
     "subCategory": "轨迹图形",
     "ballType": "Red",
@@ -753,26 +737,25 @@
     "isVisible": true,
     "minAccuracy": 0.82,
     "forceEnabled": false,
-    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+    "jsCode": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
     "params": {
       "geometryVersion": 1,
       "offsets": [
         0,
-        2,
-        2,
-        0
+        6
       ],
-      "target": 0,
-      "blue": false
+      "target": 12,
+      "blue": false,
+      "direction": 0
     },
-    "description": "连续实际开奖行依次出现 n → n+2 → n+2 → n，下一行杀 n；同时识别左右镜像。其他号码不限制，历史不足不触发，越界舍弃，多个匹配合并去重。图形假设，尚未前向验证，不承诺近50次达标。",
+    "description": "连续两期出现固定轨迹，按图形延伸或折返位置杀号，越界舍弃，多处匹配合并去重。历史优化同时考察近50次门槛与近500期组合覆盖；成绩不是独立验证，不保证每期剩余15个以内。",
     "tags": [
       "图形",
-      "轨迹",
-      "待验证"
+      "组合覆盖",
+      "历史优化"
     ],
     "source": "builtin",
-    "createdAt": "2026-09-26T00:00:00Z"
+    "createdAt": "2026-09-29T00:00:00Z"
   },
   {
     "ruleId": "B-S-R-025",

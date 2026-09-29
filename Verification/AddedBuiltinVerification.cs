@@ -53,7 +53,13 @@ internal static partial class VerificationSuite
                 bool expectedDirection = direction == 0 || direction == sign;
                 Assert(executor.Execute(rule,builder.Build(records,records.Length)).KilledBalls.Contains(origin+sign*target) == expectedDirection, "positive and permitted/rejected mirrored geometry fixture");
                 Assert(executor.Execute(rule,builder.Build(records,records.Length-1)).KilledBalls.Count == 0, "insufficient rows never trigger");
-                records[0].RedBalls=new[]{17,19,21,23,25,27}; records[0].BlueBall=records[0].BlueBall==16?15:16;
+                // Remove every possible first-row anchor for this target. Fixed
+                // filler numbers can accidentally form a second valid short path.
+                int fixtureTarget = origin + sign * target;
+                var anchors = (direction == 0 ? new[] { 1, -1 } : new[] { direction })
+                    .Select(s => fixtureTarget - s * target + s * path[0]).ToHashSet();
+                records[0].RedBalls = Enumerable.Range(1, 33).Where(b => !anchors.Contains(b)).Take(6).ToArray();
+                records[0].BlueBall = Enumerable.Range(1, 16).First(b => !anchors.Contains(b));
                 Assert(!executor.Execute(rule,builder.Build(records,records.Length)).KilledBalls.Contains(origin+sign*target), "broken required point removes fixture target");
             }
             // Explicit upper/lower boundary cases must never wrap onto the opposite edge.

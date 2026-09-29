@@ -1,4 +1,6 @@
-if (args.FirstOrDefault() == "--geometry-optimization-audit")
+if (args.FirstOrDefault() == "--coverage-audit")
+    CoverageAudit.Run(args[1], args[2], args.ElementAtOrDefault(3));
+else if (args.FirstOrDefault() == "--geometry-optimization-audit")
     GeometryOptimizationAudit.Run(args[1], args[2]);
 else if (args.FirstOrDefault() == "--pattern-check")
 {

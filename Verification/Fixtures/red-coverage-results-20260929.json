@@ -1,0 +1,1164 @@
+{
+  "Through": 2026112,
+  "DataHash": "EFFBE8EEC0FFA00CBF0D974C05D94AE10886A614FE0D7FC9A0DA59F9F9AD40E1",
+  "HistoryDraws": 500,
+  "IndependentComparisons": 4509,
+  "Changed": [
+    "B-S-R-006",
+    "B-S-R-010",
+    "B-S-R-013",
+    "B-S-R-014",
+    "B-S-R-016",
+    "B-S-R-019",
+    "B-S-R-021",
+    "B-S-R-023",
+    "B-S-R-024"
+  ],
+  "Unchanged": 91,
+  "Before": {
+    "CurrentBalls": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      12,
+      14,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      25,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33
+    ],
+    "CurrentRemaining": 23,
+    "AverageRemaining": 20.368,
+    "TargetPeriods": 11,
+    "Under6": 0,
+    "FullyRetained": 24,
+    "AverageRetained": 3.766,
+    "TargetAndFull": 1
+  },
+  "After": {
+    "CurrentBalls": [
+      2,
+      3,
+      6,
+      12,
+      14,
+      19,
+      21,
+      22,
+      25,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "CurrentRemaining": 15,
+    "AverageRemaining": 13.586,
+    "TargetPeriods": 390,
+    "Under6": 0,
+    "FullyRetained": 2,
+    "AverageRetained": 2.564,
+    "TargetAndFull": 2
+  },
+  "QualifiedOnly": {
+    "CurrentBalls": [
+      2,
+      3,
+      6,
+      12,
+      14,
+      19,
+      21,
+      22,
+      25,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "CurrentRemaining": 15,
+    "AverageRemaining": 13.802,
+    "TargetPeriods": 376,
+    "Under6": 0,
+    "FullyRetained": 3,
+    "AverageRetained": 2.6,
+    "TargetAndFull": 2
+  },
+  "BelowGate": [
+    {
+      "Id": "B-G-R-005-CY",
+      "Accuracy": 0.8148148148148148
+    }
+  ],
+  "Rules": [
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 60,
+      "Correct": 51,
+      "Accuracy": 0.85,
+      "Id": "B-G-R-001",
+      "Name": "折后反穿（图距1）双向图形杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Id": "B-G-B-001",
+      "Name": "跨度6中点回折双向图形杀蓝",
+      "Latest": [
+        8
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 75,
+      "Correct": 63,
+      "Accuracy": 0.84,
+      "Id": "B-G-R-002",
+      "Name": "三重及以上杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 116,
+      "Correct": 99,
+      "Accuracy": 0.853448275862069,
+      "Id": "B-G-R-003",
+      "Name": "L形图形杀",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 91,
+      "Correct": 76,
+      "Accuracy": 0.8351648351648352,
+      "Id": "B-G-R-004",
+      "Name": "倒L形图形杀",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 59,
+      "Correct": 51,
+      "Accuracy": 0.864406779661017,
+      "Id": "B-G-R-005",
+      "Name": "隔期交替杀红",
+      "Latest": [
+        5
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 41,
+      "Accuracy": 0.82,
+      "Id": "B-G-R-006",
+      "Name": "重重对称杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 51,
+      "Correct": 45,
+      "Accuracy": 0.8823529411764706,
+      "Id": "B-G-R-007",
+      "Name": "三角中心杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 45,
+      "Accuracy": 0.8333333333333334,
+      "Id": "B-G-R-008",
+      "Name": "平行四边形缺角杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Id": "B-G-B-002",
+      "Name": "蓝球重号杀",
+      "Latest": [
+        11
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 42,
+      "Accuracy": 0.84,
+      "Id": "B-G-R-009",
+      "Name": "上期蓝号杀红",
+      "Latest": [
+        11
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 156,
+      "Correct": 137,
+      "Accuracy": 0.8782051282051282,
+      "Id": "B-G-R-010",
+      "Name": "三连号下方杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 53,
+      "Correct": 44,
+      "Accuracy": 0.8301886792452831,
+      "Id": "B-G-R-011",
+      "Name": "四斜连杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 102,
+      "Correct": 84,
+      "Accuracy": 0.8235294117647058,
+      "Id": "B-G-R-012",
+      "Name": "空心长方形杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 42,
+      "Accuracy": 0.84,
+      "Id": "B-G-R-001-HS",
+      "Name": "冷号杀红（历史同期图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 65,
+      "Correct": 58,
+      "Accuracy": 0.8923076923076924,
+      "Id": "B-G-R-001-OE",
+      "Name": "平台回折（图距1）双向图形杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 41,
+      "Accuracy": 0.82,
+      "Id": "B-G-R-001-CY",
+      "Name": "冷号杀红（周期图）",
+      "Latest": [
+        10
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 58,
+      "Correct": 48,
+      "Accuracy": 0.8275862068965517,
+      "Id": "B-G-R-002-HS",
+      "Name": "三重及以上杀红（历史同期图）",
+      "Latest": [
+        24
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 55,
+      "Correct": 46,
+      "Accuracy": 0.8363636363636363,
+      "Id": "B-G-R-002-OE",
+      "Name": "三重及以上杀红（奇偶图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 62,
+      "Correct": 51,
+      "Accuracy": 0.8225806451612904,
+      "Id": "B-G-R-002-CY",
+      "Name": "三重及以上杀红（周期图）",
+      "Latest": [
+        5
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 106,
+      "Correct": 87,
+      "Accuracy": 0.8207547169811321,
+      "Id": "B-G-R-003-HS",
+      "Name": "L形图形杀（历史同期图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 78,
+      "Correct": 66,
+      "Accuracy": 0.8461538461538461,
+      "Id": "B-G-R-003-OE",
+      "Name": "L形图形杀（奇偶图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 79,
+      "Correct": 66,
+      "Accuracy": 0.8354430379746836,
+      "Id": "B-G-R-003-CY",
+      "Name": "L形图形杀（周期图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 94,
+      "Correct": 79,
+      "Accuracy": 0.8404255319148937,
+      "Id": "B-G-R-004-HS",
+      "Name": "倒L形图形杀（历史同期图）",
+      "Latest": [
+        23,
+        24
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 64,
+      "Correct": 53,
+      "Accuracy": 0.828125,
+      "Id": "B-G-R-004-OE",
+      "Name": "倒L形图形杀（奇偶图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 68,
+      "Correct": 57,
+      "Accuracy": 0.8382352941176471,
+      "Id": "B-G-R-004-CY",
+      "Name": "倒L形图形杀（周期图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 43,
+      "Accuracy": 0.86,
+      "Id": "B-G-R-005-HS",
+      "Name": "隔期交替杀红（历史同期图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 58,
+      "Correct": 48,
+      "Accuracy": 0.8275862068965517,
+      "Id": "B-G-R-005-OE",
+      "Name": "隔期交替杀红（奇偶图）",
+      "Latest": [
+        15
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 44,
+      "Accuracy": 0.8148148148148148,
+      "Id": "B-G-R-005-CY",
+      "Name": "隔期交替杀红（周期图）",
+      "Latest": [
+        9,
+        24
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 52,
+      "Correct": 46,
+      "Accuracy": 0.8846153846153846,
+      "Id": "B-G-R-006-HS",
+      "Name": "重重对称杀红（历史同期图）",
+      "Latest": [
+        13
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 42,
+      "Accuracy": 0.84,
+      "Id": "B-G-R-006-OE",
+      "Name": "重重对称杀红（奇偶图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 41,
+      "Accuracy": 0.82,
+      "Id": "B-G-R-006-CY",
+      "Name": "重重对称杀红（周期图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 53,
+      "Correct": 45,
+      "Accuracy": 0.8490566037735849,
+      "Id": "B-G-R-007-HS",
+      "Name": "三角中心杀红（历史同期图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 46,
+      "Accuracy": 0.8518518518518519,
+      "Id": "B-G-R-007-OE",
+      "Name": "三角中心杀红（奇偶图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 51,
+      "Correct": 42,
+      "Accuracy": 0.8235294117647058,
+      "Id": "B-G-R-007-CY",
+      "Name": "三角中心杀红（周期图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 66,
+      "Correct": 55,
+      "Accuracy": 0.8333333333333334,
+      "Id": "B-G-R-008-HS",
+      "Name": "平行四边形缺角杀红（历史同期图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 62,
+      "Correct": 53,
+      "Accuracy": 0.8548387096774194,
+      "Id": "B-G-R-008-OE",
+      "Name": "平行四边形缺角杀红（奇偶图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 53,
+      "Correct": 46,
+      "Accuracy": 0.8679245283018868,
+      "Id": "B-G-R-008-CY",
+      "Name": "平行四边形缺角杀红（周期图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 41,
+      "Accuracy": 0.82,
+      "Id": "B-G-R-009-HS",
+      "Name": "上期蓝号杀红（历史同期图）",
+      "Latest": [
+        16
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 43,
+      "Accuracy": 0.86,
+      "Id": "B-G-R-009-OE",
+      "Name": "上期蓝号杀红（奇偶图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 44,
+      "Accuracy": 0.88,
+      "Id": "B-G-R-009-CY",
+      "Name": "上期蓝号杀红（周期图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 156,
+      "Correct": 129,
+      "Accuracy": 0.8269230769230769,
+      "Id": "B-G-R-010-HS",
+      "Name": "三连号下方杀红（历史同期图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 83,
+      "Correct": 69,
+      "Accuracy": 0.8313253012048193,
+      "Id": "B-G-R-010-OE",
+      "Name": "三连号下方杀红（奇偶图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 73,
+      "Correct": 61,
+      "Accuracy": 0.8356164383561644,
+      "Id": "B-G-R-010-CY",
+      "Name": "三连号下方杀红（周期图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 59,
+      "Correct": 49,
+      "Accuracy": 0.8305084745762712,
+      "Id": "B-G-R-011-HS",
+      "Name": "四斜连杀红（历史同期图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 57,
+      "Correct": 50,
+      "Accuracy": 0.8771929824561403,
+      "Id": "B-G-R-011-OE",
+      "Name": "四斜连杀红（奇偶图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 56,
+      "Correct": 48,
+      "Accuracy": 0.8571428571428571,
+      "Id": "B-G-R-011-CY",
+      "Name": "四斜连杀红（周期图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 77,
+      "Correct": 64,
+      "Accuracy": 0.8311688311688312,
+      "Id": "B-G-R-012-HS",
+      "Name": "空心长方形杀红（历史同期图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 103,
+      "Correct": 87,
+      "Accuracy": 0.8446601941747572,
+      "Id": "B-G-R-012-OE",
+      "Name": "空心长方形杀红（奇偶图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 68,
+      "Correct": 56,
+      "Accuracy": 0.8235294117647058,
+      "Id": "B-G-R-012-CY",
+      "Name": "空心长方形杀红（周期图）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 47,
+      "Accuracy": 0.8703703703703703,
+      "Id": "B-S-R-001",
+      "Name": "隔列斜线图形杀红",
+      "Latest": [
+        10
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 55,
+      "Correct": 46,
+      "Accuracy": 0.8363636363636363,
+      "Id": "B-S-R-002",
+      "Name": "三列短循环（图距1）双向图形杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 52,
+      "Correct": 43,
+      "Accuracy": 0.8269230769230769,
+      "Id": "B-S-R-003",
+      "Name": "相邻折返图形杀红（正向，图距×2/1）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 62,
+      "Correct": 56,
+      "Accuracy": 0.9032258064516129,
+      "Id": "B-S-R-004",
+      "Name": "隔列折返图形杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 41,
+      "Accuracy": 0.82,
+      "Id": "B-S-R-005",
+      "Name": "尖顶回落图形杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 86,
+      "Correct": 71,
+      "Accuracy": 0.8255813953488372,
+      "Id": "B-S-R-006",
+      "Name": "两行反向延伸（图距3）双向图形杀红",
+      "Latest": [
+        10,
+        11,
+        17
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 43,
+      "Accuracy": 0.86,
+      "Id": "B-S-R-007",
+      "Name": "单起双阶梯图形杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 45,
+      "Accuracy": 0.8333333333333334,
+      "Id": "B-S-R-008",
+      "Name": "双阶梯图形杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 57,
+      "Correct": 50,
+      "Accuracy": 0.8771929824561403,
+      "Id": "B-S-R-009",
+      "Name": "平台回折（图距2）双向图形杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 79,
+      "Correct": 67,
+      "Accuracy": 0.8481012658227848,
+      "Id": "B-S-R-010",
+      "Name": "两行反向延伸（图距7）双向图形杀红",
+      "Latest": [
+        15
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 51,
+      "Correct": 47,
+      "Accuracy": 0.9215686274509803,
+      "Id": "B-S-R-011",
+      "Name": "连续隔列锯齿图形杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 52,
+      "Correct": 46,
+      "Accuracy": 0.8846153846153846,
+      "Id": "B-S-R-012",
+      "Name": "单起双折返图形杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 91,
+      "Correct": 79,
+      "Accuracy": 0.8681318681318682,
+      "Id": "B-S-R-013",
+      "Name": "两行斜线延伸（图距3）双向图形杀红",
+      "Latest": [
+        1,
+        8,
+        20,
+        26
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 110,
+      "Correct": 93,
+      "Accuracy": 0.8454545454545455,
+      "Id": "B-S-R-014",
+      "Name": "两行反向延伸（图距2）双向图形杀红",
+      "Latest": [
+        8,
+        16,
+        33
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 65,
+      "Correct": 58,
+      "Accuracy": 0.8923076923076924,
+      "Id": "B-S-R-015",
+      "Name": "平台上行（图距1）双向图形杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 71,
+      "Correct": 62,
+      "Accuracy": 0.8732394366197183,
+      "Id": "B-S-R-016",
+      "Name": "两行中点回折（图距8）双向图形杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 48,
+      "Accuracy": 0.8888888888888888,
+      "Id": "B-S-R-017",
+      "Name": "加速斜线图形杀红",
+      "Latest": [
+        26
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 51,
+      "Accuracy": 0.9444444444444444,
+      "Id": "B-S-R-018",
+      "Name": "减速斜线图形杀红（左右镜像，图距×2/1）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 85,
+      "Correct": 73,
+      "Accuracy": 0.8588235294117647,
+      "Id": "B-S-R-019",
+      "Name": "两行中点回折（图距6）双向图形杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 51,
+      "Correct": 44,
+      "Accuracy": 0.8627450980392157,
+      "Id": "B-S-R-020",
+      "Name": "二一步阶梯图形杀红",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 99,
+      "Correct": 82,
+      "Accuracy": 0.8282828282828283,
+      "Id": "B-S-R-021",
+      "Name": "两行原点折返（图距4）双向图形杀红",
+      "Latest": [
+        7
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 43,
+      "Accuracy": 0.86,
+      "Id": "B-S-R-022",
+      "Name": "宽幅中心摆动图形杀红（左右镜像，图距×2/1）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 95,
+      "Correct": 84,
+      "Accuracy": 0.8842105263157894,
+      "Id": "B-S-R-023",
+      "Name": "两行中点回折（图距3）双向图形杀红",
+      "Latest": [
+        4,
+        9
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 87,
+      "Correct": 75,
+      "Accuracy": 0.8620689655172413,
+      "Id": "B-S-R-024",
+      "Name": "两行斜线延伸（图距6）双向图形杀红",
+      "Latest": [
+        18
+      ]
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 55,
+      "Correct": 49,
+      "Accuracy": 0.8909090909090909,
+      "Id": "B-S-R-025",
+      "Name": "三行平台图形杀红（左右镜像，图距×2/1）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Id": "B-S-B-001",
+      "Name": "三重竖线图形杀蓝",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Id": "B-S-B-002",
+      "Name": "1步三斜连图形杀蓝",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Id": "B-S-B-003",
+      "Name": "2步三斜连图形杀蓝",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Id": "B-S-B-004",
+      "Name": "3步三斜连图形杀蓝",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Id": "B-S-B-005",
+      "Name": "4步三斜连图形杀蓝（正向，图距×1/2）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Id": "B-S-B-006",
+      "Name": "5步三斜连图形杀蓝",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 49,
+      "Accuracy": 0.98,
+      "Id": "B-S-B-007",
+      "Name": "6步三斜连图形杀蓝",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Id": "B-S-B-008",
+      "Name": "7步三斜连图形杀蓝",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Id": "B-S-B-009",
+      "Name": "间距1折返图形杀蓝",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Id": "B-S-B-010",
+      "Name": "跨度10中点回折双向图形杀蓝",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Id": "B-S-B-011",
+      "Name": "间距3折返图形杀蓝",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Id": "B-S-B-012",
+      "Name": "间距4折返图形杀蓝",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Id": "B-S-B-013",
+      "Name": "跨度8中点回折反向图形杀蓝",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Id": "B-S-B-014",
+      "Name": "间距6折返图形杀蓝（正向，图距×1/2）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Id": "B-S-B-015",
+      "Name": "间距7折返图形杀蓝（正向，图距×1/1）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Id": "B-S-B-016",
+      "Name": "间距8折返图形杀蓝（正向，图距×1/2）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Id": "B-S-B-017",
+      "Name": "间距9折返图形杀蓝",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Id": "B-S-B-018",
+      "Name": "间距10折返图形杀蓝",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Id": "B-S-B-019",
+      "Name": "间距11折返图形杀蓝",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94,
+      "Id": "B-S-B-020",
+      "Name": "间距12折返图形杀蓝（反向，图距×1/2）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 49,
+      "Accuracy": 0.98,
+      "Id": "B-S-B-021",
+      "Name": "间距13折返图形杀蓝（反向，图距×1/1）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 36,
+      "Killed": 36,
+      "Correct": 34,
+      "Accuracy": 0.9444444444444444,
+      "Id": "B-S-B-022",
+      "Name": "间距14折返图形杀蓝（正向，图距×1/1）",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 30,
+      "Killed": 30,
+      "Correct": 29,
+      "Accuracy": 0.9666666666666667,
+      "Id": "B-S-B-023",
+      "Name": "间距15折返图形杀蓝",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96,
+      "Id": "B-S-B-024",
+      "Name": "二列中点内折图形杀蓝",
+      "Latest": []
+    },
+    {
+      "Enabled": true,
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 49,
+      "Accuracy": 0.98,
+      "Id": "B-S-B-025",
+      "Name": "四列中点内折图形杀蓝",
+      "Latest": []
+    }
+  ]
+}
