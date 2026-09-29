@@ -37,6 +37,7 @@ internal sealed record BuiltinPatternGuide(string Kind, string Scope, string Sha
             : "基本图：每行是一个实际开奖期，从上到下由旧到新。";
         var condition = BuiltinRuleRevisions.FindCondition(rule.RuleId);
         string filter = condition is null ? "无额外过滤条件。"
+            : condition.Feature == "alternationGap" ? "仅调整图形间隔，按当前图层行数计算；无频次或实际开奖遗漏过滤。间隔参与历史优化，尚未前向验证。"
             : condition.Label + (condition.Feature == "count" ? "。这是图形候选数量限制。"
                 : "。这是后来加入的历史筛选条件；频次和遗漏按实际开奖序列计算，不按筛选图层行数计算。");
         string shape, target;
@@ -60,7 +61,7 @@ internal sealed record BuiltinPatternGuide(string Kind, string Scope, string Sha
                 shape = "同列连续两行开出，前一行同时开相邻号；左右镜像都识别。"; target = "下一行杀构成倒L的两个号码。";
                 columns = ["n", "n+1"]; labels = ["前2行", "上1行", "下一行"]; cells = ["●●", "●·", "××"]; break;
             case "B-G-R-005":
-                int gap = condition?.Gap > 0 ? condition.Gap : 1;
+                int gap = condition?.Feature == "alternationGap" ? condition.Minimum : condition?.Gap > 0 ? condition.Gap : 1;
                 shape = $"同一号码：开出→连续空{gap}行→开出→连续空{gap}行。"; target = "下一行同列号码 n，阻止交替继续。";
                 columns = ["n"]; cells = new[] { "●" }.Concat(Enumerable.Repeat("○", gap)).Concat(new[] { "●" }).Concat(Enumerable.Repeat("○", gap)).Append("×").ToArray();
                 labels = Enumerable.Range(0, cells.Length - 1).Select(i => $"前{cells.Length - 1 - i}行").Append("下一行").ToArray(); break;

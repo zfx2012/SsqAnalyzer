@@ -165,7 +165,7 @@ public static class BuiltinRules
         return result;
     }
 
-    private static string ScopeJs(string jsCode, string scope)
+    internal static string ScopeJs(string jsCode, string scope)
     {
         string quoted = $"'{scope}'";
         return jsCode

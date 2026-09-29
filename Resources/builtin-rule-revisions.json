@@ -112,10 +112,10 @@
       "Maximum": 5
     },
     "B-G-R-005-CY": {
-      "Feature": "miss",
+      "Feature": "alternationGap",
       "Window": 0,
       "Minimum": 3,
-      "Maximum": 99
+      "Maximum": 3
     },
     "B-G-R-006-OE": {
       "Feature": "frequency",

@@ -15,7 +15,7 @@ else if (args.FirstOrDefault() == "--builtin-quality-audit")
 else if (args.FirstOrDefault() == "--expand-builtin-rules")
     BuiltinRuleExpansion.Run(args[1], args[2]);
 else if (args.FirstOrDefault() == "--tune-alternation-gap")
-    KillConditionTuning.TuneGap(args[1], args[2]);
+    KillConditionTuning.TuneGap(args[1], args[2], args.ElementAtOrDefault(3) ?? "B-G-R-005");
 else if (args.FirstOrDefault() == "--tune-rule-conditions")
     KillConditionTuning.Run(args[1], args[2], args.ElementAtOrDefault(3), args.Length > 4 ? int.Parse(args[4]) : 0);
 else if (args.FirstOrDefault() == "--rule-revision-refresh")

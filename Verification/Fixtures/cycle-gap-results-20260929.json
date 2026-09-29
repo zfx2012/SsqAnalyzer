@@ -1,0 +1,975 @@
+{
+  "Through": 2026112,
+  "DataHash": "EFFBE8EEC0FFA00CBF0D974C05D94AE10886A614FE0D7FC9A0DA59F9F9AD40E1",
+  "Changed": [
+    "B-G-R-005-CY"
+  ],
+  "IndependentComparisons": 501,
+  "Before": {
+    "CurrentRemaining": 15,
+    "CurrentBalls": [
+      2,
+      3,
+      6,
+      12,
+      14,
+      19,
+      21,
+      22,
+      25,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "AverageRemaining": 13.586,
+    "TargetPeriods": 390,
+    "Under6": 0,
+    "FullyRetained": 2,
+    "AverageRetained": 2.564
+  },
+  "After": {
+    "CurrentRemaining": 15,
+    "CurrentBalls": [
+      2,
+      3,
+      6,
+      12,
+      14,
+      19,
+      21,
+      22,
+      25,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "AverageRemaining": 13.658,
+    "TargetPeriods": 383,
+    "Under6": 0,
+    "FullyRetained": 3,
+    "AverageRetained": 2.584
+  },
+  "Trials": [
+    {
+      "Condition": {
+        "Feature": "alternationGap",
+        "Window": 0,
+        "Minimum": 2,
+        "Maximum": 2,
+        "Gap": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Killed": 59,
+        "Correct": 46,
+        "Wrong": 12,
+        "First": 2025149,
+        "Last": 2026107,
+        "Accuracy": 0.7796610169491526
+      },
+      "All": {
+        "Triggered": 1437,
+        "Killed": 1683,
+        "Correct": 1397,
+        "Wrong": 277,
+        "First": 2003013,
+        "Last": 2026107,
+        "Accuracy": 0.8300653594771242
+      },
+      "Reference": {
+        "Triggered": 989,
+        "Killed": 1157,
+        "Correct": 972,
+        "Wrong": 180,
+        "First": 2003013,
+        "Last": 2019093,
+        "Accuracy": 0.8401037165082109
+      },
+      "LaterRetrospective": {
+        "Triggered": 448,
+        "Killed": 526,
+        "Correct": 425,
+        "Wrong": 97,
+        "First": 2019098,
+        "Last": 2026107,
+        "Accuracy": 0.8079847908745247
+      },
+      "Windows": [
+        {
+          "Window": 30,
+          "Stats": {
+            "Triggered": 30,
+            "Killed": 36,
+            "Correct": 28,
+            "Wrong": 7,
+            "First": 2026042,
+            "Last": 2026107,
+            "Accuracy": 0.7777777777777778
+          }
+        },
+        {
+          "Window": 100,
+          "Stats": {
+            "Triggered": 100,
+            "Killed": 116,
+            "Correct": 95,
+            "Wrong": 20,
+            "First": 2025022,
+            "Last": 2026107,
+            "Accuracy": 0.8189655172413793
+          }
+        }
+      ]
+    },
+    {
+      "Condition": {
+        "Feature": "alternationGap",
+        "Window": 0,
+        "Minimum": 3,
+        "Maximum": 3,
+        "Gap": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Killed": 54,
+        "Correct": 48,
+        "Wrong": 6,
+        "First": 2025051,
+        "Last": 2026111,
+        "Accuracy": 0.8888888888888888
+      },
+      "All": {
+        "Triggered": 991,
+        "Killed": 1118,
+        "Correct": 926,
+        "Wrong": 187,
+        "First": 2003021,
+        "Last": 2026111,
+        "Accuracy": 0.8282647584973166
+      },
+      "Reference": {
+        "Triggered": 679,
+        "Killed": 769,
+        "Correct": 632,
+        "Wrong": 134,
+        "First": 2003021,
+        "Last": 2019092,
+        "Accuracy": 0.8218465539661899
+      },
+      "LaterRetrospective": {
+        "Triggered": 312,
+        "Killed": 349,
+        "Correct": 294,
+        "Wrong": 53,
+        "First": 2019100,
+        "Last": 2026111,
+        "Accuracy": 0.8424068767908309
+      },
+      "Windows": [
+        {
+          "Window": 30,
+          "Stats": {
+            "Triggered": 30,
+            "Killed": 32,
+            "Correct": 28,
+            "Wrong": 4,
+            "First": 2025141,
+            "Last": 2026111,
+            "Accuracy": 0.875
+          }
+        },
+        {
+          "Window": 100,
+          "Stats": {
+            "Triggered": 100,
+            "Killed": 111,
+            "Correct": 98,
+            "Wrong": 13,
+            "First": 2024033,
+            "Last": 2026111,
+            "Accuracy": 0.8828828828828829
+          }
+        }
+      ]
+    },
+    {
+      "Condition": {
+        "Feature": "alternationGap",
+        "Window": 0,
+        "Minimum": 4,
+        "Maximum": 4,
+        "Gap": 0
+      },
+      "Recent": {
+        "Triggered": 50,
+        "Killed": 59,
+        "Correct": 51,
+        "Wrong": 8,
+        "First": 2024146,
+        "Last": 2026112,
+        "Accuracy": 0.864406779661017
+      },
+      "All": {
+        "Triggered": 719,
+        "Killed": 772,
+        "Correct": 605,
+        "Wrong": 165,
+        "First": 2003031,
+        "Last": 2026112,
+        "Accuracy": 0.783678756476684
+      },
+      "Reference": {
+        "Triggered": 503,
+        "Killed": 534,
+        "Correct": 411,
+        "Wrong": 122,
+        "First": 2003031,
+        "Last": 2019096,
+        "Accuracy": 0.7696629213483146
+      },
+      "LaterRetrospective": {
+        "Triggered": 216,
+        "Killed": 238,
+        "Correct": 194,
+        "Wrong": 43,
+        "First": 2019115,
+        "Last": 2026112,
+        "Accuracy": 0.8151260504201681
+      },
+      "Windows": [
+        {
+          "Window": 30,
+          "Stats": {
+            "Triggered": 30,
+            "Killed": 36,
+            "Correct": 31,
+            "Wrong": 5,
+            "First": 2025113,
+            "Last": 2026112,
+            "Accuracy": 0.8611111111111112
+          }
+        },
+        {
+          "Window": 100,
+          "Stats": {
+            "Triggered": 100,
+            "Killed": 112,
+            "Correct": 93,
+            "Wrong": 19,
+            "First": 2023036,
+            "Last": 2026112,
+            "Accuracy": 0.8303571428571429
+          }
+        }
+      ]
+    }
+  ],
+  "Rules": [
+    {
+      "Id": "B-G-R-001",
+      "Triggers": 50,
+      "Killed": 60,
+      "Correct": 51,
+      "Accuracy": 0.85
+    },
+    {
+      "Id": "B-G-B-001",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96
+    },
+    {
+      "Id": "B-G-R-002",
+      "Triggers": 50,
+      "Killed": 75,
+      "Correct": 63,
+      "Accuracy": 0.84
+    },
+    {
+      "Id": "B-G-R-003",
+      "Triggers": 50,
+      "Killed": 116,
+      "Correct": 99,
+      "Accuracy": 0.853448275862069
+    },
+    {
+      "Id": "B-G-R-004",
+      "Triggers": 50,
+      "Killed": 91,
+      "Correct": 76,
+      "Accuracy": 0.8351648351648352
+    },
+    {
+      "Id": "B-G-R-005",
+      "Triggers": 50,
+      "Killed": 59,
+      "Correct": 51,
+      "Accuracy": 0.864406779661017
+    },
+    {
+      "Id": "B-G-R-006",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 41,
+      "Accuracy": 0.82
+    },
+    {
+      "Id": "B-G-R-007",
+      "Triggers": 50,
+      "Killed": 51,
+      "Correct": 45,
+      "Accuracy": 0.8823529411764706
+    },
+    {
+      "Id": "B-G-R-008",
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 45,
+      "Accuracy": 0.8333333333333334
+    },
+    {
+      "Id": "B-G-B-002",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96
+    },
+    {
+      "Id": "B-G-R-009",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 42,
+      "Accuracy": 0.84
+    },
+    {
+      "Id": "B-G-R-010",
+      "Triggers": 50,
+      "Killed": 156,
+      "Correct": 137,
+      "Accuracy": 0.8782051282051282
+    },
+    {
+      "Id": "B-G-R-011",
+      "Triggers": 50,
+      "Killed": 53,
+      "Correct": 44,
+      "Accuracy": 0.8301886792452831
+    },
+    {
+      "Id": "B-G-R-012",
+      "Triggers": 50,
+      "Killed": 102,
+      "Correct": 84,
+      "Accuracy": 0.8235294117647058
+    },
+    {
+      "Id": "B-G-R-001-HS",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 42,
+      "Accuracy": 0.84
+    },
+    {
+      "Id": "B-G-R-001-OE",
+      "Triggers": 50,
+      "Killed": 65,
+      "Correct": 58,
+      "Accuracy": 0.8923076923076924
+    },
+    {
+      "Id": "B-G-R-001-CY",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 41,
+      "Accuracy": 0.82
+    },
+    {
+      "Id": "B-G-R-002-HS",
+      "Triggers": 50,
+      "Killed": 58,
+      "Correct": 48,
+      "Accuracy": 0.8275862068965517
+    },
+    {
+      "Id": "B-G-R-002-OE",
+      "Triggers": 50,
+      "Killed": 55,
+      "Correct": 46,
+      "Accuracy": 0.8363636363636363
+    },
+    {
+      "Id": "B-G-R-002-CY",
+      "Triggers": 50,
+      "Killed": 62,
+      "Correct": 51,
+      "Accuracy": 0.8225806451612904
+    },
+    {
+      "Id": "B-G-R-003-HS",
+      "Triggers": 50,
+      "Killed": 106,
+      "Correct": 87,
+      "Accuracy": 0.8207547169811321
+    },
+    {
+      "Id": "B-G-R-003-OE",
+      "Triggers": 50,
+      "Killed": 78,
+      "Correct": 66,
+      "Accuracy": 0.8461538461538461
+    },
+    {
+      "Id": "B-G-R-003-CY",
+      "Triggers": 50,
+      "Killed": 79,
+      "Correct": 66,
+      "Accuracy": 0.8354430379746836
+    },
+    {
+      "Id": "B-G-R-004-HS",
+      "Triggers": 50,
+      "Killed": 94,
+      "Correct": 79,
+      "Accuracy": 0.8404255319148937
+    },
+    {
+      "Id": "B-G-R-004-OE",
+      "Triggers": 50,
+      "Killed": 64,
+      "Correct": 53,
+      "Accuracy": 0.828125
+    },
+    {
+      "Id": "B-G-R-004-CY",
+      "Triggers": 50,
+      "Killed": 68,
+      "Correct": 57,
+      "Accuracy": 0.8382352941176471
+    },
+    {
+      "Id": "B-G-R-005-HS",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 43,
+      "Accuracy": 0.86
+    },
+    {
+      "Id": "B-G-R-005-OE",
+      "Triggers": 50,
+      "Killed": 58,
+      "Correct": 48,
+      "Accuracy": 0.8275862068965517
+    },
+    {
+      "Id": "B-G-R-005-CY",
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 48,
+      "Accuracy": 0.8888888888888888
+    },
+    {
+      "Id": "B-G-R-006-HS",
+      "Triggers": 50,
+      "Killed": 52,
+      "Correct": 46,
+      "Accuracy": 0.8846153846153846
+    },
+    {
+      "Id": "B-G-R-006-OE",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 42,
+      "Accuracy": 0.84
+    },
+    {
+      "Id": "B-G-R-006-CY",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 41,
+      "Accuracy": 0.82
+    },
+    {
+      "Id": "B-G-R-007-HS",
+      "Triggers": 50,
+      "Killed": 53,
+      "Correct": 45,
+      "Accuracy": 0.8490566037735849
+    },
+    {
+      "Id": "B-G-R-007-OE",
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 46,
+      "Accuracy": 0.8518518518518519
+    },
+    {
+      "Id": "B-G-R-007-CY",
+      "Triggers": 50,
+      "Killed": 51,
+      "Correct": 42,
+      "Accuracy": 0.8235294117647058
+    },
+    {
+      "Id": "B-G-R-008-HS",
+      "Triggers": 50,
+      "Killed": 66,
+      "Correct": 55,
+      "Accuracy": 0.8333333333333334
+    },
+    {
+      "Id": "B-G-R-008-OE",
+      "Triggers": 50,
+      "Killed": 62,
+      "Correct": 53,
+      "Accuracy": 0.8548387096774194
+    },
+    {
+      "Id": "B-G-R-008-CY",
+      "Triggers": 50,
+      "Killed": 53,
+      "Correct": 46,
+      "Accuracy": 0.8679245283018868
+    },
+    {
+      "Id": "B-G-R-009-HS",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 41,
+      "Accuracy": 0.82
+    },
+    {
+      "Id": "B-G-R-009-OE",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 43,
+      "Accuracy": 0.86
+    },
+    {
+      "Id": "B-G-R-009-CY",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 44,
+      "Accuracy": 0.88
+    },
+    {
+      "Id": "B-G-R-010-HS",
+      "Triggers": 50,
+      "Killed": 156,
+      "Correct": 129,
+      "Accuracy": 0.8269230769230769
+    },
+    {
+      "Id": "B-G-R-010-OE",
+      "Triggers": 50,
+      "Killed": 83,
+      "Correct": 69,
+      "Accuracy": 0.8313253012048193
+    },
+    {
+      "Id": "B-G-R-010-CY",
+      "Triggers": 50,
+      "Killed": 73,
+      "Correct": 61,
+      "Accuracy": 0.8356164383561644
+    },
+    {
+      "Id": "B-G-R-011-HS",
+      "Triggers": 50,
+      "Killed": 59,
+      "Correct": 49,
+      "Accuracy": 0.8305084745762712
+    },
+    {
+      "Id": "B-G-R-011-OE",
+      "Triggers": 50,
+      "Killed": 57,
+      "Correct": 50,
+      "Accuracy": 0.8771929824561403
+    },
+    {
+      "Id": "B-G-R-011-CY",
+      "Triggers": 50,
+      "Killed": 56,
+      "Correct": 48,
+      "Accuracy": 0.8571428571428571
+    },
+    {
+      "Id": "B-G-R-012-HS",
+      "Triggers": 50,
+      "Killed": 77,
+      "Correct": 64,
+      "Accuracy": 0.8311688311688312
+    },
+    {
+      "Id": "B-G-R-012-OE",
+      "Triggers": 50,
+      "Killed": 103,
+      "Correct": 87,
+      "Accuracy": 0.8446601941747572
+    },
+    {
+      "Id": "B-G-R-012-CY",
+      "Triggers": 50,
+      "Killed": 68,
+      "Correct": 56,
+      "Accuracy": 0.8235294117647058
+    },
+    {
+      "Id": "B-S-R-001",
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 47,
+      "Accuracy": 0.8703703703703703
+    },
+    {
+      "Id": "B-S-R-002",
+      "Triggers": 50,
+      "Killed": 55,
+      "Correct": 46,
+      "Accuracy": 0.8363636363636363
+    },
+    {
+      "Id": "B-S-R-003",
+      "Triggers": 50,
+      "Killed": 52,
+      "Correct": 43,
+      "Accuracy": 0.8269230769230769
+    },
+    {
+      "Id": "B-S-R-004",
+      "Triggers": 50,
+      "Killed": 62,
+      "Correct": 56,
+      "Accuracy": 0.9032258064516129
+    },
+    {
+      "Id": "B-S-R-005",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 41,
+      "Accuracy": 0.82
+    },
+    {
+      "Id": "B-S-R-006",
+      "Triggers": 50,
+      "Killed": 86,
+      "Correct": 71,
+      "Accuracy": 0.8255813953488372
+    },
+    {
+      "Id": "B-S-R-007",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 43,
+      "Accuracy": 0.86
+    },
+    {
+      "Id": "B-S-R-008",
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 45,
+      "Accuracy": 0.8333333333333334
+    },
+    {
+      "Id": "B-S-R-009",
+      "Triggers": 50,
+      "Killed": 57,
+      "Correct": 50,
+      "Accuracy": 0.8771929824561403
+    },
+    {
+      "Id": "B-S-R-010",
+      "Triggers": 50,
+      "Killed": 79,
+      "Correct": 67,
+      "Accuracy": 0.8481012658227848
+    },
+    {
+      "Id": "B-S-R-011",
+      "Triggers": 50,
+      "Killed": 51,
+      "Correct": 47,
+      "Accuracy": 0.9215686274509803
+    },
+    {
+      "Id": "B-S-R-012",
+      "Triggers": 50,
+      "Killed": 52,
+      "Correct": 46,
+      "Accuracy": 0.8846153846153846
+    },
+    {
+      "Id": "B-S-R-013",
+      "Triggers": 50,
+      "Killed": 91,
+      "Correct": 79,
+      "Accuracy": 0.8681318681318682
+    },
+    {
+      "Id": "B-S-R-014",
+      "Triggers": 50,
+      "Killed": 110,
+      "Correct": 93,
+      "Accuracy": 0.8454545454545455
+    },
+    {
+      "Id": "B-S-R-015",
+      "Triggers": 50,
+      "Killed": 65,
+      "Correct": 58,
+      "Accuracy": 0.8923076923076924
+    },
+    {
+      "Id": "B-S-R-016",
+      "Triggers": 50,
+      "Killed": 71,
+      "Correct": 62,
+      "Accuracy": 0.8732394366197183
+    },
+    {
+      "Id": "B-S-R-017",
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 48,
+      "Accuracy": 0.8888888888888888
+    },
+    {
+      "Id": "B-S-R-018",
+      "Triggers": 50,
+      "Killed": 54,
+      "Correct": 51,
+      "Accuracy": 0.9444444444444444
+    },
+    {
+      "Id": "B-S-R-019",
+      "Triggers": 50,
+      "Killed": 85,
+      "Correct": 73,
+      "Accuracy": 0.8588235294117647
+    },
+    {
+      "Id": "B-S-R-020",
+      "Triggers": 50,
+      "Killed": 51,
+      "Correct": 44,
+      "Accuracy": 0.8627450980392157
+    },
+    {
+      "Id": "B-S-R-021",
+      "Triggers": 50,
+      "Killed": 99,
+      "Correct": 82,
+      "Accuracy": 0.8282828282828283
+    },
+    {
+      "Id": "B-S-R-022",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 43,
+      "Accuracy": 0.86
+    },
+    {
+      "Id": "B-S-R-023",
+      "Triggers": 50,
+      "Killed": 95,
+      "Correct": 84,
+      "Accuracy": 0.8842105263157894
+    },
+    {
+      "Id": "B-S-R-024",
+      "Triggers": 50,
+      "Killed": 87,
+      "Correct": 75,
+      "Accuracy": 0.8620689655172413
+    },
+    {
+      "Id": "B-S-R-025",
+      "Triggers": 50,
+      "Killed": 55,
+      "Correct": 49,
+      "Accuracy": 0.8909090909090909
+    },
+    {
+      "Id": "B-S-B-001",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96
+    },
+    {
+      "Id": "B-S-B-002",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96
+    },
+    {
+      "Id": "B-S-B-003",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94
+    },
+    {
+      "Id": "B-S-B-004",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96
+    },
+    {
+      "Id": "B-S-B-005",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96
+    },
+    {
+      "Id": "B-S-B-006",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94
+    },
+    {
+      "Id": "B-S-B-007",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 49,
+      "Accuracy": 0.98
+    },
+    {
+      "Id": "B-S-B-008",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94
+    },
+    {
+      "Id": "B-S-B-009",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94
+    },
+    {
+      "Id": "B-S-B-010",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96
+    },
+    {
+      "Id": "B-S-B-011",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96
+    },
+    {
+      "Id": "B-S-B-012",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96
+    },
+    {
+      "Id": "B-S-B-013",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94
+    },
+    {
+      "Id": "B-S-B-014",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96
+    },
+    {
+      "Id": "B-S-B-015",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94
+    },
+    {
+      "Id": "B-S-B-016",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94
+    },
+    {
+      "Id": "B-S-B-017",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94
+    },
+    {
+      "Id": "B-S-B-018",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94
+    },
+    {
+      "Id": "B-S-B-019",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94
+    },
+    {
+      "Id": "B-S-B-020",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 47,
+      "Accuracy": 0.94
+    },
+    {
+      "Id": "B-S-B-021",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 49,
+      "Accuracy": 0.98
+    },
+    {
+      "Id": "B-S-B-022",
+      "Triggers": 36,
+      "Killed": 36,
+      "Correct": 34,
+      "Accuracy": 0.9444444444444444
+    },
+    {
+      "Id": "B-S-B-023",
+      "Triggers": 30,
+      "Killed": 30,
+      "Correct": 29,
+      "Accuracy": 0.9666666666666667
+    },
+    {
+      "Id": "B-S-B-024",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 48,
+      "Accuracy": 0.96
+    },
+    {
+      "Id": "B-S-B-025",
+      "Triggers": 50,
+      "Killed": 50,
+      "Correct": 49,
+      "Accuracy": 0.98
+    }
+  ]
+}

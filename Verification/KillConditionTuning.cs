@@ -5,7 +5,7 @@ using SsqAnalyzer.Services.Kill;
 
 internal static class KillConditionTuning
 {
-    public static void TuneGap(string input, string output)
+    public static void TuneGap(string input, string output, string ruleId = "B-G-R-005")
     {
         var records = File.ReadLines(input).Where(l => !string.IsNullOrWhiteSpace(l)).Select(l =>
         {
@@ -14,7 +14,7 @@ internal static class KillConditionTuning
         }).ToList();
         records = KillResearchService.SnapshotRecords(records);
         var executor = new JintRuleExecutor(); var builder = new RuleContextBuilder(); var miss = MissMatrixCalculator.Compute(records, records);
-        var original = BuiltinRules.LoadOriginalCatalog().Single(r => r.RuleId == "B-G-R-005");
+        var original = BuiltinRules.LoadOriginalCatalog().Single(r => r.RuleId == ruleId);
         int split = 1 + (records.Count - 1) * 70 / 100;
         var trials = new List<object>();
         foreach (int gap in new[] { 2, 3, 4 })

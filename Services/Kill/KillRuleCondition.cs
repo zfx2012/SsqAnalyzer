@@ -19,7 +19,7 @@ internal sealed record KillRuleCondition(string Feature, int Window, int Minimum
             return (this with { Gap = 0 }).Apply(new KillRuleCondition("alternationGap", 0, Gap, Gap).Apply(original));
         if (original.BallType != BallType.Red || Minimum < 0 || Maximum < Minimum
             || Feature is not ("miss" or "frequency" or "count" or "alternationGap") || (Feature == "frequency" && Window is not (10 or 20 or 50 or 100))
-            || (Feature == "alternationGap" && (original.RuleId != "B-G-R-005" || Minimum is < 2 or > 4 || Minimum != Maximum)))
+            || (Feature == "alternationGap" && (original.RuleId is not ("B-G-R-005" or "B-G-R-005-CY") || Minimum is < 2 or > 4 || Minimum != Maximum)))
             throw new InvalidOperationException("规则条件无效。");
         var json = JsonNode.Parse(original.ToJson())!.AsObject();
         if (Feature == "alternationGap")
@@ -41,7 +41,11 @@ function getKillBalls(ctx) {
   return result.sort(function(a,b) { return a-b; });
 }
 """;
-            json["description"] = "基本图：" + Label + "。替换原隔一期交替条件；近50次成绩用于历史调参，待前向验证。";
+            bool cycle = original.RuleId.EndsWith("-CY", StringComparison.Ordinal);
+            if (cycle) json["jsCode"] = BuiltinRules.ScopeJs(json["jsCode"]!.GetValue<string>(), "cycle");
+            json["description"] = cycle
+                ? "周期图：只按与目标开奖日同星期的历史开奖行计数；" + Label.Replace("期", "行", StringComparison.Ordinal) + "。替换原交替条件；近50次成绩用于历史调参，待前向验证。"
+                : "基本图：" + Label + "。替换原隔一期交替条件；近50次成绩用于历史调参，待前向验证。";
             return KillRule.FromJson(json.ToJsonString());
         }
         json["jsCode"] = original.JsCode + "\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\n"

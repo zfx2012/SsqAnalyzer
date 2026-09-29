@@ -261,6 +261,22 @@ internal static partial class VerificationSuite
         Assert(executor.Execute(gapRule,builder.Build(records,100)).KilledBalls.SequenceEqual(new[]{7}), "target draw cannot affect condition execution");
         records[96].RedBalls = new[]{1,2,3,4,5,7};
         Assert(executor.Execute(gapRule,builder.Build(records,100)).KilledBalls.Count==0, "an extra opening breaks strict gap eligibility");
+        var cycleRows = Enumerable.Range(0, 12).SelectMany(week => new[] { 0, 2 }.Select(day => new DrawRecord
+        {
+            Period = 2026001 + week * 2 + (day == 0 ? 0 : 1), DrawDate = new DateTime(2026, 1, 6).AddDays(week * 7 + day),
+            RedBalls = day == 2 || week is 4 or 8 ? new[] { 1, 2, 3, 4, 5, 7 } : new[] { 1, 2, 3, 4, 5, 6 }, BlueBall = 1
+        })).Append(new DrawRecord { Period = 2026025, DrawDate = new DateTime(2026, 3, 31), RedBalls = new[] { 1, 2, 3, 4, 5, 7 }, BlueBall = 1 }).ToArray();
+        var cycleRule = BuiltinRules.LoadAll().Single(r => r.RuleId == "B-G-R-005-CY");
+        var cycleContext = builder.Build(cycleRows, 24);
+        Assert(executor.Execute(cycleRule, cycleContext).KilledBalls.SequenceEqual(new[] { 7 }), "cycle gap uses eight same-weekday rows despite off-scope openings");
+        var filtered = cycleContext.HistoryFor("cycle", int.MaxValue);
+        var baseGap = new KillRuleCondition("alternationGap", 0, 3, 3).Apply(BuiltinRules.LoadOriginalCatalog().Single(r => r.RuleId == "B-G-R-005"));
+        Assert(executor.Execute(cycleRule, cycleContext).KilledBalls.SequenceEqual(executor.Execute(baseGap, builder.Build(filtered, filtered.Count)).KilledBalls), "cycle gap agrees with base rule on filtered history");
+        cycleRows[24].RedBalls = new[] { 8, 9, 10, 11, 12, 13 };
+        Assert(executor.Execute(cycleRule, builder.Build(cycleRows, 24)).KilledBalls.SequenceEqual(new[] { 7 }), "cycle target draw cannot affect result");
+        cycleRows[18].RedBalls = new[] { 1, 2, 3, 4, 5, 7 };
+        Assert(!executor.Execute(cycleRule, builder.Build(cycleRows, 24)).KilledBalls.Contains(7), "opening in required empty cycle row blocks result");
+        Assert(BuiltinPatternGuide.For(cycleRule)!.RowLabels.Length == 9, "cycle guide displays eight history rows and next row");
     }
     private static void VerifyBuiltinIdMigration()
     {
