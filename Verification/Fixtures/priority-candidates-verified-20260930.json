@@ -1,0 +1,431 @@
+{
+  "Through": 2026112,
+  "DataHash": "EFFBE8EEC0FFA00CBF0D974C05D94AE10886A614FE0D7FC9A0DA59F9F9AD40E1",
+  "BaselineHash": "4DAE8A5EB552FFF5037D23033838442B7622CD1510CCF38B637E10CC75B376EF",
+  "IndependentComparisons": 10020,
+  "FutureChecks": 20,
+  "Candidates": [
+    {
+      "Key": "B-S-B-022/v1",
+      "Fingerprint": "B99A145E01AB3DE5FDE400B2EC334F869ABC53303786B6D276F538D514B5B01E",
+      "Definition": {
+        "RuleId": "B-S-B-022",
+        "Name": "蓝球候选：向右",
+        "BallType": 1,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=ctx.history(p.lag+(p.trend?1:0));\n  if(h.length!==p.lag+(p.trend?1:0)) return [];\n  var n=h[h.length-p.lag].blueBall, direction=p.direction;\n  if(p.trend) { var delta=h[h.length-1].blueBall-h[h.length-2].blueBall; if(delta===0) return []; direction=(delta>0?1:-1)*p.trend; }\n  var result=[];\n  for(var s=-1;s<=1;s+=2) if(!direction||s===direction) {var b=n+s*p.gap; if(b>=1&&b<=16) result.push(b);}\n  return result.sort(function(a,b){return a-b;});\n}",
+        "Parameters": "{\"direction\":1,\"gap\":7,\"lag\":1}",
+        "Fingerprint": "B99A145E01AB3DE5FDE400B2EC334F869ABC53303786B6D276F538D514B5B01E"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "LatestBalls": []
+    },
+    {
+      "Key": "B-S-B-022/v2",
+      "Fingerprint": "B67EDCE00017A9CA2123302C69EEDE8FB91A1F9EDE3DFD0E45AD788618806C71",
+      "Definition": {
+        "RuleId": "B-S-B-022",
+        "Name": "蓝球候选：向左",
+        "BallType": 1,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=ctx.history(p.lag+(p.trend?1:0));\n  if(h.length!==p.lag+(p.trend?1:0)) return [];\n  var n=h[h.length-p.lag].blueBall, direction=p.direction;\n  if(p.trend) { var delta=h[h.length-1].blueBall-h[h.length-2].blueBall; if(delta===0) return []; direction=(delta>0?1:-1)*p.trend; }\n  var result=[];\n  for(var s=-1;s<=1;s+=2) if(!direction||s===direction) {var b=n+s*p.gap; if(b>=1&&b<=16) result.push(b);}\n  return result.sort(function(a,b){return a-b;});\n}",
+        "Parameters": "{\"direction\":-1,\"gap\":7,\"lag\":1}",
+        "Fingerprint": "B67EDCE00017A9CA2123302C69EEDE8FB91A1F9EDE3DFD0E45AD788618806C71"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92
+      },
+      "LatestBalls": [
+        4
+      ]
+    },
+    {
+      "Key": "B-S-B-022/v3",
+      "Fingerprint": "A78BF4A0ED343F60E3BD77D3AB798ED3F1AA8C4502F4BB2E47F0CE5C41CFD47B",
+      "Definition": {
+        "RuleId": "B-S-B-022",
+        "Name": "蓝球候选：顺上段方向",
+        "BallType": 1,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=ctx.history(p.lag+(p.trend?1:0));\n  if(h.length!==p.lag+(p.trend?1:0)) return [];\n  var n=h[h.length-p.lag].blueBall, direction=p.direction;\n  if(p.trend) { var delta=h[h.length-1].blueBall-h[h.length-2].blueBall; if(delta===0) return []; direction=(delta>0?1:-1)*p.trend; }\n  var result=[];\n  for(var s=-1;s<=1;s+=2) if(!direction||s===direction) {var b=n+s*p.gap; if(b>=1&&b<=16) result.push(b);}\n  return result.sort(function(a,b){return a-b;});\n}",
+        "Parameters": "{\"direction\":0,\"gap\":7,\"lag\":1,\"trend\":1}",
+        "Fingerprint": "A78BF4A0ED343F60E3BD77D3AB798ED3F1AA8C4502F4BB2E47F0CE5C41CFD47B"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92
+      },
+      "LatestBalls": []
+    },
+    {
+      "Key": "B-S-B-022/v4",
+      "Fingerprint": "754E91348C21A4CEBEEEAEF3CFFA0413242AE4AAF3CBF202E67FE9DEE853A327",
+      "Definition": {
+        "RuleId": "B-S-B-022",
+        "Name": "蓝球候选：逆上段方向",
+        "BallType": 1,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=ctx.history(p.lag+(p.trend?1:0));\n  if(h.length!==p.lag+(p.trend?1:0)) return [];\n  var n=h[h.length-p.lag].blueBall, direction=p.direction;\n  if(p.trend) { var delta=h[h.length-1].blueBall-h[h.length-2].blueBall; if(delta===0) return []; direction=(delta>0?1:-1)*p.trend; }\n  var result=[];\n  for(var s=-1;s<=1;s+=2) if(!direction||s===direction) {var b=n+s*p.gap; if(b>=1&&b<=16) result.push(b);}\n  return result.sort(function(a,b){return a-b;});\n}",
+        "Parameters": "{\"direction\":0,\"gap\":7,\"lag\":1,\"trend\":-1}",
+        "Fingerprint": "754E91348C21A4CEBEEEAEF3CFFA0413242AE4AAF3CBF202E67FE9DEE853A327"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "LatestBalls": [
+        4
+      ]
+    },
+    {
+      "Key": "B-S-B-022/v5",
+      "Fingerprint": "6A25AC775E7BCB16C8F48881B14B66455751AEF269C7966AFDFF284C88A263CF",
+      "Definition": {
+        "RuleId": "B-S-B-022",
+        "Name": "蓝球候选：斜距6双向",
+        "BallType": 1,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=ctx.history(p.lag+(p.trend?1:0));\n  if(h.length!==p.lag+(p.trend?1:0)) return [];\n  var n=h[h.length-p.lag].blueBall, direction=p.direction;\n  if(p.trend) { var delta=h[h.length-1].blueBall-h[h.length-2].blueBall; if(delta===0) return []; direction=(delta>0?1:-1)*p.trend; }\n  var result=[];\n  for(var s=-1;s<=1;s+=2) if(!direction||s===direction) {var b=n+s*p.gap; if(b>=1&&b<=16) result.push(b);}\n  return result.sort(function(a,b){return a-b;});\n}",
+        "Parameters": "{\"direction\":0,\"gap\":6,\"lag\":1}",
+        "Fingerprint": "6A25AC775E7BCB16C8F48881B14B66455751AEF269C7966AFDFF284C88A263CF"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 59,
+        "Correct": 52,
+        "Accuracy": 0.8813559322033898
+      },
+      "LatestBalls": [
+        5
+      ]
+    },
+    {
+      "Key": "B-S-B-022/v6",
+      "Fingerprint": "A4B4C48ED851FDDA87D9E80D8B08E0BFA9401712FA1C57268AA94CE9FAFC07DB",
+      "Definition": {
+        "RuleId": "B-S-B-022",
+        "Name": "蓝球候选：斜距8双向",
+        "BallType": 1,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=ctx.history(p.lag+(p.trend?1:0));\n  if(h.length!==p.lag+(p.trend?1:0)) return [];\n  var n=h[h.length-p.lag].blueBall, direction=p.direction;\n  if(p.trend) { var delta=h[h.length-1].blueBall-h[h.length-2].blueBall; if(delta===0) return []; direction=(delta>0?1:-1)*p.trend; }\n  var result=[];\n  for(var s=-1;s<=1;s+=2) if(!direction||s===direction) {var b=n+s*p.gap; if(b>=1&&b<=16) result.push(b);}\n  return result.sort(function(a,b){return a-b;});\n}",
+        "Parameters": "{\"direction\":0,\"gap\":8,\"lag\":1}",
+        "Fingerprint": "A4B4C48ED851FDDA87D9E80D8B08E0BFA9401712FA1C57268AA94CE9FAFC07DB"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92
+      },
+      "LatestBalls": [
+        3
+      ]
+    },
+    {
+      "Key": "B-S-B-022/v7",
+      "Fingerprint": "8098FAB01A8B3E76A713137DF6AF7A19E9FFFE5C3AE8E3EB147858CD09E96A00",
+      "Definition": {
+        "RuleId": "B-S-B-022",
+        "Name": "蓝球候选：前2期锚点",
+        "BallType": 1,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=ctx.history(p.lag+(p.trend?1:0));\n  if(h.length!==p.lag+(p.trend?1:0)) return [];\n  var n=h[h.length-p.lag].blueBall, direction=p.direction;\n  if(p.trend) { var delta=h[h.length-1].blueBall-h[h.length-2].blueBall; if(delta===0) return []; direction=(delta>0?1:-1)*p.trend; }\n  var result=[];\n  for(var s=-1;s<=1;s+=2) if(!direction||s===direction) {var b=n+s*p.gap; if(b>=1&&b<=16) result.push(b);}\n  return result.sort(function(a,b){return a-b;});\n}",
+        "Parameters": "{\"direction\":0,\"gap\":7,\"lag\":2}",
+        "Fingerprint": "8098FAB01A8B3E76A713137DF6AF7A19E9FFFE5C3AE8E3EB147858CD09E96A00"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 57,
+        "Correct": 53,
+        "Accuracy": 0.9298245614035088
+      },
+      "LatestBalls": [
+        12
+      ]
+    },
+    {
+      "Key": "B-S-B-022/v8",
+      "Fingerprint": "87DA65569909D9C3C9B98A1591103A7A00BC08EA66DBDC15357C7488C97A6A33",
+      "Definition": {
+        "RuleId": "B-S-B-022",
+        "Name": "蓝球候选：前3期锚点",
+        "BallType": 1,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=ctx.history(p.lag+(p.trend?1:0));\n  if(h.length!==p.lag+(p.trend?1:0)) return [];\n  var n=h[h.length-p.lag].blueBall, direction=p.direction;\n  if(p.trend) { var delta=h[h.length-1].blueBall-h[h.length-2].blueBall; if(delta===0) return []; direction=(delta>0?1:-1)*p.trend; }\n  var result=[];\n  for(var s=-1;s<=1;s+=2) if(!direction||s===direction) {var b=n+s*p.gap; if(b>=1&&b<=16) result.push(b);}\n  return result.sort(function(a,b){return a-b;});\n}",
+        "Parameters": "{\"direction\":0,\"gap\":7,\"lag\":3}",
+        "Fingerprint": "87DA65569909D9C3C9B98A1591103A7A00BC08EA66DBDC15357C7488C97A6A33"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 57,
+        "Correct": 53,
+        "Accuracy": 0.9298245614035088
+      },
+      "LatestBalls": [
+        7
+      ]
+    },
+    {
+      "Key": "B-G-R-009-HS/v1",
+      "Fingerprint": "4D3CA66409978FE0F23B17D7168C1F4C3B444A46FC49ABC5DFCBC378B86655FD",
+      "Definition": {
+        "RuleId": "B-G-R-009-HS",
+        "Name": "短斜续接杀红（历史同期图）",
+        "BallType": 0,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=p.scope?ctx.historyFor(p.scope,p.offsets.length):ctx.history(p.offsets.length);\n  if(h.length!==p.offsets.length) return [];\n  var max=p.blue?16:33, result={};\n  for(var n=1;n<=max;n++) for(var sign=-1;sign<=1;sign+=2) {\n    if(p.direction && p.direction!==sign) continue;\n    var next=n+sign*p.target; if(next<1||next>max) continue;\n    var valid=true;\n    for(var j=0;j<h.length;j++) {\n      var b=n+sign*p.offsets[j];\n      if(b<1||b>max || (p.blue?h[j].blueBall!==b:h[j].redBalls.indexOf(b)<0)) { valid=false; break; }\n    }\n    if(valid) result[next]=true;\n  }\n  var balls=Object.keys(result).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n  if(p.frequencyWindow) {\n    var actual=ctx.history(p.frequencyWindow); if(actual.length!==p.frequencyWindow) return [];\n    balls=balls.filter(function(b){var count=0; for(var j=0;j<actual.length;j++) if(actual[j].redBalls.indexOf(b)>=0) count++; return count<=p.frequencyMax;});\n  }\n  return balls;\n}",
+        "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,1],\"scope\":\"samePeriod\",\"target\":2}",
+        "Fingerprint": "4D3CA66409978FE0F23B17D7168C1F4C3B444A46FC49ABC5DFCBC378B86655FD"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 96,
+        "Correct": 82,
+        "Accuracy": 0.8541666666666666
+      },
+      "LatestBalls": [
+        25
+      ]
+    },
+    {
+      "Key": "B-G-R-009-HS/v2",
+      "Fingerprint": "13A1EE0C9D96183C4C79A6856E3A4166BECA5246996CCF037111F1AA2A62D594",
+      "Definition": {
+        "RuleId": "B-G-R-009-HS",
+        "Name": "宽斜续接杀红（历史同期图）",
+        "BallType": 0,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=p.scope?ctx.historyFor(p.scope,p.offsets.length):ctx.history(p.offsets.length);\n  if(h.length!==p.offsets.length) return [];\n  var max=p.blue?16:33, result={};\n  for(var n=1;n<=max;n++) for(var sign=-1;sign<=1;sign+=2) {\n    if(p.direction && p.direction!==sign) continue;\n    var next=n+sign*p.target; if(next<1||next>max) continue;\n    var valid=true;\n    for(var j=0;j<h.length;j++) {\n      var b=n+sign*p.offsets[j];\n      if(b<1||b>max || (p.blue?h[j].blueBall!==b:h[j].redBalls.indexOf(b)<0)) { valid=false; break; }\n    }\n    if(valid) result[next]=true;\n  }\n  var balls=Object.keys(result).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n  if(p.frequencyWindow) {\n    var actual=ctx.history(p.frequencyWindow); if(actual.length!==p.frequencyWindow) return [];\n    balls=balls.filter(function(b){var count=0; for(var j=0;j<actual.length;j++) if(actual[j].redBalls.indexOf(b)>=0) count++; return count<=p.frequencyMax;});\n  }\n  return balls;\n}",
+        "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,2],\"scope\":\"samePeriod\",\"target\":4}",
+        "Fingerprint": "13A1EE0C9D96183C4C79A6856E3A4166BECA5246996CCF037111F1AA2A62D594"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 115,
+        "Correct": 97,
+        "Accuracy": 0.8434782608695652
+      },
+      "LatestBalls": [
+        22
+      ]
+    },
+    {
+      "Key": "B-G-R-009-HS/v3",
+      "Fingerprint": "65B0D286F417A48B45C120D3D0ED9499BF640FECCE94E223B6A062EF639CD052",
+      "Definition": {
+        "RuleId": "B-G-R-009-HS",
+        "Name": "短斜折返杀红（历史同期图）",
+        "BallType": 0,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=p.scope?ctx.historyFor(p.scope,p.offsets.length):ctx.history(p.offsets.length);\n  if(h.length!==p.offsets.length) return [];\n  var max=p.blue?16:33, result={};\n  for(var n=1;n<=max;n++) for(var sign=-1;sign<=1;sign+=2) {\n    if(p.direction && p.direction!==sign) continue;\n    var next=n+sign*p.target; if(next<1||next>max) continue;\n    var valid=true;\n    for(var j=0;j<h.length;j++) {\n      var b=n+sign*p.offsets[j];\n      if(b<1||b>max || (p.blue?h[j].blueBall!==b:h[j].redBalls.indexOf(b)<0)) { valid=false; break; }\n    }\n    if(valid) result[next]=true;\n  }\n  var balls=Object.keys(result).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n  if(p.frequencyWindow) {\n    var actual=ctx.history(p.frequencyWindow); if(actual.length!==p.frequencyWindow) return [];\n    balls=balls.filter(function(b){var count=0; for(var j=0;j<actual.length;j++) if(actual[j].redBalls.indexOf(b)>=0) count++; return count<=p.frequencyMax;});\n  }\n  return balls;\n}",
+        "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,1],\"scope\":\"samePeriod\",\"target\":0}",
+        "Fingerprint": "65B0D286F417A48B45C120D3D0ED9499BF640FECCE94E223B6A062EF639CD052"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 98,
+        "Correct": 75,
+        "Accuracy": 0.7653061224489796
+      },
+      "LatestBalls": [
+        23
+      ]
+    },
+    {
+      "Key": "B-G-R-009-HS/v4",
+      "Fingerprint": "293012F25FCCE7B86F0B2F6DAF91C50A551A9C0E9014CFBBAEBB5EF21FF05DBE",
+      "Definition": {
+        "RuleId": "B-G-R-009-HS",
+        "Name": "宽斜折返杀红（历史同期图）",
+        "BallType": 0,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=p.scope?ctx.historyFor(p.scope,p.offsets.length):ctx.history(p.offsets.length);\n  if(h.length!==p.offsets.length) return [];\n  var max=p.blue?16:33, result={};\n  for(var n=1;n<=max;n++) for(var sign=-1;sign<=1;sign+=2) {\n    if(p.direction && p.direction!==sign) continue;\n    var next=n+sign*p.target; if(next<1||next>max) continue;\n    var valid=true;\n    for(var j=0;j<h.length;j++) {\n      var b=n+sign*p.offsets[j];\n      if(b<1||b>max || (p.blue?h[j].blueBall!==b:h[j].redBalls.indexOf(b)<0)) { valid=false; break; }\n    }\n    if(valid) result[next]=true;\n  }\n  var balls=Object.keys(result).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n  if(p.frequencyWindow) {\n    var actual=ctx.history(p.frequencyWindow); if(actual.length!==p.frequencyWindow) return [];\n    balls=balls.filter(function(b){var count=0; for(var j=0;j<actual.length;j++) if(actual[j].redBalls.indexOf(b)>=0) count++; return count<=p.frequencyMax;});\n  }\n  return balls;\n}",
+        "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,2],\"scope\":\"samePeriod\",\"target\":0}",
+        "Fingerprint": "293012F25FCCE7B86F0B2F6DAF91C50A551A9C0E9014CFBBAEBB5EF21FF05DBE"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 106,
+        "Correct": 85,
+        "Accuracy": 0.8018867924528301
+      },
+      "LatestBalls": [
+        26
+      ]
+    },
+    {
+      "Key": "B-G-R-001-HS/v1",
+      "Fingerprint": "CFCF1C5C5EC747AA9B3C2BDD40C895B9656E6BE51E49E7FEF45F2E65E6CABA65",
+      "Definition": {
+        "RuleId": "B-G-R-001-HS",
+        "Name": "短折反穿杀红（历史同期图）",
+        "BallType": 0,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=p.scope?ctx.historyFor(p.scope,p.offsets.length):ctx.history(p.offsets.length);\n  if(h.length!==p.offsets.length) return [];\n  var max=p.blue?16:33, result={};\n  for(var n=1;n<=max;n++) for(var sign=-1;sign<=1;sign+=2) {\n    if(p.direction && p.direction!==sign) continue;\n    var next=n+sign*p.target; if(next<1||next>max) continue;\n    var valid=true;\n    for(var j=0;j<h.length;j++) {\n      var b=n+sign*p.offsets[j];\n      if(b<1||b>max || (p.blue?h[j].blueBall!==b:h[j].redBalls.indexOf(b)<0)) { valid=false; break; }\n    }\n    if(valid) result[next]=true;\n  }\n  var balls=Object.keys(result).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n  if(p.frequencyWindow) {\n    var actual=ctx.history(p.frequencyWindow); if(actual.length!==p.frequencyWindow) return [];\n    balls=balls.filter(function(b){var count=0; for(var j=0;j<actual.length;j++) if(actual[j].redBalls.indexOf(b)>=0) count++; return count<=p.frequencyMax;});\n  }\n  return balls;\n}",
+        "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,1,0],\"scope\":\"samePeriod\",\"target\":-1}",
+        "Fingerprint": "CFCF1C5C5EC747AA9B3C2BDD40C895B9656E6BE51E49E7FEF45F2E65E6CABA65"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 57,
+        "Correct": 51,
+        "Accuracy": 0.8947368421052632
+      },
+      "LatestBalls": []
+    },
+    {
+      "Key": "B-G-R-001-HS/v2",
+      "Fingerprint": "DD5A2A517DD6B3285790F4751D4B34A7E7458CA9A335EE65B3C2950F3A971E5B",
+      "Definition": {
+        "RuleId": "B-G-R-001-HS",
+        "Name": "宽折反穿杀红（历史同期图）",
+        "BallType": 0,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=p.scope?ctx.historyFor(p.scope,p.offsets.length):ctx.history(p.offsets.length);\n  if(h.length!==p.offsets.length) return [];\n  var max=p.blue?16:33, result={};\n  for(var n=1;n<=max;n++) for(var sign=-1;sign<=1;sign+=2) {\n    if(p.direction && p.direction!==sign) continue;\n    var next=n+sign*p.target; if(next<1||next>max) continue;\n    var valid=true;\n    for(var j=0;j<h.length;j++) {\n      var b=n+sign*p.offsets[j];\n      if(b<1||b>max || (p.blue?h[j].blueBall!==b:h[j].redBalls.indexOf(b)<0)) { valid=false; break; }\n    }\n    if(valid) result[next]=true;\n  }\n  var balls=Object.keys(result).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n  if(p.frequencyWindow) {\n    var actual=ctx.history(p.frequencyWindow); if(actual.length!==p.frequencyWindow) return [];\n    balls=balls.filter(function(b){var count=0; for(var j=0;j<actual.length;j++) if(actual[j].redBalls.indexOf(b)>=0) count++; return count<=p.frequencyMax;});\n  }\n  return balls;\n}",
+        "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,2,0],\"scope\":\"samePeriod\",\"target\":-2}",
+        "Fingerprint": "DD5A2A517DD6B3285790F4751D4B34A7E7458CA9A335EE65B3C2950F3A971E5B"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 63,
+        "Correct": 55,
+        "Accuracy": 0.873015873015873
+      },
+      "LatestBalls": []
+    },
+    {
+      "Key": "B-G-R-001-HS/v3",
+      "Fingerprint": "B705AA8BFF3D6BB4B8ECF8BF88B4CDECDE7B2B72C9D58E0006C5FC6E4C2AFA87",
+      "Definition": {
+        "RuleId": "B-G-R-001-HS",
+        "Name": "短平台回折杀红（历史同期图）",
+        "BallType": 0,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=p.scope?ctx.historyFor(p.scope,p.offsets.length):ctx.history(p.offsets.length);\n  if(h.length!==p.offsets.length) return [];\n  var max=p.blue?16:33, result={};\n  for(var n=1;n<=max;n++) for(var sign=-1;sign<=1;sign+=2) {\n    if(p.direction && p.direction!==sign) continue;\n    var next=n+sign*p.target; if(next<1||next>max) continue;\n    var valid=true;\n    for(var j=0;j<h.length;j++) {\n      var b=n+sign*p.offsets[j];\n      if(b<1||b>max || (p.blue?h[j].blueBall!==b:h[j].redBalls.indexOf(b)<0)) { valid=false; break; }\n    }\n    if(valid) result[next]=true;\n  }\n  var balls=Object.keys(result).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n  if(p.frequencyWindow) {\n    var actual=ctx.history(p.frequencyWindow); if(actual.length!==p.frequencyWindow) return [];\n    balls=balls.filter(function(b){var count=0; for(var j=0;j<actual.length;j++) if(actual[j].redBalls.indexOf(b)>=0) count++; return count<=p.frequencyMax;});\n  }\n  return balls;\n}",
+        "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,1,1],\"scope\":\"samePeriod\",\"target\":0}",
+        "Fingerprint": "B705AA8BFF3D6BB4B8ECF8BF88B4CDECDE7B2B72C9D58E0006C5FC6E4C2AFA87"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 59,
+        "Correct": 47,
+        "Accuracy": 0.7966101694915254
+      },
+      "LatestBalls": [
+        25
+      ]
+    },
+    {
+      "Key": "B-G-R-001-HS/v4",
+      "Fingerprint": "9354BDE328424B8CA36F8AD5F20266F9BB7B1EDA9355ABEACDEBCA90D875505D",
+      "Definition": {
+        "RuleId": "B-G-R-001-HS",
+        "Name": "宽平台回折杀红（历史同期图）",
+        "BallType": 0,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=p.scope?ctx.historyFor(p.scope,p.offsets.length):ctx.history(p.offsets.length);\n  if(h.length!==p.offsets.length) return [];\n  var max=p.blue?16:33, result={};\n  for(var n=1;n<=max;n++) for(var sign=-1;sign<=1;sign+=2) {\n    if(p.direction && p.direction!==sign) continue;\n    var next=n+sign*p.target; if(next<1||next>max) continue;\n    var valid=true;\n    for(var j=0;j<h.length;j++) {\n      var b=n+sign*p.offsets[j];\n      if(b<1||b>max || (p.blue?h[j].blueBall!==b:h[j].redBalls.indexOf(b)<0)) { valid=false; break; }\n    }\n    if(valid) result[next]=true;\n  }\n  var balls=Object.keys(result).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n  if(p.frequencyWindow) {\n    var actual=ctx.history(p.frequencyWindow); if(actual.length!==p.frequencyWindow) return [];\n    balls=balls.filter(function(b){var count=0; for(var j=0;j<actual.length;j++) if(actual[j].redBalls.indexOf(b)>=0) count++; return count<=p.frequencyMax;});\n  }\n  return balls;\n}",
+        "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,2,2],\"scope\":\"samePeriod\",\"target\":0}",
+        "Fingerprint": "9354BDE328424B8CA36F8AD5F20266F9BB7B1EDA9355ABEACDEBCA90D875505D"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 65,
+        "Correct": 56,
+        "Accuracy": 0.8615384615384616
+      },
+      "LatestBalls": []
+    },
+    {
+      "Key": "B-G-R-011/v1",
+      "Fingerprint": "125931598472C1EED0283D7D511272B36A5EB9199D2E7B070BB317F825A6F02D",
+      "Definition": {
+        "RuleId": "B-G-R-011",
+        "Name": "正向三斜续接杀红",
+        "BallType": 0,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=p.scope?ctx.historyFor(p.scope,p.offsets.length):ctx.history(p.offsets.length);\n  if(h.length!==p.offsets.length) return [];\n  var max=p.blue?16:33, result={};\n  for(var n=1;n<=max;n++) for(var sign=-1;sign<=1;sign+=2) {\n    if(p.direction && p.direction!==sign) continue;\n    var next=n+sign*p.target; if(next<1||next>max) continue;\n    var valid=true;\n    for(var j=0;j<h.length;j++) {\n      var b=n+sign*p.offsets[j];\n      if(b<1||b>max || (p.blue?h[j].blueBall!==b:h[j].redBalls.indexOf(b)<0)) { valid=false; break; }\n    }\n    if(valid) result[next]=true;\n  }\n  var balls=Object.keys(result).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n  if(p.frequencyWindow) {\n    var actual=ctx.history(p.frequencyWindow); if(actual.length!==p.frequencyWindow) return [];\n    balls=balls.filter(function(b){var count=0; for(var j=0;j<actual.length;j++) if(actual[j].redBalls.indexOf(b)>=0) count++; return count<=p.frequencyMax;});\n  }\n  return balls;\n}",
+        "Parameters": "{\"blue\":false,\"direction\":1,\"frequencyMax\":4,\"frequencyWindow\":20,\"geometryVersion\":1,\"offsets\":[0,1,2],\"target\":3}",
+        "Fingerprint": "125931598472C1EED0283D7D511272B36A5EB9199D2E7B070BB317F825A6F02D"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 54,
+        "Correct": 43,
+        "Accuracy": 0.7962962962962963
+      },
+      "LatestBalls": []
+    },
+    {
+      "Key": "B-G-R-011/v2",
+      "Fingerprint": "D8B79B802F7A60AD519876D12BAC1BC6F24F0E21114717D209D68E46162C8199",
+      "Definition": {
+        "RuleId": "B-G-R-011",
+        "Name": "反向三斜续接杀红",
+        "BallType": 0,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=p.scope?ctx.historyFor(p.scope,p.offsets.length):ctx.history(p.offsets.length);\n  if(h.length!==p.offsets.length) return [];\n  var max=p.blue?16:33, result={};\n  for(var n=1;n<=max;n++) for(var sign=-1;sign<=1;sign+=2) {\n    if(p.direction && p.direction!==sign) continue;\n    var next=n+sign*p.target; if(next<1||next>max) continue;\n    var valid=true;\n    for(var j=0;j<h.length;j++) {\n      var b=n+sign*p.offsets[j];\n      if(b<1||b>max || (p.blue?h[j].blueBall!==b:h[j].redBalls.indexOf(b)<0)) { valid=false; break; }\n    }\n    if(valid) result[next]=true;\n  }\n  var balls=Object.keys(result).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n  if(p.frequencyWindow) {\n    var actual=ctx.history(p.frequencyWindow); if(actual.length!==p.frequencyWindow) return [];\n    balls=balls.filter(function(b){var count=0; for(var j=0;j<actual.length;j++) if(actual[j].redBalls.indexOf(b)>=0) count++; return count<=p.frequencyMax;});\n  }\n  return balls;\n}",
+        "Parameters": "{\"blue\":false,\"direction\":-1,\"frequencyMax\":4,\"frequencyWindow\":20,\"geometryVersion\":1,\"offsets\":[0,1,2],\"target\":3}",
+        "Fingerprint": "D8B79B802F7A60AD519876D12BAC1BC6F24F0E21114717D209D68E46162C8199"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 51,
+        "Correct": 41,
+        "Accuracy": 0.803921568627451
+      },
+      "LatestBalls": []
+    },
+    {
+      "Key": "B-G-R-011/v3",
+      "Fingerprint": "DD2913CFBB90FFE67180CCC9BFD516F3A04700ACF7448F19CE74ADFB872D4CB3",
+      "Definition": {
+        "RuleId": "B-G-R-011",
+        "Name": "三斜中点回折杀红",
+        "BallType": 0,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=p.scope?ctx.historyFor(p.scope,p.offsets.length):ctx.history(p.offsets.length);\n  if(h.length!==p.offsets.length) return [];\n  var max=p.blue?16:33, result={};\n  for(var n=1;n<=max;n++) for(var sign=-1;sign<=1;sign+=2) {\n    if(p.direction && p.direction!==sign) continue;\n    var next=n+sign*p.target; if(next<1||next>max) continue;\n    var valid=true;\n    for(var j=0;j<h.length;j++) {\n      var b=n+sign*p.offsets[j];\n      if(b<1||b>max || (p.blue?h[j].blueBall!==b:h[j].redBalls.indexOf(b)<0)) { valid=false; break; }\n    }\n    if(valid) result[next]=true;\n  }\n  var balls=Object.keys(result).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n  if(p.frequencyWindow) {\n    var actual=ctx.history(p.frequencyWindow); if(actual.length!==p.frequencyWindow) return [];\n    balls=balls.filter(function(b){var count=0; for(var j=0;j<actual.length;j++) if(actual[j].redBalls.indexOf(b)>=0) count++; return count<=p.frequencyMax;});\n  }\n  return balls;\n}",
+        "Parameters": "{\"blue\":false,\"direction\":0,\"frequencyMax\":4,\"frequencyWindow\":20,\"geometryVersion\":1,\"offsets\":[0,1,2],\"target\":1}",
+        "Fingerprint": "DD2913CFBB90FFE67180CCC9BFD516F3A04700ACF7448F19CE74ADFB872D4CB3"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 53,
+        "Correct": 47,
+        "Accuracy": 0.8867924528301887
+      },
+      "LatestBalls": []
+    },
+    {
+      "Key": "B-G-R-011/v4",
+      "Fingerprint": "270DA375F2E5154CB24F7FC97A5DFB2EC8CE086894111D7E7B5AE79626E565AB",
+      "Definition": {
+        "RuleId": "B-G-R-011",
+        "Name": "三斜原点回折杀红",
+        "BallType": 0,
+        "Category": 0,
+        "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=p.scope?ctx.historyFor(p.scope,p.offsets.length):ctx.history(p.offsets.length);\n  if(h.length!==p.offsets.length) return [];\n  var max=p.blue?16:33, result={};\n  for(var n=1;n<=max;n++) for(var sign=-1;sign<=1;sign+=2) {\n    if(p.direction && p.direction!==sign) continue;\n    var next=n+sign*p.target; if(next<1||next>max) continue;\n    var valid=true;\n    for(var j=0;j<h.length;j++) {\n      var b=n+sign*p.offsets[j];\n      if(b<1||b>max || (p.blue?h[j].blueBall!==b:h[j].redBalls.indexOf(b)<0)) { valid=false; break; }\n    }\n    if(valid) result[next]=true;\n  }\n  var balls=Object.keys(result).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n  if(p.frequencyWindow) {\n    var actual=ctx.history(p.frequencyWindow); if(actual.length!==p.frequencyWindow) return [];\n    balls=balls.filter(function(b){var count=0; for(var j=0;j<actual.length;j++) if(actual[j].redBalls.indexOf(b)>=0) count++; return count<=p.frequencyMax;});\n  }\n  return balls;\n}",
+        "Parameters": "{\"blue\":false,\"direction\":0,\"frequencyMax\":4,\"frequencyWindow\":20,\"geometryVersion\":1,\"offsets\":[0,1,2],\"target\":0}",
+        "Fingerprint": "270DA375F2E5154CB24F7FC97A5DFB2EC8CE086894111D7E7B5AE79626E565AB"
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 53,
+        "Correct": 48,
+        "Accuracy": 0.9056603773584906
+      },
+      "LatestBalls": []
+    }
+  ]
+}

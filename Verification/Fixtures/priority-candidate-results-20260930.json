@@ -1,0 +1,1203 @@
+{
+  "Through": 2026112,
+  "DataHash": "EFFBE8EEC0FFA00CBF0D974C05D94AE10886A614FE0D7FC9A0DA59F9F9AD40E1",
+  "Training": [
+    2023066,
+    2026012
+  ],
+  "Later": [
+    2026013,
+    2026112
+  ],
+  "ChosenByTraining": [
+    "B-G-R-009-HS/v4",
+    "B-G-R-001-HS/v2"
+  ],
+  "IndependentComparisons": 10020,
+  "FutureChecks": 20,
+  "Variants": {
+    "baseline": {
+      "Red": {
+        "Draws": 500,
+        "AverageRemaining": 13.658,
+        "Target": 383,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.584,
+        "RandomAverageRetained": 2.4832727272727273,
+        "Full": 3,
+        "RandomExpectedFull": 2.1495565057856494,
+        "TargetAndFull": 2,
+        "CurrentRemaining": 15
+      },
+      "Blue": {
+        "Draws": 500,
+        "AverageRemaining": 5.964,
+        "Target": 388,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.398,
+        "RandomAverageRetained": 0.37275,
+        "Full": 199,
+        "RandomExpectedFull": 186.375,
+        "TargetAndFull": 144,
+        "CurrentRemaining": 5
+      },
+      "BothFull": 1
+    },
+    "blue-right": {
+      "Red": {
+        "Draws": 500,
+        "AverageRemaining": 13.658,
+        "Target": 383,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.584,
+        "RandomAverageRetained": 2.4832727272727273,
+        "Full": 3,
+        "RandomExpectedFull": 2.1495565057856494,
+        "TargetAndFull": 2,
+        "CurrentRemaining": 15
+      },
+      "Blue": {
+        "Draws": 500,
+        "AverageRemaining": 6.504,
+        "Target": 286,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.444,
+        "RandomAverageRetained": 0.4065,
+        "Full": 222,
+        "RandomExpectedFull": 203.25,
+        "TargetAndFull": 119,
+        "CurrentRemaining": 6
+      },
+      "BothFull": 1
+    },
+    "red-wide-return": {
+      "Red": {
+        "Draws": 500,
+        "AverageRemaining": 13.642,
+        "Target": 385,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.598,
+        "RandomAverageRetained": 2.4803636363636365,
+        "Full": 3,
+        "RandomExpectedFull": 2.1736001762420005,
+        "TargetAndFull": 2,
+        "CurrentRemaining": 15
+      },
+      "Blue": {
+        "Draws": 500,
+        "AverageRemaining": 5.964,
+        "Target": 388,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.398,
+        "RandomAverageRetained": 0.37275,
+        "Full": 199,
+        "RandomExpectedFull": 186.375,
+        "TargetAndFull": 144,
+        "CurrentRemaining": 5
+      },
+      "BothFull": 1
+    },
+    "both": {
+      "Red": {
+        "Draws": 500,
+        "AverageRemaining": 13.642,
+        "Target": 385,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.598,
+        "RandomAverageRetained": 2.4803636363636365,
+        "Full": 3,
+        "RandomExpectedFull": 2.1736001762420005,
+        "TargetAndFull": 2,
+        "CurrentRemaining": 15
+      },
+      "Blue": {
+        "Draws": 500,
+        "AverageRemaining": 6.504,
+        "Target": 286,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.444,
+        "RandomAverageRetained": 0.4065,
+        "Full": 222,
+        "RandomExpectedFull": 203.25,
+        "TargetAndFull": 119,
+        "CurrentRemaining": 6
+      },
+      "BothFull": 1
+    }
+  },
+  "Proposals": [
+    {
+      "Key": "B-S-B-022/v1",
+      "BaselineId": "B-S-B-022",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 6.565,
+        "Target": 218,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.425,
+        "RandomAverageRetained": 0.4103125,
+        "Full": 170,
+        "RandomExpectedFull": 164.125,
+        "TargetAndFull": 82
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 6.26,
+        "Target": 68,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.52,
+        "RandomAverageRetained": 0.39125,
+        "Full": 52,
+        "RandomExpectedFull": 39.125,
+        "TargetAndFull": 37
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 6.504,
+        "Target": 286,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.444,
+        "RandomAverageRetained": 0.4065,
+        "Full": 222,
+        "RandomExpectedFull": 203.25,
+        "TargetAndFull": 119
+      },
+      "TrainingEligible": false,
+      "TrainingReasons": [
+        "组合数量达标期数下降"
+      ]
+    },
+    {
+      "Key": "B-S-B-022/v2",
+      "BaselineId": "B-S-B-022",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 6.515,
+        "Target": 188,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.4125,
+        "RandomAverageRetained": 0.4071875,
+        "Full": 165,
+        "RandomExpectedFull": 162.875,
+        "TargetAndFull": 64
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 6.54,
+        "Target": 48,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.51,
+        "RandomAverageRetained": 0.40875,
+        "Full": 51,
+        "RandomExpectedFull": 40.875,
+        "TargetAndFull": 25
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 6.52,
+        "Target": 236,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.432,
+        "RandomAverageRetained": 0.4075,
+        "Full": 216,
+        "RandomExpectedFull": 203.75,
+        "TargetAndFull": 89
+      },
+      "TrainingEligible": false,
+      "TrainingReasons": [
+        "单条训练窗口未达门槛",
+        "组合数量达标期数下降"
+      ]
+    },
+    {
+      "Key": "B-S-B-022/v3",
+      "BaselineId": "B-S-B-022",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 6.825,
+        "Target": 142,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.4475,
+        "RandomAverageRetained": 0.4265625,
+        "Full": 179,
+        "RandomExpectedFull": 170.625,
+        "TargetAndFull": 50
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 6.68,
+        "Target": 41,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.52,
+        "RandomAverageRetained": 0.4175,
+        "Full": 52,
+        "RandomExpectedFull": 41.75,
+        "TargetAndFull": 23
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 6.796,
+        "Target": 183,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.462,
+        "RandomAverageRetained": 0.42475,
+        "Full": 231,
+        "RandomExpectedFull": 212.375,
+        "TargetAndFull": 73
+      },
+      "TrainingEligible": false,
+      "TrainingReasons": [
+        "组合数量达标期数下降"
+      ]
+    },
+    {
+      "Key": "B-S-B-022/v4",
+      "BaselineId": "B-S-B-022",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 48,
+        "Accuracy": 0.96
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 6.32,
+        "Target": 246,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.3925,
+        "RandomAverageRetained": 0.395,
+        "Full": 157,
+        "RandomExpectedFull": 158.0,
+        "TargetAndFull": 91
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 6.18,
+        "Target": 72,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.51,
+        "RandomAverageRetained": 0.38625,
+        "Full": 51,
+        "RandomExpectedFull": 38.625,
+        "TargetAndFull": 38
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 6.292,
+        "Target": 318,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.416,
+        "RandomAverageRetained": 0.39325,
+        "Full": 208,
+        "RandomExpectedFull": 196.625,
+        "TargetAndFull": 129
+      },
+      "TrainingEligible": false,
+      "TrainingReasons": [
+        "单条训练窗口未达门槛",
+        "组合数量达标期数下降"
+      ]
+    },
+    {
+      "Key": "B-S-B-022/v5",
+      "BaselineId": "B-S-B-022",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 67,
+        "Correct": 63,
+        "Accuracy": 0.9402985074626866
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 59,
+        "Correct": 52,
+        "Accuracy": 0.8813559322033898
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 5.905,
+        "Target": 304,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.3925,
+        "RandomAverageRetained": 0.3690625,
+        "Full": 157,
+        "RandomExpectedFull": 147.625,
+        "TargetAndFull": 106
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 5.8,
+        "Target": 80,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.42,
+        "RandomAverageRetained": 0.3625,
+        "Full": 42,
+        "RandomExpectedFull": 36.25,
+        "TargetAndFull": 34
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 5.884,
+        "Target": 384,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.398,
+        "RandomAverageRetained": 0.36775,
+        "Full": 199,
+        "RandomExpectedFull": 183.875,
+        "TargetAndFull": 140
+      },
+      "TrainingEligible": false,
+      "TrainingReasons": [
+        "组合数量达标期数下降"
+      ]
+    },
+    {
+      "Key": "B-S-B-022/v6",
+      "BaselineId": "B-S-B-022",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 45,
+        "Accuracy": 0.9
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 50,
+        "Correct": 46,
+        "Accuracy": 0.92
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 6.0875,
+        "Target": 281,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.395,
+        "RandomAverageRetained": 0.38046875,
+        "Full": 158,
+        "RandomExpectedFull": 152.1875,
+        "TargetAndFull": 105
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 5.95,
+        "Target": 80,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.49,
+        "RandomAverageRetained": 0.371875,
+        "Full": 49,
+        "RandomExpectedFull": 37.1875,
+        "TargetAndFull": 39
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 6.06,
+        "Target": 361,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.414,
+        "RandomAverageRetained": 0.37875,
+        "Full": 207,
+        "RandomExpectedFull": 189.375,
+        "TargetAndFull": 144
+      },
+      "TrainingEligible": false,
+      "TrainingReasons": [
+        "单条训练窗口未达门槛",
+        "组合数量达标期数下降"
+      ]
+    },
+    {
+      "Key": "B-S-B-022/v7",
+      "BaselineId": "B-S-B-022",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 55,
+        "Correct": 54,
+        "Accuracy": 0.9818181818181818
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 57,
+        "Correct": 53,
+        "Accuracy": 0.9298245614035088
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 6.59,
+        "Target": 216,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.4425,
+        "RandomAverageRetained": 0.411875,
+        "Full": 177,
+        "RandomExpectedFull": 164.75,
+        "TargetAndFull": 84
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 6.43,
+        "Target": 58,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.53,
+        "RandomAverageRetained": 0.401875,
+        "Full": 53,
+        "RandomExpectedFull": 40.1875,
+        "TargetAndFull": 31
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 6.558,
+        "Target": 274,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.46,
+        "RandomAverageRetained": 0.409875,
+        "Full": 230,
+        "RandomExpectedFull": 204.9375,
+        "TargetAndFull": 115
+      },
+      "TrainingEligible": false,
+      "TrainingReasons": [
+        "组合数量达标期数下降"
+      ]
+    },
+    {
+      "Key": "B-S-B-022/v8",
+      "BaselineId": "B-S-B-022",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 55,
+        "Correct": 51,
+        "Accuracy": 0.9272727272727272
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 57,
+        "Correct": 53,
+        "Accuracy": 0.9298245614035088
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 6.5875,
+        "Target": 200,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.4075,
+        "RandomAverageRetained": 0.41171875,
+        "Full": 163,
+        "RandomExpectedFull": 164.6875,
+        "TargetAndFull": 73
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 6.55,
+        "Target": 48,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.52,
+        "RandomAverageRetained": 0.409375,
+        "Full": 52,
+        "RandomExpectedFull": 40.9375,
+        "TargetAndFull": 25
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 6.58,
+        "Target": 248,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 0.43,
+        "RandomAverageRetained": 0.41125,
+        "Full": 215,
+        "RandomExpectedFull": 205.625,
+        "TargetAndFull": 98
+      },
+      "TrainingEligible": false,
+      "TrainingReasons": [
+        "单条训练窗口未达门槛",
+        "组合数量达标期数下降"
+      ]
+    },
+    {
+      "Key": "B-G-R-009-HS/v1",
+      "BaselineId": "B-G-R-009-HS",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 116,
+        "Correct": 100,
+        "Accuracy": 0.8620689655172413
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 96,
+        "Correct": 82,
+        "Accuracy": 0.8541666666666666
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 13.275,
+        "Target": 322,
+        "UnderMinimum": 1,
+        "AverageActualRetained": 2.475,
+        "RandomAverageRetained": 2.4136363636363636,
+        "Full": 2,
+        "RandomExpectedFull": 1.4748647487106887,
+        "TargetAndFull": 2
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 13.55,
+        "Target": 80,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.81,
+        "RandomAverageRetained": 2.463636363636364,
+        "Full": 1,
+        "RandomExpectedFull": 0.4152720194155122,
+        "TargetAndFull": 0
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 13.33,
+        "Target": 402,
+        "UnderMinimum": 1,
+        "AverageActualRetained": 2.542,
+        "RandomAverageRetained": 2.4236363636363634,
+        "Full": 3,
+        "RandomExpectedFull": 1.890136768126201,
+        "TargetAndFull": 2
+      },
+      "TrainingEligible": false,
+      "TrainingReasons": [
+        "出现少于最低候选数的期次"
+      ]
+    },
+    {
+      "Key": "B-G-R-009-HS/v2",
+      "BaselineId": "B-G-R-009-HS",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 109,
+        "Correct": 84,
+        "Accuracy": 0.7706422018348624
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 115,
+        "Correct": 97,
+        "Accuracy": 0.8434782608695652
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 13.13,
+        "Target": 325,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.4675,
+        "RandomAverageRetained": 2.387272727272727,
+        "Full": 1,
+        "RandomExpectedFull": 1.4121200684743511,
+        "TargetAndFull": 1
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 13.49,
+        "Target": 80,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.79,
+        "RandomAverageRetained": 2.4527272727272726,
+        "Full": 1,
+        "RandomExpectedFull": 0.4050306617742658,
+        "TargetAndFull": 0
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 13.202,
+        "Target": 405,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.532,
+        "RandomAverageRetained": 2.4003636363636365,
+        "Full": 2,
+        "RandomExpectedFull": 1.8171507302486167,
+        "TargetAndFull": 1
+      },
+      "TrainingEligible": false,
+      "TrainingReasons": [
+        "单条训练窗口未达门槛"
+      ]
+    },
+    {
+      "Key": "B-G-R-009-HS/v3",
+      "BaselineId": "B-G-R-009-HS",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 110,
+        "Correct": 88,
+        "Accuracy": 0.8
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 98,
+        "Correct": 75,
+        "Accuracy": 0.7653061224489796
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 13.4175,
+        "Target": 311,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.485,
+        "RandomAverageRetained": 2.4395454545454545,
+        "Full": 2,
+        "RandomExpectedFull": 1.553158812822328,
+        "TargetAndFull": 2
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 13.66,
+        "Target": 80,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.76,
+        "RandomAverageRetained": 2.483636363636364,
+        "Full": 1,
+        "RandomExpectedFull": 0.4171734828019589,
+        "TargetAndFull": 0
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 13.466,
+        "Target": 391,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.54,
+        "RandomAverageRetained": 2.4483636363636365,
+        "Full": 3,
+        "RandomExpectedFull": 1.9703322956242868,
+        "TargetAndFull": 2
+      },
+      "TrainingEligible": false,
+      "TrainingReasons": [
+        "单条训练窗口未达门槛"
+      ]
+    },
+    {
+      "Key": "B-G-R-009-HS/v4",
+      "BaselineId": "B-G-R-009-HS",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 107,
+        "Correct": 89,
+        "Accuracy": 0.8317757009345794
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 106,
+        "Correct": 85,
+        "Accuracy": 0.8018867924528301
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 13.235,
+        "Target": 318,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.4475,
+        "RandomAverageRetained": 2.4063636363636363,
+        "Full": 2,
+        "RandomExpectedFull": 1.4688335163168311,
+        "TargetAndFull": 2
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 13.52,
+        "Target": 80,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.78,
+        "RandomAverageRetained": 2.458181818181818,
+        "Full": 0,
+        "RandomExpectedFull": 0.38573523250942604,
+        "TargetAndFull": 0
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 13.292,
+        "Target": 398,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.514,
+        "RandomAverageRetained": 2.4167272727272726,
+        "Full": 2,
+        "RandomExpectedFull": 1.8545687488262572,
+        "TargetAndFull": 2
+      },
+      "TrainingEligible": true,
+      "TrainingReasons": [],
+      "LaterAccepted": false,
+      "LaterReasons": [
+        "后100期完整保留下降",
+        "后100期同数量基准差异未改善",
+        "最新50次未达门槛"
+      ]
+    },
+    {
+      "Key": "B-G-R-001-HS/v1",
+      "BaselineId": "B-G-R-001-HS",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 67,
+        "Correct": 56,
+        "Accuracy": 0.835820895522388
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 57,
+        "Correct": 51,
+        "Accuracy": 0.8947368421052632
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 13.585,
+        "Target": 309,
+        "UnderMinimum": 1,
+        "AverageActualRetained": 2.5225,
+        "RandomAverageRetained": 2.47,
+        "Full": 2,
+        "RandomExpectedFull": 1.7445583476590152,
+        "TargetAndFull": 2
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 13.99,
+        "Target": 74,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.9,
+        "RandomAverageRetained": 2.543636363636364,
+        "Full": 1,
+        "RandomExpectedFull": 0.47829659217312165,
+        "TargetAndFull": 0
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 13.666,
+        "Target": 383,
+        "UnderMinimum": 1,
+        "AverageActualRetained": 2.598,
+        "RandomAverageRetained": 2.4847272727272727,
+        "Full": 3,
+        "RandomExpectedFull": 2.222854939832137,
+        "TargetAndFull": 2
+      },
+      "TrainingEligible": false,
+      "TrainingReasons": [
+        "出现少于最低候选数的期次"
+      ]
+    },
+    {
+      "Key": "B-G-R-001-HS/v2",
+      "BaselineId": "B-G-R-001-HS",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 63,
+        "Correct": 53,
+        "Accuracy": 0.8412698412698413
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 63,
+        "Correct": 55,
+        "Accuracy": 0.873015873015873
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 13.575,
+        "Target": 312,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.53,
+        "RandomAverageRetained": 2.4681818181818183,
+        "Full": 2,
+        "RandomExpectedFull": 1.7013655143521662,
+        "TargetAndFull": 2
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 13.91,
+        "Target": 73,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.87,
+        "RandomAverageRetained": 2.5290909090909093,
+        "Full": 1,
+        "RandomExpectedFull": 0.4722346618898343,
+        "TargetAndFull": 0
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 13.642,
+        "Target": 385,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.598,
+        "RandomAverageRetained": 2.4803636363636365,
+        "Full": 3,
+        "RandomExpectedFull": 2.1736001762420005,
+        "TargetAndFull": 2
+      },
+      "TrainingEligible": true,
+      "TrainingReasons": [],
+      "LaterAccepted": false,
+      "LaterReasons": [
+        "后100期数量达标期数下降"
+      ]
+    },
+    {
+      "Key": "B-G-R-001-HS/v3",
+      "BaselineId": "B-G-R-001-HS",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 60,
+        "Correct": 47,
+        "Accuracy": 0.7833333333333333
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 59,
+        "Correct": 47,
+        "Accuracy": 0.7966101694915254
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 13.58,
+        "Target": 308,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.52,
+        "RandomAverageRetained": 2.4690909090909092,
+        "Full": 2,
+        "RandomExpectedFull": 1.7234291709402945,
+        "TargetAndFull": 2
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 13.99,
+        "Target": 73,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.87,
+        "RandomAverageRetained": 2.543636363636364,
+        "Full": 1,
+        "RandomExpectedFull": 0.4887103997226355,
+        "TargetAndFull": 0
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 13.662,
+        "Target": 381,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.59,
+        "RandomAverageRetained": 2.484,
+        "Full": 3,
+        "RandomExpectedFull": 2.21213957066293,
+        "TargetAndFull": 2
+      },
+      "TrainingEligible": false,
+      "TrainingReasons": [
+        "单条训练窗口未达门槛",
+        "组合数量达标期数下降"
+      ]
+    },
+    {
+      "Key": "B-G-R-001-HS/v4",
+      "BaselineId": "B-G-R-001-HS",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 64,
+        "Correct": 47,
+        "Accuracy": 0.734375
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 65,
+        "Correct": 56,
+        "Accuracy": 0.8615384615384616
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 13.53,
+        "Target": 312,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.51,
+        "RandomAverageRetained": 2.46,
+        "Full": 2,
+        "RandomExpectedFull": 1.666908939225402,
+        "TargetAndFull": 2
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 13.98,
+        "Target": 73,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.9,
+        "RandomAverageRetained": 2.541818181818182,
+        "Full": 1,
+        "RandomExpectedFull": 0.47099139736792683,
+        "TargetAndFull": 0
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 13.62,
+        "Target": 385,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.588,
+        "RandomAverageRetained": 2.4763636363636365,
+        "Full": 3,
+        "RandomExpectedFull": 2.137900336593329,
+        "TargetAndFull": 2
+      },
+      "TrainingEligible": false,
+      "TrainingReasons": [
+        "单条训练窗口未达门槛"
+      ]
+    },
+    {
+      "Key": "B-G-R-011/v1",
+      "BaselineId": "B-G-R-011",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 53,
+        "Correct": 41,
+        "Accuracy": 0.7735849056603774
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 54,
+        "Correct": 43,
+        "Accuracy": 0.7962962962962963
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 13.625,
+        "Target": 307,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.5225,
+        "RandomAverageRetained": 2.477272727272727,
+        "Full": 2,
+        "RandomExpectedFull": 1.7172552836484984,
+        "TargetAndFull": 2
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 14.0,
+        "Target": 73,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.89,
+        "RandomAverageRetained": 2.5454545454545454,
+        "Full": 1,
+        "RandomExpectedFull": 0.4819234575213441,
+        "TargetAndFull": 0
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 13.7,
+        "Target": 380,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.596,
+        "RandomAverageRetained": 2.490909090909091,
+        "Full": 3,
+        "RandomExpectedFull": 2.1991787411698422,
+        "TargetAndFull": 2
+      },
+      "TrainingEligible": false,
+      "TrainingReasons": [
+        "单条训练窗口未达门槛",
+        "组合数量达标期数下降"
+      ]
+    },
+    {
+      "Key": "B-G-R-011/v2",
+      "BaselineId": "B-G-R-011",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 51,
+        "Correct": 43,
+        "Accuracy": 0.8431372549019608
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 51,
+        "Correct": 41,
+        "Accuracy": 0.803921568627451
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 13.64,
+        "Target": 307,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.53,
+        "RandomAverageRetained": 2.48,
+        "Full": 2,
+        "RandomExpectedFull": 1.7078734669112867,
+        "TargetAndFull": 2
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 14.0,
+        "Target": 74,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.88,
+        "RandomAverageRetained": 2.5454545454545454,
+        "Full": 1,
+        "RandomExpectedFull": 0.4809691143117172,
+        "TargetAndFull": 0
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 13.712,
+        "Target": 381,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.6,
+        "RandomAverageRetained": 2.493090909090909,
+        "Full": 3,
+        "RandomExpectedFull": 2.188842581223004,
+        "TargetAndFull": 2
+      },
+      "TrainingEligible": false,
+      "TrainingReasons": [
+        "组合数量达标期数下降"
+      ]
+    },
+    {
+      "Key": "B-G-R-011/v3",
+      "BaselineId": "B-G-R-011",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 54,
+        "Correct": 46,
+        "Accuracy": 0.8518518518518519
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 53,
+        "Correct": 47,
+        "Accuracy": 0.8867924528301887
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 13.6425,
+        "Target": 308,
+        "UnderMinimum": 1,
+        "AverageActualRetained": 2.5325,
+        "RandomAverageRetained": 2.4804545454545455,
+        "Full": 2,
+        "RandomExpectedFull": 1.712534128830013,
+        "TargetAndFull": 2
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 13.98,
+        "Target": 73,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.89,
+        "RandomAverageRetained": 2.541818181818182,
+        "Full": 1,
+        "RandomExpectedFull": 0.48584737009375495,
+        "TargetAndFull": 0
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 13.71,
+        "Target": 381,
+        "UnderMinimum": 1,
+        "AverageActualRetained": 2.604,
+        "RandomAverageRetained": 2.4927272727272727,
+        "Full": 3,
+        "RandomExpectedFull": 2.198381498923768,
+        "TargetAndFull": 2
+      },
+      "TrainingEligible": false,
+      "TrainingReasons": [
+        "组合数量达标期数下降",
+        "出现少于最低候选数的期次"
+      ]
+    },
+    {
+      "Key": "B-G-R-011/v4",
+      "BaselineId": "B-G-R-011",
+      "Train50": {
+        "Triggers": 50,
+        "Killed": 52,
+        "Correct": 44,
+        "Accuracy": 0.8461538461538461
+      },
+      "Latest50": {
+        "Triggers": 50,
+        "Killed": 53,
+        "Correct": 48,
+        "Accuracy": 0.9056603773584906
+      },
+      "Training": {
+        "Draws": 400,
+        "AverageRemaining": 13.6825,
+        "Target": 305,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.54,
+        "RandomAverageRetained": 2.487727272727273,
+        "Full": 2,
+        "RandomExpectedFull": 1.7457347991274577,
+        "TargetAndFull": 2
+      },
+      "Later": {
+        "Draws": 100,
+        "AverageRemaining": 14.04,
+        "Target": 73,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.9,
+        "RandomAverageRetained": 2.5527272727272727,
+        "Full": 1,
+        "RandomExpectedFull": 0.4927300174797394,
+        "TargetAndFull": 0
+      },
+      "All500": {
+        "Draws": 500,
+        "AverageRemaining": 13.754,
+        "Target": 378,
+        "UnderMinimum": 0,
+        "AverageActualRetained": 2.612,
+        "RandomAverageRetained": 2.5007272727272727,
+        "Full": 3,
+        "RandomExpectedFull": 2.238464816607197,
+        "TargetAndFull": 2
+      },
+      "TrainingEligible": false,
+      "TrainingReasons": [
+        "组合数量达标期数下降"
+      ]
+    }
+  ]
+}

@@ -1,4 +1,10 @@
-if (args.FirstOrDefault() == "--coverage-audit")
+if (args.FirstOrDefault() == "--candidate-manifest-check")
+    CandidateManifestVerification.Run(args[1]);
+else if (args.FirstOrDefault() == "--candidate-forward")
+    CandidateForwardRunner.Run(args[1], args[2], args[3], args[4]);
+else if (args.FirstOrDefault() == "--priority-candidate-audit")
+    PriorityCandidateAudit.Run(args[1], args[2], args[3]);
+else if (args.FirstOrDefault() == "--coverage-audit")
     CoverageAudit.Run(args[1], args[2], args.ElementAtOrDefault(3));
 else if (args.FirstOrDefault() == "--geometry-optimization-audit")
     GeometryOptimizationAudit.Run(args[1], args[2]);

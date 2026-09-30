@@ -1,0 +1,973 @@
+{
+  "FormatVersion": 1,
+  "DefinitionFreezeDate": "2026-09-30",
+  "SourceThrough": 2026112,
+  "SourceDataHash": "EFFBE8EEC0FFA00CBF0D974C05D94AE10886A614FE0D7FC9A0DA59F9F9AD40E1",
+  "SourceRevision": "3eeaf66",
+  "Purpose": "Observation candidates, not approved replacements. No forward prediction has been created.",
+  "ObservationMinimumDraws": 50,
+  "BaselineHash": "4DAE8A5EB552FFF5037D23033838442B7622CD1510CCF38B637E10CC75B376EF",
+  "BaselineDefinitions": [
+    {
+      "RuleId": "B-G-R-001",
+      "Name": "折后反穿（图距1）双向图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,1,0],\"target\":-1}",
+      "Fingerprint": "BBCB5B38DA50B9F289D5BE1F947024311DC82BF039F70FCC9222F7A9AC8B5C90"
+    },
+    {
+      "RuleId": "B-G-B-001",
+      "Name": "跨度6中点回折双向图形杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,6],\"target\":3}",
+      "Fingerprint": "4123DFEAB769F363D3CD287A9E8FFCAC594C665C4401B52277527C24BB8427AE"
+    },
+    {
+      "RuleId": "B-G-R-002",
+      "Name": "三重及以上杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.history(2);\n  if (!history || history.length < 2) return [];\n  var previousSet = {};\n  var previous = history[0].redBalls;\n  var latest = history[1].redBalls;\n  for (var i = 0; i < previous.length; i++) previousSet[previous[i]] = true;\n  var result = [];\n  for (var j = 0; j < latest.length; j++) {\n    if (previousSet[latest[j]]) result.push(latest[j]);\n  }\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(20); if (h.length < 20) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 3 && n <= 20; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "B4F3A137D32AA0C18F8F623815DD16AE98CA5B8A02B2DB38B76B47E87F5B6B7A"
+    },
+    {
+      "RuleId": "B-G-R-003",
+      "Name": "L形图形杀",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.history(2);\n  if (!history || history.length < 2) return [];\n  var previousSet = {};\n  var latestSet = {};\n  var previous = history[0].redBalls;\n  var latest = history[1].redBalls;\n  for (var i = 0; i < previous.length; i++) previousSet[previous[i]] = true;\n  for (var j = 0; j < latest.length; j++) latestSet[latest[j]] = true;\n  var killed = {};\n  for (var k = 0; k < latest.length; k++) {\n    var anchor = latest[k];\n    if (!previousSet[anchor]) continue;\n    var left = anchor - 1;\n    var right = anchor + 1;\n    if (left >= 1 && latestSet[left]) { killed[anchor] = true; killed[left] = true; }\n    if (right <= 33 && latestSet[right]) { killed[anchor] = true; killed[right] = true; }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}",
+      "Parameters": "{}",
+      "Fingerprint": "26AEDB6AB6B2B9FFE3E8832DE21E1FAD8B9F631BB1D190A08DA294B25F9C5D2C"
+    },
+    {
+      "RuleId": "B-G-R-004",
+      "Name": "倒L形图形杀",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.history(2);\n  if (!history || history.length < 2) return [];\n  var earlierSet = {};\n  var earlier = history[0].redBalls;\n  var latest = history[1].redBalls;\n  for (var i = 0; i < earlier.length; i++) earlierSet[earlier[i]] = true;\n  var killed = {};\n  for (var j = 0; j < latest.length; j++) {\n    var anchor = latest[j];\n    if (!earlierSet[anchor]) continue;\n    var left = anchor - 1;\n    var right = anchor + 1;\n    if (left >= 1 && earlierSet[left]) { killed[anchor] = true; killed[left] = true; }\n    if (right <= 33 && earlierSet[right]) { killed[anchor] = true; killed[right] = true; }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(50); if (h.length < 50) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 8 && n <= 50; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "7A9CE5AC019D7E899A9AECAA4DEBC0C218DA4C89832D8B41C070E07EF50A5BEE"
+    },
+    {
+      "RuleId": "B-G-R-005",
+      "Name": "隔期交替杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var h = ctx.history(6);\n  if (h.length < 6) return [];\n  var result = [];\n  for (var j = 0; j < h[0].redBalls.length; j++) {\n    var b = h[0].redBalls[j], valid = true;\n    for (var i = 1; i < h.length; i++) {\n      var present = h[i].redBalls.indexOf(b) >= 0;\n      if (present !== (i === 3)) { valid = false; break; }\n    }\n    if (valid) result.push(b);\n  }\n  return result.sort(function(a,b) { return a-b; });\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(100); if (h.length < 100) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 0 && n <= 22; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "E8AA553042C674818C9F3112F6EBA026CA3C92610BE420FFDFEA7A31A0D74151"
+    },
+    {
+      "RuleId": "B-G-R-006",
+      "Name": "重重对称杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.history(4);\n  if (!history || history.length < 4) return [];\n  var first = history[0].redBalls;\n  var secondSet = {};\n  var thirdSet = {};\n  var fourthSet = {};\n  var second = history[1].redBalls;\n  var third = history[2].redBalls;\n  var fourth = history[3].redBalls;\n  for (var i = 0; i < second.length; i++) secondSet[second[i]] = true;\n  for (var j = 0; j < third.length; j++) thirdSet[third[j]] = true;\n  for (var k = 0; k < fourth.length; k++) fourthSet[fourth[k]] = true;\n  var result = [];\n  for (var n = 0; n < first.length; n++) {\n    var ball = first[n];\n    if (secondSet[ball] && !thirdSet[ball] && fourthSet[ball]) result.push(ball);\n  }\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(10); if (h.length < 10) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 3 && n <= 3; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "0563EFE0477515E9542D66B9256A0FC3B636274150F5711C1A92BA83226A6BC0"
+    },
+    {
+      "RuleId": "B-G-R-007",
+      "Name": "三角中心杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.history(2);\n  if (!history || history.length < 2) return [];\n  var earlier = history[0].redBalls;\n  var latestSet = {};\n  var latest = history[1].redBalls;\n  for (var i = 0; i < latest.length; i++) latestSet[latest[i]] = true;\n  var result = [];\n  for (var j = 0; j < earlier.length; j++) {\n    var center = earlier[j];\n    if (center > 1 && center < 33 && !latestSet[center] && latestSet[center - 1] && latestSet[center + 1]) result.push(center);\n  }\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(20); if (h.length < 20) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 4 && n <= 5; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "8A509EB09494FFC919A7790A3A55AA5FE534F06ECB3B5179B204FE8405A3AF2D"
+    },
+    {
+      "RuleId": "B-G-R-008",
+      "Name": "平行四边形缺角杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var latest = ctx.latestRecord;\n  if (!latest) return [];\n  function has(record, ball) {\n    var reds = record.redBalls;\n    for (var i = 0; i < reds.length; i++) if (reds[i] === ball) return true;\n    return false;\n  }\n  var killed = {};\n  for (var i = 0; i < latest.redBalls.length; i++) {\n    var a = latest.redBalls[i];\n    for (var delta = -1; delta <= 1; delta += 2) {\n      var b = a + delta;\n      if (b < 1 || b > 33 || has(latest, b)) continue;\n      var miss = ctx.getMiss(b, 10000);\n      if (miss < 1) continue;\n      var segment = ctx.history(miss + 2);\n      if (segment.length !== miss + 2) continue;\n      if (!has(segment[1], b) || has(segment[1], a) ||\n          !has(segment[0], a) || has(segment[0], b)) continue;\n      var blocked = false;\n      for (var j = 2; j < segment.length - 1; j++) {\n        if (has(segment[j], a)) { blocked = true; break; }\n      }\n      if (!blocked) killed[b] = true;\n    }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(20); if (h.length < 20) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 0 && n <= 2; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "19BCF306A526A4338928382A1423D5CB634563586E5DA258757609C97AFD240E"
+    },
+    {
+      "RuleId": "B-G-B-002",
+      "Name": "蓝球重号杀",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  return ctx.latestRecord ? [ctx.latestRecord.blueBall] : [];\n}",
+      "Parameters": "{}",
+      "Fingerprint": "AA27BDACC7731078DB0445BCB1623E41659D1ADB156F0B55CE6A999E8E229859"
+    },
+    {
+      "RuleId": "B-G-R-009",
+      "Name": "上期蓝号杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  return ctx.latestRecord ? [ctx.latestRecord.blueBall] : [];\n}",
+      "Parameters": "{}",
+      "Fingerprint": "3B63B47388D44559711E94ECD7C810455B5633360C8D261898EA05F191D71C9E"
+    },
+    {
+      "RuleId": "B-G-R-010",
+      "Name": "三连号下方杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  if (!ctx.latestRecord) return [];\n  var reds = ctx.latestRecord.redBalls;\n  var opened = {};\n  var killed = {};\n  for (var i = 0; i < reds.length; i++) opened[reds[i]] = true;\n  for (var j = 0; j < reds.length; j++) {\n    var start = reds[j];\n    if (opened[start + 1] && opened[start + 2]) {\n      killed[start] = true;\n      killed[start + 1] = true;\n      killed[start + 2] = true;\n    }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}",
+      "Parameters": "{}",
+      "Fingerprint": "FB7EAFF3A599F1967B02F914607358D24416ABFED5AE8739DBB892633599A02F"
+    },
+    {
+      "RuleId": "B-G-R-011",
+      "Name": "四斜连杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.history(3);\n  if (!history || history.length < 3) return [];\n  var first = history[0].redBalls;\n  var secondSet = {};\n  var thirdSet = {};\n  var second = history[1].redBalls;\n  var third = history[2].redBalls;\n  for (var i = 0; i < second.length; i++) secondSet[second[i]] = true;\n  for (var j = 0; j < third.length; j++) thirdSet[third[j]] = true;\n  var killed = {};\n  for (var k = 0; k < first.length; k++) {\n    var start = first[k];\n    for (var delta = -1; delta <= 1; delta += 2) {\n      var target = start + 3 * delta;\n      if (target >= 1 && target <= 33 &&\n          secondSet[start + delta] && thirdSet[start + 2 * delta]) killed[target] = true;\n    }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(20); if (h.length < 20) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 0 && n <= 4; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "3AF934A5965408BE7185DEBAED77590F5775A657EC796FBAE4BBB652687414B7"
+    },
+    {
+      "RuleId": "B-G-R-012",
+      "Name": "空心长方形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  if (!ctx.latestRecord) return [];\n  var reds = ctx.latestRecord.redBalls;\n  var opened = {};\n  var killed = {};\n  for (var i = 0; i < reds.length; i++) opened[reds[i]] = true;\n  for (var j = 0; j < reds.length; j++) {\n    var left = reds[j];\n    var right = left + 1;\n    if (!opened[right]) continue;\n    var leftDistance = ctx.getPreviousRedOccurrenceDistance(left);\n    var rightDistance = ctx.getPreviousRedOccurrenceDistance(right);\n    if (leftDistance >= 2 && leftDistance === rightDistance) {\n      killed[left] = true;\n      killed[right] = true;\n    }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}",
+      "Parameters": "{}",
+      "Fingerprint": "430937CFB0D623804E6CA9608407A556D80703251D433E52A5D1F1ADFC1D5E3D"
+    },
+    {
+      "RuleId": "B-G-R-001-HS",
+      "Name": "冷号杀红（历史同期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var TH = ctx.params.missThreshold != null ? ctx.params.missThreshold : 12;\n  var miss = ctx.getMissValuesFor('samePeriod', 30);\n  var best = null;\n  for (var i = 0; i < miss.length; i++) {\n    if (miss[i].value < TH) continue;\n    if (best === null || miss[i].value > best.value ||\n        (miss[i].value === best.value && miss[i].ball < best.ball)) best = miss[i];\n  }\n  return best === null ? [] : [best.ball];\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nreturn candidates.filter(function(b) { var n = ctx.getMiss(b, 0); return n >= 0 && n <= 1; });\n};",
+      "Parameters": "{\"missThreshold\":12}",
+      "Fingerprint": "D727561A334C18E3181ED5D907119BFAFD34F40C53FFDA042A9094B737125810"
+    },
+    {
+      "RuleId": "B-G-R-001-OE",
+      "Name": "平台回折（图距1）双向图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,1,1],\"target\":0}",
+      "Fingerprint": "165933638C02A0D077454360461919218459CBE0BD57BECB7F782DC7B647FA89"
+    },
+    {
+      "RuleId": "B-G-R-001-CY",
+      "Name": "冷号杀红（周期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var TH = ctx.params.missThreshold != null ? ctx.params.missThreshold : 12;\n  var miss = ctx.getMissValuesFor('cycle', 30);\n  var best = null;\n  for (var i = 0; i < miss.length; i++) {\n    if (miss[i].value < TH) continue;\n    if (best === null || miss[i].value > best.value ||\n        (miss[i].value === best.value && miss[i].ball < best.ball)) best = miss[i];\n  }\n  return best === null ? [] : [best.ball];\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nreturn candidates.filter(function(b) { var n = ctx.getMiss(b, 0); return n >= 6 && n <= 99; });\n};",
+      "Parameters": "{\"missThreshold\":12}",
+      "Fingerprint": "F1A3BAA01C366EEF7163EEB8CA66FB359109705E199C70789602AD9842A8954B"
+    },
+    {
+      "RuleId": "B-G-R-002-HS",
+      "Name": "三重及以上杀红（历史同期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('samePeriod', 2);\n  if (!history || history.length < 2) return [];\n  var previousSet = {};\n  var previous = history[0].redBalls;\n  var latest = history[1].redBalls;\n  for (var i = 0; i < previous.length; i++) previousSet[previous[i]] = true;\n  var result = [];\n  for (var j = 0; j < latest.length; j++) {\n    if (previousSet[latest[j]]) result.push(latest[j]);\n  }\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(50); if (h.length < 50) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 10 && n <= 50; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "FDF91C070BBA83FA7C5EFE2E8DB0B3EC2250E424A5AF150EF4EDDD5BC6240256"
+    },
+    {
+      "RuleId": "B-G-R-002-OE",
+      "Name": "三重及以上杀红（奇偶图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('parity', 2);\n  if (!history || history.length < 2) return [];\n  var previousSet = {};\n  var previous = history[0].redBalls;\n  var latest = history[1].redBalls;\n  for (var i = 0; i < previous.length; i++) previousSet[previous[i]] = true;\n  var result = [];\n  for (var j = 0; j < latest.length; j++) {\n    if (previousSet[latest[j]]) result.push(latest[j]);\n  }\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(20); if (h.length < 20) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 2 && n <= 3; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "B4D19F3303270095A53A17C0BADFF1FD4291A79BB9064CA81B3B1320B4B7D5AE"
+    },
+    {
+      "RuleId": "B-G-R-002-CY",
+      "Name": "三重及以上杀红（周期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('cycle', 2);\n  if (!history || history.length < 2) return [];\n  var previousSet = {};\n  var previous = history[0].redBalls;\n  var latest = history[1].redBalls;\n  for (var i = 0; i < previous.length; i++) previousSet[previous[i]] = true;\n  var result = [];\n  for (var j = 0; j < latest.length; j++) {\n    if (previousSet[latest[j]]) result.push(latest[j]);\n  }\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(20); if (h.length < 20) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 0 && n <= 5; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "B7EC8734F17399014EFE2F4E7D6DD3F6E9C3DBC4F9B1FB5D4667EA39383A629C"
+    },
+    {
+      "RuleId": "B-G-R-003-HS",
+      "Name": "L形图形杀（历史同期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('samePeriod', 2);\n  if (!history || history.length < 2) return [];\n  var previousSet = {};\n  var latestSet = {};\n  var previous = history[0].redBalls;\n  var latest = history[1].redBalls;\n  for (var i = 0; i < previous.length; i++) previousSet[previous[i]] = true;\n  for (var j = 0; j < latest.length; j++) latestSet[latest[j]] = true;\n  var killed = {};\n  for (var k = 0; k < latest.length; k++) {\n    var anchor = latest[k];\n    if (!previousSet[anchor]) continue;\n    var left = anchor - 1;\n    var right = anchor + 1;\n    if (left >= 1 && latestSet[left]) { killed[anchor] = true; killed[left] = true; }\n    if (right <= 33 && latestSet[right]) { killed[anchor] = true; killed[right] = true; }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}",
+      "Parameters": "{}",
+      "Fingerprint": "25C2150D72D9F338D3A8B7C2D967317CC598B65FA74AB80AC25BB1176F5B32F2"
+    },
+    {
+      "RuleId": "B-G-R-003-OE",
+      "Name": "L形图形杀（奇偶图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('parity', 2);\n  if (!history || history.length < 2) return [];\n  var previousSet = {};\n  var latestSet = {};\n  var previous = history[0].redBalls;\n  var latest = history[1].redBalls;\n  for (var i = 0; i < previous.length; i++) previousSet[previous[i]] = true;\n  for (var j = 0; j < latest.length; j++) latestSet[latest[j]] = true;\n  var killed = {};\n  for (var k = 0; k < latest.length; k++) {\n    var anchor = latest[k];\n    if (!previousSet[anchor]) continue;\n    var left = anchor - 1;\n    var right = anchor + 1;\n    if (left >= 1 && latestSet[left]) { killed[anchor] = true; killed[left] = true; }\n    if (right <= 33 && latestSet[right]) { killed[anchor] = true; killed[right] = true; }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(20); if (h.length < 20) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 0 && n <= 5; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "209A7862067931830A6D7958C2EA206158441ABF83E72AC47530791BD5172397"
+    },
+    {
+      "RuleId": "B-G-R-003-CY",
+      "Name": "L形图形杀（周期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('cycle', 2);\n  if (!history || history.length < 2) return [];\n  var previousSet = {};\n  var latestSet = {};\n  var previous = history[0].redBalls;\n  var latest = history[1].redBalls;\n  for (var i = 0; i < previous.length; i++) previousSet[previous[i]] = true;\n  for (var j = 0; j < latest.length; j++) latestSet[latest[j]] = true;\n  var killed = {};\n  for (var k = 0; k < latest.length; k++) {\n    var anchor = latest[k];\n    if (!previousSet[anchor]) continue;\n    var left = anchor - 1;\n    var right = anchor + 1;\n    if (left >= 1 && latestSet[left]) { killed[anchor] = true; killed[left] = true; }\n    if (right <= 33 && latestSet[right]) { killed[anchor] = true; killed[right] = true; }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(20); if (h.length < 20) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 0 && n <= 5; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "661617A1D17DF64653D68287F66C6F2261255C893C15314AC7BC061F2A6D6AE0"
+    },
+    {
+      "RuleId": "B-G-R-004-HS",
+      "Name": "倒L形图形杀（历史同期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('samePeriod', 2);\n  if (!history || history.length < 2) return [];\n  var earlierSet = {};\n  var earlier = history[0].redBalls;\n  var latest = history[1].redBalls;\n  for (var i = 0; i < earlier.length; i++) earlierSet[earlier[i]] = true;\n  var killed = {};\n  for (var j = 0; j < latest.length; j++) {\n    var anchor = latest[j];\n    if (!earlierSet[anchor]) continue;\n    var left = anchor - 1;\n    var right = anchor + 1;\n    if (left >= 1 && earlierSet[left]) { killed[anchor] = true; killed[left] = true; }\n    if (right <= 33 && earlierSet[right]) { killed[anchor] = true; killed[right] = true; }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(50); if (h.length < 50) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 6 && n <= 50; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "72B7A8CCD173B0C0993D721988C1BBA08FC1CF0B09326B3749B0C8328ED91515"
+    },
+    {
+      "RuleId": "B-G-R-004-OE",
+      "Name": "倒L形图形杀（奇偶图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('parity', 2);\n  if (!history || history.length < 2) return [];\n  var earlierSet = {};\n  var earlier = history[0].redBalls;\n  var latest = history[1].redBalls;\n  for (var i = 0; i < earlier.length; i++) earlierSet[earlier[i]] = true;\n  var killed = {};\n  for (var j = 0; j < latest.length; j++) {\n    var anchor = latest[j];\n    if (!earlierSet[anchor]) continue;\n    var left = anchor - 1;\n    var right = anchor + 1;\n    if (left >= 1 && earlierSet[left]) { killed[anchor] = true; killed[left] = true; }\n    if (right <= 33 && earlierSet[right]) { killed[anchor] = true; killed[right] = true; }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(20); if (h.length < 20) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 0 && n <= 4; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "4EFC2217E9D96EFC77F794069070D557EB147677BADFFFB7AEB3EEE7BDCFC8D0"
+    },
+    {
+      "RuleId": "B-G-R-004-CY",
+      "Name": "倒L形图形杀（周期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('cycle', 2);\n  if (!history || history.length < 2) return [];\n  var earlierSet = {};\n  var earlier = history[0].redBalls;\n  var latest = history[1].redBalls;\n  for (var i = 0; i < earlier.length; i++) earlierSet[earlier[i]] = true;\n  var killed = {};\n  for (var j = 0; j < latest.length; j++) {\n    var anchor = latest[j];\n    if (!earlierSet[anchor]) continue;\n    var left = anchor - 1;\n    var right = anchor + 1;\n    if (left >= 1 && earlierSet[left]) { killed[anchor] = true; killed[left] = true; }\n    if (right <= 33 && earlierSet[right]) { killed[anchor] = true; killed[right] = true; }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(20); if (h.length < 20) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 0 && n <= 5; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "44A24AD8A2A0FA6B61EA76F7BB5059137D2F394F392533C88FB5CF54294FAC51"
+    },
+    {
+      "RuleId": "B-G-R-005-HS",
+      "Name": "隔期交替杀红（历史同期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('samePeriod', 4);\n  if (!history || history.length < 4) return [];\n  var first = history[0].redBalls;\n  var secondSet = {};\n  var thirdSet = {};\n  var fourthSet = {};\n  var second = history[1].redBalls;\n  var third = history[2].redBalls;\n  var fourth = history[3].redBalls;\n  for (var i = 0; i < second.length; i++) secondSet[second[i]] = true;\n  for (var j = 0; j < third.length; j++) thirdSet[third[j]] = true;\n  for (var k = 0; k < fourth.length; k++) fourthSet[fourth[k]] = true;\n  var result = [];\n  for (var n = 0; n < first.length; n++) {\n    var ball = first[n];\n    if (!secondSet[ball] && thirdSet[ball] && !fourthSet[ball]) result.push(ball);\n  }\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(20); if (h.length < 20) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 0 && n <= 1; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "BCF06BE621B8233846E801DD65C742041AA249F040FF7E80A96917D8B4887176"
+    },
+    {
+      "RuleId": "B-G-R-005-OE",
+      "Name": "隔期交替杀红（奇偶图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('parity', 4);\n  if (!history || history.length < 4) return [];\n  var first = history[0].redBalls;\n  var secondSet = {};\n  var thirdSet = {};\n  var fourthSet = {};\n  var second = history[1].redBalls;\n  var third = history[2].redBalls;\n  var fourth = history[3].redBalls;\n  for (var i = 0; i < second.length; i++) secondSet[second[i]] = true;\n  for (var j = 0; j < third.length; j++) thirdSet[third[j]] = true;\n  for (var k = 0; k < fourth.length; k++) fourthSet[fourth[k]] = true;\n  var result = [];\n  for (var n = 0; n < first.length; n++) {\n    var ball = first[n];\n    if (!secondSet[ball] && thirdSet[ball] && !fourthSet[ball]) result.push(ball);\n  }\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(20); if (h.length < 20) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 0 && n <= 5; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "599006011F456FC1BE1BC4735E3A219E40BA0F398823AABDB866A086CC748EC1"
+    },
+    {
+      "RuleId": "B-G-R-005-CY",
+      "Name": "隔期交替杀红（周期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var h = ctx.historyFor('cycle', 8);\n  if (h.length < 8) return [];\n  var result = [];\n  for (var j = 0; j < h[0].redBalls.length; j++) {\n    var b = h[0].redBalls[j], valid = true;\n    for (var i = 1; i < h.length; i++) {\n      var present = h[i].redBalls.indexOf(b) >= 0;\n      if (present !== (i === 4)) { valid = false; break; }\n    }\n    if (valid) result.push(b);\n  }\n  return result.sort(function(a,b) { return a-b; });\n}",
+      "Parameters": "{}",
+      "Fingerprint": "EF37B370410A41DE38DD1FEC6F3259B1E00301E51DBE230C98A41259FD71C4AF"
+    },
+    {
+      "RuleId": "B-G-R-006-HS",
+      "Name": "重重对称杀红（历史同期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('samePeriod', 4);\n  if (!history || history.length < 4) return [];\n  var first = history[0].redBalls;\n  var secondSet = {};\n  var thirdSet = {};\n  var fourthSet = {};\n  var second = history[1].redBalls;\n  var third = history[2].redBalls;\n  var fourth = history[3].redBalls;\n  for (var i = 0; i < second.length; i++) secondSet[second[i]] = true;\n  for (var j = 0; j < third.length; j++) thirdSet[third[j]] = true;\n  for (var k = 0; k < fourth.length; k++) fourthSet[fourth[k]] = true;\n  var result = [];\n  for (var n = 0; n < first.length; n++) {\n    var ball = first[n];\n    if (secondSet[ball] && !thirdSet[ball] && fourthSet[ball]) result.push(ball);\n  }\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}",
+      "Parameters": "{}",
+      "Fingerprint": "26A90A48E1097E723DD4FB0596A274AC9570EDEF92E7482C789975E221A30FCB"
+    },
+    {
+      "RuleId": "B-G-R-006-OE",
+      "Name": "重重对称杀红（奇偶图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('parity', 4);\n  if (!history || history.length < 4) return [];\n  var first = history[0].redBalls;\n  var secondSet = {};\n  var thirdSet = {};\n  var fourthSet = {};\n  var second = history[1].redBalls;\n  var third = history[2].redBalls;\n  var fourth = history[3].redBalls;\n  for (var i = 0; i < second.length; i++) secondSet[second[i]] = true;\n  for (var j = 0; j < third.length; j++) thirdSet[third[j]] = true;\n  for (var k = 0; k < fourth.length; k++) fourthSet[fourth[k]] = true;\n  var result = [];\n  for (var n = 0; n < first.length; n++) {\n    var ball = first[n];\n    if (secondSet[ball] && !thirdSet[ball] && fourthSet[ball]) result.push(ball);\n  }\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(20); if (h.length < 20) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 0 && n <= 5; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "872A94B5794F844A7933F15D21B9E6376236B0A7714730F68C6BB26036076A35"
+    },
+    {
+      "RuleId": "B-G-R-006-CY",
+      "Name": "重重对称杀红（周期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('cycle', 4);\n  if (!history || history.length < 4) return [];\n  var first = history[0].redBalls;\n  var secondSet = {};\n  var thirdSet = {};\n  var fourthSet = {};\n  var second = history[1].redBalls;\n  var third = history[2].redBalls;\n  var fourth = history[3].redBalls;\n  for (var i = 0; i < second.length; i++) secondSet[second[i]] = true;\n  for (var j = 0; j < third.length; j++) thirdSet[third[j]] = true;\n  for (var k = 0; k < fourth.length; k++) fourthSet[fourth[k]] = true;\n  var result = [];\n  for (var n = 0; n < first.length; n++) {\n    var ball = first[n];\n    if (secondSet[ball] && !thirdSet[ball] && fourthSet[ball]) result.push(ball);\n  }\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nreturn candidates.length >= 1 && candidates.length <= 1 ? candidates : [];\n};",
+      "Parameters": "{}",
+      "Fingerprint": "EDD465F2B05F1CFF48633B3306E873DA2166391EC85BB522C4F773CCCEE36BFD"
+    },
+    {
+      "RuleId": "B-G-R-007-HS",
+      "Name": "三角中心杀红（历史同期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('samePeriod', 2);\n  if (!history || history.length < 2) return [];\n  var earlier = history[0].redBalls;\n  var latestSet = {};\n  var latest = history[1].redBalls;\n  for (var i = 0; i < latest.length; i++) latestSet[latest[i]] = true;\n  var result = [];\n  for (var j = 0; j < earlier.length; j++) {\n    var center = earlier[j];\n    if (center > 1 && center < 33 && !latestSet[center] && latestSet[center - 1] && latestSet[center + 1]) result.push(center);\n  }\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}",
+      "Parameters": "{}",
+      "Fingerprint": "CC817B08EDD34547BA9C15FDC5638DD9674EC59F85E05DBFEDB9F8C1857339A2"
+    },
+    {
+      "RuleId": "B-G-R-007-OE",
+      "Name": "三角中心杀红（奇偶图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('parity', 2);\n  if (!history || history.length < 2) return [];\n  var earlier = history[0].redBalls;\n  var latestSet = {};\n  var latest = history[1].redBalls;\n  for (var i = 0; i < latest.length; i++) latestSet[latest[i]] = true;\n  var result = [];\n  for (var j = 0; j < earlier.length; j++) {\n    var center = earlier[j];\n    if (center > 1 && center < 33 && !latestSet[center] && latestSet[center - 1] && latestSet[center + 1]) result.push(center);\n  }\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}",
+      "Parameters": "{}",
+      "Fingerprint": "4BD4E11173600F78833878BCCB21EA7E8828A9978AAE505BF6D77E0D36C25923"
+    },
+    {
+      "RuleId": "B-G-R-007-CY",
+      "Name": "三角中心杀红（周期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('cycle', 2);\n  if (!history || history.length < 2) return [];\n  var earlier = history[0].redBalls;\n  var latestSet = {};\n  var latest = history[1].redBalls;\n  for (var i = 0; i < latest.length; i++) latestSet[latest[i]] = true;\n  var result = [];\n  for (var j = 0; j < earlier.length; j++) {\n    var center = earlier[j];\n    if (center > 1 && center < 33 && !latestSet[center] && latestSet[center - 1] && latestSet[center + 1]) result.push(center);\n  }\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(20); if (h.length < 20) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 0 && n <= 4; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "F06876FB597711EA84F41D6E3DE79A5C16A2C7D38EF0262A12DDED3D272D57DB"
+    },
+    {
+      "RuleId": "B-G-R-008-HS",
+      "Name": "平行四边形缺角杀红（历史同期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var latest = ctx.latestFor('samePeriod');\n  if (!latest) return [];\n  function has(record, ball) {\n    var reds = record.redBalls;\n    for (var i = 0; i < reds.length; i++) if (reds[i] === ball) return true;\n    return false;\n  }\n  var killed = {};\n  for (var i = 0; i < latest.redBalls.length; i++) {\n    var a = latest.redBalls[i];\n    for (var delta = -1; delta <= 1; delta += 2) {\n      var b = a + delta;\n      if (b < 1 || b > 33 || has(latest, b)) continue;\n      var miss = ctx.getMissFor('samePeriod', b, 10000);\n      if (miss < 1) continue;\n      var segment = ctx.historyFor('samePeriod', miss + 2);\n      if (segment.length !== miss + 2) continue;\n      if (!has(segment[1], b) || has(segment[1], a) ||\n          !has(segment[0], a) || has(segment[0], b)) continue;\n      var blocked = false;\n      for (var j = 2; j < segment.length - 1; j++) {\n        if (has(segment[j], a)) { blocked = true; break; }\n      }\n      if (!blocked) killed[b] = true;\n    }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}",
+      "Parameters": "{}",
+      "Fingerprint": "9EA83B55FC66AEAE584B3BD354EFF8D7E8A3DFEE8C3062BEB51384B788FE52FB"
+    },
+    {
+      "RuleId": "B-G-R-008-OE",
+      "Name": "平行四边形缺角杀红（奇偶图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var latest = ctx.latestFor('parity');\n  if (!latest) return [];\n  function has(record, ball) {\n    var reds = record.redBalls;\n    for (var i = 0; i < reds.length; i++) if (reds[i] === ball) return true;\n    return false;\n  }\n  var killed = {};\n  for (var i = 0; i < latest.redBalls.length; i++) {\n    var a = latest.redBalls[i];\n    for (var delta = -1; delta <= 1; delta += 2) {\n      var b = a + delta;\n      if (b < 1 || b > 33 || has(latest, b)) continue;\n      var miss = ctx.getMissFor('parity', b, 10000);\n      if (miss < 2) continue;\n      var segment = ctx.historyFor('parity', miss + 2);\n      if (segment.length !== miss + 2) continue;\n      if (!has(segment[1], b) || has(segment[1], a) ||\n          !has(segment[0], a) || has(segment[0], b)) continue;\n      var blocked = false;\n      for (var j = 2; j < segment.length - 1; j++) {\n        if (has(segment[j], a)) { blocked = true; break; }\n      }\n      if (!blocked) killed[b] = true;\n    }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}",
+      "Parameters": "{}",
+      "Fingerprint": "1D48BC9BB6FE61045E724984E975C70172C4A2E8E20A63A70317F486F4B8DA6E"
+    },
+    {
+      "RuleId": "B-G-R-008-CY",
+      "Name": "平行四边形缺角杀红（周期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var latest = ctx.latestFor('cycle');\n  if (!latest) return [];\n  function has(record, ball) {\n    var reds = record.redBalls;\n    for (var i = 0; i < reds.length; i++) if (reds[i] === ball) return true;\n    return false;\n  }\n  var killed = {};\n  for (var i = 0; i < latest.redBalls.length; i++) {\n    var a = latest.redBalls[i];\n    for (var delta = -1; delta <= -1; delta += 2) {\n      var b = a + delta;\n      if (b < 1 || b > 33 || has(latest, b)) continue;\n      var miss = ctx.getMissFor('cycle', b, 10000);\n      if (miss < 3) continue;\n      var segment = ctx.historyFor('cycle', miss + 2);\n      if (segment.length !== miss + 2) continue;\n      if (!has(segment[1], b) || has(segment[1], a) ||\n          !has(segment[0], a) || has(segment[0], b)) continue;\n      var blocked = false;\n      for (var j = 2; j < segment.length - 1; j++) {\n        if (has(segment[j], a)) { blocked = true; break; }\n      }\n      if (!blocked) killed[b] = true;\n    }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}",
+      "Parameters": "{}",
+      "Fingerprint": "5F5C46CE343ED824825BCEF3C31E2D503CCDB3278E8038CE2E1486F8A3C1B9DF"
+    },
+    {
+      "RuleId": "B-G-R-009-HS",
+      "Name": "上期蓝号杀红（历史同期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  return ctx.latestFor('samePeriod') ? [ctx.latestFor('samePeriod').blueBall] : [];\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(50); if (h.length < 50) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 8 && n <= 50; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "399093DE070657D1134E308566E645BC03B1FE915B6D2A2FB14E0CE28C7A4590"
+    },
+    {
+      "RuleId": "B-G-R-009-OE",
+      "Name": "上期蓝号杀红（奇偶图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  return ctx.latestFor('parity') ? [ctx.latestFor('parity').blueBall] : [];\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nreturn candidates.filter(function(b) { var n = ctx.getMiss(b, 0); return n >= 3 && n <= 99; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "9995CA144BA0C35E0932FEF2E04D4D405C7233DFD532CB8C1ABCD875647E2AE5"
+    },
+    {
+      "RuleId": "B-G-R-009-CY",
+      "Name": "上期蓝号杀红（周期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  return ctx.latestFor('cycle') ? [ctx.latestFor('cycle').blueBall] : [];\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(50); if (h.length < 50) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 0 && n <= 5; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "4B9D5098A717D589D44F42DFAAEA18F48AECE1B92B56EA7B9DC63E0E3162342C"
+    },
+    {
+      "RuleId": "B-G-R-010-HS",
+      "Name": "三连号下方杀红（历史同期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  if (!ctx.latestFor('samePeriod')) return [];\n  var reds = ctx.latestFor('samePeriod').redBalls;\n  var opened = {};\n  var killed = {};\n  for (var i = 0; i < reds.length; i++) opened[reds[i]] = true;\n  for (var j = 0; j < reds.length; j++) {\n    var start = reds[j];\n    if (opened[start + 1] && opened[start + 2]) {\n      killed[start] = true;\n      killed[start + 1] = true;\n      killed[start + 2] = true;\n    }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}",
+      "Parameters": "{}",
+      "Fingerprint": "30FF65E1C8319B2D138386C4C826E09B94775A26D282F39445D1A49A8876E2F9"
+    },
+    {
+      "RuleId": "B-G-R-010-OE",
+      "Name": "三连号下方杀红（奇偶图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  if (!ctx.latestFor('parity')) return [];\n  var reds = ctx.latestFor('parity').redBalls;\n  var opened = {};\n  var killed = {};\n  for (var i = 0; i < reds.length; i++) opened[reds[i]] = true;\n  for (var j = 0; j < reds.length; j++) {\n    var start = reds[j];\n    if (opened[start + 1] && opened[start + 2]) {\n      killed[start] = true;\n      killed[start + 1] = true;\n      killed[start + 2] = true;\n    }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(50); if (h.length < 50) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 10 && n <= 50; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "940A9E40672E3AC610C3039CAD1A6AC3EEF4CA19DC044E23783F875217B7189C"
+    },
+    {
+      "RuleId": "B-G-R-010-CY",
+      "Name": "三连号下方杀红（周期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  if (!ctx.latestFor('cycle')) return [];\n  var reds = ctx.latestFor('cycle').redBalls;\n  var opened = {};\n  var killed = {};\n  for (var i = 0; i < reds.length; i++) opened[reds[i]] = true;\n  for (var j = 0; j < reds.length; j++) {\n    var start = reds[j];\n    if (opened[start + 1] && opened[start + 2]) {\n      killed[start] = true;\n      killed[start + 1] = true;\n      killed[start + 2] = true;\n    }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(50); if (h.length < 50) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 11 && n <= 50; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "D9A5D1377507E42D1492961647E0DD07D20A43B2C0FD9A068444787A9BA3D7BB"
+    },
+    {
+      "RuleId": "B-G-R-011-HS",
+      "Name": "四斜连杀红（历史同期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('samePeriod', 3);\n  if (!history || history.length < 3) return [];\n  var first = history[0].redBalls;\n  var secondSet = {};\n  var thirdSet = {};\n  var second = history[1].redBalls;\n  var third = history[2].redBalls;\n  for (var i = 0; i < second.length; i++) secondSet[second[i]] = true;\n  for (var j = 0; j < third.length; j++) thirdSet[third[j]] = true;\n  var killed = {};\n  for (var k = 0; k < first.length; k++) {\n    var start = first[k];\n    for (var delta = -1; delta <= 1; delta += 2) {\n      var target = start + 3 * delta;\n      if (target >= 1 && target <= 33 &&\n          secondSet[start + delta] && thirdSet[start + 2 * delta]) killed[target] = true;\n    }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}",
+      "Parameters": "{}",
+      "Fingerprint": "522DD57BB09CFFCB0A0766AE6F34F651AA811E50C36005BE6A9A72A89BEC2CE2"
+    },
+    {
+      "RuleId": "B-G-R-011-OE",
+      "Name": "四斜连杀红（奇偶图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('parity', 3);\n  if (!history || history.length < 3) return [];\n  var first = history[0].redBalls;\n  var secondSet = {};\n  var thirdSet = {};\n  var second = history[1].redBalls;\n  var third = history[2].redBalls;\n  for (var i = 0; i < second.length; i++) secondSet[second[i]] = true;\n  for (var j = 0; j < third.length; j++) thirdSet[third[j]] = true;\n  var killed = {};\n  for (var k = 0; k < first.length; k++) {\n    var start = first[k];\n    for (var delta = -1; delta <= 1; delta += 2) {\n      var target = start + 3 * delta;\n      if (target >= 1 && target <= 33 &&\n          secondSet[start + delta] && thirdSet[start + 2 * delta]) killed[target] = true;\n    }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}",
+      "Parameters": "{}",
+      "Fingerprint": "26A4F1D1783E0F82C7D232D338F824BFA2AAE606A9AC56F5C04C0C1E90F7C2CA"
+    },
+    {
+      "RuleId": "B-G-R-011-CY",
+      "Name": "四斜连杀红（周期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var history = ctx.historyFor('cycle', 3);\n  if (!history || history.length < 3) return [];\n  var first = history[0].redBalls;\n  var secondSet = {};\n  var thirdSet = {};\n  var second = history[1].redBalls;\n  var third = history[2].redBalls;\n  for (var i = 0; i < second.length; i++) secondSet[second[i]] = true;\n  for (var j = 0; j < third.length; j++) thirdSet[third[j]] = true;\n  var killed = {};\n  for (var k = 0; k < first.length; k++) {\n    var start = first[k];\n    for (var delta = -1; delta <= 1; delta += 2) {\n      var target = start + 3 * delta;\n      if (target >= 1 && target <= 33 &&\n          secondSet[start + delta] && thirdSet[start + 2 * delta]) killed[target] = true;\n    }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}",
+      "Parameters": "{}",
+      "Fingerprint": "B01453224F220940C544FB09328EF28BC49268FE0E1AE701350A17E44AB2C643"
+    },
+    {
+      "RuleId": "B-G-R-012-HS",
+      "Name": "空心长方形杀红（历史同期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  if (!ctx.latestFor('samePeriod')) return [];\n  var reds = ctx.latestFor('samePeriod').redBalls;\n  var opened = {};\n  var killed = {};\n  for (var i = 0; i < reds.length; i++) opened[reds[i]] = true;\n  for (var j = 0; j < reds.length; j++) {\n    var left = reds[j];\n    var right = left + 1;\n    if (!opened[right]) continue;\n    var leftDistance = ctx.getPreviousRedOccurrenceDistanceFor('samePeriod', left);\n    var rightDistance = ctx.getPreviousRedOccurrenceDistanceFor('samePeriod', right);\n    if (leftDistance >= 2 && leftDistance === rightDistance) {\n      killed[left] = true;\n      killed[right] = true;\n    }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(50); if (h.length < 50) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 8 && n <= 50; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "852CAA3089954F35422257B1CA1BA98AC67B547DA0D50E58156358119DD3D06C"
+    },
+    {
+      "RuleId": "B-G-R-012-OE",
+      "Name": "空心长方形杀红（奇偶图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  if (!ctx.latestFor('parity')) return [];\n  var reds = ctx.latestFor('parity').redBalls;\n  var opened = {};\n  var killed = {};\n  for (var i = 0; i < reds.length; i++) opened[reds[i]] = true;\n  for (var j = 0; j < reds.length; j++) {\n    var left = reds[j];\n    var right = left + 1;\n    if (!opened[right]) continue;\n    var leftDistance = ctx.getPreviousRedOccurrenceDistanceFor('parity', left);\n    var rightDistance = ctx.getPreviousRedOccurrenceDistanceFor('parity', right);\n    if (leftDistance >= 2 && leftDistance === rightDistance) {\n      killed[left] = true;\n      killed[right] = true;\n    }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}",
+      "Parameters": "{}",
+      "Fingerprint": "3B064C6D6459A819B36DC53B6E671B76B05BE948FB18CEF81BE7E978050CAA47"
+    },
+    {
+      "RuleId": "B-G-R-012-CY",
+      "Name": "空心长方形杀红（周期图）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  if (!ctx.latestFor('cycle')) return [];\n  var reds = ctx.latestFor('cycle').redBalls;\n  var opened = {};\n  var killed = {};\n  for (var i = 0; i < reds.length; i++) opened[reds[i]] = true;\n  for (var j = 0; j < reds.length; j++) {\n    var left = reds[j];\n    var right = left + 1;\n    if (!opened[right]) continue;\n    var leftDistance = ctx.getPreviousRedOccurrenceDistanceFor('cycle', left);\n    var rightDistance = ctx.getPreviousRedOccurrenceDistanceFor('cycle', right);\n    if (leftDistance >= 2 && leftDistance === rightDistance) {\n      killed[left] = true;\n      killed[right] = true;\n    }\n  }\n  var result = [];\n  for (var key in killed) result.push(parseInt(key, 10));\n  result.sort(function(a, b) { return a - b; });\n  return result;\n}\nvar originalPatternKill = getKillBalls;\ngetKillBalls = function(ctx) {\nvar candidates = originalPatternKill(ctx); if (!candidates || !candidates.length) return [];\nvar h = ctx.history(10); if (h.length < 10) return [];\nvar counts = {}; for(var i=0;i<h.length;i++) for(var j=0;j<h[i].redBalls.length;j++) { var b=h[i].redBalls[j]; counts[b]=(counts[b]||0)+1; }\nreturn candidates.filter(function(b) { var n=counts[b]||0; return n >= 0 && n <= 2; });\n};",
+      "Parameters": "{}",
+      "Fingerprint": "942BBB55B08C12B9ADA5A42CFEC31B6A0990FA7BEA44EE41C07921E9DF25A50B"
+    },
+    {
+      "RuleId": "B-S-R-001",
+      "Name": "隔列斜线图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"geometryVersion\":1,\"offsets\":[0,2,4],\"target\":6}",
+      "Fingerprint": "8328B9328D0C6F3D9F9F321E776FCC8D3BE275E806916E021BB4B70194C09A41"
+    },
+    {
+      "RuleId": "B-S-R-002",
+      "Name": "三列短循环（图距1）双向图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,1,2],\"target\":0}",
+      "Fingerprint": "FDB65984BE559BB34B9C6C88A9BDD77DAE66C78544856C1AC6B7207BCE6B26B8"
+    },
+    {
+      "RuleId": "B-S-R-003",
+      "Name": "相邻折返图形杀红（正向，图距×2/1）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"direction\":1,\"geometryVersion\":1,\"offsets\":[0,2,0],\"target\":2}",
+      "Fingerprint": "A7BECB8001DF74971506FB97DF3E0B65A3D59E63EF2B851F9D80695E27DFCE21"
+    },
+    {
+      "RuleId": "B-S-R-004",
+      "Name": "隔列折返图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"geometryVersion\":1,\"offsets\":[0,2,0],\"target\":2}",
+      "Fingerprint": "9F6A650F07CF64734249021AF2C9E69B42FEFBCE95B16261BFDBF6B0072026E0"
+    },
+    {
+      "RuleId": "B-S-R-005",
+      "Name": "尖顶回落图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"geometryVersion\":1,\"offsets\":[0,1,2,1],\"target\":0}",
+      "Fingerprint": "DA470CEB47C8C85FDFAFB59114BFA42515116CA36F49ACAB605961386F8314E2"
+    },
+    {
+      "RuleId": "B-S-R-006",
+      "Name": "两行反向延伸（图距3）双向图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,3],\"target\":-3}",
+      "Fingerprint": "2B82D008D4DBA5E77A3730C60B192B2B80A72AED3E4EDCCE9A4F49FB8988D9A1"
+    },
+    {
+      "RuleId": "B-S-R-007",
+      "Name": "单起双阶梯图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"geometryVersion\":1,\"offsets\":[0,1,1,2],\"target\":2}",
+      "Fingerprint": "27B43EA05C537DC89C0DB06F0A56E41C716D227BE01C24BB4C757537C6300D19"
+    },
+    {
+      "RuleId": "B-S-R-008",
+      "Name": "双阶梯图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"geometryVersion\":1,\"offsets\":[0,0,1,1],\"target\":2}",
+      "Fingerprint": "C35DC34ED83657A080AD2E4BD92360E7D713270D5516A4DD90D3FF4B4EB42160"
+    },
+    {
+      "RuleId": "B-S-R-009",
+      "Name": "平台回折（图距2）双向图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,2,2],\"target\":0}",
+      "Fingerprint": "B5CB142F9A2B4CFCB77A57BFAC5E97EE0BD75C3FE6579AE18B7617967530E6C5"
+    },
+    {
+      "RuleId": "B-S-R-010",
+      "Name": "两行反向延伸（图距7）双向图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,7],\"target\":-7}",
+      "Fingerprint": "1BCA27A425C13578BDCDB1793D61AF4CA06E497DC2CE2060B1B21B0F508E15CB"
+    },
+    {
+      "RuleId": "B-S-R-011",
+      "Name": "连续隔列锯齿图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"geometryVersion\":1,\"offsets\":[0,2,0,2],\"target\":0}",
+      "Fingerprint": "7F170777B795E6B6B716DF8B2ECCF5F283D94F4EEFCC22E0167C341932CA1D44"
+    },
+    {
+      "RuleId": "B-S-R-012",
+      "Name": "单起双折返图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"geometryVersion\":1,\"offsets\":[0,1,1,0],\"target\":0}",
+      "Fingerprint": "A3816B4FA5BB4E7E05624D061E136731FA2FEF0430547E2C8F59C9B83FDF796B"
+    },
+    {
+      "RuleId": "B-S-R-013",
+      "Name": "两行斜线延伸（图距3）双向图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,3],\"target\":6}",
+      "Fingerprint": "E569602A48197044BCA74D586B325B12F7E3B546E64C23C28BF69E37D86242B3"
+    },
+    {
+      "RuleId": "B-S-R-014",
+      "Name": "两行反向延伸（图距2）双向图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,2],\"target\":-2}",
+      "Fingerprint": "3B3487A4DA163A940C79E9D00CCAEFBDF1F8517BB41EDE6BF82AD4FA5C87CBAD"
+    },
+    {
+      "RuleId": "B-S-R-015",
+      "Name": "平台上行（图距1）双向图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,1,1],\"target\":2}",
+      "Fingerprint": "FCD8A90C330FD24523973DE87C1CACE26774BE2834857852D58E16A607374A53"
+    },
+    {
+      "RuleId": "B-S-R-016",
+      "Name": "两行中点回折（图距8）双向图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,16],\"target\":8}",
+      "Fingerprint": "21CEF7AA3CCADC0CB7B1AB01182E86BACE9A4FD5FC2CAFD675B39BC6810E2736"
+    },
+    {
+      "RuleId": "B-S-R-017",
+      "Name": "加速斜线图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"geometryVersion\":1,\"offsets\":[0,1,3],\"target\":6}",
+      "Fingerprint": "379D79FAADD242AF7752B92789259CD069273D3E230A328FED3C26CEB75ACF1B"
+    },
+    {
+      "RuleId": "B-S-R-018",
+      "Name": "减速斜线图形杀红（左右镜像，图距×2/1）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,6,10],\"target\":12}",
+      "Fingerprint": "90C1F85C2A6D8E5093F1B835CA6BA21B0D7CE9A36A3695A64A40155A80DDC924"
+    },
+    {
+      "RuleId": "B-S-R-019",
+      "Name": "两行中点回折（图距6）双向图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,12],\"target\":6}",
+      "Fingerprint": "456417E74DB8788D3490AFF6FA86FD59CF17B56417A7CE90C9134A317158367A"
+    },
+    {
+      "RuleId": "B-S-R-020",
+      "Name": "二一步阶梯图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"geometryVersion\":1,\"offsets\":[0,2,3,5],\"target\":6}",
+      "Fingerprint": "FC55C2846B31C4334B40CA95E57D39C8E8D9AD9963E5EB154B91C802931C35A8"
+    },
+    {
+      "RuleId": "B-S-R-021",
+      "Name": "两行原点折返（图距4）双向图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,4],\"target\":0}",
+      "Fingerprint": "5403C9A5437C650E6B377F18E40B10DA0DE2ED20DD75AC4B769D1130B99510E6"
+    },
+    {
+      "RuleId": "B-S-R-022",
+      "Name": "宽幅中心摆动图形杀红（左右镜像，图距×2/1）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,4,0,-4],\"target\":0}",
+      "Fingerprint": "33AF9ADE235C13529B0467F985B728AA77266AA30E75295D410671BA4BFA4C9B"
+    },
+    {
+      "RuleId": "B-S-R-023",
+      "Name": "两行中点回折（图距3）双向图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,6],\"target\":3}",
+      "Fingerprint": "D24DAB83564F4316DC5C2C43A4BE48BA0D17DBE1B4E809DADB6318598688F604"
+    },
+    {
+      "RuleId": "B-S-R-024",
+      "Name": "两行斜线延伸（图距6）双向图形杀红",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,6],\"target\":12}",
+      "Fingerprint": "087A5095DCCE85F7E131B41A55DCDF7652AB843FE182F00076958748B611D028"
+    },
+    {
+      "RuleId": "B-S-R-025",
+      "Name": "三行平台图形杀红（左右镜像，图距×2/1）",
+      "BallType": 0,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,2,2,2],\"target\":4}",
+      "Fingerprint": "2B8D3220E6AA3CA6451670F1BA8CF19D9A1EF7CAA6247F195857AF336CCC2BF9"
+    },
+    {
+      "RuleId": "B-S-B-001",
+      "Name": "三重竖线图形杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"geometryVersion\":1,\"offsets\":[0,0],\"target\":0}",
+      "Fingerprint": "4659E367E320844A067D53985C3ADE3880D6E497BA039295B0A9B7EFC47DDC4D"
+    },
+    {
+      "RuleId": "B-S-B-002",
+      "Name": "1步三斜连图形杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"geometryVersion\":1,\"offsets\":[0,1],\"target\":2}",
+      "Fingerprint": "3A0D951289E042D6A7FC7228E02CE28F215ABCD0B01D0CFECDAC405378AF246D"
+    },
+    {
+      "RuleId": "B-S-B-003",
+      "Name": "2步三斜连图形杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"geometryVersion\":1,\"offsets\":[0,2],\"target\":4}",
+      "Fingerprint": "7EF24E99474A413209E914D95D166F8A2D65E0AD079022DC7977EA33520FBE67"
+    },
+    {
+      "RuleId": "B-S-B-004",
+      "Name": "3步三斜连图形杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"geometryVersion\":1,\"offsets\":[0,3],\"target\":6}",
+      "Fingerprint": "02905496537423DF36A79EDC358B16F348352562812A0D320825D2732B1C89BB"
+    },
+    {
+      "RuleId": "B-S-B-005",
+      "Name": "4步三斜连图形杀蓝（正向，图距×1/2）",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"direction\":1,\"geometryVersion\":1,\"offsets\":[0,2],\"target\":4}",
+      "Fingerprint": "D0302DC2DE4561BF6D44ECED23D361C7159DE146EF11E51AE11D86FCD1C06C7C"
+    },
+    {
+      "RuleId": "B-S-B-006",
+      "Name": "单锚点斜距11双向杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0],\"target\":11}",
+      "Fingerprint": "AA7354FC815C7064EA41F53CEBD25E0286F317F3AC80A609177F3EA9F1E43410"
+    },
+    {
+      "RuleId": "B-S-B-007",
+      "Name": "单锚点斜距9双向杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0],\"target\":9}",
+      "Fingerprint": "0AEE6DAB99427F4ECB58BB32334ABD70DC5DC64918886621A4CCCB7B46D2EAEF"
+    },
+    {
+      "RuleId": "B-S-B-008",
+      "Name": "单锚点斜距4双向杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0],\"target\":4}",
+      "Fingerprint": "1FC1E29B3D0D8A6996692565B46B42D8FDDC2B76F69145DA69456B202D26939B"
+    },
+    {
+      "RuleId": "B-S-B-009",
+      "Name": "间距1折返图形杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"geometryVersion\":1,\"offsets\":[0,1],\"target\":0}",
+      "Fingerprint": "62CCA22DC857CC1A39E8C227AADC07352CFAA322F082D9829F132A9B7228D7DC"
+    },
+    {
+      "RuleId": "B-S-B-010",
+      "Name": "跨度10中点回折双向图形杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,10],\"target\":5}",
+      "Fingerprint": "B5B16749CFC2AFB38461F6B5141311D1BB70DF7981068FF2F8319C88D2398B6A"
+    },
+    {
+      "RuleId": "B-S-B-011",
+      "Name": "间距3折返图形杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"geometryVersion\":1,\"offsets\":[0,3],\"target\":0}",
+      "Fingerprint": "3659F11BDD833819221A08DF1994E7005F0A157D602E7BF6CAE3689565F40BD3"
+    },
+    {
+      "RuleId": "B-S-B-012",
+      "Name": "间距4折返图形杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"geometryVersion\":1,\"offsets\":[0,4],\"target\":0}",
+      "Fingerprint": "754347D08746085F5CF474A7DBA2FAE81EEF33EB6C09A7B12549EE02E4530005"
+    },
+    {
+      "RuleId": "B-S-B-013",
+      "Name": "跨度8中点回折反向图形杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"direction\":-1,\"geometryVersion\":1,\"offsets\":[0,8],\"target\":4}",
+      "Fingerprint": "CF2C41A35BC88F3C0FD7DC0902EB59485E9C64731AE0FA31D92019975F2FDC53"
+    },
+    {
+      "RuleId": "B-S-B-014",
+      "Name": "单锚点斜距3正向杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"direction\":1,\"geometryVersion\":1,\"offsets\":[0],\"target\":3}",
+      "Fingerprint": "999E27BF60C8ABEBD3E854B1AD12224A8A5C7FFA76FBD06055D7F720B5606FCA"
+    },
+    {
+      "RuleId": "B-S-B-015",
+      "Name": "单锚点斜距12双向杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0],\"target\":12}",
+      "Fingerprint": "ABA9DFE02D66FD3AF82C9EC2A5D74DFB9CABC6A7055AD0EA5EC319DA9AF0AB25"
+    },
+    {
+      "RuleId": "B-S-B-016",
+      "Name": "间距8折返图形杀蓝（正向，图距×1/2）",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"direction\":1,\"geometryVersion\":1,\"offsets\":[0,4],\"target\":0}",
+      "Fingerprint": "4A1F05934EFC83B524155BD2AC1BC9A94F246FA40A5CC5106C7FC5F7F5ED7A71"
+    },
+    {
+      "RuleId": "B-S-B-017",
+      "Name": "间距9折返图形杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"geometryVersion\":1,\"offsets\":[0,9],\"target\":0}",
+      "Fingerprint": "E802921DB721BE5BA505652D70CD7C1AD45835BA39FF04AA1ECA31002526D4C5"
+    },
+    {
+      "RuleId": "B-S-B-018",
+      "Name": "间距10折返图形杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"geometryVersion\":1,\"offsets\":[0,10],\"target\":0}",
+      "Fingerprint": "04FA29E90737CDB34E05AB43581E3FE4F09EA5CA097E074AA5D4B69EE473B649"
+    },
+    {
+      "RuleId": "B-S-B-019",
+      "Name": "间距11折返图形杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"geometryVersion\":1,\"offsets\":[0,11],\"target\":0}",
+      "Fingerprint": "6D7D4E82B738C716A5A1DA44A5A30147284D1A0E4E74ADBB1431EE8690ACFB72"
+    },
+    {
+      "RuleId": "B-S-B-020",
+      "Name": "间距12折返图形杀蓝（反向，图距×1/2）",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"direction\":-1,\"geometryVersion\":1,\"offsets\":[0,6],\"target\":0}",
+      "Fingerprint": "409EA2F7BA91537DF3E670A8595B8381E665762FA94786DDD48B3F331C35BA0B"
+    },
+    {
+      "RuleId": "B-S-B-021",
+      "Name": "单锚点斜距5双向杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0],\"target\":5}",
+      "Fingerprint": "42F32CBE9D270C6E351FBB8AE97ABBFA4346AFC14DACC7EA27680D562E271C94"
+    },
+    {
+      "RuleId": "B-S-B-022",
+      "Name": "单锚点斜距7双向杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0],\"target\":7}",
+      "Fingerprint": "F1D48E181454EB08BDF119A9014337BAC2F00F1CF3CE96E9AD16D9949D88A6DE"
+    },
+    {
+      "RuleId": "B-S-B-023",
+      "Name": "单锚点斜距1双向杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      if(ctx.params.direction && sign!==ctx.params.direction) continue;\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0],\"target\":1}",
+      "Fingerprint": "1847E239707A9F0293CD0C0B4BC409E78A72789DF9E27C7FE65072CCC2AD808A"
+    },
+    {
+      "RuleId": "B-S-B-024",
+      "Name": "二列中点内折图形杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"geometryVersion\":1,\"offsets\":[0,2],\"target\":1}",
+      "Fingerprint": "D9CDC6DA32BF3FF573AAB26DBF2DD72C44FFBB1652F3BE3973EDF336E70306FE"
+    },
+    {
+      "RuleId": "B-S-B-025",
+      "Name": "四列中点内折图形杀蓝",
+      "BallType": 1,
+      "Category": 0,
+      "Code": "function getKillBalls(ctx) {\n  var offsets=ctx.params.offsets, target=ctx.params.target, blue=ctx.params.blue;\n  var h=ctx.history(offsets.length); if(h.length!==offsets.length) return [];\n  var max=blue?16:33, killed={};\n  for(var anchor=1;anchor<=max;anchor++) {\n    for(var sign=-1;sign<=1;sign+=2) {\n      var next=anchor+sign*target; if(next<1||next>max) continue;\n      var matches=true;\n      for(var row=0;row<offsets.length;row++) {\n        var b=anchor+sign*offsets[row];\n        if(b<1||b>max || (blue?h[row].blueBall!==b:h[row].redBalls.indexOf(b)<0)) { matches=false; break; }\n      }\n      if(matches) killed[next]=true;\n    }\n  }\n  return Object.keys(killed).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n}",
+      "Parameters": "{\"blue\":true,\"geometryVersion\":1,\"offsets\":[0,4],\"target\":2}",
+      "Fingerprint": "A2CDE99F94C861302CAAD2C9E5515B3E61EF37DCC691774759FDD5C4831D311D"
+    }
+  ],
+  "Variants": [
+    {
+      "Key": "baseline",
+      "Overrides": [],
+      "RuleSetHash": "4DAE8A5EB552FFF5037D23033838442B7622CD1510CCF38B637E10CC75B376EF"
+    },
+    {
+      "Key": "blue-right",
+      "Overrides": [
+        {
+          "RuleId": "B-S-B-022",
+          "Name": "蓝球候选：向右",
+          "BallType": 1,
+          "Category": 0,
+          "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=ctx.history(p.lag+(p.trend?1:0));\n  if(h.length!==p.lag+(p.trend?1:0)) return [];\n  var n=h[h.length-p.lag].blueBall, direction=p.direction;\n  if(p.trend) { var delta=h[h.length-1].blueBall-h[h.length-2].blueBall; if(delta===0) return []; direction=(delta>0?1:-1)*p.trend; }\n  var result=[];\n  for(var s=-1;s<=1;s+=2) if(!direction||s===direction) {var b=n+s*p.gap; if(b>=1&&b<=16) result.push(b);}\n  return result.sort(function(a,b){return a-b;});\n}",
+          "Parameters": "{\"direction\":1,\"gap\":7,\"lag\":1}",
+          "Fingerprint": "B99A145E01AB3DE5FDE400B2EC334F869ABC53303786B6D276F538D514B5B01E"
+        }
+      ],
+      "RuleSetHash": "17CB38922EC87EF64FFF87DBB7978630B01D335EB746DE81C3D40F1A2FE188E8"
+    },
+    {
+      "Key": "red-wide-return",
+      "Overrides": [
+        {
+          "RuleId": "B-G-R-001-HS",
+          "Name": "宽折反穿杀红（历史同期图）",
+          "BallType": 0,
+          "Category": 0,
+          "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=p.scope?ctx.historyFor(p.scope,p.offsets.length):ctx.history(p.offsets.length);\n  if(h.length!==p.offsets.length) return [];\n  var max=p.blue?16:33, result={};\n  for(var n=1;n<=max;n++) for(var sign=-1;sign<=1;sign+=2) {\n    if(p.direction && p.direction!==sign) continue;\n    var next=n+sign*p.target; if(next<1||next>max) continue;\n    var valid=true;\n    for(var j=0;j<h.length;j++) {\n      var b=n+sign*p.offsets[j];\n      if(b<1||b>max || (p.blue?h[j].blueBall!==b:h[j].redBalls.indexOf(b)<0)) { valid=false; break; }\n    }\n    if(valid) result[next]=true;\n  }\n  var balls=Object.keys(result).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n  if(p.frequencyWindow) {\n    var actual=ctx.history(p.frequencyWindow); if(actual.length!==p.frequencyWindow) return [];\n    balls=balls.filter(function(b){var count=0; for(var j=0;j<actual.length;j++) if(actual[j].redBalls.indexOf(b)>=0) count++; return count<=p.frequencyMax;});\n  }\n  return balls;\n}",
+          "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,2,0],\"scope\":\"samePeriod\",\"target\":-2}",
+          "Fingerprint": "DD5A2A517DD6B3285790F4751D4B34A7E7458CA9A335EE65B3C2950F3A971E5B"
+        }
+      ],
+      "RuleSetHash": "F01F27CA0E3855CFEE2707CED7EA30B7274FC86695E95C6182A7FF4A6F2FD48B"
+    },
+    {
+      "Key": "both",
+      "Overrides": [
+        {
+          "RuleId": "B-S-B-022",
+          "Name": "蓝球候选：向右",
+          "BallType": 1,
+          "Category": 0,
+          "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=ctx.history(p.lag+(p.trend?1:0));\n  if(h.length!==p.lag+(p.trend?1:0)) return [];\n  var n=h[h.length-p.lag].blueBall, direction=p.direction;\n  if(p.trend) { var delta=h[h.length-1].blueBall-h[h.length-2].blueBall; if(delta===0) return []; direction=(delta>0?1:-1)*p.trend; }\n  var result=[];\n  for(var s=-1;s<=1;s+=2) if(!direction||s===direction) {var b=n+s*p.gap; if(b>=1&&b<=16) result.push(b);}\n  return result.sort(function(a,b){return a-b;});\n}",
+          "Parameters": "{\"direction\":1,\"gap\":7,\"lag\":1}",
+          "Fingerprint": "B99A145E01AB3DE5FDE400B2EC334F869ABC53303786B6D276F538D514B5B01E"
+        },
+        {
+          "RuleId": "B-G-R-001-HS",
+          "Name": "宽折反穿杀红（历史同期图）",
+          "BallType": 0,
+          "Category": 0,
+          "Code": "function getKillBalls(ctx) {\n  var p=ctx.params, h=p.scope?ctx.historyFor(p.scope,p.offsets.length):ctx.history(p.offsets.length);\n  if(h.length!==p.offsets.length) return [];\n  var max=p.blue?16:33, result={};\n  for(var n=1;n<=max;n++) for(var sign=-1;sign<=1;sign+=2) {\n    if(p.direction && p.direction!==sign) continue;\n    var next=n+sign*p.target; if(next<1||next>max) continue;\n    var valid=true;\n    for(var j=0;j<h.length;j++) {\n      var b=n+sign*p.offsets[j];\n      if(b<1||b>max || (p.blue?h[j].blueBall!==b:h[j].redBalls.indexOf(b)<0)) { valid=false; break; }\n    }\n    if(valid) result[next]=true;\n  }\n  var balls=Object.keys(result).map(function(b){return parseInt(b,10);}).sort(function(a,b){return a-b;});\n  if(p.frequencyWindow) {\n    var actual=ctx.history(p.frequencyWindow); if(actual.length!==p.frequencyWindow) return [];\n    balls=balls.filter(function(b){var count=0; for(var j=0;j<actual.length;j++) if(actual[j].redBalls.indexOf(b)>=0) count++; return count<=p.frequencyMax;});\n  }\n  return balls;\n}",
+          "Parameters": "{\"blue\":false,\"direction\":0,\"geometryVersion\":1,\"offsets\":[0,2,0],\"scope\":\"samePeriod\",\"target\":-2}",
+          "Fingerprint": "DD5A2A517DD6B3285790F4751D4B34A7E7458CA9A335EE65B3C2950F3A971E5B"
+        }
+      ],
+      "RuleSetHash": "17296BCE109B5689BE00AF8F8ED1E8640AB7A2B51A15048BD73658745AE47691"
+    }
+  ]
+}
